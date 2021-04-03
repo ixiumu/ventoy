@@ -1,0 +1,2065 @@
+ï»¿!BAT by sratlf 0619
+::language å€¼ä¸ºcnæˆ–en  æŒ‡å®šæç¤ºä¿¡æ¯è¯­è¨€
+::usrpath  å€¼åº”ä¸ºè·¯å¾„  ä½œä¸ºç”¨æˆ·è‡ªå®šä¹‰è·¯å¾„  é»˜è®¤ä¸º/BOOT/IMGS/
+::listnote å°†å…¶å€¼ä½œä¸ºè‡ªåŠ¨åˆ—è¡¨æç¤ºä¿¡æ¯
+::filepre  ä»…å¯¹æ–‡ä»¶åä¸­åŒ…å«å˜é‡filepreæŒ‡å®šå­—ç¬¦ä¸²çš„æ–‡ä»¶è¿›è¡Œ è‡ªåŠ¨èœå•/åˆ—è¡¨ æ“ä½œ
+::defaultc å°†å…¶å€¼ä½œä¸ºRUNå‘½ä»¤è¡Œé»˜è®¤æ‰§è¡Œå‘½ä»¤  å³è¾“å…¥då°†æ‰§è¡Œå˜é‡defaultcæŒ‡å®šçš„å‘½ä»¤  é»˜è®¤ä¸ºç©º
+::dpmsver  å€¼ä¸ºchenallæ—¶ä½¿ç”¨chenallåŽŸç‰ˆdpmsè„šæœ¬  å¦åˆ™é»˜è®¤ä½¿ç”¨pseudoä¿®æ”¹åŽçš„dpmsè„šæœ¬
+
+::fd2hd    å€¼ä¸º1æ—¶è‡ªåŠ¨å°†udå¯åŠ¨åŽè¯†åˆ«ä¸ºfdçš„å¯è§åŒºä»¿çœŸä¸ºhd
+::gzdetect å€¼ä¸º0æ—¶å°†ä¸æŽ¢æµ‹gzipåŽ‹ç¼©æ–‡ä»¶åŽŸå§‹æ ¼å¼
+::updateud å€¼ä¸º1æ—¶åœ¨ç£ç›˜äº¤æ¢æ—¶å°†æ›´æ–°udæºä½ç½®
+::ignorerr å€¼ä¸º1æ—¶å±è”½é”™è¯¯æç¤ºåŽçš„é€‰æ‹©(å³æŒ‰hé”®å¸®åŠ©ï¼ŒæŒ‰enterç»§ç»­)  æ”¹ä¸ºåœ¨ç­‰å¾…ä¸‰ç§’åŽè¿”å›ž
+::srsmode  å€¼ä¸º1æ—¶ç›´æŽ¥mapæŒ‡å®šçš„srsé©±åŠ¨æ˜ åƒ
+::firamode å€¼ä¸º2æ—¶ç¦ç”¨ä¸€æ­¥å®‰è£…ç³»ç»Ÿ
+::exchange å€¼ä¸º0æ—¶ä½¿ç”¨--fira|wvbkå‚æ•°æ—¶å°†ä¸è°ƒæ•´fdé¡ºåº
+
+::showfile å€¼ä¸º0æ—¶è‡ªåŠ¨èœå•åŠè‡ªåŠ¨åˆ—è¡¨ä¸æ˜¾ç¤ºæ–‡ä»¶
+::showdir  å€¼ä¸º0æ—¶è‡ªåŠ¨èœå•åŠè‡ªåŠ¨åˆ—è¡¨ä¸æ˜¾ç¤ºæ–‡ä»¶å¤¹
+::showpath å€¼ä¸º1æ—¶è‡ªåŠ¨èœå•åŠè‡ªåŠ¨åˆ—è¡¨æ˜¾ç¤ºæ–‡ä»¶è¯¦ç»†è·¯å¾„
+
+::num_c    å€¼ä¸º0xXX  æŒ‡å®šè‡ªåŠ¨åˆ—è¡¨æ•°å­—ç¼–å·é¢œè‰²
+::file_c   å€¼ä¸º0xXX  æŒ‡å®šè‡ªåŠ¨åˆ—è¡¨æ–‡ä»¶é¢œè‰²
+::dir_c    å€¼ä¸º0xXX  æŒ‡å®šè‡ªåŠ¨åˆ—è¡¨æ–‡ä»¶å¤¹é¢œè‰²
+
+::showback å€¼ä¸º1æ—¶è‡ªåŠ¨åˆ—è¡¨åŠ è½½èƒŒæ™¯å›¾  æ³¨ï¼šä»…åœ¨åŠ è½½èƒŒæ™¯å›¾çš„å‰æä¸‹æœ‰æ•ˆ
+
+::grub4ver å€¼ä¸º0æ—¶è‡ªåŠ¨èœå•éšè—grub4dosç‰ˆæœ¬å·
+::showinfo å€¼ä¸º0æ—¶å–æ¶ˆè‡ªåŠ¨èœå•çš„å¸®åŠ©ä¿¡æ¯
+::showsize å€¼ä¸º0æ—¶è‡ªåŠ¨èœå•ä¸æ˜¾ç¤ºæ–‡ä»¶ä½“ç§¯
+
+::forcend  å€¼ä¸º1æ—¶æ‰‹åŠ¨è¾“å…¥å‘½ä»¤æˆ–è‡ªåŠ¨åˆ—è¡¨çŠ¶æ€ä¸‹  åŠ è½½firaä»¥åŠsrsé©±åŠ¨åŽä¼šå¼ºåˆ¶è¿”å›ž  (ä¸å»ºè®®ä½¿ç”¨)
+
+if "%debug%"=="" set debug=off ;; debug %debug% ;; if /i "%debug%"=="off" set debug=
+::æ£€æµ‹grldrç‰ˆæœ¬
+calc *0x8278 > nul ;; set g4dver=%@retval%
+if %g4dver%<=20140117 && set updateud=1
+set g4dver= && if %g4dver%>=20130401 || echo -e \n $[0147]Current GRUB4DOS [%g4dver%] is too old! && pause && exit
+::terminal console
+delmod -l %~nx0 > nul || insmod %~f0 > nul && set runs=%~nx0 && set runpath=%~p0
+call Fn.15 "%usrpath%" "" || set usrpath=/BOOT/IMGS/
+::æ£€æµ‹è¯­è¨€
+call Fn.15 "%language%" "" || set language=en && read 0x1800820 > nul && set language=cn
+::æ£€æµ‹è¿›å…¥RUNå‰çš„æœ€åŽä¸€æ¬¡configfileåŠ è½½çš„èœå•
+::æ³¨:è‹¥grldrå†…ç½®èœå•æœªä½¿ç”¨è¿‡configfileå‘½ä»¤ï¼Œåˆ™èŽ·å–çš„ç»“æžœä¸º/menu.lstï¼Œä¸ä¼šä¸ºç©º
+call Fn.0 0 0x8217 | set tmp=
+set tmp= && if not "%tmp:~,4%"=="(md)" if not "%tmp:~,4%"=="(rd)" cat --length=0 %tmp% > nul && set backmenu=%tmp%
+call Fn.6
+call Fn.15 "%pager%" "" && pager %pager% ! pager off
+::è‹¥Boot_devå‚æ•°å€¼å’Œ?_BOOTå€¼ç›¸åŒï¼Œåˆ™ç›´æŽ¥å¤„ç†å‚æ•°
+call Fn.11 "%?_BOOT%" "%Boot_dev%" && goto :start
+set Boot_dev=%?_BOOT%
+call Fn.11 "%Boot_dev%" "hd0" && set hdd_boot=1 && goto :start
+call Fn.11 "%Boot_dev%" "pd" && set memset=1 && pxe keep && goto :start
+set fdd_boot=
+map --floppies=1 && calc *0x8280&0xff/2 > nul || set /a fdd_boot=*0x8280&0xff > nul
+read 0x82b8 > nul && calc *0x82b9&0xff/4 > nul || set /a fdd_boot=*0x82b9&0xff > nul
+call Fn.15 "%fdd_boot%" "" || map --floppies=0 ! call Fn.11 "%fd2hd%" "1" && map (%fdd_boot%)+1 (hd) || map (%fdd_boot%) (hd) || echo FDD:%fdd_boot%
+
+:start
+set nextloop= && call Fn.15 "%nextloop%" "1" && setlocal
+if "%debug%"=="" set debug=off ;; debug %debug%
+if /i "%runs%"=="%~1" && goto :next
+::ä»¥--å¼€å¤´çš„å‚æ•°åšå‚æ•°å¤„ç†ï¼Œå¦åˆ™åšæ–‡ä»¶å¤„ç†
+call Fn.15 "%~1" "" && set m=%~1 ! goto :input
+call Fn.11 "%m:~,2%" "--" && goto :%m:~2% > nul || goto :%m:~2,3% > nul || goto :merror
+call Fn.15 "%~x1" "" && goto :%~x1 > nul || goto :merr
+goto :.bin
+
+:as.
+shift && goto :%~x1 || goto :merror
+:set
+endlocal && shift && echo -e %~2 | set %m:~6%=
+setlocal
+goto :next
+:e820cycles
+endlocal && shift && set e820=%~2
+setlocal
+goto :next
+:mem
+:top
+set /l m=%m%
+endlocal && set %m:~2%set=1
+setlocal
+goto :next
+:nomem
+:noboot
+:noswap
+:noload
+set /l m=%m%
+endlocal && set %m:~4%set=0
+setlocal
+goto :next
+:merr
+::æ— æ³•è¯†åˆ«çš„æ£€æµ‹æ˜¯å¦ä¸ºæ–‡ä»¶å¤¹
+call :find %~1 || goto :merror
+call Fn.11 "%filefnd%" "0" && goto :automenu_begin
+call Fn.11 "%autotype%" "list" && call Fn.11 "%loadset%" "0" && goto :boot
+:merror
+call Fn.15 "%language%" "cn" && echo -e \n Unsupported file or command: $[0147]%m%$[0x07]\x20 ! echo -e \n ä¸è¢«æ”¯æŒçš„æ–‡ä»¶æˆ–å‘½ä»¤: $[0147]%m%$[0x07]\x20
+call Fn.11 "%in_check%" "1" && exit ! goto :errchoise
+:ferr
+call Fn.15 "%language%" "cn" && echo -e \n File not found : $[0147]%findfile%$[0x07]\x20 ! echo -e \n æ— æ³•æ‰¾åˆ°: $[0147]%findfile%$[0x07]\x20
+::é€‰æ‹©
+:errchoise
+if "%back%"=="" || set back= && set filefnd= && set in_check= ! call Fn.11 "%in_check%" "1" && exit
+call Fn.11 "%ignorerr%" "1" &; call Fn.73 3 || goto :end
+call Fn.11 "%language%" "en" && echo -e \n $[0x07]Hit "$[0146]h$[0x07]" for $[0107]help info$[0x07], OR "$[0146]Enter$[0x07]" to $[0107]continue$[0x07].\n
+call Fn.11 "%language%" "cn" && echo -e \n $[0x07]æŒ‰ "$[0146]h$[0x07]" é”®èŽ·å–$[0107]å¸®åŠ©ä¿¡æ¯$[0x07], æˆ–è€…æŒ‰ "$[0146]Enter$[0x07]" é”®$[0107]ç»§ç»­$[0x07]ã€‚\n
+call Fn.19
+::æŒ‰ä¸‹å°å†™hé”®åŽè·³è‡³å¸®åŠ©æ¨¡å—,æŒ‰ä¸‹å°å†™ié”®åŽè·³è‡³ç›´æŽ¥è¾“å…¥æ¨¡å—
+call Fn.11 "%@retval%" "9064" && set filefnd= && goto :help ! call Fn.11 "%@retval%" "5993" && set filefnd= && goto :i ! goto :end
+
+:loadfont
+graphicsmode > nul || set language=en && goto :next
+if %@retval%>=316 set graphics=%@retval% || set graphics=-1 100:1000 100:1000 24:32
+graphicsmode %graphics% > nul || set language=en && goto :next
+set fontfile=
+cat --length=0 %@root%%%runpath%UNIFONT.HEX > nul && set fontfile=1 ! call :loadrunmod || set language=en && goto :next
+call Fn.15 "%fontfile%" "1" && set fontfile=(3)/FONT.LZMA ! set fontfile=%@root%%%runpath%UNIFONT.HEX
+endlocal && set fontfile=%fontfile%
+set language=cn
+font && font %fontfile% || set language=en
+setlocal
+map --status=3 && map --unmap=3 && map --rehook
+goto :next
+
+:loadrunmod
+map --status=3 && cat --length=0 (3)/RUNDPMS > nul && exit
+set loadroot=
+set loadfile=%@root%%%runpath%%%runs%
+cat --length=0 %loadfile% > nul || call :find %loadfile% fileonly || exit 1
+echo -e -n \n Attempt to load %runs% mod ... 
+map --mem=0x20000 %loadroot%%%loadfile% (rd) || echo -e failed at error.134 && exit 1
+cat --locate=\x1f\x8b --number=1 (rd)+1 > nul |; echo -e failed at error.135.%?% && exit 1
+calc *0x82d8=*0x82d8-%?% > nul
+calc *0x82d0=*0x82d0+%?% > nul
+map --mem (rd)+1 (3) && echo -e succeed ! echo -e failed at error.138 && exit 1
+map --rehook
+exit
+
+::æŒ‡å®šè®¾å¤‡ç±»åž‹ï¼ˆé»˜è®¤ä¸ºchpuï¼‰
+:dev
+shift
+echo -e %~1 | set devtmp=
+if not "%devtmp%"=="" if /i not "%devtmp%"=="all" || endlocal && set usrdev=chpuf && setlocal && goto :next
+set tmp=%devtmp%
+::é€é¡¹å¯¹æ¯”ï¼Œä»¥ç¡®å®šå‚æ•°æ˜¯å¦åˆæ³•
+:dev_dt
+if "%tmp%"=="" && endlocal && set usrdev=%devtmp% && setlocal && goto :next
+call Fn.11 "chpufn" "%tmp:~,1%" || set usrdev= && set m=%~0=%devtmp% && goto :merror
+set tmp=%tmp:~1%
+goto :dev_dt
+
+::é€šç”¨æŸ¥æ‰¾æ–‡ä»¶æ¨¡å—
+:find
+set filefnd=
+set dirfnd=
+set loadroot=
+set loadfile=
+set loadpath=
+set tmproot=
+set fileonly=
+set dironly=
+set loop=
+call Fn.11 "%~2" "fileonly" && set fileonly=1 && shift 2
+call Fn.11 "%~2" "dironly" && set dironly=1 && shift 2
+::è‹¥å‚æ•°ä¸ºæ•°å­—ï¼Œåˆ¤æ–­æ˜¯å¦ä¸ºè‡ªåŠ¨åˆ—è¡¨æŒ‡å®šçš„æ•°å­—
+call Fn.11 "%Boot_dev%" "pd" && set fastmode=1
+call Fn.15 "%fastmode%" "" || set /a time=%@time:~,2% * 3600 + %@time:~3,2% * 60 + %@time:~6,2% + 1 > nul
+call Fn.11 "%autotype%" "list" && call Fn.15 "%md%" "" && checkrange 1:%i% calc %~1 > nul && calc %md% + %~1 > nul &; cat (md)%@retval%+1 | call :serach 
+call Fn.15 "%loop%" "1" &; call Fn.15 "%~1" "%~nx1" && call :serach %~f1 ! call :serach %usrpath%%%~1
+call Fn.15 "%fastmode%" "" |; calc %@time:~,2% * 3600 + %@time:~3,2% * 60 + %@time:~6,2% > nul &; if %@retval%<=%time% && set fastmode=0 ! set fastmode=1
+set tmproot=
+set fileonly=
+set dironly=
+set loop=
+call Fn.15 "%helpinfo%" "0" &; call Fn.15 "%loadfile%" "" || call Fn.15 "%loadpath%" "" || echo -e ! call Fn.11 "%language%" "en" && echo -e found ! echo -e å·²æ‰¾åˆ°
+::å¤„ç†æŸ¥æ‰¾çš„è¿”å›žå€¼
+call Fn.15 "%~2" "exit" && call Fn.15 "%loadfile%" "" || call Fn.15 "%loadpath%" "" || exit 1 ! exit
+exit
+:serach
+call Fn.15 "%loop%" "1" && set findfile=%~pnx1 && rootnoverify %~d1 || exit
+call Fn.15 "%fdd_boot%" "" && call Fn.11 "%loop%" "1" && call Fn.11 "%filefnd%" "0" && call Fn.11 "%dirfnd%" "0" &; set loop= && set fdd_boot= && root (hd0) > nul || root (fd0) > nul || set loop=1
+call Fn.15 "%tmproot%" "%@root%" &; call Fn.15 "%helpinfo%" "0" &; call Fn.11 "%language%" "en" && echo -e -n \n $[0004]Searching $[0106]%@root%$[0102]%~pnx1$[0x07]... ! echo -e -n \n $[0004]æ­£åœ¨æœç´¢ $[0106]%@root%$[0102]%~pnx1$[0x07]...
+call Fn.15 "%loop%" "1" && set loop=1 ! exit
+set tmproot=%@root%
+::æŒ‰æ–‡ä»¶æŸ¥æ‰¾
+call Fn.15 "%usrdev%" "" |; call Fn.15 "%fdd_boot%" "" && set usrdev=chpuf ! set usrdev=chpu
+call Fn.11 "%dironly%" "1" && goto :serach_dir
+cat --length=0 %~pnx1 > nul || find --set-root --devices=%usrdev% cat --length=0 %~pnx1 > nul || set filefnd=0
+call Fn.15 "%filefnd%" "0" && set loadfile=%~pnx1 && set loadroot=%@root% && goto :serach
+:serach_dir
+call Fn.11 "%fileonly%" "1" && goto :serach
+::æŒ‰æ–‡ä»¶å¤¹æŸ¥æ‰¾
+set path=%~pnx1
+call :path_check || call Fn.15 "%path:~-1%" "/" && set path=%path%/
+call Fn.11 "%dironly%" "1" && set findfile=%path%
+ls %path% > nul || find --set-root --devices=%usrdev% ls %path% > nul || set dirfnd=0
+call Fn.15 "%dirfnd%" "0" && set loadpath=%path% && set loadroot=%@root% && goto :serach
+exit
+
+::å¯¹pathå€¼è¿›è¡Œæ£€æµ‹ï¼Œä»¥ç¡®å®šæ˜¯å¦åˆæ³•ï¼Œè°ƒç”¨æ–¹å¼ call :path_check ;å¤„ç†ç»“æŸåŽpathå€¼ä¸ºâ€œè®¤ä¸ºâ€åˆæ³•çš„ç»“æžœ
+:path_check
+::æ£€æµ‹ç¬¬ä¸€ä½æ˜¯å¦ä¸º/
+call Fn.15 "%path%" "" || set path=/ ! call Fn.15 "%path:~,1%" "/" && set path=%path:~1% && goto :path_check
+::è‹¥pathå€¼æœ€åŽä¸€ä½æ˜¯/ï¼Œå…ˆåŽ»æŽ‰
+call Fn.15 "%path%" "/" && call Fn.11 "%path:~-1%" "/" && set path=%path:~,-1% && goto :path_check
+::é‡æ–°è¡¥é½/
+call Fn.15 "%path%" "/" && call Fn.15 "%path%" "" && set path=%path%/ ! set path=/
+exit
+
+::æœ¬è„šæœ¬ç»“æŸæ¨¡å—
+:end
+if /i "%~2"=="exit" && set endmode=2
+call Fn.11 "%in_check%" "1" && exit 1
+call Fn.11 "%endmode%" "2" && endlocal && set loadroot=%loadroot% && set loadfile=%loadfile% && set loadpath=%loadpath% && exit
+call Fn.0 0 0x8217 | set tmp=
+set tmp= && call Fn.15 "%tmp%" "(rd)+1" && set filefnd= && set dirfnd= ! exit
+::æ£€æµ‹å†…ç½®èœå•ä½ç½®
+calc *0x307FFC-0x110000 > nul && set tmp=(md)4+8 ! set tmp=(md)0x880+0x200
+set tmp= && call :menucheck %backmenu% %menu% %tmp% || write 0x307ff8 1
+configfile %loadroot%%%loadfile%
+exit
+::æ£€æµ‹èœå•æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œå› èœå•æ–‡ä»¶å¯èƒ½ä¸º(md)æˆ–(rd)ï¼Œå› æ­¤ç‰¹æ®Šå¤„ç†
+:menucheck
+call Fn.15 "%~1" "" || exit 1
+set loadroot=
+set loadfile=%~1
+call Fn.11 "%autotype%" "list" && call Fn.15 "%md%" "" && checkrange 1:%i% calc %~1 > nul && calc %md% + %~1 > nul &; cat (md)%@retval%+1 | set loadfile=
+call Fn.15 "%loadfile:~1,2%" "md" && call Fn.15 "%loadfile:~1,2%" "rd" && call :find %loadfile% fileonly exit ! cat --length=0 %loadfile% > nul || set loadfile=
+call Fn.15 "%loadfile%" "" && exit
+shift
+goto :menucheck
+
+::æ£€æµ‹æ‰€æœ‰å‚æ•°æ˜¯å¦å¤„ç†å®Œï¼Œå¦åˆ™å¤„ç†ä¸‹ä¸ªå‚æ•°
+:next
+shift
+call Fn.15 "%~1" "" && set nextloop=1 && goto :start
+call Fn.11 "%in_check%" "1" && exit
+goto :end
+
+::å¸®åŠ©ä¿¡æ¯æ¨¡å—
+:help
+set morehelp=
+if /i "%~1"=="--help" && shift && if /i "%~2"=="more" && shift && set morehelp=1
+set c1=$[0x0A]
+set c7=$[0x07]
+set c3=$[0005]
+set c4=$[0x0E]
+set cf=$[0x0F]
+
+call Fn.11 "%morehelp%" "1" && pager on ! set c1=%c4% && set c4=%c1%
+
+call Fn.15 "%language%" "cn" && echo -e -n \n%runs% Usage,\x20 ! echo -e -n \n%runs% å‘½ä»¤æ ¼å¼ï¼Œ
+call Fn.11 "%morehelp%" "1" && echo -e ! call Fn.15 "%language%" "cn" && echo -e for detail please input %c3%--help more%c7%\x20 ! echo -e è¯¦ç»†è¯´æ˜Žè¯·æ‰§è¡Œ %c3%--help more %c7%\x20
+
+echo -e \n%runs% %c7%/path/%c1%|%c7%file.iso%c1%|%c7%.img%c1%|%c7%.ima%c1%|%c7%.gz%c1%|%c7%.lzma%c1%|%c7%.0%c1%|%c7%.bin%c1%|%c7%.lst%c1%|%c7%.0pe%c1%|%c7%.txt%c1%|%c7%.ini%c1%|%c7%.log%c1%|%c7%.inf
+call Fn.11 "%morehelp%" "1" && echo -e -n \n%c4%\t /path/ && if not "%language%"=="cn" echo -e %c7%  autolist for /path/ || echo -e %c7%  è‡ªåŠ¨ç”Ÿæˆ /path/ è·¯å¾„ä¸‹æ–‡ä»¶èœå•
+call Fn.11 "%morehelp%" "1" && echo -e -n %cf%\tfile%c4%.iso && if not "%language%"=="cn" echo -e %c7% cd-rom iso file || echo -e %c7% å…‰ç›˜é•œåƒæ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %cf%\tfile%c4%.lst && if not "%language%"=="cn" echo -e %c7% menu file of grub4dos || echo -e %c7% grub4dosèœå•æ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %cf%\tfile%c4%.0pe && if not "%language%"=="cn" echo -e %c7% menu file for 0PE only || echo -e %c7% 0PEä¸“ç”¨èœå•æ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\tfile %cf%/ file%c4%.bin %cf%/ file%c4%.0 && if not "%language%"=="cn" echo -e %c7% OS boot file || echo -e %c7% ç³»ç»Ÿå¼•å¯¼æ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %cf%\tfile%c4%.gz %cf%/ file%c4%.ima %cf%/ file%c4%.img %cf%/ file%c4%.lzma && if not "%language%"=="cn" echo -e %c7% floppy img file || echo -e %c7% è½¯ç›˜é•œåƒæ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %cf%\tfile%c4%.txt %cf%/ file%c4%.ini %cf%/ file%c4%.log %cf%/ file%c4%.inf && if not "%language%"=="cn" echo -e %c7% text file || echo -e %c7% æ–‡æœ¬æ–‡ä»¶
+
+echo -e \n%runs% %c3%Options %cf%etc.
+call Fn.11 "%morehelp%" "1" && call Fn.15 "%language%" "en" && echo -e \n%c7%    å›ºå®šå‚æ•°åŽå¯è·Ÿå…¶ä»–å‚æ•°æˆ–æ–‡ä»¶ï¼Œå‚æ•°è®¾å®šåŽæ°¸ä¹…æœ‰æ•ˆï¼Œå³é™¤éžè¿›å…¥æ–°çš„grub4dosçŽ¯å¢ƒæˆ–æ¸…é™¤æ‰€æœ‰å˜é‡å€¼ï¼Œå¦åˆ™ä¸€ç›´ç”Ÿæ•ˆ
+
+echo -e -n \n%c3%\t--top %cf%etc.  && call Fn.11 "%morehelp%" "1" || echo -e -n %c3%\t--nt %cf%/file.* && echo -e %c3%\t\t--set-%c4%var%c7%=%c4%value %cf%etc. ! call Fn.15 "%language%" "cn" && echo -e %c7% try to allocate memory at highest available address ! echo -e %c7% å°†è¦ä»¿çœŸçš„é•œåƒå°†é•œåƒåŠ è½½è‡³é«˜ç«¯å†…å­˜åŽå†è¿›è¡Œä»¿çœŸ
+echo -e -n %c3%\t--mem %cf%etc.  && call Fn.11 "%morehelp%" "1" || echo -e -n %c3%\t--pe %cf%/file.* && echo -e %c3%\t\t--dev=%c7%[%c1%c%c7%,%c1%h%c7%,%c1%p%c7%,%c1%u%c7%,%c1%f%c7%,%c1%all%c7%] %cf%etc. ! call Fn.15 "%language%" "cn" && echo -e %c7% image file will map to memery ! echo -e %c7% å°†è¦ä»¿çœŸçš„é•œåƒå…ˆåŠ è½½åˆ°å†…å­˜åŽå†è¿›è¡Œä»¿çœŸ
+echo -e -n %c3%\t--nomem %cf%etc.   && call Fn.11 "%morehelp%" "1" || echo -e -n %c3%\t--as.%c4%XXX %cf%/file.* && echo -e %c3%\t--e820cycles=%c4%N %cf%etc. ! call Fn.15 "%language%" "cn" && echo -e %c7% image file will be directlly mapped ! echo -e %c7% å¯¹å°†è¦ä»¿çœŸçš„é•œåƒç›´æŽ¥è¿›è¡Œä»¿çœŸï¼Œä¸åŠ è½½åˆ°å†…å­˜
+echo -e -n %c3%\t--noswap %cf%etc.  && call Fn.11 "%morehelp%" "1" || echo -e %c3%\t--end %c7%[%c1%exit%c7%] ! call Fn.15 "%language%" "cn" && echo -e %c7% hdd sequence will not be changed ! echo -e %c7% ä¸è¿›è¡Œç£ç›˜äº¤æ¢æ“ä½œ
+echo -e -n %c3%\t--%c7%[%c3%no%c7%]%c3%boot %cf%etc.  && call Fn.11 "%morehelp%" "1" || echo -e %c3%--ramos %cf%/hdd.* %c7%[%c4%/ldrfile%c7%] ! call Fn.15 "%language%" "cn" && echo -e %c7% the boot command will [not] be executed ! echo -e %c7% å°†[ä¸]æ‰§è¡Œ boot å‘½ä»¤
+echo -e -n %c3%\t--swap %cf%etc.      && call Fn.11 "%morehelp%" "1" || echo -e ! call Fn.15 "%language%" "cn" && echo -e %c7% hdd swap simple mode, swap hd1 to hd0 only ! echo -e %c7% ç£ç›˜äº¤æ¢ï¼Œç®€æ˜“æ¨¡å¼ï¼Œhd1ä¸Žhd0äº’ç›¸äº¤æ¢
+echo -e -n %c3%\t--swap-all %cf%etc.  && call Fn.11 "%morehelp%" "1" || echo -e ! call Fn.15 "%language%" "cn" && echo -e %c7% hdd swap normal mode, swap hd0 to last hd, then hd1 to hd0 ! echo -e %c7% ç£ç›˜äº¤æ¢ï¼Œæ­£å¸¸æ¨¡å¼ï¼Œhd0å°†äº¤æ¢è‡³æœ€åŽï¼Œhd1å°†ä¸ºhd0
+echo -e -n %c3%\t--swap-ext %cf%etc.  && call Fn.11 "%morehelp%" "1" || echo -e ! call Fn.15 "%language%" "cn" && echo -e %c7% hdd swap advanced mode, can swap specified hdd to hd0 ! echo -e %c7% ç£ç›˜äº¤æ¢ï¼Œé«˜çº§æ¨¡å¼ï¼Œå¯äº¤æ¢æŒ‡å®šhdè‡³hd0ï¼Œå¯å¤šæ¬¡äº¤æ¢
+echo -e -n %c3%\t--loadfont %cf%etc.  && call Fn.11 "%morehelp%" "1" || echo -e ! call Fn.15 "%language%" "cn" && echo -e %c7% for zh-CN users, load Chinese Fonts ! echo -e %c7% åŠ è½½ä¸­æ–‡å­—åº“
+
+call Fn.11 "%morehelp%" "1" && echo -e -n \n%c3%\t--set-%c4%var%c7%=%c4%value %cf%etc.  && if not "%language%"=="cn" echo -e %c7% set the value of the variable var is value || echo -e %c7% è®¾ç½®å˜é‡ var çš„å€¼ä¸º valueï¼Œæ°¸ä¹…æœ‰æ•ˆ
+call Fn.11 "%morehelp%" "1" && echo -e -n %c3%\t--dev=%c7%[%c1%c%c7%,%c1%h%c7%,%c1%p%c7%,%c1%u%c7%,%c1%f%c7%,%c1%all%c7%] %cf%etc.  && if not "%language%"=="cn" echo -e %c7% find the file on the specified device || echo -e %c7%åœ¨æŒ‡å®šçš„è®¾å¤‡ä¸ŠæŸ¥æ‰¾æ–‡ä»¶ï¼Œé»˜è®¤ä¸ºchpuï¼Œæ°¸ä¹…æœ‰æ•ˆ
+call Fn.11 "%morehelp%" "1" && echo -e -n %c3%\t--e820cycles=%c4%N %cf%etc.  && if not "%language%"=="cn" echo -e %c7% the same to the grub4dos map --e820cycles command || echo -e %c7% ä½œç”¨åŒ grub4dos ä¸­ map --e820cycles å‚æ•°ï¼Œæ°¸ä¹…æœ‰æ•ˆ
+
+call Fn.11 "%morehelp%" "1" && echo -e -n \n%c3%\t--nt %cf%/file.*  && if not "%language%"=="cn" echo -e %c7% for UFD only, boot the local OS boot file || echo -e %c7% ä»…é€‚ç”¨äºŽUSBå¯åŠ¨ï¼Œå¯åŠ¨æŒ‡å®šçš„æœ¬åœ°ç¡¬ç›˜ä¸Šçš„ntç³»ç»Ÿå¼•å¯¼æ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %c3%\t--pe %cf%/file.*  && if not "%language%"=="cn" echo -e %c7% boot the specified PE boot file || echo -e %c7% å¯åŠ¨æŒ‡å®šçš„peç³»ç»Ÿå¼•å¯¼æ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %c3%\t--as.%c4%XXX %cf%/file.*  && if not "%language%"=="cn" echo -e %c7% load the specified file as the specified file type || echo -e %c7% å°†æŒ‡å®šæ–‡ä»¶æŒ‰æŒ‡å®šæ–‡ä»¶ç±»åž‹åŠ è½½
+call Fn.11 "%morehelp%" "1" && echo -e -n %c3%\t--ramos %cf%/hdd.* %c7%[%c4%/ldrfile%c7%]  && if not "%language%"=="cn" echo -e %c7% map the hdd image file to mem and boot it || echo -e %c7% åŠ è½½æŒ‡å®šç¡¬ç›˜æ˜ åƒè‡³å†…å­˜å¯åŠ¨ï¼Œå¯æŒ‡å®šå¼•å¯¼æ–‡ä»¶
+
+call Fn.11 "%morehelp%" "1" && echo -e -n \n%c3%\t--end %c7%      && if not "%language%"=="cn" echo -e %c7% exit %runs% and reload grub4dos pre-set configfile || echo -e %c7% é€€å‡º%runs%å‘½ä»¤è¡Œï¼Œå¹¶å°†é‡æ–°åŠ è½½GRUB4DOSå†…ç½®èœå•
+call Fn.11 "%morehelp%" "1" && echo -e -n %c3%\t--end exit%c7%  && if not "%language%"=="cn" echo -e %c7% just exit %runs% || echo -e %c7% ä»…é€€å‡º%runs%å‘½ä»¤è¡Œ
+
+echo -e \n%runs% %c7%[Options] %c3%--automenu%c7%[%c1%-all%c7%]%c4%|%c3%--autolist%c7%[%c1%-all%c7%] [%c1%--show%c4%|%c1%--not-show%cf%.XX1.XX2-.NNN%c7%] [%c1%subdir=%c4%N%c7%] [%cf%/path/%c7%]
+call Fn.11 "%morehelp%" "1" && echo -e -n \n%c4%\t--automenu && if not "%language%"=="cn" echo -e %c7%     automenu for the specified path || echo -e %c7%     è‡ªåŠ¨ç”ŸæˆæŒ‡å®šç›®å½•ä¸‹æ–‡ä»¶èœå•
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\t--automenu-all && if not "%language%"=="cn" echo -e %c7% automenu for the all available devices || echo -e %c7% ç”Ÿæˆç”Ÿæˆæ‰€æœ‰å¯ç”¨è®¾å¤‡èœå•
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\t--autolist && if not "%language%"=="cn" echo -e %c7%     autolist for the specified path || echo -e %c7%     è‡ªåŠ¨ç”ŸæˆæŒ‡å®šç›®å½•ä¸‹æ–‡ä»¶èœå•
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\t--autolist-all && if not "%language%"=="cn" echo -e %c7% autolist for the all available devices || echo -e %c7% ç”Ÿæˆç”Ÿæˆæ‰€æœ‰å¯ç”¨è®¾å¤‡èœå•
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\t--show.XX1.XX2-.NNN && if not "%language%"=="cn" echo -e %c7%     show the specifiled file type only, * for all || echo -e %c7%     åªæ˜¾ç¤ºæŒ‡å®šåŽç¼€çš„æ–‡ä»¶ï¼Œä¸º*æ—¶å…¨éƒ¨æ˜¾ç¤º
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\t--not-show.XX1.XX2-.NNN && if not "%language%"=="cn" echo -e %c7% not show the specifiled file type || echo -e %c7% ä¸æ˜¾ç¤ºæŒ‡å®šåŽç¼€çš„æ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %c7%\t--automenu[-all]|--autolist[-all] %c4%[/path/] && if not "%language%"=="cn" echo -e %c7% specify the path || echo -e %c7% æŒ‡å®šç›®å½•
+call Fn.11 "%morehelp%" "1" && echo -e -n %c7%\t--automenu[-all]|--autolist[-all] %c4%subdir=N %c7%[/path/] && if not "%language%"=="cn" echo -e %c7% specify the deep leveal || echo -e %c7% æŒ‡å®šç›®å½•æ·±åº¦
+
+echo -e \n%runs% %c7%[Options] %c3%--fira%c4%|%c3%--wvbk%c7%[%c1%-existdrv%c7%][%c1%-noload%c7%][%c1%-nochoice%c7%][%cf%:/img.*%c7%] [%c1%srs%c4%|%c1%dpms%c7%[%cf%:/file.*%c7%]] [%c1%sif%c7%[%cf%:/winnt.sif%c7%]] <%c1%iso=%c7%/file.iso %c4%| %c1%disk=%c7%/hdd.* %c4%| %cf%etc.%c7%>
+call Fn.11 "%morehelp%" "1" && echo -e -n \n%c4%\t--fira && if not "%language%"=="cn" echo -e %c7% use firadisk driver || echo -e %c7% ä½¿ç”¨firadiské©±åŠ¨
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\t--wvbk && if not "%language%"=="cn" echo -e %c7% use winvblock driver || echo -e %c7% ä½¿ç”¨winvblocké©±åŠ¨
+call Fn.11 "%morehelp%" "1" && echo -e -n %c7%\t--fira|--wvbk%c4%-existdrv && if not "%language%"=="cn" echo -e %c7% no driver will be mapped to fd || echo -e %c7% ä¸åŠ è½½ä»»ä½•é©±åŠ¨
+call Fn.11 "%morehelp%" "1" && echo -e -n %c7%\t--fira|--wvbk%c4%-noload && if not "%language%"=="cn" echo -e %c7%    will not map img file to fd0 || echo -e %c7%    ä¸åŠ è½½firadiskæˆ–winvblocké©±åŠ¨
+call Fn.11 "%morehelp%" "1" && echo -e -n %c7%\t--fira|--wvbk%c4%-nochoice && if not "%language%"=="cn" echo -e %c7%  boot the iso file directly || echo -e %c7%  åŠ è½½é©±åŠ¨åŽç›´æŽ¥å¯åŠ¨isoé•œåƒ
+call Fn.11 "%morehelp%" "1" && echo -e -n %c7%\t--fira|--wvbk[-nochoice][%c4%:/img.*%c7%] && if not "%language%"=="cn" echo -e %c7%  map the specified img file to fd1 || echo -e %c7%  åŠ è½½æŒ‡å®šçš„è½¯é©±é•œåƒè‡³fd1
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\tsrs%c7%|%c4%dpms%c7%[:/file.*] && if not "%language%"=="cn" echo -e %c7% specify the SRS or DPMS driver pack || echo -e %c7% æŒ‡å®šé©±åŠ¨åŒ…
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\tsif%c7%[:/winnt.sif] && if not "%language%"=="cn" echo -e %c7%  specify the unattended installation file || echo -e %c7%  æŒ‡å®šè‡ªåº”ç­”æ–‡ä»¶
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\tiso=%c7%/file.iso && if not "%language%"=="cn" echo -e %c7% specify the iso image file || echo -e %c7% æŒ‡å®šisoé•œåƒ
+call Fn.11 "%morehelp%" "1" && echo -e -n %c4%\tdisk=%c7%/hdd.* && if not "%language%"=="cn" echo -e %c7%   specify the hdd image file || echo -e %c7%   æŒ‡å®šç¡¬ç›˜æ˜ åƒ
+echo
+call Fn.11 "%morehelp%" "1" && pager %pager%
+
+set morehelp=
+set c1=
+set c3=
+set c4=
+set c7=
+set cf=
+
+call Fn.11 "%in_check%" "1" && exit
+goto :i
+
+:ic
+set input=
+commandline
+if "%debug%"=="" set debug=off ;; debug %debug%
+::æ‰‹åŠ¨è¾“å…¥æ¨¡å—
+:input
+if /i "%~1"="--input" && shift
+call Fn.6
+set c1=$[0104]
+set c2=$[0003]
+set c7=$[0x07]
+call Fn.11 "%language%" "en" && echo -e \n $[0x07] Please input the command, use "%c1%--help%c7%" or "$[0005]--help more%c7%" for %c2%Command Usage%c7%.
+call Fn.11 "%language%" "en" && echo -e \n $[0x07] You can also input "%c1%b%c7%" to %c2%Go Back %c7%or "$[0005]c%c7%" to %c2%Commandline%c7%.\n
+call Fn.11 "%language%" "cn" && echo -e \n $[0x07] è¯·è¾“å…¥è¦æ‰§è¡Œçš„å‘½ä»¤, å¯ä»¥è¾“å…¥ "%c1%--help%c7%" æˆ– "$[0005]--help more%c7%" èŽ·å–%c2%å‘½ä»¤æ ¼å¼%c7%ã€‚
+call Fn.11 "%language%" "cn" && echo -e \n $[0x07] ä¹Ÿå¯ä»¥è¾“å…¥ "%c1%b%c7%" è¿›è¡Œ%c2%è¿”å›ž%c7%æ“ä½œ, æˆ–è€…è¾“å…¥ "$[0005]c%c7%" %c2%è¿›å…¥å‘½ä»¤è¡Œ%c7%ã€‚\n
+set c1=
+set c2=
+set c7=
+:i
+set input=
+set /p input=%runs%>  || goto :i
+goto :i%input% > nul || set in_check=1
+set input= && call :autolist_input %input% || set in_check= && goto :end
+call Fn.15 "%debug%" "off" && echo -e \n Input: %input%. %* && call Fn.73 2
+set input= && call :start %input% || set in_check= && goto :end
+::æœ‰å…¶ä»–å‚æ•°æ—¶ç»§ç»­å›žåˆ° :start
+set in_check=
+call Fn.15 "%~1" "" && set nextloop=1 && goto :start
+call Fn.15 "%forcend%" "exit" && goto :i
+set forcend=1
+exit
+
+::è‡ªåŠ¨åˆ—è¡¨æ‰§è¡ŒæŒ‡å®šæ•°å­—é¡¹
+:autolist_input
+set tmp=
+call Fn.15 "%~1" "" && set /l tmp=%~1 ! exit
+call Fn.11 "%tmp:~,1%" "\" && set input=%input% %tmp:~-1% && shift && goto :autolist_input
+if not "%tmp%"=="b" if not "%tmp%"=="exit" || set tmp=--end
+call Fn.15 "%tmp%" "--end" || set input=%input% --end && set endmode=1 &; if /i "%~2"=="exit" && set input=%input% exit && set endmode=2 && shift 2
+call Fn.15 "%tmp%" "--end" |; shift && call Fn.15 "%~0" ":autolist_input" && goto :autolist_input ! if not "%endmode%"=="1" if not "%endmode%"=="2" || exit 1
+
+if "%tmp%"=="h" && set input=--help && shift
+if "%input%"=="--help" if /i "%~1"=="more" && shift && set input=--help more
+
+if "%tmp%"=="d" && if not "%defaultc%"=="" set input=%defaultc% && shift && goto :autolist_input
+if not "%tmp:~,5%"=="--set" if not "%tmp%"=="--dev" if not "%tmp%"=="subdir" if not "%tmp%"=="--e820cycles" || set input=%input% %~1=%~2 && shift && shift && goto :autolist_input
+call Fn.11 "%autotype%" "list" && checkrange 1:%i% calc %~1 > nul && calc %md% + %~1 > nul ! set input=%input% %~1 && shift && goto :autolist_input
+call Fn.15 "%md%" "" && if %@retval%>=%md% && cat (md)%@retval%+1 | set input=%input% 
+shift
+goto :autolist_input
+
+::å‘ä¸‹ç¿»é¡µæ¨¡å—ï¼Œè®¡ç®—èµ·å§‹è¡Œæ•°åŠç»“æŸè¡Œæ•°
+:i+
+if not "%line%"=="" if not "%lineb%"=="" if not "%linee%"=="" if not "%linem%"=="" || goto :i
+if %line%>=%linee% || goto :i
+set /a lineb=%linee% > nul
+set /a linee=%linee%+%linem% > nul
+goto :next_page
+::å‘ä¸Šç¿»é¡µæ¨¡å—ï¼Œè®¡ç®—èµ·å§‹è¡Œæ•°åŠç»“æŸè¡Œæ•°
+:i-
+if not "%line%"=="" if not "%lineb%"=="" if not "%linee%"=="" if not "%linem%"=="" || goto :i
+call Fn.15 "%lineb%" "1" || goto :i
+set /a lineb=%lineb%-%linem% > nul
+if %lineb%<=0 && set lineb=1
+set /a linee=%linee%-%linem% > nul
+if %linee%<=0 && set /a linee=%linem% > nul
+::é‡æ–°å®šä¹‰è‡ªåŠ¨åˆ—è¡¨çš„åŸºç¡€å‚æ•°å€¼ï¼Œé‡æ–°ç”Ÿæˆè‡ªåŠ¨åˆ—è¡¨
+:next_page
+setlocal
+set getpath=
+cat (md)%md%+1 | call :next_page_path 
+set listinit=1
+set getpath= && call :init_autotype %getpath%
+set subdirgo= && goto :%subdirgo% || goto :automenu_begin
+:next_page_path
+set subdirgo=
+set path=
+call Fn.15 "%~1" "%dir_deep%" && call Fn.15 "%~2" "" || rootnoverify %~d1 && set getpath=%~pnx1 && set path=%~pnx1 && set subdirgo=automenu_begin && exit
+set getpath=%*
+call Fn.15 "%~1" "%dir_deep%" &; call Fn.15 "%~3" "" && set path=%~3 && set subdirgo=automake_all && exit ! set subdirgo=auto-all && exit
+call Fn.15 "%~2" "all\ devices" && set dir_root=%~2 && set subdirgo=subdir_begin && exit
+set path=%~3
+set subdirgo=subdir_all_begin
+exit
+
+::ç£ç›˜äº¤æ¢æ¨¡å—ï¼ŒæŒ‰sé”®ä¸ºå¾ªçŽ¯äº¤æ¢ï¼Œå¦‚åŽŸ(hd0)->(hd2),åŽŸ(hd1)->(hd0),åŽŸ(hd2)->(hd1)
+::æŒ‰æ•°å­—é”®ä¸ºç›´æŽ¥äº¤æ¢ç›®æ ‡hdè‡³hd0
+:swap-ext
+::ä¸¤å—hddä»¥ä¸Šæ‰è¿›è¡Œäº¤æ¢
+set swapset= && if not "%swapset%"=="0" checkrange 2:-1 calc *0x475&0xff > nul || echo -e \n No swap needed. && goto :swapend
+setlocal
+::è¾“å‡ºhddä½“ç§¯
+call :disk_size
+call Fn.15 "%hdsize:~-2%" "\n" && set hdsize=%hdsize%\n
+call Fn.15 "%language%" "cn" && echo -e \n Current%hdsize% ! echo -e \n å½“å‰%hdsize%
+set hdsize=
+::è¾“å‡ºå„åˆ†åŒºè¯¦ç»†ä¿¡æ¯
+set helpinfo=1
+debug 1
+find --devices=h | call :part_info 
+if "%debug%"=="" set debug=off ;; debug %debug%
+set helpinfo=
+endlocal
+::é€‰æ‹©æ˜¯å¦äº¤æ¢
+call Fn.11 "%language%" "en" && echo -e \n $[0x07]Hit "$[0146]S$[0x07]" to $[0107]swap HDD$[0x07], OR "$[0146]Enter$[0x07]" to $[0107]continue$[0x07], nothing to do.
+call Fn.11 "%language%" "cn" && echo -e \n $[0x07]æŒ‰ "$[0146]S$[0x07]" é”®$[0107]äº¤æ¢ç£ç›˜$[0x07], æˆ–æŒ‰ "$[0146]Enter$[0x07]" é”®$[0107]ç»§ç»­$[0x07], ä¸æ‰§è¡Œç£ç›˜äº¤æ¢ã€‚
+set hdn= && checkrange 2:-1 calc *0x475&0xff > nul && set /a hdn=*0x475&0xff-1 > nul
+call Fn.15 "%hdn%" "" && call Fn.11 "%language%" "cn" && if %hdn%>=2 echo -e \n $[0x07]ä¹Ÿå¯æŒ‰$[0107]æ•°å­—é”®(1-%hdn%)$[0x07]ç›´æŽ¥äº¤æ¢æŒ‡å®šhdè‡³hd0 (å¦‚ï¼šæŒ‰æ•°å­—é”®%hdn%å°†äº¤æ¢(hd%hdn%)è‡³(hd0))ã€‚
+call Fn.15 "%hdn%" "" && call Fn.11 "%language%" "en" && if %hdn%>=2 echo -e \n $[0x07]Hit $[0107]1 to %hdn% $[0x07]can swap specified hd to hd0, eg. hit %hdn% will swap (hd%hdn%) to (hd0).
+::call Fn.19
+::call Fn.15 "%@retval%" "8051" && call Fn.15 "%@retval%" "8019" && goto :swapend
+set testkey=
+set swaploop=
+pause
+call Fn.15 "%@retval%" "83" && call Fn.15 "%@retval%" "115" && set testkey=%@retval%
+call Fn.15 "%testkey%" "" && checkrange 1:%hdn% calc %testkey%-48 > nul && set /a swaploop=%testkey%-48 > nul
+call Fn.15 "%testkey%" "" && set testkey= && call Fn.15 "%swaploop%" "" || goto :swapend
+::äº¤æ¢æ¨¡å—
+:swa
+if "%swaploop%"=="" if /i not "%~1"=="--swap-ext" if /i not "%~1"=="--swap-all" && set swaploop=1
+set swapset= && if not "%swapset%"=="0" checkrange 2:-1 calc *0x475&0xff > nul || goto :swapend
+set hd0=0x80 && if "%swaploop%"=="" set /A hdm=*0x475&0xff+0x7f > nul || set /A hdm=%swaploop%+0x80 > nul
+::å…ˆå°†hd0äº¤æ¢ä¸ºæœ€åŽä¸€å—hdd
+map (%hd0%) (%hdm%) > nul
+call Fn.11 "%updateud%" "1" &; calc *0x82b8 > nul && set /A hdu=*0x82b9&0xff > nul && set udswap=
+call Fn.11 "%updateud%" "1" &; calc *0x82b8 > nul && if %hdu%==%hd0% calc *0x82b9=*0x82b9&0xffffff00|%hdm% > nul && set udswap=1
+:swapbegin
+::ä¾æ¬¡äº¤æ¢æ¯å—hdd
+if "%swaploop%"=="" set /A hd1=%hd0%+1 > nul || set hd1=%hdm%
+map (%hd1%) (%hd0%) > nul
+call Fn.11 "%updateud%" "1" &; call Fn.15 "%udswap%" "1" && calc *0x82b8 > nul && set /A hdu=*0x82b9&0xff > nul
+call Fn.11 "%updateud%" "1" &; call Fn.15 "%udswap%" "1" && calc *0x82b8 > nul && if %hdu%==%hd1% calc *0x82b9=*0x82b9&0xffffff00|%hd0% > nul && set udswap=1
+set /A hd0=%hd1% > nul
+call Fn.15 "%hd1%" "%hdm%" && goto :swapbegin
+map --rehook
+set hd0=
+set hd1=
+call Fn.11 "%updateud%" "1" &; set hdu=
+set hdm=
+call Fn.11 "%updateud%" "1" &; set udswap=
+call Fn.15 "%swaploop%" "" && set targethd=(hd%swaploop%) ! set targethd=(hd1)
+set swaploop=
+call Fn.15 "%language%" "cn" && echo -e \n Success for swap %targethd% to (hd0). ! echo -e \n äº¤æ¢ç£ç›˜ %targethd% è‡³ (hd0) æˆåŠŸã€‚
+set targethd=
+::è‹¥æ˜¯å¢žå¼ºç‰ˆswapåˆ™ç»§ç»­æç¤ºæ˜¯å¦äº¤æ¢
+if /i "%~1"=="--swap-ext" && goto :swap-ext
+:swapend
+call Fn.11 "%swapback%" "1" && set swapback= && exit
+goto :next
+
+::èŽ·å–æ‰€æœ‰hddä½“ç§¯æ¨¡å—
+:disk_size
+::è®¡ç®—ç¡¬ç›˜æ•°
+if "%hddm%"=="" && set /a hddm=*0x475&0xff-1 > nul && set hddt=0 && set hdsize=
+setlocal
+geometry (hd%hddt%) | call :sector_size 
+::ç¬¬ä¸ƒå‚æ•°ä¸ºæ‰‡åŒºæ€»æ•°åŠæ¯æ‰‡åŒºå¤§å°ï¼Œä¸¤æ•°ç›¸ä¹˜å³ä¸ºhddæ€»ä½“ç§¯ï¼ˆå­—èŠ‚ï¼‰
+call :get_size %sectorc%%*%sectors%
+set sectors=
+set sectorc=
+calc %tmp:~,-3% + 1 > nul
+echo -e %@retval%\x20%tmp:~-2% | set tmp=
+::å¯¹ç»“æžœè¿›è¡Œå‰å¯¹é½
+call :fr_check 7
+set size=%tmp%
+set tmp=
+::é™¤ç¬¬ä¸€ä¸ªhddä½“ç§¯å¤–ï¼Œæ¯ä¸‰ä¸ªhddå°±æ¢è¡Œè¾“å‡º
+if "%hddt%"=="0" && set tempn=\n\x20\x20\x20\x20\x20\n\x20\x20\x20\x20\x20 ! set tempn= && checkrange 0 calc %hddt% % 3 > nul && set tempn=\n\x20\x20\x20\x20\x20
+endlocal && call Fn.15 "%language%" "cn" && set hdsize=%hdsize%\x20hdd%hddt%\x20size\x20is\x20%size%\x20\x3b%tempn% ! set hdsize=%hdsize%\x20hdd%hddt%\x20ä½“ç§¯ä¸º\x20%size%\x20\x3b%tempn%
+if "%hddt%"=="%hddm%" && set hddt= && set hddm= && exit
+set /a hddt=%hddt%+1 > nul
+goto :disk_size
+
+:.gz
+call Fn.11 "%gzdetect%" "0" && goto :.ima
+call :find %~1 || shift && goto :ferr
+call Fn.11 "%filefnd%" "0" && goto :automenu_begin
+::0x82a4éž0æ—¶gzipä¸è‡ªåŠ¨è§£åŽ‹
+write 0x82a4 1 > nul
+cat --locatei=\x1F\x8B\x08 --length=0x3 %loadroot%%%loadfile% > nul || write 0x82a4 0 > nul && goto :.ima
+cat --skip=0xa --locate=\x00 --number=1 %loadroot%%%loadfile% > nul || write 0x82a4 0 > nul && goto :.ima
+set tmp=%?%
+cat --skip=0xa --locate=\x2E --length=%?% %loadroot%%%loadfile% > nul || write 0x82a4 0 > nul && goto :.bin
+calc %tmp%-%?% > nul
+cat --skip=%?% --length=%@retval% %loadroot%%%loadfile% | set /l tmp=
+write 0x82a4 0 > nul || set tmp= && goto :%tmp% > nul || goto :.ima
+:.ima
+:.img
+:.lzma
+call :find %~1 || shift && goto :ferr
+call Fn.11 "%filefnd%" "0" && goto :automenu_begin
+call Fn.11 "%autotype%" "list" && call Fn.11 "%loadset%" "0" && goto :boot
+call :kernel %loadroot%%%loadfile% || goto :boot
+set mem=--mem && call Fn.11 "%memset%" "0" && set mem=
+map %mem% %loadroot%%%loadfile% (fd0) > nul
+map --hook
+if /i "%~2"=="--dts-list" && shift && goto :dts-list ! set /l tmp=%~n1 && shift
+set tmp= && if "%~1"=="" goto :img_boot || goto :%tmp:~,3%-ext || set /l tmp=%~1
+set tmp= && goto :%tmp:~2% || goto :img_boot
+
+:dts-ext
+if /i "%~1"=="--dts-ext" && shift
+if "%~1"=="" && goto :dts-list
+cat --locate="MENUDEFAULT=" --number=1 (0)/CONFIG.SYS
+cat --skip=%?% --locatei="," --replace=",01" --number=1 (0)/CONFIG.SYS
+cat --skip=%?% --locate="MENUDEFAULT=" --number=1 (0)/CONFIG.SYS
+cat --skip=%?% --locatei="," --replace=",01" --number=1 (0)/CONFIG.SYS
+cat --locatei="dts.bat " --number=1 (0)/AUTOEXEC.BAT
+shift && write --offset=%?% (0)/AUTOEXEC.BAT DTS.bat %* end
+goto :img_boot
+
+:dts-list
+::call Fn.6
+command (0)/GRUB/OFFSET.grb
+::åˆ¤æ–­æ˜¯å¦åŠ è½½è¿‡å­—åº“ï¼Œä½†æ— æ³•åˆ¤æ–­å½“å‰æ˜¯å¦åŠ è½½äº†å­—åº“
+::read 0x1800820 || font (fd0)/grub/ghosthex.gz
+font && font (fd0)/grub/ghosthex.gz
+if not "%offset1%"=="" && write --offset=%offset1% (0)/CONFIG.SYS MENUDEFAULT=2,01  
+cat --skip=3 (fd0)/grub/items.txt
+set /p p è¯·è¾“å…¥è¦è¿žç»­è°ƒç”¨çš„æ¨¡å—åºåˆ—(ä¾‹å¦‚:1a 4b 3a):
+write --offset=%offset4% (0)/AUTOEXEC.BAT DTS.bat %p% end
+goto :img_boot
+
+:max-ext
+if "%~1"=="" && exit ! if /i "%~1"=="--max-ext" && shift ! if /i not "%~1"=="call" && set maxext=call
+set maxext=%maxext% %*
+cat --locatei="default=" --number=1 (0)/CONFIG.SYS > nul
+cat --skip=%?% --locatei="," --replace=",0" --number=1 (0)/CONFIG.SYS
+cat --locatei="Call M.BAT" --number=1 (0)/AUTOEXEC.BAT > nul || cat --locate="gh.bat" --replace="%maxext%" (0)/autoexec.bat && goto :img_boot
+set maxext= && call Fn.15 "%?%" "0x0" && write --offset=%?% (0)/AUTOEXEC.BAT %maxext% \r M.BAT \r
+goto :img_boot
+
+:.iso
+call :find %~1 || shift && goto :ferr
+call Fn.11 "%filefnd%" "0" && goto :automenu_begin
+call Fn.11 "%autotype%" "list" && call Fn.11 "%loadset%" "0" && goto :boot
+set tmp=%~2
+set tmp= && call Fn.11 "%tmp:~,3%" "(0x" && set tar=%tmp% && shift 2 ! set tar=(0xff)
+set mem1=--mem
+call Fn.11 "%memset%" "1" && set mem=--mem ! call Fn.11 "%memset%" "0" && set mem1=
+map %mem% %loadroot%%%loadfile% %tar% > nul || map %mem1% %loadroot%%%loadfile% %tar% > nul || echo map %loadroot%%%loadfile% to %tar% failed && call Fn.73 3
+call Fn.15 "%e820%" "" && map --e820cycles=%e820%
+map --hook
+call Fn.15 "%prinstall%" "1" && goto :iso_boot
+set cdrom=cdrom,vmem=find:%loadfile%;
+if not "%noisopar%"=="1" if not "%nochoice%"=="1" || goto :iso_boot
+call Fn.11 "%hdd_boot%" "1" && set swapback=1 && call :swap-ext --swap-ext
+goto :cd_or_hdd
+
+:.0
+:.bin
+set loadroot=
+set loadfile=
+set tmp=%~1
+set tmp= && call Fn.11 "%tmp:~-1%" "/" && call :find %~1 dironly && goto :automenu_begin
+cat --length=0 %~1 > nul && set loadfile=%~1 ! call :find %~1 || shift && goto :ferr
+call Fn.11 "%filefnd%" "0" && goto :automenu_begin
+call Fn.15 "%loadroot%" "" |; call Fn.11 "%language%" "en" && echo -e \n $[0004]Loading $[0106]%loadfile%$[0x07]... ! echo -e \n $[0004]æ­£åœ¨åŠ è½½ $[0106]%loadfile%$[0x07]...
+call Fn.11 "%autotype%" "list" && call Fn.11 "%loadset%" "0" && goto :boot
+cat --locate=\xEF\xBB\xBF --length=3 %loadfile% > nul && calc 3 > nul
+cat --skip=%@retval% --locatei="!BAT" --length=0x4 %loadfile% > nul && goto :grub4dos_script
+call :kernel %loadroot%%%loadfile% || goto :boot
+goto :chain_boot
+
+::å¯¹peå¼•å¯¼æ–‡ä»¶ç‰¹æ®Šå¤„ç†ï¼Œç¡®ä¿åœ¨ä»»æ„åˆ†åŒºä¸Šéƒ½èƒ½å¯åŠ¨
+:pe
+call Fn.15 "%~2" "" && shift 2 && call :find %~2 fileonly exit ! call :find /WXPE/SETUPLD2.BIN fileonly exit
+call Fn.11 "%filefnd%" "0" && shift && set filefnd= && goto :ferr
+map --in-place ()+1 (hd0)
+map --hook
+goto :chain_boot
+
+::usbè®¾å¤‡å¯åŠ¨åŽå¯åŠ¨æœ¬åœ°ç›˜ä¸Šçš„ç³»ç»Ÿæ¨¡å—
+:nt
+shift
+set swapback=1
+call Fn.11 "%@root%" "%Boot_dev%" && call Fn.11 "%hdd_boot%" "1" && call :swap --swap-all ! call :swap-ext --swap-ext
+rootnoverify (hd0) || exit 1
+set usrdev=h
+call Fn.15 "%~2" "" && shift 2 && call :find %~2 fileonly exit ! call :find /BOOTMGR fileonly || call :find /NTLDR fileonly || goto :ferr
+call Fn.11 "%filefnd%" "0" && shift && set filefnd= && goto :ferr
+::dd if=()+1 of=(md)0x3E+1
+goto :chain_boot
+
+:.lst
+:.0pe
+call :menucheck %~1 |; call :find %~1 dironly && goto :automenu_begin ! shift && goto :ferr
+call Fn.15 "%loadroot%" "" |; call Fn.11 "%language%" "en" && echo -e \n $[0004]Loading $[0106]%loadfile%$[0x07]... ! echo -e \n $[0004]æ­£åœ¨åŠ è½½ $[0106]%loadfile%$[0x07]...
+call Fn.11 "%autotype%" "list" && call Fn.11 "%loadset%" "0" && goto :boot
+if /i "%~nx1"=="menu.0pe" && call Fn.15 "%~2" "" && shift 2 && shift 2 && call :0pe %2 %3
+configfile %loadroot%%%loadfile%
+exit
+
+:0pe
+if #%1==# && exit
+::terminal console
+write 0x60300 0x60300
+write 0x60100 %~1
+if /i "%~x2"==".iso" || exit
+if "%~2"=="%~nx2" && set tmp=%usrpath%%%~nx2 ! set tmp=%~pnx2
+write (md)0x301+1 %tmp%
+set tmp=%tmp%
+set /a tmp=%@retval% > nul
+write 0x60360 %tmp%
+set tmp=
+exit
+
+:.ini
+:.txt
+:.log
+:.inf
+call :find %~1 || shift && goto :ferr
+call Fn.11 "%filefnd%" "0" && goto :automenu_begin
+call Fn.11 "%autotype%" "list" && call Fn.11 "%loadset%" "0" && goto :boot
+pager status > nul
+set pager=on && calc %@retval% > nul || set pager=off
+pager on
+::calc 46<<2+*0x8304 > nul
+::read %@retval% > nul && call Fn.70
+set skip=0x0 && cat --locate=\xEF\xBB\xBF --length=3 %loadroot%%%loadfile% > nul && set skip=0x3
+cat --skip=%skip% %loadroot%%%loadfile% && echo -e \n$[0x75][End, Hit any key to quit]
+pause
+pager %pager%
+goto :next
+
+:ramos
+shift
+call :find %~1 fileonly || shift && goto :ferr
+set mem=--mem
+call Fn.11 "%memset%" "0" && set mem=
+call Fn.11 "%topset%" "1" && set mem=--mem --top
+map %mem% %loadroot%%%loadfile% (hd) > nul || map --mem %loadroot%%%loadfile% (hd) || map %loadroot%%%loadfile% (hd) > nul
+map --rehook
+map (hd-1) (hd0)
+map (hd0) (hd-1)
+map --rehook
+if "%~2"=="" && goto :hdd_boot
+shift
+rootnoverify (hd0,0)
+chainloader %~1 || goto :hdd_boot
+goto :boot
+
+::å„ç§å¯åŠ¨æ–¹å¼
+:iso_boot
+call Fn.11 "%prinstall%" "1" && call :fira_auto
+if "%tar%"=="" && set tar=(0xff)
+chainloader %tar%
+goto :boot
+:img_boot
+rootnoverify (fd0)
+chainloader (0)+1
+goto :boot
+:hdd_boot
+call Fn.15 "%cdrom%" "" && set disk=%disk:~,-6%;
+call Fn.11 "%prinstall%" "1" && call :driver_manu
+rootnoverify (hd0)
+chainloader +1
+goto :boot
+:chain_boot
+call Fn.11 "%Boot_dev%" "pd" && chainloader --force --raw (pd)%~pnx1 && goto :boot
+chainloader %loadroot%%%loadfile% || chainloader --force %loadroot%%%loadfile%
+goto :boot
+:kernel
+call Fn.11 "%kernel%" "0" && exit
+cat --locate=\xEB --length=4 --number=1 %~1 > nul || kernel %~1 > nul && exit 1
+exit
+:boot
+call Fn.15 "%loadset%" "0" && call Fn.15 "%bootset%" "0" && boot
+endlocal && set loadroot=%loadroot% && set loadfile=%loadfile% && set loadpath=%loadpath%
+if /i "%~1"=="--boot" && set bootset=
+setlocal
+goto :next
+
+::--fira /pe.iso                               A:firadisk  B:none
+::--fira srs /pe.iso                           A:firadisk  B:srs
+::--fira iso=/win$.iso [disk=/ramxp.img]       A:empty     B:firadisk
+::--fira srs iso=/win$.iso [disk=/ramxp.img]   A:srs       B:firadisk
+::--fira disk=/ramxp.img                       0x55 only
+
+::--fira-existdrv    goto load_sif, load iso/disk file directly
+::--fira-nochoice    call fira_auto, then load iso directly
+::--fira-noload      no fira/wvbk driver will be loaded, only exist (empty or srs/dpms driver)
+::when %exchange% is 0, stop changing fd queue
+
+::default path
+::fira|wvbk: %usrpath%firadisk.img|winvblk.img
+::srs: %runpath%/SRS/
+::dpms: %runpath%/driverpack.ini or dpms.iso or .lzma or .gz or .iso.gz
+
+:fir
+set dflag=fira
+set loop=1
+:wvb
+call Fn.15 "%loop%" "1" && set dflag=wvbk
+set loop=
+set drvpath=
+set sifpath=
+set srspath=
+set existdrv=
+set noisopar=
+set fd0path=
+set fd1path=
+::èŽ·å–å‚æ•°æŒ‡å®šæ–‡ä»¶è·¯å¾„
+set tmp=%~2
+if /i "%tmp:~,3%"=="sif" && shift 2 && if "%tmp:~4%"=="" set sifpath=%runpath%WINNT.SIF || set sifpath=%tmp:~4%
+set tmp=%~2
+if /i "%tmp:~,3%"=="srs" && shift 2 && if "%tmp:~4%"=="" set srspath=%runpath%SRS/ || set srspath=%tmp:~4%
+set tmp=%~2
+if /i "%tmp:~,4%"=="dpms" && shift 2 && set srsmode=2 && if "%tmp:~5%"=="" set srspath=%runpath%SRS/ || set srspath=%tmp:~5%
+set tmp=%~2
+if /i "%tmp:~,3%"=="sif" && shift 2 && if "%tmp:~4%"=="" set sifpath=%runpath%WINNT.SIF || set sifpath=%tmp:~4%
+set tmp=
+::åŠ è½½æŒ‡å®šfiradisk/winvblké©±åŠ¨æ–‡ä»¶
+set m=%m%
+set /a tmp=%@retval% - 6 > nul
+echo %m% > (md)0x200+1
+call Fn.11 0x40000 ":" &; calc %@retval% - 0x40000 + 1 > nul &; set /a tmp=%@retval% - 7 > nul && call set drvpath=%^m:~%%@retval%%%
+if "%drvpath%"=="" && if "%dflag%"=="fira" set drvpath=%usrpath%FIRADISK.IMG || if "%dflag%"=="wvbk" set drvpath=%usrpath%WINVBLK.IMG
+::ç›´æŽ¥å¯åŠ¨iso ä¸å‡ºçŽ°æŒ‰é”®é€‰æ‹©é¡¹ åŒæ—¶æŒ‡å®šä»¿çœŸé©±åŠ¨æ–‡ä»¶
+call call Fn.11 "%^m:~6,%%tmp%%%" "-nochoice" && set nochoice=1
+::ä¸åŠ è½½ä»¿çœŸé©±åŠ¨æ–‡ä»¶
+call call Fn.11 "%^m:~6,%%tmp%%%" "-noload" && set drvpath=
+::ä¸å¯¹fd0å’Œfd1è¿›è¡Œå¤„ç†
+set tmp= && call call Fn.11 "%^m:~6,%%tmp%%%" "-existdrv" && set existdrv=1 && goto :load_sif
+::ç›´æŽ¥åŠ è½½diské•œåƒ
+if /i "%~2"=="disk" && shift && set noisopar=1 && goto :load_disk
+::æŸ¥æ‰¾ä»¿çœŸé©±åŠ¨æ–‡ä»¶
+call Fn.15 "%drvpath%" "" && call :find %drvpath% fileonly || goto :ferr
+set drvpath=%loadroot%%%loadfile%
+::å‚æ•°ä¸ä¸ºisoåˆ™ç‰¹æ®Šå¤„ç†
+if /i not "%~2"=="iso" && set noisopar=1
+::å¤„ç†SRS ä½äºŽfd0
+call Fn.15 "%srspath%" "" || goto :srs_end
+call :find %srspath% || goto :ferr
+call Fn.15 "%filefnd%" "0" && set srspath=%loadroot%%%loadfile% ! call Fn.15 "%loadpath:~-1%" "/" && set srspath=%loadroot%%%loadpath%/ ! set srspath=%loadroot%%%loadpath%
+::srsmodeä¸º1ä¸”æŒ‡å®šç£ç›˜é©±åŠ¨ä¸ºimgé•œåƒæ—¶ç›´æŽ¥åŠ è½½srsé©±åŠ¨é•œåƒ
+call Fn.11 "%srsmode%" "1" && call Fn.15 "%filefnd%" "0" && call :map_image "%srspath%" (fd0) --mem && goto :srs_end
+set srs_err=
+call :loadrunmod || set srs_err=2.5 && goto :srs_err
+insmod (3)/F6.MOD > nul || set srs_err=2.6 && goto :srs_err
+echo -e \n Getting ready to load the driver...
+call Fn.15 "%srsmode%" "2" && command (3)/RUNSRS "%srspath%" ! command (3)/RUNDPMS "%srspath%"
+if %srs_err%>=2 &; echo -e \n Err%srs_err%, trying another way to load disk driver... && call Fn.15 "%srsmode%" "2" && command (3)/RUNDPMS "%srspath%" ! command (3)/RUNSRS "%srspath%"
+:srs_err
+map --status=3 && map --unmap=3 && map --rehook
+set filefnd=
+set dirfnd=
+call Fn.11 "%srs_err%" "0" && call Fn.11 "%language%" "en" && echo -e \n $[0x04]Loading$[0x0F] Mass Storage DriverPacks, $[0x0E]success$[0x07]...
+call Fn.11 "%srs_err%" "0" && call Fn.11 "%language%" "cn" && echo -e \n $[0x04]æ­£åœ¨åŠ è½½$[0x0F] Mass Storage ç£ç›˜é©±åŠ¨, $[0x0E]æˆåŠŸ$[0x07]...
+call Fn.11 "%srs_err%" "1" && call Fn.11 "%language%" "en" && echo -e \n $[0x04]Warning$[0x0F] No AHCI/RAID controller, do NOT need SRS Driver.$[0x07]\x20
+call Fn.11 "%srs_err%" "1" && call Fn.11 "%language%" "cn" && echo -e \n $[0x04]å‹æƒ…æç¤º$[0x0F] æ²¡æœ‰æ£€æµ‹åˆ°AHCI/RAIDæŽ§åˆ¶å™¨ï¼Œæ— éœ€åŠ è½½SRSé©±åŠ¨ã€‚$[0x07]\x20
+call Fn.11 "%srs_err%" "2" && call Fn.11 "%language%" "en" && echo -e \n $[0x0C]Warning%srs_err%$[0x0F] Mass Storage DriverPacks load $[0x0C]failed\x20$[0x0F]!!$[0x07]\x20
+call Fn.11 "%srs_err%" "2" && call Fn.11 "%language%" "cn" && echo -e \n $[0x0C]é”™è¯¯è­¦å‘Š%srs_err%$[0x0F] Mass Storage ç£ç›˜é©±åŠ¨æ¨¡å—åŠ è½½$[0x0C]å¤±è´¥$[0x0F]!!$[0x07]\x20
+call Fn.11 "%srs_err%" "3" && call Fn.11 "%language%" "en" &; echo -e -n \n $[0x0C]Warning%srs_err%$[0x0F] Mass Storage Controller drivers $[0x0E]not found && call Fn.15 "%srsmode%" "2" && echo -e $[0x0F], Hardware ID is:\n\n \t\x20\x20$[0x0E]%HWID%$[0x07]\x20 ! echo -e $[0x0F]!!$[0x07]\x20
+call Fn.11 "%srs_err%" "3" && call Fn.11 "%language%" "cn" &; echo -e -n \n $[0x0C]é”™è¯¯è­¦å‘Š%srs_err%$[0x0E] æ²¡æœ‰æ‰¾åˆ°$[0x0F]åˆé€‚çš„Mass Storageç£ç›˜é©±åŠ¨ && call Fn.15 "%srsmode%" "2" && echo -e $[0x0F], ç¡¬ä»¶IDæ˜¯: \n\n \t\x20\x20$[0x0E]%HWID%$[0x07]\x20 ! echo -e $[0x0F]!!$[0x07]\x20
+delmod chkpci > nul
+delmod inifile > nul
+:srs_end
+::isoå‚æ•°å­˜åœ¨ A:empty/srs  B:firadisk  ä½¿ç”¨--fira-noloadå‚æ•° åˆ™A:srs/empty B:none
+call Fn.15 "%noisopar%" "1" && goto :load_floppy
+::ä¸å­˜åœ¨isoåˆ™ A: firadisk  B:srs/none  ä½¿ç”¨--fira-noloadå‚æ•° åˆ™A:none  B:srs/none
+call Fn.15 "%srspath%" "" && map --status=0 && call :map_image (fd0) (fd1)
+map --status=0 && map --unmap=0 && map --rehook
+call Fn.15 "%drvpath%" "" && call :map_image "%drvpath%" (fd0) --mem
+goto :load_sif
+:load_floppy
+::å­˜åœ¨isoå‚æ•°æƒ…å†µ
+map --status=1 && map --unmap=1 && map --rehook
+call Fn.15 "%drvpath%" "" && call :map_image "%drvpath%" (fd1) --mem
+call Fn.15 "%srspath%" "" && map --status=0 && goto :load_sif
+call :loadrunmod || goto :floppy_empty
+map --mem (3)/f6.gz (0) || goto :floppy_empty
+map --status=3 && map --unmap=3
+map --rehook
+goto :load_sif
+:floppy_empty
+echo > (md)0x200+2
+write --offset=0xb (md)0x200+3 \x00\x02\x01\x01\x00\x01\x70\x00\x10\x00\xfd\x01\x00\x08\x00\x01
+write 0x401FE 0xAA55
+write 0x40200 0xfffffe
+map --mem (md)0x200+2 (fd0)
+map --rehook
+:load_sif
+::è°ƒæ•´fd0å’Œfd1é¡ºåº
+call Fn.15 "%exchange%" "0" && call Fn.15 "%existdrv%" "1" && call :exAB
+::å¤„ç†æ— äººå€¼å®ˆå®‰è£…æ–‡ä»¶
+set sif_err=
+call Fn.15 "%sifpath%" "" || goto :load_choise
+delmod -l fat > nul |; call :loadrunmod && insmod (3)/F6.MOD > nul && delmod chkpci > nul && delmod inifile > nul ! set sif_err=2.2 && goto :sif_err
+call :find %sifpath% fileonly || set sif_err=1 && goto :sif_err
+fat copy /o %loadroot%%%loadfile% (0)/WINNT.SIF > nul || set sif_err=2.4 && goto :sif_err
+set sif_err=0 && call Fn.26 (0)/WINNT.SIF || set sif_err=2.6
+:sif_err
+map --status=3 && map --unmap=3 && map --rehook
+call Fn.11 "%sif_err%" "0" && call Fn.11 "%language%" "en" && echo -e \n $[0x04]Loading$[0x0F] Unattended installation file, $[0x0E]success$[0x07]...
+call Fn.11 "%sif_err%" "0" && call Fn.11 "%language%" "cn" && echo -e \n $[0x04]æ­£åœ¨åŠ è½½$[0x0F] æ— äººå€¼å®ˆå®‰è£…åº”ç­”æ–‡ä»¶, $[0x0E]æˆåŠŸ$[0x07]...
+call Fn.11 "%sif_err%" "1" && call Fn.11 "%language%" "en" && echo -e \n $[0x0C]Warning$[0x0F] Unattended installation file $[0x0E]not found$[0x07]\x20!
+call Fn.11 "%sif_err%" "1" && call Fn.11 "%language%" "cn" && echo -e \n $[0x0C]é”™è¯¯è­¦å‘Š $[0x0E]æ— æ³•æ‰¾åˆ°$[0x0F]æŒ‡å®šçš„æ— äººå€¼å®ˆå®‰è£…åº”ç­”æ–‡ä»¶$[0x07]!
+call Fn.11 "%sif_err%" "2" && call Fn.11 "%language%" "en" && echo -e \n $[0x0C]Warning%sif_err%$[0x0F] Unattended installation file load $[0x0C]failed\x20$[0x07]!!
+call Fn.11 "%sif_err%" "2" && call Fn.11 "%language%" "cn" && echo -e \n $[0x0C]é”™è¯¯è­¦å‘Š%sif_err%$[0x0F] æ— äººå€¼å®ˆå®‰è£…åº”ç­”æ–‡ä»¶åŠ è½½$[0x0C]å¤±è´¥$[0x07]!!
+:load_choise
+call Fn.15 "%existdrv%" "1" && set prinstall=1
+if /i "%~2"=="iso" && shift 2 ! set noisopar=1 && call Fn.15 "%forcend%" "1" && goto :next ! endlocal && set forcend=exit && exit
+shift
+::æŸ¥æ‰¾isoæŒ‡å®šçš„æ–‡ä»¶
+call :find %~1 || shift && goto :ferr
+::è‹¥æŒ‡å®šçš„æ˜¯æ–‡ä»¶å¤¹åˆ™è½¬è‡³è‡ªåŠ¨èœå•å¤„ç†
+call Fn.11 "%filefnd%" "0" && call Fn.15 "%dirfnd%" "0" && shift && set autotype=list && set show=SHOW.ISO && setlocal && set drvtips=1 && goto :automenu_begin
+::è®¾ç½®firadiské©±åŠ¨éœ€è¦çš„å‚æ•°
+call Fn.11 "%dflag%" "fira" && set cdrom=cdrom,vmem=find:%loadfile%;
+::åŠ è½½iso
+call Fn.11 "%memset%" "1" && set mem=--mem
+map %mem% %loadroot%%%loadfile% (0xff) > nul || map --mem %loadroot%%%loadfile% (0xff) || map %loadroot%%%loadfile% (0xff) > nul
+call Fn.15 "%e820%" "" && map --e820cycles=%e820%
+map --rehook
+::è½¬è‡³diské•œåƒå¤„ç†
+if /i "%~2"=="disk" && shift && goto :load_disk
+::ç›´æŽ¥å¯åŠ¨isoæˆ–è½¬è‡³é€‰æ‹©é¡¹
+if not "%noisopar%"=="1" if not "%nochoice%"=="1" || goto :iso_boot
+call Fn.11 "%hdd_boot%" "1" && set swapback=1 && call :swap-ext --swap-ext
+goto :cd_or_hdd
+
+::firadiské©±åŠ¨å¢žå¼ºå¤„ç† åœ¨ç¬¬äºŒé˜¶æ®µå¯ä»¥æ— éœ€è¿›å…¥grub firamodeå€¼ä¸º2 æŒ‰ä¸€èˆ¬firadiské©±åŠ¨å¤„ç†
+:fira_auto
+if "%dflag%"=="" && exit
+call Fn.11 "%dflag%" "wvbk" &; if "%diskfile%"=="" && exit ! goto :driver_manu
+if "%disk%"=="" if "%cdrom%"=="" && exit
+if "%firamode%"=="2" && goto :driver_manu
+::call Fn.11 "%~n1" "64" && set is64=amd64/
+call Fn.11 "%cdrom%" "64" && set is64=amd64/
+cat --locate="value=Parameters" (fd1)/%is64%TXTSETUP.OEM > nul && goto :driver_manu
+cat --locate=###### --number=1 (fd1)/%is64%TXTSETUP.OEM > nul || goto :driver_manu
+write --offset=%?% (fd1)/%is64%TXTSETUP.OEM value=Parameters,StartOptions,REG_SZ,"%disk%%%cdrom%"\r\n
+cat --skip=%?% --locate=/ --replace=\\ (fd1)/%is64%TXTSETUP.OEM
+exit
+::æ™®é€šfiradiské©±åŠ¨åŠwinvblocké©±åŠ¨å¤„ç†
+:driver_manu
+echo > (md)0x200+4
+map --heads=2 --sectors-per-track=18 --mem (md)0x200+4 (0x55)
+map --rehook
+call Fn.11 "%dflag%" "fira" && write (0x55) [FiraDisk]\nStartOptions=%disk%%%cdrom%\n\0
+call Fn.11 "%dflag%" "wvbk" && write (0x55) #GRUB4DOS\x00v=1\x00%diskfile:~1%\x00\x80\x00
+exit
+
+:map_image
+echo -e -n \n Attempt to map %~1 to %~2 ... 
+map %~3 %~1 %~2 && echo -e succeed ! echo -e failed
+map --rehook
+exit
+::å¤„ç†fd0åŠfd1å†…å­˜èµ·å§‹ä½ç½®ï¼Œä½¿å…¶â€œåˆæ³•åŒ–â€ï¼Œæ‘˜è‡ªzhaohjï¼Œç¨æ”¹
+:exAB
+setlocal
+map --status=1 || exit
+set /a addr1=%?% > nul
+map --status=0 || exit
+set /a addr0=%?% > nul
+if %addr0%>=%addr1% && set fdn=0 ! set fdn=1
+if %fdn%==0 && find --devices=f /firadisk.inf && exit
+if %fdn%==1 && find --devices=f /winvblk.inf && exit
+map (%fdn%)+1 (rd)
+map (rd)+1 (%fdn%)
+map --rehook
+endlocal
+exit
+
+::åŠ è½½hddé•œåƒæ¨¡å—
+:load_disk
+shift
+call :find %~1 fileonly || shift && goto :ferr
+set diskfile=%loadfile%
+call Fn.11 "%memset%" "1" && set mem=--mem ! set mem=
+map --heads=255 --sectors-per-track=63 %mem% %loadroot%%%loadfile% (hd) > nul
+map --rehook
+map (hd-1) (hd0)
+map (hd0) (hd-1)
+map --rehook
+call Fn.11 "%dflag%" "fira" && set disk=disk,vmem=find:%diskfile%,boot;
+call Fn.15 "%noisopar%" "1" && goto :cd_or_hdd
+goto :hdd_boot
+
+::é€‰æ‹©ä»Žisoé•œåƒå¯åŠ¨è¿˜æ˜¯ä»Žhddå¯åŠ¨
+:cd_or_hdd
+call Fn.11 "%language%" "en" && echo -e \n $[0x07]Hit "$[0146]Enter$[0x07]" to $[0107]boot from ISO$[0x07],
+call Fn.11 "%language%" "en" && echo -e \n $[0x07]OR "$[0146]H$[0x07]" to $[0107]continue System Installation$[0x07] (will boot from harddisk).\n
+call Fn.11 "%language%" "cn" && echo -e \n $[0x07]æŒ‰ "$[0146]Enter$[0x07]" é”®ä»Ž$[0107]ISOé•œåƒå¯åŠ¨$[0x07],
+call Fn.11 "%language%" "cn" && echo -e \n $[0x07]æˆ–è€…æŒ‰ "$[0146]H$[0x07]" é”®è¿›è¡Œ$[0107]ç³»ç»Ÿå®‰è£…ç¬¬äºŒé˜¶æ®µæ“ä½œ$[0x07]ï¼ˆå°†ä»Žç¡¬ç›˜å¯åŠ¨ï¼‰ã€‚\n
+call Fn.19
+call Fn.15 "%@retval%" "9064" && call Fn.15 "%@retval%" "9032" && goto :iso_boot
+call Fn.15 "%diskfile%" "" && goto :hdd_boot
+call :fira_auto
+find --set-root --devices=h /WIN_NT$.~BT/SETUPLDR.BIN && chainloader /WIN_NT$.~BT/SETUPLDR.BIN && boot && exit
+call Fn.11 "%language%" "en" && find --set-root --devices=h /NTLDR if exist /NTDETECT.COM || echo -e \x20System installation failed, hit any key to back. && pause && goto :next
+call Fn.11 "%language%" "cn" && find --set-root --devices=h /NTLDR if exist /NTDETECT.COM || echo -e \x20ç³»ç»Ÿå®‰è£…ç¬¬äºŒé˜¶æ®µå¼•å¯¼å¤±è´¥, è¯·æŒ‰ä»»æ„é”®è¿”å›žã€‚ && pause && goto :next
+makeactive --status > nul |; echo -e -n \n Press A to set %@root% active, or any other key to continue. && pause --test-key --wait=7 > nul &; if not "%@retval%"=="7777" if not "%@retval%"=="7745" && echo -e .. ! makeactive && echo -e \x20succeed ! echo -e \x20failed
+chainloader /NTLDR
+goto :boot
+
+::è‡ªåŠ¨èœå•åŠè‡ªåŠ¨åˆ—è¡¨æ¨¡å—
+:aut
+if /i not "%m:~5,5%"=="omenu" if /i not "%m:~5,5%"=="olist" && goto :merror
+set /l autotype=%m:~6,4%
+shift
+::æ£€æµ‹showæˆ–not-showå‚æ•°
+set /u tmp=%~1
+call Fn.15 "%tmp:~,4%" "SHOW" && set tmp= ! set show=%tmp% && shift && set tmp=
+call Fn.15 "%in_check%" "1" && setlocal
+if /i "%m:~10,4%"=="-all" && goto :auto-all
+::è‹¥æ²¡æœ‰æŒ‡å®šè·¯å¾„ï¼Œåˆ™ä½¿ç”¨é»˜è®¤ç›®å½•/BOOT/IMGS/
+if /i "%~1"=="subdir" && goto :subdir
+set tmp=%~1
+call Fn.15 "%tmp%" "" && call Fn.15 "%tmp:~,2%" "--" && rootnoverify %~d1 && set path=%~pnx1 && shift ! set path=%usrpath%
+set tmp=
+call :find %path% dironly || goto :ferr
+:automenu_begin
+if "%autotype%"=="" && set autotype=menu
+::å¯¹è‡ªåŠ¨åˆ—è¡¨ï¼Œè‹¥æ²¡æœ‰æå‰å®šä¹‰è¿‡åŸºç¡€å‚æ•°å€¼ï¼Œåœ¨æ­¤è¿›è¡Œå®šä¹‰ï¼Œå¯¹è‡ªåŠ¨èœå•ï¼Œå§‹ç»ˆè¿›è¡Œå®šä¹‰
+if "%autotype%"=="list" if "%listinit%"=="1" || call :init_autotype %@root%%%path%
+::èŽ·å–ä¸Šçº§æ–‡ä»¶å¤¹è·¯å¾„
+call :up_check "%@root%%%path:~,-1%"
+::å…ˆå¤„ç†æ–‡ä»¶å¤¹ï¼Œå†å¤„ç†æ–‡ä»¶
+call Fn.15 "%fastmode%" "1" && call Fn.15 "%showdir%" "0" && set type=LS\x20 && ls %path% | call :automake %0
+call Fn.15 "%showfile%" "0" && set type=RUN && ls %path% | call :automake %0
+call Fn.11 "%autotype%" "list" && goto :autolist_end
+::è‡ªåŠ¨èœå•ç»“æŸæ¨¡å—ï¼Œè¾“å‡ºæœ€åŽä¸€é¡¹è¿”å›žä¸»èœå•åŠŸèƒ½èœå•ï¼ŒåŠ è½½ç”Ÿæˆçš„è‡ªåŠ¨èœå•
+:automenu_end
+::æ£€æµ‹å†…ç½®èœå•ä½ç½®
+calc *0x307FFC-0x110000 > nul && set tmp=(md)4+8 ! set tmp=(md)0x880+0x200
+set tmp= && call Fn.15 "%backmenu%" "" && set menu=%backmenu% ! call Fn.15 "%menu%" "" || set menu=%tmp%
+call Fn.11 "%i:~1,1%" "0" && set title=%i:~-2% ! set title=%i:~-3%
+call Fn.15 "%showinfo%" "0" &; call Fn.11 "%language%" "en" && set tmp=Will load %menu% ! set tmp=å°†åŠ è½½ %menu%
+call Fn.11 "%language%" "en" && echo -e \ntitle [%title%] Back to Main Menu \\n %tmp% >> (rd)+1
+call Fn.11 "%language%" "cn" && echo -e \ntitle [%title%] è¿”å›žä¸»èœå• \\n %tmp% >> (rd)+1
+echo -e delmod -l %runs% \> nul \|\| echo %runs% not found!! \&\& call Fn.73 3 >> (rd)+1
+echo -e command %runs% --as.lst %menu%  >> (rd)+1
+::set i=
+::set title=
+::set type=
+::ä¸¤æ¬¡endlocalï¼Œä¸€æ¬¡ä¸º:automenu[-all]æ®µsetlocalï¼Œå¦ä¸€æ¬¡ä¸º:startæ®µsetlocal
+endlocal && set show=%show% && set showonot=%showonot% && call Fn.11 "%prinstall%" "1" && set dflag=%dflag% && set prinstall=%prinstall% && set nochoice=%nochoice% && set noisopar=%noisopar%
+endlocal && set show=%show% && set showonot=%showonot% && set dflag=%dflag% && set prinstall=%prinstall% && set nochoice=%nochoice% && set noisopar=%noisopar%
+configfile (rd)+1
+exit
+::è‡ªåŠ¨åˆ—è¡¨ç»“æŸæ¨¡å—ï¼Œè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯ï¼Œä¿å­˜ä¸€äº›éœ€è¦çš„å‚æ•°å€¼ï¼Œè·³è½¬åˆ°è¾“å…¥æ¨¡å—
+:autolist_end
+if "%listnote%"=="" call Fn.11 "%language%" "en" && set listnote=Input command or the [%cn%NUM%c7%] to run, eg. "$[0104]b%c7%" back to $[0003]Menu %c7%or "$[0104]c%c7%" to $[0003]Commandline%c7%.
+if "%listnote%"=="" call Fn.11 "%language%" "cn" && set listnote=è¯·è¾“å…¥å‘½ä»¤æˆ–æ–‡ä»¶ç¼–å·[%cn%NUM%c7%]æ‰§è¡Œï¼ˆå‘½ä»¤å¦‚: "$[0104]b%c7%"è¿”å›ž$[0003]èœå•%c7%æˆ–è¾“å…¥"$[0104]c%c7%"è¿›å…¥$[0003]å‘½ä»¤è¡Œ%c7%ï¼‰ã€‚
+echo -e \n\x20%c7%%%listnote%
+set page= && if %line%>=%linee% && set page=1 && if %lineb%>=%linem% && set page=2 ! if %lineb%>=%linem% && set page=3
+call Fn.15 "%page%" "" &; call Fn.11 "%language%" "en" && echo -e -n \x20%c7%Note: ! echo -e -n \x20%c7%æç¤º:
+call Fn.15 "%page%" "" &; if %page%<=2 &; call Fn.11 "%language%" "en" && echo -e -n \x20Input "$[0104]+%c7%" to page $[0003]down%c7%. ! echo -e -n \x20è¾“å…¥"$[0104]+%c7%"å¯ä»¥$[0003]å‘ä¸‹%c7%ç¿»é¡µã€‚
+call Fn.15 "%page%" "" &; if %page%>=2 &; call Fn.11 "%language%" "en" && echo -e -n \x20Input "$[0104]-%c7%" to page $[0003]up%c7%. ! echo -e -n \x20è¾“å…¥"$[0104]-%c7%"å¯ä»¥$[0003]å‘ä¸Š%c7%ç¿»é¡µã€‚
+echo -e && call Fn.15 "%page%" "" && echo -e
+endlocal && set show=%show% && set showonot=%showonot% && set autotype=%autotype% && set /a i=%i:~-3%-1 > nul && set md=%md% && set line=%line% && set linem=%linem% && set lineb=%lineb% && set linee=%linee% && set dir_deep=%dir_deep% && call Fn.11 "%prinstall%" "1" && set dflag=%dflag% && set prinstall=%prinstall% && set nochoice=%nochoice% && set noisopar=%noisopar%
+call Fn.11 "%in_check%" "1" && exit ! goto :i
+exit
+
+:subdir
+shift
+set dir_deep=
+checkrange 1:-1 calc %~1 > nul && set dir_deep=%~1 ! set dir_deep=1
+shift
+set /u tmp=%~1
+call Fn.15 "%tmp:~,4%" "SHOW" && set tmp= ! set show=%tmp% && shift && set tmp=
+set tmp=%~1
+call Fn.15 "%tmp%" "" && call Fn.15 "%tmp:~,2%" "--" && rootnoverify %~d1 && set path=%~pnx1 && shift ! set path=/
+set tmp=
+::æ£€æµ‹root
+call :find %path% dironly || goto :ferr
+set dir_root=%loadroot%%%loadpath%
+call Fn.15 "%autotype%" "" || set autotype=menu
+call :init_autotype %dir_deep% %dir_root%
+:subdir_begin
+call :subdir_start %dir_root%
+call Fn.15 "%tmptitle%" "" && set tmptitle= && set /a line=%line%+1 > nul && if %line%>=%lineb% && echo -e %tmptitle%
+goto :auto%autotype%_end
+
+:subdir_all
+shift
+set dir_deep=
+checkrange 1:-1 calc %~1 > nul && set dir_deep=%~1 ! set dir_deep=1
+shift
+set /u tmp=%~1
+call Fn.15 "%tmp:~,6%" "SHOW" &&& set tmp= ! set show=%tmp% && shift && set tmp=
+set tmp=%~1
+call Fn.15 "%tmp%" "" && call Fn.15 "%tmp:~,2%" "--" && rootnoverify %~d1 && set path=%~pnx1 && shift ! set path=
+set tmp=
+::æ£€æµ‹root
+call Fn.15 "%path%" "" && call :find %path% dironly || goto :ferr
+call Fn.15 "%autotype%" "" || set autotype=menu
+call :init_autotype %dir_deep% all\ devices %path%
+:subdir_all_begin
+set dir_root=
+debug 1
+call Fn.15 "%usrdev%" "" |; call Fn.15 "%fdd_boot%" "" && set usrdev=chpuf ! set usrdev=chpu
+find --devices=%usrdev% > (md)0x300+1
+if "%debug%"=="" set debug=off ;; debug %debug%
+cat --locate=\x0A --replace=\x20 (md)0x300+1
+::(fd0)/(hd0)ä¼šä¸Ž(ud)é‡å¤ï¼Œå¿½ç•¥ä¹‹
+calc *0x82b8 > nul || set UD= ! set /A UD=*0x82b9&0xff > nul &; if %UD%>=0x80 && set UD=(hd%UD:~3%) ! set UD=(fd%UD:~2%)
+call Fn.15 "%UD%" "" && cat --locatei="%UD%" --replace=\x20\x20\x20\x20\x20\x20 (md)0x300+1
+cat (md)0x300+1 | set dir_root=
+call Fn.15 "%path%" "" && set tmp= && call :subdir_all_path %dir_root%
+call Fn.11 "%autotype%" "menu" && call Fn.15 "%showpath%" "" || set showpath=1
+goto :subdir_begin
+
+:subdir_all_path
+call Fn.15 "%~1" "" || set dir_root=%tmp% && set tmp= && exit
+root %~1 || shift && goto :subdir_all_path
+ls %path% > nul && set tmp=%tmp% %@root%%%path%
+shift
+goto :subdir_all_path
+
+:subdir_start
+if "%~1"=="" && exit
+call Fn.11 "%autotype%" "menu" && call Fn.11 "%i:~-3%" "254" && exit
+call Fn.11 "%autotype%" "list" && if %line%>=%linee% && exit
+call :joke %~1
+setlocal
+rootnoverify %~d1
+set path=%~pnx1
+call :path_check
+if exist %@root%%%path%MENU_CONFIG.TXT && set contxt=1 && cat %@root%%%path%MENU_CONFIG.TXT > (md)0x210+10 || echo > (md)0x210+10
+set type=RUN
+ls %path% > nul && ls %path% | call :automake %~0
+set /a dir_deep=%dir_deep%-1 > nul
+if %dir_deep%>=1 && ls %path% | call :subdir_dir %~0
+endlocal && set i=%i% && set tmpmd=%tmpmd% && set tmptitle=%tmptitle% && set line=%line% && set tmpitem=%tmpitem%
+shift
+goto :subdir_start
+
+:subdir_dir
+shift
+if "%~1"=="" && exit
+cat --length=0 %path%%%~1 > nul && goto :subdir_dir
+call Fn.61 %@root%%%path%%%~1/ > nul || goto :subdir_dir
+setlocal
+call :subdir_start %@root%%%path%%%~1/
+endlocal && set i=%i% && set tmpmd=%tmpmd% && set tmptitle=%tmptitle% && set line=%line% && set tmpitem=%tmpitem%
+goto :subdir_dir
+
+::å®šä¹‰è‡ªåŠ¨èœå•çš„ä¸€äº›åŸºç¡€å‚æ•°å€¼
+::call :init_autotype %@root%%%path%
+::call :init_autotype all devices
+::call :init_autotype all devices %path%
+::call :init_autotype %dir_deep% %dir_root%
+::call :init_autotype %dir_deep% all\ devices
+::call :init_autotype %dir_deep% all\ devices %path%
+:init_autotype
+::èŽ·å–æ˜¾ç¤ºç›¸å…³çš„ä¸€äº›å‚æ•°å€¼
+debug 1
+terminal | call :Resolution 
+if "%debug%"=="" set debug=off ;; debug %debug%
+set i=1001
+call Fn.15 "%fastmode%" "1" && if exist %@root%%%path%MENU_CONFIG.TXT && set contxt=1 && cat %@root%%%path%MENU_CONFIG.TXT > (md)0x210+10 || echo > (md)0x210+10
+call Fn.11 "%autotype%" "list" && goto :init_autolist
+::æ£€æµ‹æ˜¯å¦åŠ è½½äº†èƒŒæ™¯å›¾
+calc 46<<2+*0x8304 > nul
+call Fn.15 "%font%" "" || call Fn.15 "%image%" "" || read %@retval% > nul || set image=color white/blue blue/yellow light-red/blue 10
+::å®šä¹‰rdè®¾å¤‡çš„èµ·å§‹åœ°å€åŠé•¿åº¦ï¼Œ64MBå¼€å§‹çš„128KBé•¿åº¦åŒºåŸŸï¼Œ(md)0x20000+0x100
+map --rd-base=0x4000000
+map --rd-size=0x20000
+::å°†æ ‡é¢˜å±…ä¸­æ˜¾ç¤º
+set tmp=
+call Fn.15 "%dir_deep%" "%~1" &; call Fn.15 "%~1" "all" && set tmp=%~1 ! call Fn.15 "%language%" "en" && set tmp=æ‰€æœ‰å¯ç”¨è®¾å¤‡ ! set tmp=all devices
+call Fn.15 "%tmp%" "" &; call Fn.15 "%~3" "" &; call Fn.15 "%language%" "en" && set tmp=%tmp%ä¸‹ %~3 ä¸­æ–‡ä»¶ ! set tmp=files under %~3 in %tmp%
+call Fn.15 "%tmp%" "" |; call Fn.15 "%~2" "all\ devices" && set tmp=%~2\x20 ! call Fn.15 "%language%" "en" && set tmp=æ‰€æœ‰å¯ç”¨è®¾å¤‡ ! set tmp=all devices
+call Fn.15 "%dir_deep%" "%~1" |; call Fn.15 "%~3" "" &; call Fn.15 "%language%" "en" && set tmp=%tmp%ä¸‹ %~3\x20 ! set tmp=%~3 in %tmp%
+call Fn.15 "%dir_deep%" "%~1" |; call Fn.15 "%language%" "cn" && set tmp=files under %dir_deep%-level directory of %tmp% ! set tmp=%tmp%ä¸­ %dir_deep% çº§ç›®å½•ä¸‹æ–‡ä»¶
+call Fn.15 "%language%" "cn" && set tmp=Automenu for %tmp% ! set tmp=è‡ªåŠ¨èœå•ï¼Œå½“å‰: %tmp%
+::æ ‡é¢˜ä¸¤è¾¹å¯¹é½
+call :str_length
+calc %reso% + 20 > nul
+if %n%<=%@retval% && calc %@retval% + %n% &; calc %@retval% / 2 > nul &; call :fr_check %@retval%
+echo > (rd)+1
+call Fn.11 "%grub4ver%" "0" && set initmenu=!BAT\necho -P:0000 $[0000]\t\t\t\t\t\t\t\t\t\0
+call Fn.15 "%initmenu%" "" && call Fn.0 0x4000000 "%initmenu%" && set initmenu=\nexit\n\ninitscript (rd)+1
+echo -e %initmenu%\ndebug off\ndefault 1\n%image%\n%font%\ntitle %tmp% \\n \n%runs% --automenu-all >> (rd)+1
+exit
+
+::å®šä¹‰è‡ªåŠ¨åˆ—è¡¨çš„ä¸€äº›åŸºç¡€å‚æ•°å€¼
+:init_autolist
+call Fn.11 "%showback%" "1" &; calc 46<<2+*0x8304 > nul &; read %@retval% > nul && call Fn.70 3
+call Fn.15 "%drvtips%" "1" && call Fn.6 ! set drvtips=
+call Fn.15 "%listinit%" "1" && set md=0x20800
+set /A tmpmd=%md% + 1 > nul
+set /a tmpitem=%item% - 1 > nul
+set line=1
+call Fn.15 "%listinit%" "1" && set lineb=1 && set linee=%linem%
+set c4=$[0104]
+set c6=$[0106]
+set c2=$[0102]
+set c7=$[0107]
+set cn=$[0x06] && call Fn.15 "%num_c%" "" && set cn=%num_c%
+set cf2=$[0x09] && call Fn.15 "%dir_c%" "" && set cf2=%dir_c%
+set cf=$[0x02] && call Fn.15 "%file_c%" "" && set cf=%file_c%
+set tmp=
+call Fn.15 "%dir_deep%" "%~1" &; call Fn.15 "%~1" "all" && set tmp=%c6%%%~d1%c2%%%~pnx1%%c7% ! call Fn.15 "%language%" "en" && set tmp=%c6%æ‰€æœ‰å¯ç”¨è®¾å¤‡%c7% ! set tmp=%c6%all devices%c7%
+call Fn.15 "%tmp%" "" &; call Fn.15 "%~3" "" &; call Fn.15 "%language%" "en" && set tmp=%tmp%ä¸‹ %~3 ä¸­æ–‡ä»¶ ! set tmp=files under %~3 in %tmp%
+call Fn.15 "%tmp%" "" |; call Fn.15 "%~2" "all\ devices" && set tmp=%c6%%%~2%c7%\x20 ! call Fn.15 "%language%" "en" && set tmp=%c6%æ‰€æœ‰å¯ç”¨è®¾å¤‡%c7% ! set tmp=%c6%all devices%c7%
+call Fn.15 "%dir_deep%" "%~1" |; call Fn.15 "%~3" "" &; call Fn.15 "%language%" "en" && set tmp=%tmp%ä¸‹ %~3\x20 ! set tmp=%c6%%%~3 %c7%in %tmp%
+call Fn.15 "%dir_deep%" "%~1" || if "%language%"=="en" set tmp=files under %c2%%%dir_deep%-level %c7%directory of %tmp% || set tmp=%tmp%ä¸­ %c2%%%dir_deep% %c7%çº§ç›®å½•ä¸‹æ–‡ä»¶
+call Fn.11 "%language%" "en" && set tmp=Autolist %c7%for %tmp%\n ! set tmp=è‡ªåŠ¨åˆ—è¡¨%c7%, å½“å‰: %tmp%\n
+echo -e \n\x20%c4%%%tmp%
+call Fn.15 "%listinit%" "1" &; echo %* > (md)%md%+1
+exit
+
+::æ‰€æœ‰å¯è¯†åˆ«è®¾å¤‡çš„è‡ªåŠ¨èœå•åŠè‡ªåŠ¨åˆ—è¡¨æ¨¡å—
+:auto-all
+::æ£€ç´¢æ–‡ä»¶ç›¸å…³
+if /i "%~1"=="subdir" && goto :subdir_all
+set tmp=%~1
+call Fn.15 "%tmp%" "" && call Fn.15 "%tmp:~,2%" "--" && rootnoverify %~d1 && set path=%~pnx1 && shift ! set path=
+set tmp=
+call Fn.15 "%path%" "" && call :find %path% dironly || goto :ferr
+::å®šä¹‰ä¸€äº›åŸºç¡€å‚æ•°å€¼
+if "%autotype%"=="list" if "%listinit%"=="1" || call :init_autotype all devices %path%
+call Fn.15 "%path%" "" && goto :automake_all
+::é€é¡¹å¤„ç†è¯†åˆ«åˆ°çš„è®¾å¤‡
+debug 1
+call Fn.15 "%usrdev%" "" |; call Fn.15 "%fdd_boot%" "" && set usrdev=chpuf ! set usrdev=chpu
+setlocal
+::(fd0)/(hd0)ä¼šä¸Ž(ud)é‡å¤ï¼Œå¿½ç•¥ä¹‹
+calc *0x82b8 > nul || set UD= ! set /A UD=*0x82b9&0xff > nul &; if %UD%>=0x80 && set UD=(hd%UD:~3%) ! set UD=(fd%UD:~2%)
+find --devices=%usrdev% | call :devices_menu 
+endlocal && set i=%i% && set tmpmd=%tmpmd% && set line=%line%
+if "%debug%"=="" set debug=off ;; debug %debug%
+goto :auto%autotype%_end
+:devices_menu
+::å¤„ç†è¯¥è®¾å¤‡çš„è¯¦ç»†ä¿¡æ¯
+call Fn.11 "%autotype%" "list" && if %line%>=%linee% && exit
+if "%1"=="" && exit
+if "%UD%"=="%~1" && shift && goto :devices_menu
+call :part_info %~1
+call :joke %~1
+::å¤„ç†å¾—åˆ°çš„ç»“æžœï¼Œå¹¶åˆ†ç±»è¿›è¡Œè¾“å‡º
+call Fn.11 "%language%" "en" && set tmp=Automenu for %~d1/ ! set tmp=å°†è‡ªåŠ¨ç”Ÿæˆ %~d1/ èœå•
+call Fn.11 "%showinfo%" "0" && set tmp=
+call Fn.11 "%autotype%" "menu" && echo -e \ntitle [%i:~-2%] %partinfo%\\n %tmp% >> (rd)+1
+call Fn.11 "%autotype%" "menu" && echo -e delmod -l %runs% \> nul \|\| echo %runs% not found!! \&\& call Fn.73 3 >> (rd)+1
+call Fn.11 "%autotype%" "menu" && echo -e command %runs% --automenu %~d1 >> (rd)+1
+call Fn.11 "%autotype%" "list" && echo -e --autolist %~d1 > (md)%tmpmd%+1 && if %line%>=%lineb% && echo -e \t%c7%[%cn%%%i:~-2%%%c7%] %cf%%%partinfo%%%c7%\x20
+set partinfo=
+set /a i=%i%+1 > nul
+call Fn.15 "%tmpmd%" "" && set /A tmpmd=%tmpmd% + 1 > nul
+set /a line=%line%+1 > nul
+shift
+goto :devices_menu
+
+::è‡ªåŠ¨èœå•åŠè‡ªåŠ¨åˆ—è¡¨å¤„ç†æ¨¡å—
+:automake
+shift
+::æ¡ä»¶åˆ¤æ–­éƒ¨åˆ†
+::è‡ªåŠ¨èœå•æœ€å¤šæ˜¾ç¤º255é¡¹titleï¼Œè¶…å‡ºçš„å¿½ç•¥
+call Fn.11 "%autotype%" "menu" && call Fn.11 "%i:~-3%" "254" && exit
+::è‡ªåŠ¨åˆ—è¡¨æ˜¾ç¤ºè¡Œè¶…å‡ºæœ€å¤§è¡ŒåŽé€€å‡º
+call Fn.11 "%autotype%" "list" && if %line%>=%linee% && exit
+::å…¨éƒ¨æ–‡ä»¶å¤„ç†å®ŒæˆåŽï¼Œå¯¹è‡ªåŠ¨åˆ—è¡¨æ£€æµ‹æ˜¯å¦è¿˜æœ‰æœªè¾“å‡ºçš„æ˜¾ç¤º
+call Fn.15 "%~1" "" || goto :automake_end
+::å…ˆå¤„ç†æ–‡ä»¶å¤¹ï¼Œç„¶åŽå¤„ç†æ–‡ä»¶
+call Fn.15 "%fastmode%" "1" &; cat --length=0 %path%%%~1 > nul && if "%type%"=="LS\x20" goto :automake ! if "%type%"=="RUN" goto :automake
+::menu_config.txtæ–‡ä»¶ã€firadisk.imgæ–‡ä»¶ã€winvblk.imgæ–‡ä»¶ã€åŒå_config.txtæ–‡ä»¶å›ºå®šå¿½ç•¥å¤„ç†
+if /i not "%~1"=="menu_config.txt" if /i not "%~1"=="firadisk.img" if /i not "%~1"=="winvblk.img" if /i not "%~1"=="%~n0_config.txt" || goto :automake
+set tmp=%~n1
+::éž8.3å‘½åçš„æ–‡ä»¶ã€ä»¥$å¼€å¤´çš„æ–‡ä»¶å¿½ç•¥å¤„ç†
+call Fn.15 "%tmp:~,1%" "$" && call Fn.15 "%tmp:~-2,1%" "~" && set tmp= ! set tmp= && goto :automake
+::æ ¹æ®showæˆ–not-showå‚æ•°æ£€æµ‹æ˜¯å¦æ˜¾ç¤ºæœ¬æ–‡ä»¶
+call Fn.11 "%type%" "RUN" && call Fn.15 "%show%" "" && call :show_detect %show% %~x1 || goto :automake
+::åˆ¤æ–­å‰ç¼€
+set tmp=
+call Fn.15 "%filepre%" "" &; set /u tmp=%~n1 && set /u filepre=%filepre% &; set tmp= && call Fn.11 "%tmp%" "%filepre%" || goto :automake
+call :joke %~1
+setlocal
+::æ£€æµ‹æŒ‡å®šçš„æ–‡ä»¶è·¯å¾„æ˜¯å¦å«æœ‰ç©ºæ ¼
+call Fn.15 "%fastmode%" "1" && call Fn.11 "%type%" "LS\x20" && call Fn.61 %path%%%~1/ > nul && call :blank_check file %path%%%~1/ ! call :blank_check file %path%%%~1
+call Fn.11 "%i:~1,1%" "0" && set title=%i:~-2% ! set title=%i:~-3%
+call Fn.11 "%autotype%" "menu" && set title=title [%title%]
+::æ˜¾ç¤ºåï¼Œå‰ç½®å‚æ•°ï¼ŒåŽç½®å‚æ•°å¤„ç†
+call Fn.15 "%fastmode%" "1" && call Fn.11 "%type%" "RUN" && if exist %path%%%~n1_CONFIG.TXT > nul && call :read_txt %path%%%~n1_CONFIG.TXT
+call Fn.15 "%fastmode%" "1" && call Fn.11 "%type%" "RUN" && call Fn.11 "%contxt%" "1" && call :menu_config %~1
+call Fn.15 "%_title%" "" && set blankn=4 ! call Fn.11 "%autotype%" "menu" && set title=%title%\x20%type%
+call Fn.15 "%_title%" "" |; call Fn.11 "%showpath%" "1" && set _title=%@root%%%path%%%~1 ! set _title=%~1
+call Fn.11 "%file:~-1%" "/" && set _title=%_title%/
+call Fn.15 "%_front%" "" && set _front=\x20%_front%\x20 ! call Fn.15 "%front%" "" && set _front=\x20%front%\x20 ! set _front=\x20
+call Fn.15 "%_next%" "" && set _next=\x20%_next% ! call Fn.15 "%next%" && set _next=\x20%next%
+::è‡ªåŠ¨èœå•è¾“å‡ºç»“æžœæ¨¡å—
+call Fn.11 "%autotype%" "list" && goto :makelist
+::å¯¹æ–‡ä»¶ï¼Œè®¡ç®—æ–‡ä»¶åæ˜¾ç¤ºé•¿åº¦åŠæ–‡ä»¶ä½“ç§¯
+call Fn.15 "%fastmode%" "1" && call Fn.15 "%showsize%" "0" && call Fn.11 "%type%" "RUN" && call :name_fix %_title%
+call Fn.15 "%showinfo%" "0" || set _title=%_title%\\n ! set _title=%_title%\\n %@root%%%file%
+echo -e \n%title% %_title% >> (rd)+1
+echo -e delmod -l %runs% \> nul \|\| echo %runs% not found!! \&\& call Fn.73 3 >> (rd)+1
+echo -e command %runs%%%_front%%%@root%%%file%%%_next% >> (rd)+1
+endlocal && set /a i=%i%+1 > nul
+goto :automake
+
+:joke
+::æ˜¾ç¤ºå½“å‰å¤„ç†çš„æ–‡ä»¶æˆ–è®¾å¤‡å
+call Fn.15 "%autotype%" "menu" && exit
+call Fn.15 "%joke%" "" &; call Fn.5 %joke% && echo -e %~1\t\t && exit ! exit
+echo -e -n \x20\x1a
+call Fn.4
+set /A joke=%@retval% > nul
+set joke=0x%joke:~-2% %joke:~,-2%
+goto :joke
+
+::è‡ªåŠ¨åˆ—è¡¨è¾“å‡ºç»“æžœæ¨¡å—
+:makelist
+echo -e -n %_front%%%@root%%%file%%%_next% > (md)%tmpmd%+1
+::è®¡ç®—æ˜¾ç¤ºçš„æ–‡ä»¶åé•¿åº¦ï¼Œä»¥ä¾¿å¯¹é½
+set tmp=[%title%] %_title%
+call :str_length
+set tmp=%_title%
+::tmpitemå€¼ä¸ºåˆ¤æ–­æ˜¯å¦æ¢è¡Œè¾“å‡ºçš„æ ‡å¿—
+if %n%>=24 && call :list_name_fix ! call Fn.15 "%tmpitem%" "0" && call :de_check 19
+::åŒºåˆ«æ–‡ä»¶å¤¹åŠæ–‡ä»¶æ˜¾ç¤ºçš„é¢œè‰²
+call Fn.11 "%type%" "LS\x20" && set title=%c7%[%cn%%%title%%%c7%] %cf2%%%tmp% ! set title=%c7%[%cn%%%title%%%c7%] %cf%%%tmp%
+if "%tmptitle%"=="" && set title=\t%title%
+call Fn.11 "%tmpitem%" "0" || set tmptitle=%tmptitle%%%title% ! set tmpitem=%item% && set tmptitle= && set /a line=%line%+1 > nul && if %line%>=%lineb% && echo -e %tmptitle%%%title%
+endlocal && set /a i=%i%+1 > nul && set /A tmpmd=%tmpmd%+1 > nul && set tmptitle=%tmptitle% && set line=%line% && set /a tmpitem=%tmpitem%-1 > nul
+goto :automake
+
+:automake_end
+call Fn.15 "%autotype%" "list" && exit
+call Fn.15 "%type%" "RUN" && exit
+call Fn.15 "%dir_deep%" "" && exit
+call Fn.15 "%tmptitle%" "" && set tmptitle= && set /a line=%line%+1 > nul && if %line%>=%lineb% && echo -e %tmptitle%
+set joke=
+exit
+
+:automake_all
+call Fn.11 "%autotype%" "menu" && call Fn.15 "%showpath%" "" || set showpath=1
+debug 1
+call Fn.15 "%usrdev%" "" |; call Fn.15 "%fdd_boot%" "" && set usrdev=chpuf ! set usrdev=chpu
+::(fd0)/(hd0)ä¼šä¸Ž(ud)é‡å¤ï¼Œå¿½ç•¥ä¹‹
+calc *0x82b8 > nul || set UD= ! set /A UD=*0x82b9&0xff > nul &; if %UD%>=0x80 && set UD=(hd%UD:~3%) ! set UD=(fd%UD:~2%)
+call Fn.15 "%fastmode%" "1" && call Fn.15 "%showdir%" "0" && set type=LS\x20 && find --devices=%usrdev% | call :automake_all_getfile %0 && rootnoverify %@root%
+call Fn.15 "%showfile%" "0" && set type=RUN && find --devices=%usrdev% | call :automake_all_getfile %0 && rootnoverify %@root%
+set UD=
+if "%debug%"=="" set debug=off ;; debug %debug%
+goto :auto%autotype%_end
+
+:automake_all_getfile
+shift
+call Fn.15 "%~1" "" || exit
+if "%UD%"=="%~1" && goto :automake_all_getfile
+rootnoverify %~1 || exit
+ls %path% | call :automake %0 || goto :automake_all_getfile
+goto :automake_all_getfile
+
+::èŽ·å–æ˜¾ç¤ºç›¸å…³çš„ä¸€äº›å‚æ•°å€¼æ¨¡å—
+:Resolution
+if "%~3"=="" && set reso=57 ! set /a reso=%~3-23 > nul
+::èŽ·å– box_w åŽŸå€¼,å®½åº¦
+calc 29<<2+*0x8304 > nul
+calc *%@retval%+4 > nul
+read %@retval% | echo -n | echo -n | echo -n | set old=
+::å€¼ä¸º0æˆ–ç©ºçš„è¯ï¼Œæ˜¯é»˜è®¤æœ€å¤§å®½åº¦ï¼ŒæŸäº›æƒ…å†µä¸‹ç›´æŽ¥ä½¿ç”¨ä¼šè¶…å‡ºæ˜¾ç¤ºèŒƒå›´
+call Fn.15 "%old:~2,-6%" "" && call Fn.15 "%old:~2,-6%" "00" && if 0x%old:~2,-6%>=24 set /a box_w=0x%old:~2,-6% - 23 > nul
+call Fn.15 "%box_w%" "" && if %box_w%<=%reso% && set reso=%box_w%
+set old= && call Fn.11 "%autotype%" "menu" && exit
+if "%~5"=="" && set linem=30 ! set /a linem=%~5 > nul
+::èŽ·å– box_h åŽŸå€¼ï¼Œè¡Œæ•°
+calc 29<<2+*0x8304 > nul
+calc *%@retval%+8 > nul
+read %@retval% | echo -n | echo -n | echo -n | set old=
+call Fn.15 "%old:~2,-2%" "" && call Fn.15 "%old:~2,-2%" "00" && if 0x%old:~2,-2%<=%linem% set /a linem=0x%old:~2,-2% > nul
+set old= && if %linem%<=8 && set linem=1 ! set /a linem=%linem% - 10 > nul
+::æ¯è¡Œæœ€å¤§æ˜¾ç¤ºæ•°
+set /a item=%reso% + 15 > nul
+if %item%<=32 && set item=1 ! set /a item=%item% / 24 > nul
+exit
+
+::èŽ·å–ä¸Šçº§æ–‡ä»¶å¤¹è·¯å¾„æ¨¡å—ï¼Œè°ƒç”¨æ–¹å¼ call :up_check %å½“å‰è·¯å¾„% ;å¤„ç†ç»“æŸåŽupå€¼ä¸ºä¸Šçº§ç›®å½•
+:up_check
+set up=%~dp1
+call Fn.15 "%up%" "%~1/" || set up=--auto%autotype%-all
+::å¤„ç†upåŠå…¶å€¼ç©ºæ ¼é—®é¢˜ï¼Œæ–¹ä¾¿åŽæœŸå¤„ç†
+call Fn.15 "%up%" "--auto%autotype%-all" && call :blank_check up %up%
+::è‡ªåŠ¨åˆ—è¡¨çš„è¯ç›´æŽ¥è¾“å‡ºç»“æžœï¼Œè‡ªåŠ¨èœå•çš„è¯å†™å…¥åˆ°rdè®¾å¤‡
+call Fn.11 "%autotype%" "menu" && goto :up_check_menu
+call Fn.15 "%language%" "cn" && set tmp=..\t\t ! set tmp=è¿”å›žä¸Šçº§ç›®å½•
+set tmptitle=\t%c7%[%cn%%%i:~-2%%%c7%] %cf2%%%tmp%\t
+set tmp=
+echo -e %up% > (md)%tmpmd%+1
+set /a i=%i%+1 > nul
+set /A tmpmd=%tmpmd% + 1 > nul
+set /a tmpitem=%tmpitem% - 1 > nul
+exit
+:up_check_menu
+call Fn.15 "%up%" "--auto%autotype%-all" && set tmp=%up% ! call Fn.15 "%language%" "cn" && set tmp=all devices ! set tmp=æ‰€æœ‰å¯ç”¨è®¾å¤‡
+call Fn.11 "%showinfo%" "0" && set tmp= ! call Fn.11 "%language%" "en" && set tmp=Back to automenu for %tmp% ! set tmp=å°†è‡ªåŠ¨ç”Ÿæˆ %tmp% èœå•
+call Fn.15 "%language%" "cn" && set tmp=.. \\n %tmp% ! set tmp=è¿”å›žä¸Šçº§ç›®å½• \\n %tmp%
+echo -e \ntitle [%i:~-2%] %tmp% >> (rd)+1
+set tmp=
+echo -e delmod -l %runs% \> nul \|\| echo %runs% not found!! \&\& call Fn.73 3 >> (rd)+1
+echo -e command %runs% %up% >> (rd)+1
+set /a i=%i%+1 > nul
+exit
+
+::--swap-extï¼Œ--automenu-allï¼Œ--autolist-allå‚æ•°ç”¨ï¼ŒèŽ·å–åˆ†åŒºè¯¦ç»†ä¿¡æ¯æ¨¡å—
+:part_info
+if "%~1"=="" && exit
+
+set tmp=%~1
+if "%tmp:~,1%"=="(" if "%tmp:~2,1%"=="d" if "%tmp:~-1%"==")" || shift && set tmp= && goto :part_info
+
+set tmp=
+::å¦‚ä¸ºhddåˆ†åŒºï¼Œåˆ™è®¡ç®—åˆ†åŒºä½“ç§¯
+call Fn.11 "%~1" "hd" && call :part_size %~1
+::åŽå¯¹é½ç”¨ï¼Œhddåˆ†åŒºåŠ ä½“ç§¯æœ€å¤§é•¿åº¦ä¸º15
+set tmp=%~1\x20%tmp%
+call :de_check 16
+set partsize=%tmp%
+set tmp=
+set n=
+debug 1
+::èŽ·å–åˆ†åŒºæ–‡ä»¶ç±»åž‹åŠç£ç›˜ç±»åž‹
+uuid %~1 | echo -n | echo -n | echo -n | call :file_info 
+set fsysinfo=%tmp%
+set tmp=
+set n=
+::èŽ·å–åˆ†åŒºæ¿€æ´»ä¿¡æ¯
+call Fn.15 "%language%" "cn" && call Fn.15 "%tmp:~-13%" "Unknown type." && makeactive --status %~1 | call :active_info 
+call Fn.15 "%language%" "en" && call Fn.15 "%tmp:~-15%" "æœªçŸ¥ç±»åž‹ã€‚" && makeactive --status %~1 | call :active_info 
+::swap-extå‚æ•°çš„è¯éœ€ç›´æŽ¥è¾“å‡ºç»“æžœï¼Œautolist-allå‚æ•°ä¸ç”¨
+set partinfo=%partsize%\x20%fsysinfo%\x20%tmp%
+set tmp=
+set partsize=
+set fsysinfo=
+call Fn.11 "%helpinfo%" "1" && echo -e %partinfo%
+if "%debug%"=="" set debug=off ;; debug %debug%
+shift
+goto :part_info
+
+::è®¡ç®—æŒ‡å®šçš„åˆ†åŒºçš„ä½“ç§¯ï¼Œå¹¶è¿›è¡Œå‰å¯¹é½æ¨¡å—ï¼Œè°ƒç”¨æ–¹å¼ call :part_size åˆ†åŒºå·
+:part_size
+set sectors=0
+set sectorc=0
+geometry %~1 | call :sector_size 
+::0x82b0å€¼ä¸ºè¯¥åˆ†åŒºçš„æ‰‡åŒºæ•°é‡
+rootnoverify %~1 && call :get_size *0x82b0*%sectors% && rootnoverify %@root%
+set sectors=
+set sectorc=
+call :fr_check 7
+exit
+
+::èŽ·å–hddæ¯æ‰‡åŒºå¤§å°åŠæ‰‡åŒºæ•°é‡
+:sector_size
+echo -e %~7 > (md)0x300+1
+cat --locate=\x2F --replace=\x20 (md)0x300+1
+cat --length=%?% (md)0x300+1 | set sectorc=
+cat --skip=%?% (md)0x300+1 | set sectors=
+exit
+
+::èŽ·å–æŒ‡å®šçš„åˆ†åŒºçš„æ–‡ä»¶ç±»åž‹åŠç£ç›˜ç±»åž‹ï¼Œå¹¶è¿›è¡Œå¯¹é½
+:file_info
+call Fn.15 "%language%" "cn" && set tmp=Filesystem is ! set tmp=æ–‡ä»¶ç³»ç»Ÿç±»åž‹æ˜¯
+call Fn.15 "%~5" "is" || set tmp=%tmp%\x20%~6 %~9\x2E ! call Fn.15 "%language%" "cn" && set tmp=%tmp%\x20Unknown type. ! set tmp=%tmp%\x20æœªçŸ¥ç±»åž‹ã€‚
+call Fn.15 "%language%" "cn" && call :de_check 31 ! call :de_check 32
+exit
+
+::èŽ·å–æŒ‡å®šåˆ†åŒºæ˜¯å¦æ´»åŠ¨
+:active_info
+call Fn.11 "%~4" "active" || call Fn.11 "%~5" "active" || exit
+call Fn.15 "%language%" "cn" && set tmp=%~4 %~5 && exit
+call Fn.11 "%~4" "not" && set tmp=éž
+set tmp=%tmp%æ´»åŠ¨ã€‚
+exit
+
+::åŽå¯¹é½æ¨¡å—ï¼Œä½¿ç”¨ç©ºæ ¼è¡¥é½tmpå€¼è‡³æŒ‡å®šé•¿åº¦ï¼Œè°ƒç”¨æ–¹å¼ call :de_check ç›®æ ‡é•¿åº¦ ;å¤„ç†ç»“æŸåŽtmpå€¼ä¸ºåŽŸtmpå€¼åŠ è¡¥é½ç”¨ç©ºæ ¼
+::åœ¨å˜é‡aåŽé¢æ·»åŠ 3ä¸ªç©ºæ ¼,è¦Nä¸ªç©ºæ ¼å°±Ns
+::call Fn.0 0 "%t%%3s" | set t=
+:de_check
+call Fn.12 "%tmp%" || exit
+call :str_length
+if %n%>=%~1 && exit
+calc %n% - %~1 > nul
+call Fn.0 0 "%tmp%%%%%@retval%s" | set tmp=
+exit
+
+::å‰å¯¹é½æ¨¡å—ï¼Œä½¿ç”¨ç©ºæ ¼è¡¥é½tmpå€¼è‡³æŒ‡å®šé•¿åº¦ï¼Œè°ƒç”¨æ–¹å¼ call :fr_check ç›®æ ‡é•¿åº¦ ;å¤„ç†ç»“æŸåŽtmpå€¼ä¸ºåŽŸtmpå€¼åŠ è¡¥é½ç”¨ç©ºæ ¼
+::å˜é‡aå€¼é•¿åº¦ä¸º3 æƒ³å·¦å¯¹é½å·¦è¾¹åŠ 2ä¸ªç©ºæ ¼çš„è¯ æœ€åŽå˜é‡aæ€»é•¿åº¦åº”è¯¥æ˜¯5
+::call Fn.0 0 "%5s" "%t%"
+:fr_check
+call Fn.12 "%tmp%" || exit
+call :str_length
+if %n%>=%~1 && exit
+::ä¸­æ–‡å­—ç¬¦ä¸²è¡¥é½
+if "%utf8n%"=="" && set utf8n=0
+calc %~1 - 1 + %utf8n% > nul
+call Fn.0 0 "%%%@retval%s" "%tmp%" | set tmp=\x20
+exit
+
+::æ–‡ä»¶åŽç¼€åå’ŒæŒ‡å®šçš„åŽç¼€ååˆ¤æ–­æ¨¡å—ï¼Œè°ƒç”¨æ–¹å¼ call :show_detect æ–‡ä»¶åŽç¼€å åŽç¼€ååˆ—è¡¨ ;å¤„ç†ç»“æŸåŽæ­£å¸¸é€€å‡ºä¸ºæ˜¾ç¤º å¼ºåˆ¶é€€å‡ºä¸ºä¸æ˜¾ç¤º
+:show_detect
+::call Fn.15 "%show:~2,3%" "NOT" && set tmp=&& ! set tmp=||
+call Fn.11 "%show%" "SHOW-EXCEPT" && set tmp=|| ! set tmp=&&
+call Fn.15 "%~2" "" |; set tmp= && call Fn.15 "%~x1" "." %tmp% exit 1 ! exit
+set /u tmp="%~2" %tmp%
+set tmp= && call Fn.11 "%~1" %tmp% exit ! exit 1
+exit
+
+::åŒå_config.txtæ–‡æœ¬æ–‡ä»¶å¯¼å…¥å‚æ•°æ¨¡å—ï¼Œè°ƒç”¨æ–¹å¼ call :read_txt åŒå_config.txtæ–‡ä»¶è·¯å¾„
+:read_txt
+::ç®€å•çš„åˆ¤æ–­ï¼Œç©ºæ–‡ä»¶ç›´æŽ¥é€€å‡º
+if "%~z1"=="0x0" && exit ! set txtfile=%~1 && set tsize=%~z1
+::\xD\xAä¸ºWindowsä¸­å›žè½¦æ¢è¡Œç¬¦ï¼Œä½œä¸ºåˆ¤æ–­å«æœ‰å‡ è¡Œå‚æ•°çš„æ ‡å‡†ä¹‹ä¸€
+cat --locatei=\xD\xA --number=3 %txtfile% | set enter=
+::enterå€¼ä¸ä¸ºç©ºçš„è¯ï¼Œæˆªå–enterå€¼çš„å‰ä¸¤ä¸ªå­—ç¬¦ä¸ºç¬¬ä¸€ä¸ªå›žè½¦çš„ä½ç½®ï¼Œé‡æ–°ç»™enterèµ‹å€¼ï¼Œè¿›è¡Œä¸‹é¢çš„å¤„ç†ï¼Œä»¥ä¸‹é›·åŒ
+call Fn.15 "%enter%" "" && set enter=%enter:~2% && set enter1=0x%enter:~,2%
+call Fn.15 "%enter%" "" && set enter=%enter:~2% && set enter2=0x%enter:~,2%
+call Fn.15 "%enter%" "" && set enter=%enter:~2% && set enter3=0x%enter:~,2%
+::å¦‚æžœenter1å€¼ä¸ºç©ºçš„è¯ï¼Œè¯´æ˜Žæ–‡ä»¶åªæœ‰ä¸€è¡Œï¼Œæ–‡ä»¶é•¿åº¦å³ä¸ºç¬¬ä¸€å‚æ•°çš„é•¿åº¦
+if "%enter1%"=="" && set /A length=%tsize% > nul ! set /A length=%enter1% > nul
+::æˆªå–æŒ‡å®šçš„é•¿åº¦ï¼Œä½œä¸ºç¬¬ä¸€å‚æ•°å€¼ï¼Œèµ‹ç»™æŒ‡å®šçš„å˜é‡
+set length= && call Fn.15 "%length%" "" && cat --length=%length% %txtfile% | set _title=
+::enter1å€¼ä¸ä¸ºç©ºçš„è¯ï¼Œè¯´æ˜Žè‡³å°‘ä¸¤è¡Œå‚æ•°ï¼Œå¦‚æžœenter2å€¼ä¸ºç©ºçš„è¯ï¼Œè¯´æ˜Žåªæœ‰ä¸¤è¡Œå‚æ•°ï¼Œæ–‡ä»¶ä½“ç§¯å‡åŽ»ç¬¬ä¸€å‚æ•°é•¿åº¦å³ä¸ºç¬¬äºŒå‚æ•°é•¿åº¦ï¼Œä»¥ä¸‹é›·åŒ
+call Fn.15 "%enter1%" "" && if "%enter2%"=="" set /A length=%tsize%-%enter1% > nul || set /A length=%enter2%-%enter1% > nul
+call Fn.15 "%enter1%" "" && set length= && call Fn.15 "%length%" "" && cat --skip=%enter1% --length=%length% %txtfile% | set _front=
+call Fn.15 "%enter2%" "" && if "%enter3%"=="" set /A length=%tsize%-%enter2% > nul || set /A length=%enter3%-%enter2% > nul
+call Fn.15 "%enter2%" "" && set length= && call Fn.15 "%length%" "" && cat --skip=%enter2% --length=%length% %txtfile% | set _next=
+exit
+
+::menu_config.txtæ–‡æœ¬æ–‡ä»¶å¯¼å…¥å‚æ•°æ¨¡å—ï¼Œè°ƒç”¨æ–¹å¼ call :menu_config æ–‡ä»¶å
+:menu_config
+::loopå€¼ä¸ºé€’å½’åˆ¤æ–­ç”¨ å› catçš„locateå‚æ•°ä¸èƒ½è¶…è¿‡16ä½ï¼Œåœ¨æ­¤åˆ¤æ–­è¿›è¡Œæˆªæ–­
+call Fn.15 "%tar_beg%" "" || setlocal && set tar_beg=0x0 && cat --locate=\xEF\xBB\xBF --length=3 (md)0x210+10 > nul && set tar_beg=0x3
+call Fn.15 "%target%" "" || set /u target=%~1 &; if %@retval%>=16 set tar=%target:~,16% || set tar=%target%
+::æŸ¥æ‰¾æ˜¯å¦å«æœ‰æŒ‡å®šçš„æ–‡ä»¶å
+cat --skip=%tar_beg% --locatei=%tar% --number=1 (md)0x210+10 > nul || exit
+::%?%å€¼ä¸ºcat --locateçš„è¿”å›žå€¼ï¼Œ@ä¸ºçº¦å®šçš„å‚æ•°ç»“æŸç¬¦ï¼Œä»¥æ­¤æ¥ç¡®å®šæ–‡ä»¶åçš„èµ·å§‹ä½ç½®
+calc %?% > nul && cat --locatei="@" --length=%?% (md)0x210+10 > nul &; set /A tar_beg=%?%+0x3 > nul
+::æŸ¥æ‰¾ç¬¬ä¸€ä¸ª#ï¼Œç¡®å®šæ–‡ä»¶åçš„ç»“æŸä½ç½®
+cat --skip=%tar_beg% --locatei="#" --number=1 (md)0x210+10 > nul || exit
+set tar_end=%?% && calc %?%-%tar_beg% > nul
+::èŽ·å–æ–‡ä»¶å
+cat --skip=%tar_beg% --length=%@retval% (md)0x210+10 | set /u tmp=
+::å°†æ‰¾åˆ°çš„æ–‡ä»¶åå’Œç›®æ ‡æ–‡ä»¶åå¯¹æ¯”ï¼Œç›¸åŒçš„è¯å°±å‡†å¤‡èŽ·å–å‚æ•°ï¼Œä¸åŒçš„è¯ç»§ç»­å¯¹æ¯”
+call Fn.15 "%tmp%" "%target%" && set tar_beg=%tar_end% && goto :menu_config
+set skip=%tar_end%
+::èŽ·å–æ•´è¡Œå‚æ•°çš„é•¿åº¦
+cat --skip=%skip% --locatei="@" --number=1 (md)0x210+10 > nul || exit
+call :menu_config_get %?% _title _front _next
+endlocal && set _title=%_title% && set _front=%_front% && set _next=%_next%
+exit
+:menu_config_get
+cat --skip=%skip% --locatei="#" --number=1 --length=%~1 (md)0x210+10 > nul || exit
+set /A skip=%?%+0x1 > nul
+if %skip%>=%~1 && exit
+cat --skip=%skip% --locatei="#" --number=1 --length=%~1 (md)0x210+10 > nul || exit
+calc %?%-%skip% > nul &; cat --skip=%skip% --length=%@retval% (md)0x210+10 | set %~2=
+shift 2
+call Fn.15 "%~2" "" && goto :menu_config_get
+exit
+
+:blank_check
+::call :blank_check å˜é‡å å˜é‡å€¼
+::å°†å˜é‡å€¼ä¸­çš„ç©ºæ ¼ä»¥\\\x20æ›¿æ¢ ä»¥ä¿è¯ä¸¤æ¬¡echo -eè¾“å‡ºåŽè¾¾åˆ°æŒ‡å®šæ•ˆæžœ æ–°çš„å˜é‡å€¼å°†èµ‹ç»™æŒ‡å®šçš„å˜é‡å
+call Fn.15 "%~2" "" && shift && set tmp=%~2
+if "%tmp:~-1%"==" " && set tmp=%tmp:~,-1% && goto :blank_check
+echo -e -n %tmp% > (md)0x200+2
+set tmp=
+:replace_blank
+cat --locate=\x20 --number=1 (md)0x200+2 > nul || cat (md)0x200+2 | set %~0= && set tmp= && exit
+cat --length=%?% (md)0x200+2 | set tmp=
+calc %?% + 1 > nul
+cat --skip=%@retval% (md)0x200+2 | set tmp=%tmp%\\\x20
+echo %tmp% > (md)0x200+2
+goto :replace_blank
+
+::è‡ªåŠ¨èœå•ç”¨ï¼Œè®¡ç®—æ–‡ä»¶ä½“ç§¯ï¼Œå¹¶è¿›è¡Œæ–‡ä»¶åå¯¹é½ï¼Œè°ƒç”¨æ–¹å¼ call :name_fix æ˜¾ç¤ºå
+:name_fix
+::å…ˆè®¡ç®—æ–‡ä»¶ä½“ç§¯ï¼Œç„¶åŽå¯¹ä½“ç§¯è¿›è¡Œå¯¹é½
+call :get_size *0x8290
+call :fr_check 7
+set size=%tmp%
+::èŽ·å–æ˜¾ç¤ºåï¼Œéœ€åŽ»æŽ‰ %* åœ¨æœ«å°¾è‡ªåŠ¨æ·»åŠ çš„ä¸€ä¸ªç©ºæ ¼
+set tmp=%*
+set tmp=%tmp:~,-1%
+call :str_length
+::å¤„ç†å¯ç”¨è‡ªåŠ¨ç¼–å·çš„æƒ…å†µï¼Œé¿å…æ–‡ä»¶ä½“ç§¯è¶…å‡ºæ˜¾ç¤ºèŒƒå›´
+calc *0x8274&0xff > nul && set /a reso=%reso% - 2 > nul
+::å¤„ç†å­˜åœ¨ name_config.txt æˆ– menu_config.txt å¯¼å…¥è¿‡å‚æ•°çš„æƒ…å†µ
+call Fn.15 "%blankn%" "" && set /a reso=%reso% + %blankn% > nul
+::æ˜¾ç¤ºåæœªè¶…è¿‡æ˜¾ç¤ºé•¿åº¦çš„æƒ…å†µ
+if %n%<=%reso% && set /a length=%n% + %utf8n% > nul && goto :name_end
+::æ˜¾ç¤ºåè¶…è¿‡é•¿åº¦ï¼Œä½†æ— ä¸­æ–‡å­—ç¬¦çš„æƒ…å†µ
+call Fn.15 "%utf8n%" "0" || set length=%reso% && goto :name_end
+set loop=
+set length=
+set tmp=%reso%
+:name_utf8
+::å…ˆæ£€æµ‹æœ€åŽä¸€ä½æ˜¯å¦æ˜¯ä¸­æ–‡å­—ç¬¦æ ‡å¿—ï¼Œå†æ£€æµ‹å€’æ•°ç¬¬äºŒä½æ˜¯å¦æ˜¯ä¸­æ–‡å­—ç¬¦æ ‡å¿—
+if "%loop%"=="" && set loop=1
+calc %tmp% - %loop% > nul
+cat --hex --skip=%@retval% --length=1 (md)0x200+1 > (md)0x201+4
+cat --skip=9 --locate=\x20E (md)0x201+4 > nul || if "%loop%"=="2" set loop= || set loop=2 && goto :name_utf8
+::è‹¥ä¸ºä¸­æ–‡å­—ç¬¦æ ‡å¿—ï¼Œåˆ™è°ƒæ•´èŽ·å–å€¼çš„é•¿åº¦
+set loop= && if "%loop%"=="1" && set /a tmp=%tmp% - 1 > nul ! if "%loop%"=="2" && set /a tmp=%tmp% + 1 > nul
+if "%length%"=="%tmp%" && goto :name_end
+if "%length%"=="" && set length=%tmp%
+cat --hex --length=%tmp% (md)0x200+1 > (md)0x201+4
+cat --skip=9 --locate=\x20E (md)0x201+4 > nul
+set /a n=%tmp% - %@retval% > nul
+::è‹¥æ˜¾ç¤ºé•¿åº¦æ²¡æœ‰è¶…è¿‡æœ€å¤§å®½åº¦ï¼Œåˆ™ç»§ç»­å°è¯•
+if %n%<=%reso% && set /a tmp=%tmp% + %reso% - %n% > nul && set length=%tmp% && goto :name_utf8
+:name_end
+cat --length=%length% (md)0x200+1 | set tmp=
+call :de_check %reso%
+set _title=%tmp%\x20%size%
+exit
+
+::already exit tmp
+:str_length
+set n=
+set utf8n=
+call Fn.12 "%tmp%" || exit
+set n=%@retval% && set utf8n=0
+echo -e -n %tmp% > (md)0x200+1
+cat --hex (md)0x200+1 > (md)0x201+4
+cat --skip=9 --locate=\x20E (md)0x201+4 > nul || exit
+set /a n=%n% - %@retval% > nul && set utf8n=%@retval%
+exit
+
+::è®¡ç®—ä½“ç§¯ç”¨ï¼Œè°ƒç”¨æ–¹å¼ï¼š call :get_size ä½“ç§¯èŽ·å–æ–¹å¼ï¼ˆå¦‚%~z1æˆ–*0x82b0*512ï¼‰ ; å¤„ç†ç»“æŸåŽtmpå€¼ä¸ºä½“ç§¯ï¼Œnå€¼ä¸ºé•¿åº¦
+:get_size
+set tmp=
+::å› æŸäº›æƒ…å†µä¸‹è¿”å›žå€¼åªèƒ½èŽ·å–32ä½ç»“æžœï¼Œæ•…ç‰¹åˆ«å¤„ç†
+debug 1
+calc %~1 > (md)0x300+1
+if "%debug%"=="" set debug=off ;; debug %debug%
+cat --skip=1 --locate=\x20 --replace=\x00 --number=1 (md)0x300+1
+cat (md)0x300+1 | set tmp=
+::è®¡ç®—ä½“ç§¯çº§åˆ«
+set tmp=%tmp%  B && calc %tmp%>>10 > nul || exit
+set tmp=%@retval% KB && calc %@retval%>>10 > nul || exit
+set tmp=%@retval% MB && calc %@retval%>>10 > nul || exit
+set tmp=%@retval% GB && calc %@retval%>>10 > nul || exit
+set tmp=%@retval% TB
+exit
+
+::è‡ªåŠ¨åˆ—è¡¨è¶…é•¿æ–‡ä»¶åå¯¹é½æ¨¡å—
+:list_name_fix
+call Fn.15 "%detn%" "" && set /a detn=%detn%+24 > nul ! set detn=43
+if %tmpitem%>=1 && set /a tmpitem=%tmpitem% - 1 > nul
+if %n%>=%detn% && goto :list_name_fix
+call Fn.15 "%tmpitem%" "0" && call :de_check %detn%
+exit ‹Gå§S RUN.IMG ìØùaðgfÚNÛéÅÆ}½îlÄ±+nbJ³--ëŠ5êŠˆnK„2²¶ãWDŒâ
+âZqlX×ÆAŒk-Š¥D©±~ðˆ_äù$ožäý&ïûäùñIö^ãzüÁ.:MQ@kÀs)ÔþÈm´Ø[ßç'>·w ™˜—/¸GæåB:_YuëLjÁªû¥@V©™³°°»¯U¼•|aKUo*Ò¸8Ù3¼£ñÂ6á^l›ÄèLÌ$]¥—ÐR™«(ÙùJBpmN‡ë2Bãœ‚¦ŒàÈ¹%Ï­%–™’‚¥Ò•r!Ç”J¤„L-ßÐy€ªJˆôhÓ½}´žx„;·#þqw(šï‹ZŠËI¯o‘ÊäCå[üX\NØÌGmƒ¢9Ç§Y¨p%ß)ßãÉJ%O>©¨[Ñ <ªaà0uZ°DªÆ'
+ZãÊ™r!Õ'^.TçÆWÜ/ñ}(ñ}¾dÚ¿öš Î—Ã²ð%¬·–o†/¼v%õ»!C‚=ÿyú)#dr
+~$‡†›‚3¨®µ²PãºÎ·ÓŸ×¦?÷[v5=·aâC¢J½N[¯—R´´ˆvÄÇúÉÕúç9¡P„ãcT?¦3})së½‰á<ì9Ì 5ìÖÀ”Y³çN!“§Í,"³#þÒ¨}©l–áÁ(+EN»N j*‡§êˆT=‰j PTª‰F5:Û‘nÉÓ¹"ÝV¢;(t;•n¯8;“G˜Î<S-2Ý$¦‡ÂôR™>ÓnbèÏˆ†’a°bª¼šÁÆÄä£DãhÉ8V1ŽW4ãD0…ˆioš"š¦J¦éŠi¦jš¥™f;‡°E<Ùy;_a¨l\cƒy	1óæ¥¢y™d.QÌ²j^©™Wƒe-±¬ç-DË&É²E±lU-Û4Ëv°î Ö¼u—hÝ#Y÷*Öýªõ f=ÜÂå¹ã"wRâN)Üi•;«qçÁvØÊxÛEÑV.Ù®(¶kª­B³Ý û-b¿ÃÛïŠö{’ý¾b ÚiöÇàxBÏxÇÑñRr¼RIÕñ†8ßó}*û1•ý$:Ó’ó«êü®ïš3«Oß	!„B!„BÿîpÿƒB!„B¡ÿ›Ð•Ô8Ž€ksÞú@_Ðåëõ-<bÿä^¿ ¦…×äcä	</ú ¸ðƒFBpƒqà7 d³úÑ	~ßÈEy„çÈ­>RÅƒî“^»ÀùQ¾` H~(J/z@5_õ4‡uáWîîþÎ7-îÕäãŠïyZÃˆ\@!„B!„B!ô“ýzZÎEA¢ Û¶m;Ù±‰mÛ¶NlÛ¶­?¶mÛNF5Us7/0_uU÷z€uÑÿ÷ÿ÷ÿ÷ÿ´³¬³û?YDRFQDêßw,<aÒš¾¼¹—¥‘‘'‘¸‘¥³Ëßìím€r4mp—±ýO¹bPuðˆ
+Jhª²YØ£D¥6kF<M—¥ÇŒt&ây"“<ÈÜêoq\‡è¶Ù‘.ïþY8 Hg“ÃÙL70fÃ7‰/VE)¶rÒ+¬È ç2Nàˆ+¹ï½íáý<hF×JùØñ½ý|õÛ}í}í‰ºv×J	™"Ì=ƒ¼±§¥V*Â…âv;Y–½Íù#‡&ü7e.‘;f[×ÄmŽÄH‰óBM2§{6Ý ìÄ¯ZiÌ"ij§ùáFÜtÞ^Ï“å®šyñ2t‰Ôòå
+|† ©NQ6	J¥ÀåOox]ê`ä,åsåd†r!nZµŒG†<àº”¿U\4èF/˜¦0ôP«¥lHœ5¢!ñ·*`¡K2ý˜ãÆnKOTàw"czÝP—ü®îÿøÕ³.cÍ€‹^äúŽ.b‹¡ëg6‰÷·6Â¹gÈN~­d‹‰b73<q¡×ŽOÄ èÓÇ«¥-ÍÖ˜ÎÆfžêæ—c"ÑÌ_JnšQ:d¹æ<>»§¸óH)äl'ñ–Í8!Õ–Í˜V¯Í¦?Ìª³Ì4SªÂ»˜]Bc‘à ú¶©øßšmIÙ@‹6Ã,JMÓZþÆ,WµtÂ%öFçÈÇ_«˜åà£CL~Yno‚”rGšëÒ˜{¥Ã˜rQ„²žÔ\˜Žl¬Äd÷Ë	ÐL=îs–•3þ‹žÙ¼*œdR´®™jË"*Z$-á_Èó‡Öù2 7É+.!+|iå1²Ô…2ù~ˆošI—x‚Cø¯Û\·HýAÉê(i•ôþ2u&ÒFè/#Ž@•* HÔ·›ñaŸÀ~,EHÈc­9ª;Î;-Ö3'ÐèÒtþ:‚*	¥B…5ñ›<7¸-%6âÎÕÌQAs®©/9ê4G¸UcqÈ«‚•ð¸«–R\¤N,3ÛX¥,|‰Cµ(« 8€ŠWÛ3'–yá+¯7ÔË™ßÔÀÒÄžÏéC¦»¶ë™!úØÜQuÆ=¾Ë8s¶Ù5Õ©8aLúnmç©27‘^’&¸$³<JçGŸ8VOo²sÑ/×/-vPNVÐîþ{r<´¦uÓEM cg- )cŠ	©ÿè†´¢6-Ìk¡5¤lÃjàÇ~#ug]‹\‰¡ïÊsÐô_5¹@H¿^5ç<¿6¶ã5q·Xµ¦áýiíÃ9Ò¬7cÄ”ð­,k¬í¦ßbÁ^&¢h’Äjƒ¥¾@E©ø	8;`—­d2“áÝ>ÚEÃ–ÆTƒºîÚß4³U9P|’2Õy!IÔï‘IÓIZV`1äËžVMP–‰›'"Gh=ˆgJ£T~B¡öÝ™ï@6Wž»§þ8ôûÒ=“)²&è¶(‡Ë-È¾²åLôO¦ÿ°äóIkª†¸d?ë}	‡¿¨ñ$Ÿ…ý©ß[‚.&'`œ8(ˆ&[¥Üó!'@Qá8¿‘˜ÌÎxT\À_„szb¾÷D­‘}:á›¿ ¨
+¤×JÏéxa7ä‡§Ê½˜?X&FötæQºö¯·xöúÜÕJ«rÿÄ²Õ.ÎKÞ‰¥ÚrÀñ-h
+ENað½4ï†Tyuÿ¾>€Ÿ˜clgœšæìÃVžŠÝ9±œó«ß5žHë=0m¥ž{]—øp%¤Ót_<ÜŒ¡n!/ŠYEËË£éª'{„ê¨ŠÉåþÅR:hTÞ%VG¢ï¯ù¤ú ß5±q;‘´‹ I¯ã†¹ù Ó>mA‰7Ä)tŽ`ac.Þ*?ð3>ƒWÇBºkM5¡Ðíf=Ct[X„Z&æcßZY=ÀEh
+žš¦ÙT¾hÅ27š:*s4ŒÙ6È"£PíKÂ€™P†Ÿ—Œ`d}âãè£úƒ€ƒ^â0V3œ¨¯JÔ®õ•·i;Aê1‘YyPwÂA}"*½::Ég)a•­·
+¬Ÿ@ÀØëkd9•ª];ÍEÓ¨À.y\DÛÇ–îCñl‰ûûF²oNr1h>ñ—‰Î˜M÷«_ã¤>ïûÅóBðì±ï›ò`%8¯9OS±r4Få™Å;nÕª„ì‚ÒwÆÞoLw£æF
+˜(?f…ÊXë¦`Ó!¼¸gÕQÂÝLu_CÌp±]óUJšbUbBáŸH;ÀÓ·2^Îº)zåxvÉÐ‹¤EÏå›~ó'Ò!‘Ì“Úpà8Í°¯Âˆ`B°:¬Z+¥+óŽÕØaŒChlÃ&P éïo,[q@uß!€"NÍbYÇdÍJ\Æîßø×"Äúßk]N(ÿJÅë÷žjÇï
+…|t£ÅK#€Oš¨¥LiP¥mŠüE›¹=5ÖE(ÙóÓŽŸIsÇÝù£^a?Jºî*zR˜@™2–„1ÑžHÚ!Õtaz'Ç·K@#ª®@öcàÄ—û†Ì¬ß\ÊdPí+û¨DÌ‘ø„Í;W(~î|WÈ±ÉÝ¹‚Í1¨ÇùQîÜ„ã	A€»<æ|G5ä†ýaÂûçúõ4çå–*[¨"¤ëˆ¬‡ [q5æ|'Ò;7wOÓý`M“ïB›Ðj–Ýn>#jNìA&Í1Y2ïœTiáI©á‰ OF,ÝXk²­ÞnÌª›gíÒë[µñÒWø@Î™ÏÏùCwb"®üð!‡¾ÖìNÅ‚wMŽ€j•xd”šÆ¥‚/p4»iòºc“ÞÞ ZllãŽúÖ½`]ÆÍpÒãÊ©ãˆ[¸ÑÆ€îÜùLÊ³Í#j?•'¡50&.iùNìöê˜vK–Ž!í‘¼è¯õY3°…T†šÅÍ‰šØC~ Žü¨HÂÇË@ãæ%fiÌÎÛL8Dìb³þo$2·=¯Ô‹(«¨ëÚv(Š?aDÒTïÌñøEô—†ƒà-B .øo¢—/í:¢W¢4êüCøÁüZìi.7çÛ+·$µbn' 
+I·ù³>à)-^á2¶‘
+†S÷]ý:­Ö&„â:¡éÜu‚MF; ¥Ÿ‚8)8œ ƒY9Ñ¹%óZUWJ$$Û½xÌòHß"‘çÃ[•sÍ&6öçÆòŽÀTYM+–Z‘ÅÏ¶Æ¸ûN„²ÙJ´µdÂûÇÈêúãixøCŒé¸ZÎ´DslvZ¯Bã€›ÿÑ×¾à£·©]á•VZ '…Ñ>'e©}ÔVÀÃ»]qGZ¦¢à"q£| a­Á_ÅêþVâÀ$¯ªy™3Å³í6l4&i<pÝ²h¾jŸåFå}&çC‰FTÈo“ùò"ìx¥Þy>Óê¡9^˜_°q/pÕì‚tc¹ê;à†}qcö}ñzq4F¨$oÀ3ý4Døƒš¼¯ä‚0^Ÿ€Y&	…¸˜_Ù“WnÆ™IÈ­p)ý;UûùètÑæVƒ1ô˜št·¤`0Åwnác´C2ê8¬e§I¯Câ˜ªoâÙõÔ]û½Ž®Û%ÿÛ"ÿp«ùqëÒ™çß§t®#™ô¥ó~qž!N¦Ÿú©šãy¸¢¶MuhÊÚçfÆ~G%âsï=W }ÿÈ´¾%7Ò
+2<Â‡ˆ‡P—„ÀÃ?äêø:™ã½çœÆö_Yò:”²Ÿ9Ûm‡tãBˆêàcœ©20lì/:OÍ—™›p6+~àCM™“Ÿ­6"…,ŒUš¬w&êé²®Ýþ¢Ú îººß@_aoà½×ï„d¨5S¨ÎÎ=yÞovj…UÖÛ¾âc;¿½ƒºþ	Ð·Bâ7ôÏ—¸‚ƒèüæw£}VâáÙCmK‰ß°…s§tü„î¼6Ò½nµIŽ¨µ÷ƒÅqv´g"ÛY<èèê½p/¡]û³wûè™Ø·»J¤²_G6y¥§”úåëw^NõìEÞ°ˆ‹ÄëSˆ'žp?º‚a‚ìŽ·'ÂJõÏçÅº8õäj{ lóÜ>©žV7«=·( ù›|_Ù8t8 ÝØ8<
+QÁÅõ|¾,rÄwÙ-‡áh,Ó6úïïìi …Ï3ÑÔ%¾GSîù‹š´ë%ð^_<†Ò®Û!~”è!›öE'¬/co;…G¦)„–ccPu¾nõ•®n«,×›êÍç¥²§éU¯¤wì×(Ý@—¢!É>ƒ‰ó°K.NðîÃ¿¹Î.ËƒÊÀ¦¼É-óJK›V1ï^žU!}”cŽ®+Î¡ÇñŸu !
+G)ïÃƒ dÈx¾!D°2˜ã÷/rêËfW¡£*nà^ÒâA›+z
+[D˜E{‘31„µ´ÝT—VðmHsû‡÷òCúù*`PBˆD‹+Óˆ0ŠatHT%¼º‹¥)jbˆ‘õË×7ßpÍ8÷Æê–çúÐ½ ·™vüª&G,,l­aËy5„?†®Ñu¯ÑQ` Jü¡ s„¸‰c­’Úv%€ Qpv`Ûw„üÕÓm* ì×Cÿ HãHZ¼ý©ºà8ükÑd¯L-ìw\õ[»ì½‡§ÀÁØpÀºÏËöÊßš$õóH\èo@ÿGû?¾³x¿-·œq'I± ‚°ZÄQ…ã°% íþH¿q—×ÀD¯\R ÈAÉ™%£x%f>ÂŸ”õzÙ÷ø½Ü._¶Ð×PÍÃòDv@kU8¥´êäXƒÎpÉ³§TOi[_÷Ìr³Jùï¼¾	È¿ì˜ß¶¬èù{_·¼fÄâF]m’<Çùm»7·£TdIuéQ¯“I}\8œ"úQI	YŽóç8ç°òÃ[IÝÞÌæ•)LxçõHùWpn
+×†×žŠtò u…»Oí^¨P”|¸Òâž­cÀp}.ãái£=…O^C!Êplë¡9v€¹*
+òÈÆ?Ùq`ñïÀUÐ•#XðOÔàr¸y„ëXZÜõaÐqxF_8ð3Òçâ;J©'5Èˆ€4“r‰+&Bi-hJæ¸LÃ/ÏPw+ sèÀ¦°ˆû °‰ûbó3—¼`8lDì:<·kßŠ˜œ€çŸ 9‰KU?(?¿ƒ`Ïº`Ëmc†Á±øZ, dõ­Ó´2‰¥<6lQ.™Ñ*Q‡Kf¼KúgV¢*‡Nte"ßäÉë¼«2Ä=¶4)ƒêBt5Î-?¬Dû)9Q†%U®uóN§\j'»(ßîEï^¿ÏÕõ+„&lö÷³û¡9àÕ{èô)?›ÆÚš;}Ñè8_i£½˜#ÌÙ©éxŒlî2æÌ ‡±Ö4j]Óœ„k3£OšÂà´¿V!¥¬á&ye¦hyÍ–*	ÙÊkÛ®ìï¼0€‹ãûåÜë»˜ËÄOô'fæCn²¶™£hŽ—e%	µTCHö
+-À%ˆ¸—½Ö2š‰…T(Òà§Œºalt/÷F^m6-?Õz8"í¬®ª™¯·)ÇFªlu$¿Y‡È%O½B¨ì2‰E°¥Âà¿Æ¿0´Ùãò³>ph¹Ú«=]þim¶;<iúªÚ-ª=åïK_ATñÀ–VTñç®ÁÍ[uƒô³CY:Þ¨ë=ß \ðnIRiÐYFxå½ü(ë»º".}4,Õôpª¾ò…¨Îcgêtß„x½ê-è³‰í*ýî*ÐHˆééËñò2êa]ôQ¡Lá	Š”§8tÛ–øW¶*XÑš˜W5“ùbúÌ?ë" Î¬œàæ/4 fü¾«+˜+¥Ãkªó]ÂãóÀQcn%BD/ð­þCA«^ôëelþ8Qß€6Û+EÛíå`?Ã¡kw›#¿*ª‡ùÐ3ÒŸoŽ'Y"‘%°Õq{$ÍXv¡¹åös"’>†Ñ\©n©T°Ï8Ý/½O1†¿Ú§÷Ò¶uO£B<\{.wšü8´FT¯!0Ñ:¢Æ¨@X>–˜by¦]…g'(òZgÕ©¤ñ…Â—…“\,
+lÌ4,hÕ!Î¶‚e¤Cñß	VøA¬áóÅaI*<dpl¸ÌÕõ7EÒßX¼†›ãëO“üÉw€{ð/˜åMDÿÇ8ÖpÇæ¢®ŠŸÍS¸Tœ~8Çår½Qñ[qaÏmŒ¦†çõcx1x`ívÞø[zÄjå¥~ÀA6ÜC•|›´œÕæ{Ñq×¾^Øwår'­>;æþl©„\bÃÖº¶diÕ{ßqÛ@§&îHÙ_B;¯²~{ê[zÄ‡%\QÑ²MžÏÙM5ã ÆtLLx“Pœø!WUM<7õÀ@}¼M.Ð¨˜Ò’ÀS]Ñ¼ŽA-ðL)5±I)tL£ïX²`1@SOÚýî™ŒòŒ…¦²”AAO[ËÁ4TÕ .ÊQ»ž“10ï{5azã/pÂxÁKŠ.²¯WÀ"‚*ZtŸuHbÚ²£ÁB&Q§LX/@Ø«ûù§õ7Ü!ð
+ÂD„f‰³ÍÃ_2Z·Œæf5ÿb-ÊŒý‹59¬äù†”,8Ü™dðUk¸´J"ÇS ©Á-ftZˆHÜDLTvÞ¬ïŒf$(ÿëO‘xˆýfº¸¾OžYuÁË®éu0®Þq:”Žþ—!ŒÔ~ícCØ<Ýö¹åùnÁb¼-œe(IPjò‚ïÔ0ž™×¥8ÐêW³sSãµHhŽ=þá8¯€-ÖjZ¢¤¿2cv7 mô7Ô~)‚ÏKcßQ¬(¨ÿr³Ú™Ö¸<N™žÄ|?¤ª³êÚ_³+%ÊÎ„È>›øyi‰ˆ‚`rˆ**ùîìlx˜›yªR“GÖ#›$Ã”ä@,@ Avü)M‰›÷ÏS=¡ñÈ#Ù¦Zä
+ÿöAú
+¯Uì5úŠ×|oÁp&[VˆÝû™Ž@i A(:¿é@E¸ÃBÿ¦sÄ}Óùûo\lµçÑCëäMo%p²ð—fjêMõb@äÛ‰7Ì0EžJF‘Á€ÄQqèÙ!˜ÝÑŸÁ•mÑ:zvóáC#9Üc~ÅKØhZ!Ô÷†ÀI´žËSÈÚ‹²mé¬81g+´ö©¡Ïó)w³àõbO‡äJÍò;†„ºx ÌêcÝ£+îO«÷=º|¦ùEÝ‰½Zù8NJh° åÌ¡Ad—cÅ8¨´äŸ€ãöÍ”V©6Ðšdàþ“ªï’h…xÑº¦P)a`Ž”Ôô†Ñƒr‹Óèq… AõÉÊÏ‰ÈGÿnÑˆÕpÃé¬C’'­¸ª(FAœCÏk«i=©!QOŠ¤}ìkUß«³hƒ±W›’×Ïâg¼dp²>Ö4ä€ñ¥$ˆÈ/¶b6B1læÄýÎ5jû>…“^©Ý¢ý”À-mk´kÆK!„¡Ë'ðJÏàÜm'JÃ¾äÎPbé±ûÀ»Þ$™`øEÝ™£y&äd5‹á^!Å‹ÙLí]<"BÑ¢†Ðòø±ÁÙüµ÷î{!°°<RÓ´ØÞÕËg:£ÝXZ­Ät„–	79ƒ:|\“f‚MçÇbâi.±xUú˜'?-A÷`Vþ»n–ÿ“f=*VèoÏKKyûýPþûU€þŒNqñQ…u4¯Èº++qm5™4¿#lÃ»d?SyZti¯ØênÖžhD˜XCeqxm±å6R@ì$u´ˆ|(ŠŠÁbèØ`“k»œ$ß„a)8ÏÈö¾ûòa¡?½á²ØS«~ï"²‰	ëÄ…¬dÇ=¶œÿEEóQ
+ÏgëZ“Žæes•­LæE™Qr8L%ÉUÐ²Vç! #ï½Vu[³ªøåJA6uØkïGfõrÑWÜ.{þ›“zìlã\ÑoÒ†N]¹^És	§ÓÎk1é?‰¼«¶AüÞd¤M0éD¹w§O•eÅéø¹,!(eÕ2âBG†Âõ+‚D¯î‚N´¸´£¥/Ö}aªù0ù1§Þ%+óÀ»NMuP½ùºø6¯Pó–	:±Ë>ž@âO7˜ž~2þCÏÃÔæ«Reg«Yq 7iÜ§e{^3¯*´ÄAÚˆYkžÃ¹‹ôÕByú`Ä¹üÇÜ3­ŽÉØ'¿Í½">Û*†Wž?„sïû¼Æ¯>Ó.V÷Â…,}ºøV¯X$</œ(ÈÑrù‡ºðd0‚m¦} ¹š?°Æ˜ê]¼¯8èÜ'p•v­½ƒ\a4÷4£$.„œÌ©™e‘NÚ3`×Eæ=>ú©­—»I±°ÖZ¥©C _.¨­×„pº€âóÍ2£öž¥?^Â´R¡†e´—ÜÀ(°AãdåB£b°‰¯"3¿t‡»„6Í:Ã¹à‹è&Õõ¢d+?M ÁR¤ã7Žßl ¼E-}õ(±ª„Ößx•{5žxR#>¹µøQÜÛ¸tà7uÇ5Y>›V#W·Š˜bøÀ/¼ì‰§¢}Òƒå|Õ×‹ÞÙ>ir4·mÉkÐ ²ƒS4JâÛ|a§-×æÆêNîŒIŽxlÀ•kY)LÒO——ÚÕpë?0âúZôºZLZ.ŒWDw¾0LÊtÀ¶™±Gjþ~Â±Xo»–ºŸÊl0ZT‰W¨¨oÖ™&Œèg[Y£´<Ø`¨]Ó2¶Ð}óÕ–¦tEËî è>ªŽ'ðÃâx“#b˜«Ü[X®káp–©…vô DŸ<Kýur¡7mvOB£ù·a!|o[Ô­k«t¶¿Æ> ¢b µg\ëjc›¥­>;‘ónóÂYV–ÆsAèàØAðÐFn1Å0…ŸÜv—ŒëÊZá®J€X	Êû`D9–cIœÁ•ƒ‘|)§C¬Â|¤êhÏ —÷¸0KdÀàÄÊ7«fZ³v…%Cº±êÚ2£/ƒêLö=I™RûF¢1•°¼"iœèõZûª2/íŽ]€³°0/¤3.4…‹.ª¾¶/:4±:èD›#7ñÚu9
+PÛó¬ ”/<“&…LˆmxdZá ÐG“hK2¢Ô…ã­|Cªâ>„T[T:*-ºCú«Ÿ”ïmPöMSc[÷]9XŽÈ…·‹•ÊA‹:ÿ½T™ï;V KùLUQU?R)C®-iE¿‰fy?‡xéf;L¾Š:š
+>E_sÄb âûß84y,ä¹,¡ìY"ÒñµzOƒØ3ÍÌÝ_Úª÷q”!g%®íäð“3^S$F	~«À½÷tÖiŽ_ÜžùøÑCÈÊ—eÐP˜I÷ÝÜ]:}8Ø?zÑŸO‹ÎQˆÜ‹~È6·ïÎÊ:âÐ®ù«`tÀUhßØt_àt¥Í.”YTÒ…ÓJA÷BT\ã¤ÉUm‡‰9ëL•à»q­+R‰Kš¨“ï˜ÿ§þË
+p@Aá;mi¼ðCá1áB	hdSÕz¶CïeÆï×F§w`w¾Ôb9î‹@·4Bèœæ£G©®z‡H©ýlK¤&§oŠIcögc¡`_r!•Í‹ÐL~'£‰VØ›L`öH"1 †>íEñ&Ï¢x•
+¨cÎžW×Ì?ÎèƒINô‡àSùÁ%Dòð3„æ£É·°1uÌg”
+©F6žï¶+:vZOXÿdýHUâJ\J;ëÿùÄ'q¢DÞô»íªÕ£­Í‹Öp˜¨bxüÊšI+Õ†ä¸nßÓÞˆSÛvc9~¼Z(?Âª»^	ãlB)
+K->ÂÚ ËQ¶'7·À\zäS&I~?ÖN‹dùâDs¤Tí÷ql¥˜ÕØ#C›ùZ(²—{½ÖØ¶ÍBñ°!’7E+î¶Öþ´¹<x´&ý²T³-‚|,ß	h´y¥ô—¡^q®å[›WÍÝ/ÁPï²$ÙØžÉz»Hôùzk3™ÚPn#yc¤ì‰¦Øé­§ì/jAQÒe _@˜GûÙ	î~ê2Ö@¯ÁÔßh“j?‡’ÈÂ”¶ì‹0ÊžI¯zõY¡1ðØŸzf¦ ­Ç}æ÷FMˆX”V¿£*`=€Œü9Y‚8åq¾çÇa‚XTip"Ü"ùÍIr»¡Gc¤`[.œZcøt‡(„h(¿”.QUÒÞË‹ÊÕÙaQ¦ìðÏÆyÅEB±¼íÝhGpÚÑÏÍ6w~^ç«Î-Œ¡Óï–ß5‰züŒ´äß¸lÏ³ù€Ð%¨R9•ã4<¹O¢•ÝáNì¬ŒY9ê·ÐMo-º†¶@þ_ó¢*GUR½þn¦ô?6çÆûV¬’ØQ¼T¸CjrôW@¦ôÓcÀ‰›0^aŠTÆdnéýÎ~äÁK˜á²_5mó™¬é'Ð°àø¤Šy²én¯T}À•”_I{Ü“þûõšouSù²ÌÔ°Ñ¨ ¸{þB@aàkJ—gØÑryÃµ3êØ2…CŒ)Èã:Ü‚Â[_ ê²¥æ$iñ§lçKþï1êG„w!8u¢ë>Q€ñS§Üš¦gj~aÞH*LÇŸáïÀž)*Æ8ÒÖ'ãÇoðè5½óp>íÜ? í1»¾1¤D!„UÌ>j0M˜…­êüÀ~.ñ°rê¨õj¼{Ô‚S&J’kµ¹ÃQ~ôÓ”è«q"%ëµ+(jÓË<))fûbUB_nÉVÓŽDáý¶x#¬Ign›Á0Ï’JcîƒÞ`ÝCã+snÞ“¨šL…%Ž¸ÿè\ýÛ®ùÛ®þÓn_#^´'! :\ë/†Ž€6ÈÛîEÁTÆ&MWsO’ˆüm ‚øäg5¹2€{.pÄƒnd†ÃÝJ‡ Ô]±;•ódèÑ[Ž[°Š^è˜wtàq‡²yŒ¾…2e_²hvaÝ$Ëq± +!IŽ»ç‚ð:]è‡ôDý7BV|ÛÅ)¹ýçPlf„òŽÁ´X}‚"w#Á|î7cf!Ñ	¨Ýmaúâ]kAÞ5^¸¸È®¨ŸšpÙë$*ÈŽþNž`s8‰¹!E.<—>Y¡û72¬!£ÿ„N¸yy![ùkq/?€ºXŒŸˆš=”U~Â¥©•;×{÷,<Qâ/æaœžº«~vz·u¦xT	d÷ÝM0¨R0·Ä]½ýü‹¥ækx6ÌÖžÀ0™…VÎ9¦Ð[‡N)„%6j[DøÐ“ØLQ^v…©+w%³>¼Ì|-?íL¡[É’Mùƒ®)7Lßc£² Æ2¹Ù»´câ81~X*¶_ATFëtß‹fÓñÎÑnj€Ñ’ì>—¬ßu-GwHPôÊ ›Ë1b‚*Â3á¶?«xf¨r=Iƒ|»æMnØp¯Ì-EqLõyBmí¯£ÊåÑ”¦vWÏ‰Éd)O.}`$¨’‹ëŸ,ïÖ%[-å§Ü$Ldyµ'šÒ½d;Ù¢ rRpxU>…E(m¶¨˜9áeËLxí6xœéE6‹r–—&XËñJÓËVæ…¿~²#©»äP$Á·®ÔÆÉb„fVèäàÜ^É“´`Ÿðþ:ÔØxºª› óð£x#·^©Ó’˜ãÏ€Ö.®$±ú›ˆ€+qARØ©ó®ˆÙ—µHfÔ¾XOÏ”Ž›Ð¥[ht31!àÆH$S	æ„Þµéëwab†žùz`+^#¶ZRnïÃô2TlZô…nß	Ë<a\¤šH€r*F6•ÿ`"+__l
+¾mji”vyLç$ú“X×³Îör"´;+Ý¿&ú®cKv¶íÌ¢¶ã6÷*¨ÕÀ!‰}:9DbO.rGc5ÝO$¹,ÛCÝ¶¤ž¬^±µ4¬yCzÉ!øz™ú“‘b"@Þã´äÈ½ªUFK¡²°•@cÛë–A¿39L™WŒ.@hóGÇÓ‘„|+4E"Qà‘\û7j:q7s-F`f@­O{\²@VKOæ¬fÆÚáìn%f´ur³ÚKÍj[<ŸÇB:fð×2æŠªïÔþ„ÕÐôYê# ìM~ÁïšçÒób Žßá£i+<>"AÓ4 7"B(ûsw@wu3™ÖßùÒÌgœ3\sèákõ¤¶f»-?­AæÁâS2ÕŠ™i£_¸šVLY¬m)šz“Æ«a’4­42#o²Â˜\ŸQ×†ýI26Þå1®;þxœpåÁÌb)Þ8•‡aV€Âò¯q9.uÉ%ž–˜^”WÄ}iÊ„ÜïÀs7.Êž–¯”+™{9`o{)n­b¿FÈ¥bö’õšÉGh5Ñîp”ë¨ÈdGy`¨Z””è¨øÅUCŸºÔm}í0N¿ñ3àzø“
+pY±½²°Õ€I<7Ñ[÷á×xåLN’ðçduB³è™RáSï¥E¯”«ÿ†vñí$ySVµð„Â‡XÚ~7vX€xæÅ‡»Ø§‹|d—ôêŒE²–ÝðD5ï*x\uí~åŠÏ8À×áåP¦zÇ€$í³@’Í7	¬ö„ïV©<Í¯ï“4„¡¯¾i”e¤WJubö—‘¼HWw4½‘õªWZÇ†@ÖFdkt‡”DØùÜ™ 3>>'¬±ï7K]Õ53‚ó…CzB¸ç¸CºŠlº¬¡ƒçd.ÞÖÈÐ€B-jvwÍê†mí÷†£†5¶ùêä=â£w1B‰’ô'‡>Tð…^Í¨}µ³Öêç
+L}%ôy@(•üÉèƒ.ÅÓ)ïÙp~ýRÄ¬Å¹o,o’6GêöÖ{[¾x4ð€óQà$™¥úªóÈ—“|7øóþn
+ ³†à½¶{T`Éž!Hgøñ—žÓ…#´6a,öºtúúÇèíÁÔ
+š6	¶Û}ÅÈ*ô'l‹óvë¸»Ë»/`—)CÊëVÑûlŒŽœâÌR÷*†ìO	ÂÓ³VOôÈ¥ú±_8øZŽ–Œ.p1‘¬B`?S¬ÈšÂ+Ø!}/>œ´®Éi¤ë†°®ìî.¶Ò»‡Þl
+–¬º¶"ÆØÙ¡ß†ãç.Í]5ZœCþYP!×n`eVìÊV7G®•‹WµdÐ šR»(zhEa|/£dt;£¤É,Êù'È)qjbÀ „†R»EÓ¼3™‹wÁó(Jùº*’Bù¶ï+ô!kFÿö:ÝEzÚpcBÊvAW,ƒÌik–L“Õ"vší\*1Úß<ªAÄª/KæÐ9®r`5”¤7s©Ñð)ŸŽaPwí! ,FMÎV‡å³F>JíKP3´ÏEOÔxZSÜâaY9›iŠQœ?m#o n‹Ž5æüM._‰|‰þx1wË$~g)P•àSPÚÌ,Ÿ$ü'EºŒbÑé_ÜµUž_¡?eìÍø¨œÉº¿)ë²…õªoTä‡„QÖØí­÷¨áàÛð·,¯É³Ñ©‘ò<z##6æ©AË©”;ÌùùõºüË>0d¯´	B€î;Tä‚ÍDC©—¼ïÈÞ8¢óðçc;6?™áì7„•H»Ã¶:Øj:H†cÔa{?í9mµ£ˆóßÌg©˜…ð /BÀÆÜ8À×%ù0!å^âHqË«·1¿Ë1±dG!'6Ùå<\c¦“öjØ»1*	?¼}h>2•üûJdR¬ró¹(O™Óm×X&M;]’Ü±0þåKäØ8üÃö}–ewTÍcæ—Å›¤í–Ôn“ØüðGËY…E¼£·C2=ï÷ »ño1ž¯nïí`sÔ´º2KQ$ê}®µ7¬iæå QKCÏ–W‡ø0²Š$ù’xDŽÅ±ÑÃôÄúŽÝ‘eÆ ?¼1†Rðœð¨™äª¬rË!±¹Ö”äµe ƒMU3FP)k>P—ˆÏþ‹$Š[Ï·h|9¨pIdM©ÿ aœÝPž4Æ¥(øacCLúom+WsÞ™öšoóéöK“héhÆ•â­>C×'º=ˆ;ÂˆïGKJº³Ñ¸;µ©–¢0_ˆ“CôÖ×˜Õ;»%„ ~2Ë±¥ÅónŸÚ èœ¿iˆ7E'¨/!P±Œ£˜õºB–éÔLéO®“*
+â9u¦ðêäÌØaC@VŒ„ÓØêõwï‰ õô†ƒÉ¨ä›Á¤éÙ‚ÉÊåX‚É‚™o3£™gÕá£Ë}Î	sšŒI¯Xž8‰Æ,‡KO–!º­¶*9ŠŸ'ágÜ3¶÷Nï-8Wžî;ËKò¸ÐK‚™ÿ*¿\P€`Þ¸WTñca3cIÆ„‹I=ádÑ>h£g0÷² Àb[Þ'ºƒM¿`YèÍPãœøYup>ÇÝÁ²ôÉì(V¾¥øAè³õQ†m‚)ûÂ…43g6ÂåK•±ç~ïfÖ4B¬ôŒœ²ôÛDÝü~l!Ç¢·<ºoÌüÏÝ¦‚nJa§N|¶ñ}]LÌ+¾Äÿè1!Ø¨#Ýµà*€{ŽyŸõ…ô,”„0izCÛ*£¸8Ë^îˆ®€_eòž‚âÁ­ŠÎÏ¨¥â%Ã»¡ÌOµ‚½ƒ•÷2ó)gÐÝ²„³~JM
+ÐZåpíL6lÈÚ/ëvfF;¡*\&‹V¶®ú×…ä¥[ºùn@0¿¤,ŸÇšEõŠýtlºœ8þ­²WÀø_"é2Þ°Ò¸šSþá2ŸÇ&§u
+Û“þïA<øCòˆ¹õ.y}È˜Iá9CîãûY	:‘”š½±*¸[9ðÌ,H‹_ _[Ä[rø…žâÎ'RW“4ZX„»Ç'bÝk!ÚÆùIP“_&Ä‡(ÏMÞÛt[#;)t¤up¯¦ g[çµ+þ,¼m°/É³m9û2]÷|¡žov¦™"ÒËÝ~UO¾+W’O}Ê:“‰ÆQ’É_>ËùCtÍ·Î¤Æ)TþµŠÙèë„«úà1„M]ÛCË®yãmz6¤Pè2’$³GÒécqiŽìIÛtAýdàŠË6Œô‡§ô}Å£c¾˜y3N¦/«ÀçJäJ·ÐH%"8‡{„'é¦»¶J¦œ€aX[õY`-‹$£üüPŽqÌŸ„¨úJº"˜³MTf+ª†×Œ¦nõax$ŒìÆ,Ñ=¶Â'&KÁ¸¨Z ¢kèTLzeHP3Ø º£4LM#ðòNcðrÝ«_Äðe+o2`j™‘+C!‘Ì%@·Ìúûxq	EÛhqÿ!›žz×-'Ñþ~—êËªˆ¤ü«PŠ~¿¿]ýFåËbÈ¬-âäÁîT¨Ô Çuéò/Ýœc¯1|'Y.Ç¼+fìü­å|V2·¹{dÕà¹Ùßæ)hpAÜc½¼½57ç\é¯Õ÷¨ÈÆ8Š5Öù]G 5+±zûWkVàRøNÓÛs—­$ÏR©×lWj­L…uö1×Y©zóÒ‡c_¤ò=©•Sˆ·|Ï±Oö¯]ç©«Ãì¥•·‡ÎKx_ÛÜ›J~]å¸,hÈ›'IO|¼ 4mãDÒ•ød’O\ú%0û™æÜµUÏßç[N&Nu¡î×Õ8O‰5vƒrAiZ¿fàÆß½ ÷^{A#]ª}ä~‚°ªñÀá7ðÉ¼F™ïS/ŸH
+)ç­£0žñ+	t·c„îíÌúºÎ	7á2p3ž¶§7ÔÌÆŒø!5Ðîüƒic^_‡0ÛQëJº€^ÆZEÚÓx³/oø'*×¹”Z™y…"ûj<¿ßXÎ|¦xë‹zˆ‹ÒÏŒÑ_6Œ—¡c0ÞwÍïh¾<´±óÚçX=Á<¦xùmÀ^¤óûë”~¦R'½w5¿ÅuVxoÀŽN”;Ç¶%®#XpˆyùqàsKgÕ¾ÔÍ9~f»p_	™¾HÙ–Èï,ËÓN§v­Å%ý™ùæúú›ˆDùŸÛr7D)ò=e¯îbN®ÏH}Ý„Ô/“É6ºó1û?s$ÏŠ*ÉœüC™.™A"É‚ÖŽ¤9]™ÛôweÈ—ô¢[~a{eê¾R;Ë[¤3üú†¡yÞ½ÉË_Êj@7ü.”Å´ÑØ’ÂÈ\úHYÛÛÀ^õ/Þ^kš$Tû	P¾}¼aî¸¹\³§ózË&gQ¼JZçª‰öèöú[),XúE©;rì¤K~täSNßÍP4d„1yQ¶pPŽp¦N8?IS?YÙ"²*%Ûñ@9JýHˆÊž0Â—CþãRƒe@+ª4ëZeþRNr\ð)óWÔ¸ä(ëÒ»!3\=xvÐ8ÎŸÀ¦ŽqÁOÌð¹R½çcÑ'õ#ÍÓrÖ[CJñ¾Ðœ½Una!ö%Ú–=D¥Ð#=©Ò 9´F/%ÆÄŠêEåE-¾&‹Ç`fÕ-‡Ç›Ú¿~ƒj>ˆzè¹]È!ïãJ†¥Ë‹HÒç§
+T×Jñµ6ì¢t¹œ¼JÐÐÄˆ»Ôy‚›^1U–k«¼þ’¹k³¸k=P8ã™SpŒøíõDDy¹J{¬20OK_”k˜O	sÕ˜ûÉ%·÷ü‰^è\î»zFeEˆˆkàÁíKjú”Cõ€‰±W&š:‘	,´Ë[B«›‡qt ”¶~,ÚPà,&KÌ@¤$q4O "ê{a8 „PsI_Dpæ³ÉXÓàÓd;á2wè?+Ý"òZàsP‹ƒ2†
+þÚþžGÎîw‡ÄœGór,ß	h¨ªbÞ•“1ÿá\H÷Ï}¯Ïè×?1Á€AV@IìÑ°˜5!6Ê?¤"ô‚F£×`­Œ4¥Y’9ÚAbà7é¨åx)àèÖV›ìvYµ,^iúË*hƒäk^E-Al²|²À*¶3ÈJx@Ú›\-ú„]Í,J8£~†»ÐÔ®.Y$Ô³°DgíéA¯‚Œµ¸zû>Æmê#Šhù’vJ³l¶“ÌvE½túƒÄyµ¦iEX,¨pR¢Ô"LJiK¹{J€ôÑ¾Y¤/àZ³&ö›óÇä¯ú.J„ÒM]uŒYÅ‹óôy„c	s¸ˆ>iX«fóµ2ú"M*+
+u¼ßšæáÀw>š@îüw`õæ‹"›@Á]¼A{l‘§”„”ŽV¶3è“‡Ý +<Úý´}”ˆ»Ä°49xç~†}A•ÁÀÒP9hHßXËúÜÐ¨4|ILÁŽkîuHZ2¯œ’Sñ‡ÿbRÃÝx÷…3“9vå_€¨GÍâ2Ï«,˜ô^~^b1adÌbÜ°@­7Ï<kìþ\ˆû$ŸÿVŒÄ‹•ùeðm¾;iƒçcË`VúÎm÷;Ë/Ñc”iS¥éÏ%HÁÕë¿V,?òà2(Säm$|©òÕ{¿ÛßŒ¦ hd¼òJkë„™#qS£…ÉnHENÖQÔ+Ô¯t9þ½^VÅy(oóQ.¦—ûHÛ³Ö%„Ç#5@W-ÁïbuåÏÏºÏr´—8Éâú¾"®Û+|–­l›´RU©5ê4U—˜vé;õÈC/ç¦´æòŒY“Í†D’Gq{3(}½;ŠeóXÛ€yÀ’Ïá=•Ež{zÉ™übfÕ+–V–?“Ãlw¦{C'ž2®KhAžŸ{küF6Ïjjïí*ï©Sž—c°{â³¹ÕwthU,¡l2Ïw{§Ûæ"Ë‹]{§:? L³êôÖuP-î>/€…Ms[þ¹Fü†QÛš@í&¨ÖU)Uõ>ŸèÞ@ïÖ×ù½5éM„Íï­÷+Œ§#mŠŸz[¨žÅ_SšL­“VÔmÛ®TU×à¬”%K¾Iü)›¿°lîÂys¤oy·*sæ)sËæÌAñå)ð±VÕ’R6ëªªÒuµÛ \¥â¯®e@‰–±µ÷ >…d°î†ï©;®TVÝp£šç\Qïóú}Dµ ¼Êf_½ß[½•ú+Ø?ÏY]ÅF_©T7Àì|›««ª}•¥wùüÔ˜WW«Ôú@°Ûoee½¯¡A)ûÁµs”Í2¨ØŒß0»n#¡š£lÀ?s7‚#ü…¿Î¬Í5†ƒz(7ÕT®ñÖú”5¾&ü›ç\ëÛ
+g¯®¦{•U8
+ø´²ºž¤³Ý*¬l¨X¶þz@wcuèYM!iP¼[+ñ5¨†:LÜ¿Åg4mWp˜	ÈWCtíXyÃZuÅú›ÖÞŠDÔŽ‚_)6‹µ FÊ&Ÿâ«Ýæß^b‘ÒfÆeâU¶úšL*¬²l ..[èYsÃú™ÈüÊÊµ7ÜlHgD=ëjÀ«:6ÞÇ:p¡²ª®~³^?ê6{ý¨T­Õ~¥Ô´¾„)A5oõØ´ÝïËËsÂHfÆÕ[A3kiä¬ŠŸ·Á§4V7@ß&ß¦™ð@û•-~ÿ¶…³goÞâª©™µÕçŸ'‘>H0Ció–ÚºJ	!ILU%Æ	¹-ÑŒ% \B ƒE¶‡zþ+g”.\¼ä›K7lÜ±¢©\R$·ä0þÚauÄÿrKZø¢›”5ËV«œ³óæÂßŒ6üƒ[äÑÿ]·Ö³|þÊ›ÖµÓ×üO)žS¢,S¶xë+rB©Û¼9P€ënM]“RãkæUV7Ü£Ü0û&¥Æ»ÜÜùã(ž(À JTyÉÁ|íó˜W¢¬z·mÙÞP½Ùðž›½[·ÖÕÕßó•QÏ/QVÔj*YUÆŽ"ÿòÕgÀq\5"Žm^ÿ–¯‡R|5çBE§§0»C‡\½µÑ[Sý•åS|È|ófð •¾­àÞ•Ê€ñ¶úº-Õ›À”+/¾n@gúÇª øÒóÆqíùâøòóPŠ0^¡”g›„ÖmºJ_ÃÀËFT^€ÞTnfät_Ál Ç†£¦î.Š­,fùºæ1—áàËÅo¨13>/,(_¶3ôzb@gT_¤2xùÅpÌçB¿ŒâÅ»©®Þoj˜wëv0žz°X×¸ßübó(ž“fè w ˆÿüx!&óBØŠð™ÚúMV6Uû·€G®ôK : ì¬®;—¬Šçp;¯ƒîl=–ÕûîfªHêê+«·Þ…GÖ K·ÕÕToÞ~®i¯ÀÒo\µ†¤Œã6ªª0X6æ¶Éˆ¾¤þ°t3º†élå×7•;VZ»;ùî×Ó×VÅsmù¨¿ÛÀúõQõx›õŒ®õ_^>Èd`ðôótóôqe Ës§†ùæH»ŠÌë¼^"œ›"¿JëïÄK‹t¹¦®vÑhïR™®Á<=,““Qñ:ïT  ï ÿ¨Ä¡…ÚHH}XV–ŠÊ	qï…BmˆX7Q$n/€„"Œµ[É… ¬ÖeyofwmÇ?{˜yóÞ÷½÷Í³‹gM×þÛ­Eëç…Ü›ÉABV7f`´ÎUËLxÊÌS¯†zíâkpBlß&ø*k&ù¿bñ3¸ Ç‚“3Ê¬†Öõoht„;oÚÄºkŸ«ÚÔÒLÿ~ÁIä¯µ÷ãŸK—¡Åœ©¡wxüû‘“šp&h‘ïû>ÚÙLH‡óøŠGù#àÕfÞ!œy´Ç?óBïÊ»yCƒòœ©S"] a‘ÿˆ0oÒ Ý"þìé27`“’>ÈÿÁ³Ä]ä?E˜½ sƒ¯4HöˆÍoƒÂ¶ÄÇàvÝÉý£Ð JŽ$n“¼“;T} ‹ÀT%H<C»¤k6T.ôþ]è]ÖPb³Ù®Åj6«ñÍ‰×Ò™âåÖ†{#®Æ™8u:}<û[0Ì
+˜Y¬E˜Pxu•<A)Óáìò¾g¹C·|ë[iŒ¯èÕ$Y_•Ì0‚;œ›ÊI¹Ï+OçFÚèòNv(ZÑšÖi‘ûb~F±6¬_ÊJÇuæ¹‚›€ÙdàDHtÜ3Åq¼7ñ§\Íµ1d~^Þ|óxsF÷b€a8B3”3mÖœ‚B•Ôÿœa<ôZ¬Ì¨uAsÏ"(ÛWa¹„8î–‚ˆ“7†w„b†7Ê+k½ljþ=«ÄRk{°‚÷ð"PWy´vÓº÷lÉÚæ›f:qõ4äz8Ž½ ©ò¡À%
+·dƒ§~'jÈ3(|D:z@Jb¼‰Ûíl4“'qÜ
+]€ :×±Jï=Cò«ûÖ*‹®’½4šÜ @Æe÷P¤oqæ/ßî…yÉ½©JQ~õ =-þŒ!iS“üHOÐ0\‘ïDÛ»Û'Nâ¶#o'âN ð ÿå¥+ñ…ü2ðò'òË±Îl.Å0ZEJþ*Ì•Í1˜IØR!¶Tˆ”A· Šü€²NT2’v†o Ê¾`¢þp «^¹£ýƒÔïDv?#áWùJ ­ôë…Õ=]
+:‰¡Ä¼lËZp²ãá±UÇªÒVMe³´IQ?ÚŽ¢ …¡âèE^
+Ðù«Qÿ•îW± _G¹
+ësBçé¿æzOùQù“¡æf÷Öå÷~ué7zŠvÓµå/,¸—¤Eúð*I à)æ}`„ò9ÝÉ?èÂÚ²Ê%T³•5uë}Óè¢\&ŠŸ‘½® x ‡ÿþ#÷õ¨æ©ÿ^s÷TOÁôãÞJWÜÚÚ\z„ÚTÿ
+'žÈÎ¦„§#{0>\ÉUø´…F¸e³
+ßœN_ZÊlØÇÌŸ%3dü+Ëo½{…¤O‘“×gN^"ão)5‡‘ô>/¾´8;97¿0¿óÄcëÚ~mÿ?éÿÞO®àdÀC¬¬ž.iy>¡-8(øýžžgg¼h_•‘_’’“ó|V‹›™§¯;PøùŠÞgSvòrYY%ççæ&WyBÏnVR-.*.H,ÉPUâåˆ—«8µ$'?91ÌR JÅ§Ùòrå&(èê—$–”Û(¨©) å(X•ædjj5é™¥ç—ä+XEóR`¦ä¦æ*hkê§™‡ü44±è6Á©»(5#??ä“g‹žmí~6gÍ³9»€^úÆÓåÙŒõO',{¾fÙÓ	Ï´?moÓP@@ÙŽUOû§=íì52|²·W¨ §3ŸìÝÿ|ÊŠ§ëzžMÝT2aÎó-‹x¹’3²’3t¶+@\çîé‰Ì4`˜ØªJ¶¶JJ@w¢¸ÝÃá`-ú™P]Vu:æ`­Àú1a®~J`í`ÇÛÂUª]Fäë§ýMÏ¦nxÖÓþtÝ, §€~6­ýÉîm@''– Ã''5/½$Gªu†
+v
+y¥9è¸–•†(ºäj Ð@MI[E„€.|ìqå¦ IÊ@;)1•¸ÉJ¾ÀÏÐUq¥ ôkŒè_xç´3L§)´”™{gæœ{Ï¹Ë²Ñ Ÿ°al[Yšæ<½Ž3–ÜPfHíIc!ˆÐ-Ç¼Pi¼öû1­f·ßŸÕôëç~FåªžîþÞÞ«‡×9„æü§zy†ì<‚‘$ÛâaÑ>‡@!æ;ÚŠþ`|__Ó×XÔ!‚GªÌrÛ^5”–]eÛ-wZ=·­Ê †Š^}òrÿ.âã’‡–‡ö`iŠ_ý¥ ¿&ë£DTžœœâ:s×˜»8n[+T¹l!ªué ³*\Ì€4	É„y‘Ór2öiC5–ñ¨Ÿ
+;{ô‘Oo®ájRäÆÒºëwn*‹@yIzeO(>i&QÇsjÛbÎL£°Óê™Ã‚r0ÖL·ª  “kf‹–‹¡¨ùFÂ+9 CÙÀf(î“¥BM½ Ë¶ZxLÁå?s×ÓÚDÅï‚ßa<*šdwÜ®i¡B´
+D¨Þ¬”ºÚ¥Éî’ÝhÚCDQP‚x°¢ ‚"ö ~šDŠßA|ïÍnÞv2mö e»™™7¿7ï½™ß›h³žˆz ê±XŽÅíÞf¯	V´ú¨¥Ñhˆƒ Ôª4þ.ÆFàá*Øåc­6ëÌúž>»¡:ò2rãÀi¡uKDÄY^ºd‚zp^¬GaÎþª(Ò†.õÔ#u'µó<è¦9z	Û‹‰TåXs‰Æ0^¿—%½ÒJb>1#Ï*êÀ©Ì¹‹[‰kl¸ÐCÐÉ°K“•~Z™•ð¬¨aþG~öÓn†o=ˆ¡UKóðZžç,?u^—¦¼Ž.ÆP¦¶âŒ(Žˆb5¶Ù2.}ƒSö£Â¤ã=òdé=Ð´V{ ÞÒÔ£ÐÈ½±rëv{	<W`dIÑÄÆÆõ[7Õ'âTõ(—[HÈ`ƒk°Š…dQÆ8‘¸›ä(ž'pË \u:õ]ºµ¤om‹´f	¾:[ÝUƒÀ ØúŒ…®8|b°
+GÊÐhˆ9‡h:NrÎ.èjVÍHJsÞMÑq6—P´
+uóÛçm‹r’ß‹€ÀÒUoÃ©ÅC1¸Õf.e›MöqÓBãLÔS^Ð—5T!€ÒCâ%øŒ5ðCéiG«×i:™™oJhôd!È¾,P3s´d3õaaí‘i'Ó,¯Š-ì$iÌg¨®öÜìE×3-òá]]Zš‡Mž¡”Ù±øõ[\B‰sŽ…ÕzQ€`†0•¬G:–%üØËü„¼-xl—Jƒ9¬61¤KlRshd‘®qÃßÆÛæ^vP7	Ýfg—í¶Ò†øœ>Â*én„
+ñcWp;Ú?	ß¢ŽÕ¯I7È{› –÷c”Î6cñÇ:!ž"‹¶‚Çš#ÛšêÔØ€GÄ± ¨ÿÞ&ê}1¦KP¨KèÅ(ÛÈîª½KÍ´GªÎ-qÆ4µC l<h±rZjˆ¶)iUælè7†ÿ²dLÍ>Gç3‡—ùq»ÁrèL±tŒ„È­&ÆsÌt§u¬îåÌ±tþ.–ÂÖ£éLMWž¡Ú–%é%áuÔ¹}cO²ZŸc¹ŽN±¤[ò¾l×=ÿò•ˆ¯Õ0>×>[ BÁÑqTBo¶…jÁ”ä÷W;5å]j.Û¬AÊùíº¬‰qá<”*:æGo¿<ÚônøôÉh÷ýèÍ—â‚nÿáÎðûÎÏ¯GŸ_?=={8Ú}7-Ã—ªgðáÞ×áó½ýÇ/®/B¯ò$^,?9^}jkÎ7A=Ã]‘ŸÊZqÔ¯±p!–À;ˆÊ‹‰ºíÖ :îwïpãeìÍËØKÒM5´N¢¡ä9I££º?œZ[‹ÓPþ+±ÐÝj“Ök%ŠQD|q—%6©kº4-®/">	â»—AE/TWñÞ¼ ëjUDÁKU|ÒÁ™ÉçxšUqÙm’“ùæÌ™™3gfº2¤%”¼¨tpÙ¨ŠÉ˜ªÀÇh‘há¬q²sæ²vfû†$A¸TËDåž–¤Ãšú±{àý>eJ{bÐ5K©÷ËÞï;÷ñÐáÞþ£¯Ÿ…ñŽ|wùÌÛ={kM+®²•D„ÕVŒÔ—»¼MÉ‡+Ö€3¶¸¸Ä)Àì8ƒÊxóøI’®m¹MÙ™89ró:cóñ=_áN‚ïQJ¹cÉpÇ"CØ'J>i«:8ƒ¨>Œibé:`¢é«dÍ <¾µ
+uâ)[A™2gIÌ)â“A©½®ï=î¸²î$T€Z¬ÜPœƒIl
+°™žL¢¥@Ç¯PÎ ¬±G7H6™.ûC	Zß¸ÞP“âôhÍ¯À°‚)™°ÜwðBTô×Ð¡¢Fh‚þˆ™©€dúø/@d¸… µ u¾%gÍPFæ…slEN ¯ÏkŠ4)‡ÓMè	-QóOÐUõ¸m3 }ôajÇº«]G%?ëå¨ç³6Nš  ¿ÕcÅÑzD³xvæäòCt“²¬e&·ryüùä7Ì:IG˜‚îðÇ<GëÛ£Q¸ç(Lw%QB;ÞV¤¶ç9²«6ÔWSÙÌ9¬–þgMþ»µuKÏÐ°
+ZÂàý3NÌQ2f×³ÈhuXõ[µf2ŒOI%‰¼Y³2e&‡kA¹4ð›owï¼l÷.¾x>ñ²´ØqÚ'.|zö$7kV.îñäÕç×îv®=êÜjßÿ8yúü»Û7‘;,B<W-Ä(Õ‰x«Ñj	Â­­mØh''é#Br6^ì\¦vÅ3õE©/¿Ž0u #6x0*›ŸËT@-G!ªn
++¿wwœé÷‹óXÙ÷©¼¼E%«ô½|É²H®ôâþ–}V=×ôjWòx?Ðzâ<‚Hn &ó©Hb¤ŸE“Ôµú§³rýŠëFÖ¬vLXÑrd±š$â¿ágc-ô“´U+MË·‚Ô›­´eÍvçþšxNy6è¨ßJ°ðÝéGMo	‰ÆîÆ¢ýÒ*%
+ÄV¼r.Ö‡Ô¶iøñ¶ÐrË¿æ@ÍU”z@´HÛÑ„nÒ;Yš]Œ# î)Ùø©'¥f9.‡>ñTCõ ï™›Â™»ÆQ’d®¶É• ò~ñÕ8ºƒåv&/…Ö%!Q÷äRVë³\~òôQ§ý½óùé«ç'Û®t'`˜4<ÅU£#êPÊ%Å·Ê€Õ
+ŸgÍC»vü¦Ñ‚­RLhG˜’Õ–MõV£Ò	¸“áßR5¤K<ä¢ƒúQóÆ/ÌD³mIT‡Óx•ç]}‚ûaàb»”ŒJ¿Bô%šIŸWÇªoÌñ)öw„ˆÃ{0%À¸¡þyKnj3ÞîëäMGÄ"²P{Ÿ,A`¸ó7o»}§«`YWR½ýÔj
+ w&&w½ÿÈpWQmý;¨T=\&,ÕšFeE}õË½cïtÆo\êNM>xøföTç\Sœ»?.Åá+½§_»SçßÍ9v¼;ñ¨3Ñ»xgüúø©©“W»S)—Ë¯‡hAq‘ëÌŸ_\D2P¹á±ÑðaÛ©K(ÀQùoesÂÙ»çsÆ]~ºèç70Àïç~ª,<Ím€ ’Ô‹ºXü‘»ðœ‡¡+3)eU‚L†v'`B(I
+]’—–ÆPm„Éc³ÓÊjÛÁƒƒ=!m–ŒÄ¢”Ì”bä¹CËHPcj!Â«xTn#ÊªhBšáEsZ&°]Ö¬­ í¢–û`HFÇbw"¢“vˆTná.GÔ‘0ã ,h(S#2OÊ°ª34W…=Pwi*¼„›.7Aí=˜>ÕXX=ÏªXÚÉ:h)¥ÈðÂè¨k‹+‹ÁËDTBFª1#!"Æª°F?Èi­}¨$ÜÅ¶ªfØ•`÷ ÖÞÃŽ-×Ž°óÆÖ#çŽìùGlP¡„‘F§ ƒ ND*d-ðtVŸQž™b%A*€c9U%%”Q¸¼wž˜’rg|^jE	Š Í±?>³2€D"C†•ÄÒ½{,þ½[Ñ;AïÂ‚ ñÌj.I—r‡EMÛg~..°˜Å>+ìÿµ%IÂg#xT>t,qùpÔSæ“„»•VU%ó–3  é ÿ¿×eòÖl$¬Q£g ÉáÍï@Õ1È@ÎìOâ¿Ö†³Ìpú¨©£GíîºÓb¤Må¼IŒÆ—ÏêPöw‚²}²Þé©`"¸Rðz­ÿ™VpÁ]	ñŠUå1tgÜRNÒÝO(@«U	¹ å™»´´l¯(yt^“·+Ia¢Ìéã *Ê¡’+ÐÒ9j½Ú	€ñH-BxÕˆ@^Õ‡¼£Ý·òOUä×›‰o¾G[Ì±xôs#qJÉ#H¬è¯iHtÕ˜i:¢ÚìcÑ÷Gº9v=¹pì€!2ý¥„qçeeéA‰Û¹LaV Ò-þ¾çDÆ»>„¦ÓÄàÉœìŸdTû|Ûû´LY |¦¬6‘-2ÇâÈ&ƒçüžá¾)UÏv„Æ53Y]ë?·Ø”ÚþîÍÏ´ HŸ¸²OrÕúÛüK 4 àYsÝV}AGÆ§[ezÕÿ¶b†»ÃÀ¥ðÍÚd…Úc¹ômþK§¦Øß•µÆp½‘ißÛ»xºPíïSï)CŠR8”µ*ºORæjÄ0üC%*nìñÏ³Ú§"Ði;»=^ìÊV•ŸNœßáhCõE×à Éâî‘¯0tv
+˜X¨šå¿þWçj3 +sJêl_Ñ¦ŽV9cA¢_‚N?•È;ÁØÀÃx[¸¡YŠg-j
+Òì«rÇƒçÞy¾"—S.[wÓ°ÖÛì<¸KõÆ¥ÒTúœ¶¤{ûq´ØäGn†â$È—™{u„< º½ÀMÞPD‰õ[±(˜Ç…æÁ'´!þ	•÷9po´ùlâ¼édib=HQùËÈ¶],Æ"­È„ŠîwÊ•ä_Ÿ(ÃÔ¶^o9HBq_TIV;¬¿ˆÆEEÿøöj”ÞRçfÿL¯¸È»[{Ñ±‚Y»HÊŠsœ h—øÓŸsàÂµuÌ‚D\öéùü–4:›wúkí8±Ff…Ù¯È¯ˆV©ró²l^à¸o¾ÛŒÀ€WüšÕhwBµPí’Ù„|ÂÊ£®
+C»»uÈ‚ç“”QžIwÃ£#¢¾/*ÐL¨0¡°Ê"Rî¨„ö8 ©×Sº:75Ný!rÀE»)Jð¦ËB:åšý¥òCÕÈæÆîèRV¸(P+püQ­s8äuÝ9>ÁzÁEkØðTÿ~1°¡i$EÍÄ¼Z1L@bøâhë=î‡jÆ3ð‡¸4X3¤k¶?–g&š—¦GS¸é5lër´Ü­_ún´ô† €ÁCG+¿R$Bw_+~h½„pR#%Ü“Yã‚ì„;&P^úá“ñß€‚#Þ‹2ø{!ž¼býêsoöFÛƒ»Ä‹!´å«"e¡Š¥ÊœlvL@~;Ê[NÃ‹öû}¤¥7	ÜAü*– Åj±ÂJ¸M!‰CVàÖWûä¿ºÏ5ÆUY-2Ü2êìÀºý¿áXÐ—(AzècæSÚá…íý›âÓ^Ÿ§G³î½É!Õ`ìZAÈ¹~û¦£`1ë»UL@[(äz€Û[ŸdüIª®_Z2Ð£&\]\.FÏ­Ö7œÞ@òHî£!¬úª]iDÖhæðÕoivUBò96&„fúxM:ï‹I*æJ¨ü‹nf¼ºÞô:þ‰¬ŠÊ‰ØŽÜ¶3º ÃkxàÑ³Á$Œ ²+´”Sòu;Í…À§½L²âTf}íý^B?g¬xã%9¶íÜþÀ\ìª‡roìOmpY.u—3¿•-{Šs;fõ¡qYÇ´«Ö¸û°ü¸Z¿‘`rX?òé×¿Kä}]P²`Ù93D7÷HŽçU5ê5§ÕÕ ßÕ
+ÓJ t<ÇïžJv¾¤A×ãj)ëŽ›&ºNŠfÀQ/Øt­KUßU<š‘Þ¢˜Ý”’[|ü;nÆÉ7øœúÖ4ßÅ5þ(ÂšwŸ(®ƒaNúÊgØ˜åÚ³—3Ç‰j¸“< •ˆƒ?¸kJ\cÍ’2Œ³Æs«ƒ¬Q¦@,ñ½:gqì¶)ŒZ³žÀãÃâ¸—\¢ºXÆÔ÷¡l‡çÈÅÙ,ŠlŽ¢`ÂŒÜ=‰R/Í‘35õjB‚•<7ÝdöÆ±IZ¤r˜y-Ó×éAÔpùýY\]ü€“ªÄ´ÒuQP¼‰WŒwÐ¾–Ù!qéÉèfôÞ.“:Ï­ÊÐüÝ[¹ÅI"]Þ“Íaä<ÏÅó GguÊ¢	ðŸ-™ë`GÿˆYãÞðV˜båÆà°NJ¶›’Ãúš w«®ÿËz¹QXç$°Z$cR–ôi«S°âÌ}1{¥! N½”çZ7‹	ûGÇ×°Mê"K°èÔÔTšqü¦DEÑÂÔd±DŸðUÇºïÉ.ZÒ]
+çÕJØâë€o“‡;ßÌ,3í°^™alâyœ¤^N•qÓ	<ä>æ-Ì÷‚rß‚…£»¡Ü t3+Ûå‰Ã?’\*¹¾Ù¨ãU.Áù‡üÀú=³âCì/Õ2„hc±O·;$ãX¼(v änù±Ub0yu1ÁÒX®h¹"¨p!$º8îuH/uþ:²žžTl\Ç?’««°…ÙÛ•2 Zºu|œ…¸š¶o½ÓxÛylŒx€ŸWzuâ©My%ôìjSÏíŒ<µ<O‰†{buw=•¶û¡ÊµåJÏë´‚~Ý‘T±V\ƒÒ Xm,ß—YC%ìYŠÜë¢;abª=@ŸÁä©Õ¼Ã$é›Ëîfã¹86þîµ	t€½;Ã¦XSu$CD.¿F*¦ÛÌçá{º:š 6#–®ûÿkÌáîÎjœìkOüÈ÷Á‡§Ë‘°·yP¹x¿¦:=ª¹?mr©< [teb:º ½‘Î~•ÈSiëvBWš†Ÿg‚ï$¸@Ä‰°~&>¸;ÕK3I©™Â]WÔiœö?ünÌO9rñ÷¬ä%5-Ihõ!ä[Ü(ŽVEE®ˆ‘Iº”Yç”CAY‹–	6…bœM%³!çãÄ¼HÅÎ'=ê*Ï^ÄäCÍdïÀÈö$;%8H¾ÒÀÂAœñn#É.Âhýº™}v*¨ïÑ_t©‚ÞW„IêEf®eÄ>0(@Ï}\Ñ<š'eð¬Û?éø£_õí^e‡a§qÚø5øD/@2F¶òarÒ²HáŽêƒ¥Ì,v=É›Hìo$ü¼UvàTEqÈý‰Â	[v¤2¦ô§`€ JÅ-ðŸ+yødnnhÈ?º÷UE$°6Í¸%Q2ºP›
+-+ÃXÅÍå=Ûµß”¨ç—>ö„ÌÄ2aç2*‰K±Ò©e$ÇÔ{QD½ ´:&	²‡îÃDÒfZøÅwÐG§Ž’±i
+%Ó-ãbìIb{hSÐMÏ–A
+L€Ûg·p¥n$ÿ êôCòï¾I»ÒHHšN]¦€ ;€Ä`BùÀ)q¶¹L(uC ÑâàÂ µ÷¡Î÷Ñ'ìªh0†1Y”Yë2„vºBÏÖ›Ö˜)÷2ÿÅ£Dn‡a†œÒÈ6€fýJeÈU«Ô1AYÈ]Ò[N™…HæßÂWªÃ²¼3óL9²†•#/"NÎÆbéðDíŽWÛ¾o›iÆœ‚dnØIx™E2ÉKh~Œ°Åáqö9ÚâKêÄzÏ='*xÃ€Ae.]g@zš{ãzƒÉ	ýËvÐšÛ¯"ˆ[OŒjÞÒk°éÀ'Gœg  d‚UÄä/³;_#~K·ÀD˜‘b,óŸ]!s”+
++`ÃÙM^pëEêßULk^ª @¦|J»†ßÅ]9†2}æM2¼?cpôöåçöxfù†§oú­_Å}³’©o{sÎ^7ô¸ã/ºúýcoMP	ä3%¹o98æÞfm!>šs¸”`¢O$BÀ‘^ðÅýÓâ¶‘JîTÞòNÞvŠÄ´<{›Åò;KnŠK…æz H‡~3¥XdÆƒWD²š½×¾ûfpôggÕì'pú î£{>	_¦9b{êFˆ'Ø’£Ißˆ–KtRãvûI³ºÚ„cšÈQÈàŽh'`dâÕñ)ŽVF³±õ†’<êk³¦^îXnµ‚.]@ju÷\ ˆ¥àòp‰Â"ð}ÈŸáÐ†:=¸G”9ÿ²š‰sÚ!53—‘É)Úõç!êO-a2Ûw` B"Ã·ð‚Õj®8[a€1ýKÐ[b*êÈêÈ)*zÀ??…Y~ÖYéÞÚë·Ô÷éŽl“Õyøã¢.½i/Je±H‘ç
+¶ñïuQÑ"€ç >š´Ë?£M$§}kô7É±E)ð½&¹¶¹Ø¤ïÿ"Å*Õ4–Œp±õí} ˆ^É±À¿-¸3òÅéè–ôèZTì ÜuáC+ö-@1ù²9Uªî—i¥é0!ûÔ–Gm.jºŸÆï™üæÀØØŸ¬¹Ø•U&½…û«7IlLÏ:j‘+Î{_Š––²ô¶°Ë;¼¶+¡d©f½£éÊ*D.ºMVÒ˜ž”ù{ o¹(Ê1ð)è§¿·jy¢u¹wMÝ¾’‹ÉvUÅùÈ<V6M",”w¹p%5InÃj‹á¯Ë±v’½¼ú:3HÞb¡¾\Ûnékí·Ã1k/jjšçDžŠb¥¹l"ƒ;´Wê\UŸô{+8~†“yÌQ&çø4p'è>mRJ¬¹ædí$<…HñÜ9üÅó ÁÁŽ]mßyq#]	Ûšw$P¹É~ÖãØè¹ü_:F÷yU»7àRF÷YÄ	0r¬Š^}Õpd2#¿åYFäƒbüöâA|(
+O¥Á`ÙkÉÏ’Y;>ìöþ{ˆj[X)<©«H+zG8Õ³ÿ}îAx;™r÷><ó®§–9X^)Œ…G,¤÷¤›ÊÖìº§†]¨ÑØP[ñ¸§Ò-yÔî’šÿá‘‹? ‘šxÓ0éõÓùóCJÝƒ#†Š%ÎiôÏ™6Ú8ªRUÃ7¥êv"ã‹ÈY¤—0×ã­’‚ýÇû³X7’Ï\P	Î½bcà…÷ºÒØÍºü9—ÒTe:.ÁÒ¶êðòŒi˜—sÜL[8Â•iø7ünæÁ+Š'›íºV·pnÝFLü—>ÕÉ+Û&lØ*Ÿ/¦–œ–hÇÿŸöz{²F—h–r;s)•M8öØ„×Bí´‚ó ¾Œ¤qåµÜ‚íöd»F¤‚ì™RQ–‚üèk¡HT×@X¶T"1ê=ß¿É§€cDbC˜ :]D©hh”ËŠ@“Hf3¥Ç/=6û× "o%Ëö¢Ÿ]Ù™ž‹ÿ,° Á >UƒÉÙfÂIªÚÆ»Aÿý	ÜúŸ>ÇP/2w.D5…æñSÎ*¥›œíÆ›µ:¯ýSÇƒ$m½$'F"zôíÅ½\öð²ÿXš°Õýä
+ê0:@§/ø„šÓúH.5éMÌÛ¡Vˆ7ÁÏòEÉgÖQf¬I+‰e?Ú¥ó5¾œGM§ŽñãTÔó‚ÔÅÅ˜(éj
+ïäŠ¹ñîÊ ê4f¼¶á_vA¶°ÊÚxéê’	ÐH©LdË!s3€+|P\9·,X|9‹5<¼à v£ vŠu-êT:Ùê8ÎJ.Îæ+Ò=vq\ÑÝH8,
+ížGŠ®–™uì¢[‹ZMb•añÊ}O­$k;ð­Å½ªÇÙ0a6k#$™ZðU¡×ñ­(·]‰xÕ+êÍô\›Âxª«|¤2¥‘Ê¯um³•¹×Ë,]îÜÈæ«¶¼/:gëgþÈdÃTÃ£!Je
+[–¶jÊäIaž_-?›Ü>Nå)tc}¹H¡”hom-ØkÃÜu¾Û«ÆÞRßh+~ŽoUŒ;YKŸ3r'²™YvŽ $¶<³§Â¢_
+Ý˜Ém Ÿ$W£áŠåADÒ»Ð$ý´JiÂ¨å*èÿŒ"–Gêê±îÎzÆ‘O&t®W!‚ë¥‚ïý^I?œáZd_& “S‘¤KÊ’Ó;>Bi7-ˆn§]DªE“Ù’T˜’œj:Ut”RÒá%}7Ç‡:Sê‚±ÃØiãÞzQ‚âv+Q…w0¬d FìXðÀr5Å$Y¤8«FEò]ª”vvMˆ ð YR ®‹ö™	ÏŒU²ì=M…$™³vÖ“!5šÇkäÍçš!F>ÒvµŠxJ$WÃÏ˜A²„Äë†B§ÞëŒk^Ù¡»¡^ÇÒìO[¦0ÐçMÌ	H®¢]ÚÊm²½IlÈ·Ípê×|ÒÒPÈ›CÁvº—ÿÓÝ‘àUÚÚÐ@HÄTÌ÷lÔ¼BŽÕ‚½H=Á9 °¶HªÒO°|g_‹¾ú…TŸ,AÞ-¡V+j§ 3ˆ­æUål<öªâøQ…ºÌŒ3¹<¢—z"C¹šÉ.%Lb8Ú©Þ±ÉPèœbœ´^ïµóÜ£„Õ× {ÖU÷Êýåf~®ÖÜþ.À„þ.® ›výŸ_›ÜF\¼IƒÈî,˜Ÿå8N­îBUŒ	žLø×RIì(õœãÈ™0ðŒ<á’»Ë‹Ùcºç.øsäD%?ŠÝ/˜}!3ñzS ¨.¸ïPfuiãçå=:æBÈïG2ì‡V€9!˜Õ'×pÈáhñ5EÔŸG‰^ ÆLˆM0TÕ–á€6ýu·Eˆ¿C™Ó—<¢ìwÇ $áÅ5CØ¿¿Œ­EnSAžfÃó‚¼óQ]ƒ™ lÒøM¬‹üzÐ¬ßÏRÐŒS”„GDlþ×¶g—	mqÖèQ…üy‰é®wÁ£ûLúÙYÙùi[LÞÐe²Ýó;h²»ûKžqY802Ó¸éª˜žFd¤-P†BÆšúI‚ÜÝÿûÍ±Mç§;{½DÌ|(ºjJ_ÈDê_nj©½È|Q'X#©ßÐ‘Ëç8fëvžâ>ñ½H¢£¾™\!‡²»ös
+ÌLƒ€mO(tíÁ(jÏ&&Ë$Ù¹¥”V°škiÓ èû½	ßjW\,ÄÒÏÂâëÓ¿N¼F‰–Üßt»ñL1¿ÿl4€ÈÄQþÒ½ƒòc²èÊj¨˜`%”£/ÖœÈ‰2˜ž1øµ¢—¢ï»ê€¥ÿ¢ÀºÆÚIW™‘Šd2Cs(@¿Ô_[ö£Ò_ü‰>!qŠ)TsM!Ú\ªHÉü»"»ÀxÓ>G‰t™àõ˜úø¡aÒû¦â*Çãó3‚îÓ¢3·ß`–
+ÓQ½ë8euLÂˆRž^»3Ç*wp×ìa2ÌØ£ÓåæR½ïªÐÏ\M+Šã¯ê,Ãlaânœ§FdHSúÐ„3«Ý1Y´Õ¼²-IYBƒkAíÎWÍÂ£Ç‘”î‡´ÙZñ?gb[Iâ‰h­
+<Ín´9­=å@àä£D˜ü5ïÛo›(ÂhÖ xGy`ïèWXøNeè¤QÂXÝïð]Â{ªKÆð¹_äúÒù(ªïF$=[!á_!€æRÌ™FÔ¶ÄsÍ•Åä	ÇÅ‚oÓŒ"ïÅï³‰´–\R)WOŒÙüƒÕ±¶¢‚®ç\¤àËCÁòú¡¬>Â\¼*×9Buï&_ÛmíßëéDîË&jûÌø6Vˆz˜½@Ø¬#št'ü¸>£ÂéºÜ%²È‘ __XÄ’+ÀW–†f:WA-þÖ„‚„ß„”yî~F9äJyÄõCžk!_/=’¬—ÓÍ¦C:¥:®¶<Ðc‹ßŒ1#Túä?«ÛŠ3YU;_’žïËŠ·	Oi%Æœßíç¸±ÿí§]&ÚÈž•ñË™i {Ç·Ù&p}šÆ¢³Ðcær›[ûÑ#;dÞ"Xuû©—Xr©c§)k”D÷÷×©½	fßj q1¯2¨qˆœž¥ÜÝÍí+¨|ÿ7®Õ¢B<¯"¯`3,¼<¥Œ×mQPëØ.à©MKˆÀ@§®½·by"aÌ÷Š,zU®­â³97Ôåø¾cÊK.ÓøáŠ2t?ZgMV*Em '¢^QíÃKj0)…l=!©±^Tã>¨QÄ©+EÚSå[øû·2¿å{­¿=½3óáÎ{ÒDÞËŠjöè~ÝâZ3rû‹·›¾,õ«ŸPÈÒá¶»HŒö\£Å"-öÏÅuÇ'Ò 0Ò#t?éæ¡ƒù¹ÆíÌ%á“.ä¿É†«‹5­ è×”T¬l-ƒô\ƒ
+<£ÍçFo" ÕXòQ6å@k0”L·O÷à=¬åÏ4Åì¡Hô¥Ë†Ó«Xß2:`¡›Ëaþ9'âg.²£Î ¾óšénìtøT‘Tå¢g{7•3ùVÀ°z ujefÙë¨`Åî\Ax¬ YØ7ÔÈñÏºj½¦úÎA[é"nDñjolvw\±é'Q®"°¼!J:l ©
+Ð(ÊÄ–ÊGÁp®—ÛßŒÄ+¬ pÏ“Pþ
+nÔ ?ÄO&Â4¸
+YÆ¢¦ IæïRµËyŠUÊ&KùëIËáNæW
+ð˜ÓUæ³ê‡SÜÃÅSä…†Mšæ—˜7·Ý¿$Ï'CxíõÊ˜AŽ—ý§*Ú±Høò¨Š%M¨Öä8ýµIà%Ì”Š¿1W`·lÌ[îèã¶	÷‡%$’€<‡8Ï}`rç:BX¾Š)3­• ö™f#¢œà`.w{× tt¢ÙÅ®­[áÌéŽ´Õ9×©hP÷{”¯#ëÿ¬á«™<9™p’._îüÛ";üÔìIéeô……Á=Ühv7ˆÁáþ±H_Ó˜/²Wüðuó6\ qÏó…5ÆÍ²ŠZ}š•eIlä?1ª/Œ}Þ¹@äR^9ûb#½•T7Ñó¶€³xCÓËq$¯úÈ7QïÐ;k8®&‰é¶]›ð¯9âNÇž­~Š ¨:{±qcùçnÇÍ×Á«¤aú6¸ßËºDý5v`‚V0¾;Ql:1U§Ü”\5‰Î¢<sF÷¤f¸²Ä«}¨ïçbufë¿:“ä$]pæ™—®ÙµÇ¹éÏ|{‹nÖÞ|LÒ…Kó['gEœ=òi5p(â/º4ÐwbºÅP ?¤"ò´Ê3Z«
+Y9Îßtb›Ÿ²6
+RëéìØ2ÿÈH©’EêÐø>­¼…M”‚˜û¾·ü3	Í†û¿üõ‰‰H  þ=Dù	ìý…•&Wüê¥à5A?šI,¨“Kûk]U—:5½—Uç“‹$vèé‘ùáSéRt>˜ïIDc%À‘lœ5õ“bÛM¬N8Åú%²µ!Zh'ÅÎg^—}2f¡Kz-¯åI“ÎÅ +•„$	W8_å9¸
+ƒÐÅªiÂÔ Á9ùWÇ)=“Yçw+^×"s7YŒµñó›§/´à'Å[·»Ê­ ·Q—r9ww¾¹¨~œDÒS$afcÓ@ˆq£b®ÜjÒ©æõàøƒ/‚"Åij¯…EL¹ÆXL‹®/	Ä¢íéþúF>KAƒ6 ÓÕ„#Fr>ž…}…
+;CÝ+ft¢1”)‚)Õ™Ý	 áÈºÐØožˆ©&V°ÝV…”ÔM¿t¹Ožý¬ðdlÄõYUèáê¥¬8iƒÜjï°À,Êü”#^®ºýÁhAC˜Žû²ØÛ¬ø<‰Ðr–ÀlÂ¤4Ä)>aÙäj*†&CŠRAIh?ÈGAw¥Â¸¯Ïi\öb]„Á—&|Š&#Á ˆ¹ÛXiöØç1—Šw³„'È~¼íˆž9‹ö´©¤•‚ý¤™—¯àãž›ýy.)"2¯ÔIC›¸R*Ùš°p£ S'wbÔRðk@Ü^ŠO.çcÃ'Ãä¥ëâXsðæª©öc5|4õ>ÓÚc¢Ôs‘-”Ò]Œ9{8Íã¹Ö¨Îy¢\·(·•]³ëÄ4¯å2”•L-ÕÉ`‡½Ô’!œŠ¯jÌ”Â¼{…WÔn’*’%ŒI5¬}!Om’'YÃNê0ñM¨ TÆ-“QŽ ß3…	•gñs°H
+7iÙsz2NvÚÒÒï„<½ÇwÂÓœø5uë#@³pÏhNq°Ë.”1:æOulßÒ:Fž}wŸïBÒ¥Ü^ºÃua˜.Á‰Ð)¸Kº¾N‡_ö­„ÆóßX«ä‚ª7Wgâ–nâš<è]ôe#Hd‡ É+R÷Ym$»€n0@ÇÈeF|êúØÝÉÎe¥$*ú®îcÞá'\3'Z´Z 6žpŽ²Áì}”;_.Ïâþ 58V{ùÂõßwöu$ØR6å)ŠbYMwÍŽ_óÝ|Ð³8&uèk×E§ÎÄN€µÂN]ºÇ–¿{;¨#¬»}e’ŸÖqÙÀÍ‰ÇDA%³˜¨Â™|ŽÍtçÑ§“Ã9‰£µò–1veH§îØgÜ1›]äæ|¹/&(ÃjÂ†lqOò¯ýÜÈ5¿ÊŠécT6âDÞÚ¶¶Z›Í _¨\Ò÷‰¢õ]¥•¡¥§°> Å{¸/•Ó«-hì<
+þ™X¥1|ö˜Å›FÀ²8,ü„MÝÅî¤Õþ;,nÁ?*.qß(Å†gÂXc®šœf×%ýÙhV`¬;˜AÈžZ ñÑáÄ)[0ª…}t&xp§ËÛÃ¶csÔüp…†<> #Ç8•ÀÄº8ý÷Ã}~ÃßÝdï„ÎÏÚ1:2‚ë‡?Úèüª²9tE—hýï3¿š	3Ê:Œçt<ßsû:ÛB}ƒwÀQð©É˜çý™@¢Å¤|´Š‡?¢òé4Ÿ–€¾£;Fvl[™ö•Exxªu]E£©¦¿‹n½k­RhÃâ:™ñ¾ìE|•e¹5JG=2!Ãê¶°¹¹õÍ(qE}àŽ2óLýú§ÔÇ‰¹|°è!n^a¥|ó63ïa‹ÑÓhOC0ï#DôyÈa ‘[©A 6øÏJÉön¿Äs¢yC®ªç"ôNPWújT!ü5`³SäÏ•õ–&Ë`ý‘øuZÒ=âÅ"ú%ˆjÂöÐñSNÑ7Ô¿èxE/³³{Çñ³?«[ô–*âh¢pc3Hú¤]~,ø6Á†Ò¼Aˆ}h·ø)¦uÉXs	+×Q¨„]Ž|•¡Ö>Pò©É«ë¦òzCÅLy;%Ï@
+}'FGÁrmáŸ^å@Ê¬áW$éø®¯š§RpUJms/ 9Kn%—Å-ÇŸùÙC&ìb‚ ô YËv>šãq%@iG Ï"%6ü}¥CT¿.÷éc{©§aÌ‚æY©PfA\ó~+˜7ìÖ8¹öãÓ¹Ž“ñ5ÊŠjIüï;XÝPrŽ—IëV%†T©”Â>¨Ëm²Z¢B{¬ “Î`¾âÜýM½8,XZg]Ò5Gà,©)h‹—…Zõ—¸{•N™ú}÷×¦ß%	ù*<4«³Z*³+¹A&¤ãçž(pŠ¶÷‡r½;™ÃTÂæz½ÏVN£¾9ßÜŠ9ößÅ­{3¯ùqïóçÁ3“dè-;,´ËÏ’H'ðÉ‹p˜e±Õy‰
+ªÕ`°µgz2"XÌX‰øY˜#\§Ýëdþ¢
+f·»•­pX;Ãò*NÉý`!ÊÎwËO]ñHüJžBåˆ‹¡Îî×o\t2ÄÖöÕ6ý‘Â‰kÞÌ³è%6¾“¯ý¶¼nÒh¢4>ÁWim¤X)|ï§oX™‚Ïýj&Bêw_:×&…U'Jô|±¨º‹qm§W@ñ'­¾ùúc«Uü:7.À@ÇdŒ£°±î`	ÛÜ}{¯§Õp’ö^HÑh*šVMú+ßákkœbÜ&’ 6ZTÃþ¯ÂSÿ
+'Yõ~7z9²ŠtÃc©sÕœ}$(§âðwo0¤‹²Æd“x£¨‰àmÜ²¦}v€½Åî­‘¡gRæ›ÐŸÒÎà?ŽâøQ½Á?0SŒD/ÀX‰Q¨+Ë—öñ1V4”Ì·z÷¦¤ÒY÷Ê¦>¡È/£[WqH¤¨Æí+züD‚¶ºE†¬Ï³ëoÙ¾äØíqaÉÛ‘6>£·-¸Í =	üÃvç#’“=·6³¾HNzSSý,Š‰‰ôðoÇyQcF2º«ÛÃçaÜÍu MçÕŽ´®¤H‹éçU+$¹mã—ƒ‚ž£›}Ùê«q«Íà|ê\z!:OOlÖWxHÐy/ør×µ´Ûí·€ŸÆ~e¼È½x@ç%-Ó–rÝèÚáNp.F·ÉßTó.Áœ<¯^6»´•:Ôç,Ûèðo¤Ãž±apú—9Ç¨ÆSW"<ØLÆež*²%áû8¢v·ž‰å–é¶„šùã¯›,`Ø¼Ú{8¾ÎÌ£§XÂƒCeÆhl]ˆ$
+ÄŸ÷BQDFíd_]xÁ!gvô®#ÅTŒÛ<9çcZ8Ìˆ¢½–ß}»–yU'´ÔõG‡Ä‹gwc0z|÷o×{íülQútm³I¦Ÿ[‹‰/ë@¶_Ê²(¦§¿ gÝi¢
+Hô*¥î¤«0ò—ÉÓº€{ÂlÞ¬6’óbÌõ4œ}Õ¬çOÅüC›ªC§ôîDäèT|qÝ`Ð«ïÒìÂ\‰u‹Ø¸à÷B[FI¾´¬c°6ç¤÷%ò‹N“Lf
+awŠ‘<!Ciå¸dÒYtZb_B©'Î¬¦Û*¥(–ß˜F§4•9Jç½5u[¢|d4•ÌÅ3Zg'b×SPVÙb£Ë×/Jår'â=7]Sy:ÉîU×DZ½0iÜó’ÇzFw$ZI&ûr†ÄêKëT^]¶\âw˜»—gzÅÛ‘£¢—Ê¿?À=\;GWƒòJE>šL”™”ùš«³.ðÁ}ãÒž
+O)/aàséÓ-ÐÜÏÃäÓr»;ÜLÝcuÝ?â¢ê„«¹üòt9}¡¥K4>ú79Én›£$BÓŽ>ÀÀ	'œ×DFÙöÉ¸2¾öz<ô¼ºïob(ŒQZ;’9fXQ['œ³¯ƒô
+%ÃOêˆš‘=b
+N{ÅS¨5S0×)8	KD8Õèdç¨Û”úÕÈXq’‰!yUjöÈäñ“ÖB©àUèó|ÃŽö I÷péÅ¿æbÉ6àMã”„óŽö·C£I½æ(¦ø¬N—?ƒííŠ”TªÖµƒºÝUì&ÑÄ
+¹Õ²­x‚¿œ¡)&ºíµeäw"Du³z¤ez…T“½‹hx§­€rïi¥xlJ ûKûF´´šÆv˜ L:";’†?	º©›j¦ìÑÄ”Z?uã7ÚúAì8RR—k¤
+CW¤{“Þ_›™™´à\n¬Üšë^ÁžƒÒRÉÞx X	·€b2K.=Æ9ëŒ¸¹ù™ÂOz~_ÏÓKàÏ²xë‘å	Êyá¸ºèºº`zêû÷ò9Eï— võ_“mæ±3¾‹«ËsÙž÷üž‚u]ç×²z­œ;—ùÉ¨W¥í“ÉÓ±±S[u¦/0wžR°¬÷>&'ª®º<d£FÝeÊ&ÔÝ%b}òëZ"Ì³ÿî<:³0æ(ªK}X+/•å13Ç"‚Ý›*YÕb˜ÝHHÞÓès Úq¹1v*ˆÿkrÕg»1|Š+k'=r!òx‘«=!á-&~°m2$éýOy;Å°¦5ºì£”N<hÊÔ…MÒ®àGÀÓI1S´Ëó!1hF’Ã®è—Í¦mLÇºS’Ž~Ãüüø<œêümvn•$zº\µ„ŽgÚ˜Ïp¹­œ@D=¾ðïH–Vó*t0´^(–†‹3ÐHQ±H¶ß 	B¸EšŠ=Æþ¡$ÇŠ¼`_ëµ'Â%Þˆ3NœšgMÒ¡ã	§n>ÂpâëGº#6m„NFPêö˜†-¶i§jJçrl~LÒxé…NÔP3c3Z]XBÉéÄíQ¨Önl´í¡¦µ§©•jll†#_Œ¿HÃÍ›¢)!+±Ï8´®å·ÈaƒÍ´ a§([™_ ‚æF˜ze£MB©_»ÊT+X– ÛÎÙ#ù'ag-n u£È³tqÜ‘“ÙÁ“8`ã^O´ KiˆRZâ¬XnÖB.pðàKdõðŠ%ÛÎ¸èW£2ëË®!æ‘2ZØ‘«„¬h;üØÑ0~Ï†Ê/áù³WãïÄÒì•¬ñÀ€µëIðƒè¬tÎmÉ¹_Ó»«t"‚¥Ž ÿï%ÐãdjÒÕü½HgûE—j€ñ6]Xä×w[äÍugsU¬àsZÔž‰jMÁArçÀÀíêÉ£ˆ,‹ÝêÇVlJ^Ì;Å;à2/†¥ëÞÑ*Šüª¶*Â	¿sî‘xKü&¤Æ(·ýÄòë)ÉÄ h"E™vW Y§O¢n¡tf¤MbÎSöˆîžé¨µðÐ¦É‘3‰ÊøLòÊÀdµöÐü;yêFõÐŒyí7=½«qÀøO/QceE‘8©KyJÛJ%ÿçh¯£gs:¡
+z8½;?…nI@>h¬ÀB¨dì¢K–k0»ÑÎœ«{ýU~qÕ¬¼|ÆH×‡y÷%pâ‡wRhZÓuBG±åûÁcŒ°†?îÌB^€ã	Å>…b•äsºŽÂ€9Ö‘òÐºzZBâ«zÎóía™Ý]çÔ‚þ-œJwÞZ-{íÁÊ¡'£^s2sw:áe •,Ù8e¶š¼pÓCŠ}œÔ!¥™‚MQV;Ê·§`IwËûj!“ Ón>"62]ØB‚ÎÇ'ÕN´9ÄyårbýX¤ò9â¶$‡ÈÕ–îÓwUsÃ{†ñ¨ÞÁÑ°ná¹Â«ŠhY…z 9Ýg¾ø)Ks1š¥L*J«¢Š#µÅ›ŠZ¤ñ¸$ab2¦Åß]žÛúþÇzvÅC¥±á|ý¢J=ð©\‘µ&üÐg‘£Í‘-“Ù×ŽùÞ412U;’KbQ©m ì-‡ÒˆÄÛÄK¨½¯µ—YgV›¦@è5ö…€‚e[Ðî;lùï`=‘Z.‚²óÃ¡†Ÿ©µÓ¥ÏBK'ÙXÿy¢3ÚU§×"k¡¹,¤|æGP¡¦Ý‰p˜¡_{Î~› *îšZ úÍãRþ>ïÝœ?™;g²ïÄ —Ç\ûH1æyòào^Wx/ÔóEŠ`ùÐK)Åù÷@Ü»°è·zˆ„KuJ!ðuÆ^Ð†Ê–}w^ï±0Ê
+Â<<D ÖÅë^ƒQÃãæÞ8˜´ÖAùtÔµá¸äQ>ºù@±Ú8òÊÄœÕÀœo¢#³ìÒô*<V¹3!Î–øÚw{­s}#Ð96»÷•]aˆyp©„S¼rsþ›Kê6ämÌçp‚ÁÂRÄ#‹œ Éá³.Y–÷ ÿiï?6TPµå¿Ž\QÙŸA»¯ÈºÓ‡'ûé-KZ©ØgéùO6yÇôÖÅûd§º#‡a–õß s¹Øvðã™ûµâºô0´Øpé7òL†‚š²·±l3’õßll"5dA‰ómIJü5ŽfšéfHj‡bÇ‡ˆÉ°ÍÃx`'éLˆ¾Ë®.Gtûyò§.‹ÍV"2¹5Ý °°ö½è ôöã\ÆS,F¡ö—Ç‰ôPÃ°-ˆEW”mÃ=ÚOJ…µÁ`ö3}ëE26“ØÃ©å/·žÕÝ†v4Êvö)Äú}G7L`²Ä½¤ÿ¬ä“¯‘q8ÒÕ\"%Wºþo‡Ó‚°T¨0Èõù®^aˆ_ÿ_‹¥óÕsÐPøç´nF'­Šo¡õáÜ”A÷·•E1šÄõ)j7.›ðÕ¿
+öò‰@h©ÈlŽŒ35Å«?ð a–Ëè@ð•^ÞMtÅžôQÉêAxe?±ùñ=”}ê°Ü/9~¾Ë”tªtèåk_x¬žÌº·¦·û2£)Ú>Ê³w\Ä
+ñ.y6hûÛ˜ê:‹nçs_d±yLØ -˜ˆA€ñ¨Ã‘ÃÐãv½gsÓ§ "²ƒ‡¦|±ƒó¸„ÑA¬USïFÚ‹ü;’>CÈ\Ç×T Ìçvëâ%F·›‘Î-xÙA‡iø!wA£¤«ptlûuÓ¸‹G08F~C=°uE¯ëý¢FJ£o†f¢³a}eúuÁê ¦x@m¯ »Ä@Òõ²÷ÒËo—	–ó3<„ÐúI^j+A«Œðp‘¹{|•¿øaÂaÑ‡•Ôæ»¶;¢JZ4®}gúÈ!+ŸË*ÌQû«…bß¶Gíñ'KÚ7H™wÎŠ¢É§1ÇR_Ù¯Òú´®'»F·{ÜÔB2Î^bjBaˆ¼qþ¢7§âO?!	‹à÷A¥ ðNÅ¢VsÙ&/Å³K“q´ùtVÊ@ý¿Ûz~‚³Ä‘“J{³þ¼ûŒú‰Û¯”i¨y±ôÉÃcÄõ%—lõ0©²[ðáïùöŠ?Àˆ÷$-Áè¨Z˜+ÆÜëæË`­ü ÓphÀð(´Í0$(fæfuµ•ƒÚ×«‡@›+œK‘Ïö®H ktaÍU\Î“eÂ¦ˆ3èf±Ïš¸F‚¿×»!îX¬Â¡¡€Ïæþ äýX…ó*%qœgòÓ¸?	HÞeÐZµ—Sé'{z’û™À"6¥°ÊZq)çsÙ6\—±Ôz˜ 7ñ¾9ô€|¶,ŽCCÂ±pn1¡DâSIÁ`äzû0 @ŸG™ÑÜ,*ƒ4}.'‡ðä¢OQ}¶BKà°³™.®]2x;b€ÉQ•Ûò,~Ö¸ÒëM±Ñi0´0oaÅ·®|ëP*éÞÙ•9=1¤™8„»‚ó;/š
+"À	¼HR×ß3ü®×#žü¨>±&Ã¦{ï!ÜÕãI¢Ú³…mÌ±©Ã›-s/àVk‰(›Ÿ5ÍŽá‚ò
+P|}.c,{>!Ikm‰ÏTíÏ[šClvTu6¨¶Õ0u:âC‰_ö)<y<Þ&õÑ‰Àq»¬oJ%c×>,ñ"öS'):ÅMÒœÔÌ¦ó•†Û»f‘Ï"ªbùèZ:•ªÆ—îf;†ááŽ£øó§”ÛV¦ðõ)ï 11,2EÙ¢MÀFÖ3ìP™'ÌLŸŠ?¬1K™xÿ¿cñæé«ÔJçNŸQÇ¨EäH¿gq—«©…6&epÂ[Ñ—PHÚÌÝ%pE¾uÏ0`åVdå F‰»Ëïô¤ÃTÄª­—2±³¥	á}+Å–»yš
+{£ƒÀGJã@q­DToŠNa”(Û·Ž‰¢×f×±ÆF”sð°B°‡ó¼ž^Õw2ƒh ·¯r]Ö¬¿ºV/XC$?¹üÊ69’€e`28Wö¨á%/ç'Þ…	‡¶ÕÔd>˜)HÖää>…“;æÜ oU™û‡Ã®¥×5×Œ9w!x?KLð¼f@gGû•PÓ¡­™|mÜ1bÐ§(a}ÔÀç®QÞ¼8¦Å„5ÂO¨‚vÃ¤Çcéw8n«¨&Ä*i»qî¥¼¡ÿ&\»Ñµ¨²ÙŒ¤À4ÐŽUU$ˆÆXYíšn‹ó8†üƒ9®I £Ø›@÷jlÜqÛp§]°õh¿ÆûÒ!á:PÇŸJGºÉ*âKµÿ1|ZëSzˆ.ZÇÇªÃ	Íj‘’JÂ§ðº<˜ÒŸY¢ÚlH·ÁÂŽÂãÜQróåP—›)’P3(99Ç~±hê÷Y¬•ƒ“÷¦··€sûnÀûI ¢¯:c+!…Ž)Þlz\ž‘bØÁžäŸ–U^­‡Æ»£gê’Æâü’µ¼ÉûéŽs³Ï9~‚¼ÛDÍ|¨¿X‰%2‡"
+&Ë3Z+·kpËh:{UìCƒ„1ÔõÖM¶JÖa¶Œãõ™Ò_Œ’]@B¨B–'èµ×Þkk•9_=PX+ÁŠÿ¦#Åv¦sÝÅfoÅFñ²z ‘‚Ëƒ´¸³d"oá`“fØ-à¾Ù‹	Õñôxó;Ú×^a¸V{“}À€wùW ¤+ñ,’·›@™h,7 ÉÆÚàgµ{+“¬^–g‡¾èµöcB}:¿h¼ftiõò˜Ëažä79db‰¾š¶Õ5ä	ÀÃ¢]ôd+¡`-C|TVA8e7’ƒõû‘_:áBØoŸo :‘Wü?–ÈÝ¯³U4c>«žËú²ÐùE
+§a‘›áºÍï-È3"¾Yy7m8IØGy¡Jí oU © &ÇÄ–ç«³/ç›"á×½ñx­OÒaR2ž2³Ìñ‚½é¦Æo…í{úÝÕÔ(¸Ó¿™S¯‘÷ô6þÿNêÐÈß®é#ÌQUÊ[¿Q°‘TÉIû›ìpôPÃã²ò·®z_‰Ô7{"_ú¡Sœ® a;ÿ«ÍC¤RmÔ¥Ø#Zcx\v˜cá0xæžÊÒó/6å^´´UöáÊºN6ü«ÁÿÍžžñž´-žpc%±—jóøöXN½ªfLbÛŒíÛ"¨»ãîx2<gÅ»¥u3£òˆ!#Uÿ'Ñš	˜ÛC™ŒxisâjÍ‹aêîË-9=l‡j‹¾´Í¨që],Ú:«çËo£GwJPÈòb¨Û/§JË!«3ê‚qˆËa6	°×aï£ÖÆø¡óâ˜È¦ÿ¬Éª5‚¢PYn‹ºq‹Z`i`Âè¨ýK’ì¡Íòˆå«ê°öªµù†Œ"'«Cž·I³Ý«Ò´o¸Z>¬`üE1GÞî¢ë_-Ü‡…A•'N#'%§?ì^ßmTût¼{-°y…_l¸frb*¾ÔiÜú‹ïÏÅö¬ëœÕð/Ä“#/Üì0:ò›²CçKò?E&ÂÆ¢V‘HtÓ_Êõßc^s+ä˜<&¹C˜Wà±´0,Ÿ‹²°ª•K²aìä(òŒ~€ve‰I“¦ÈcL¼¯9T}G'?¿|fÃ©1åëHï÷ï‹.P›ùÆ]»x%Ò™PÚ5ÎÉò‰‚uÜ `„§®iöB]ï‡àìöhžf+yt'	¢õaóDãù¨¸J†F¦!‹Á2c'%‡s²DÁõFGÒÊ9ZE¥ O7r<Û÷»žÇð9i_Ž®éþN‘ŽŠN8º3åÇxQ‘VK+Õ÷EY“Z¨õÅqXà/\‡²;ÃéÍ2F[e¸‡&2‚+Ó$ÕAu)i«šÞžÈ ”yõhév[Ø£™ ›jjŒ~ØméèÂkÝ–6š7óíf|ZQÈ¸ë ¶3ÝOØè÷ËK+%®¿|'nWÃ2‚‹µ¸CxÃ”ð°¤Œ¹ÂÁJLPÜ˜â¹à¯Œi
+	]…¹Å7«og(ìßÈïl-Ú¥ùIg÷ù…µÜPÔ
+[ìf•%o…ªÇC„.ñ6À?+„ÏqMpu7FãLF—“íÁw›˜I‡œ´BÂ`úD?cÍ<ìÑ©˜gËb1d‚yüEÁÉì +M“å~'¾Ö‡‹×óŠ½‰y^MÂ0eB&ÐuñTâ‰·C?@¦vÁ>u™>{)›Ì
+|÷pÄÍñ“Á-­ã6‹ Inz¾ÍÄ€ç9²D;üGAP¤i¶É©®Š[¤Ïó¡Dû#	5
+™‘“û~tçBÀÖ¿ç-J2LcÿÎDe×HýÐJ‡J˜tÞSB›«@~Å‡Ïz¦wŒœ9µBOÊ=ó	3L€íK,é8„„Ñ dy'Ôö4V­ú24ÓÒ¥D<I¨üøøÜd¢‡VzæÜ¼?¶N"V†Apbvþu‘.	à]-Òÿ6rmmæ—{£Âl¥ô.¿ Iªä<Æ`úL©…j‹›Q5‡n·@d°
+Ñ­V"øG0õþC\ú
+h;_Xy“)rÞ"ªÀ8XúBxêÑ;ÅàÓÃÁC«Ÿí™\tþÁrˆí»‚YJrñwRÍ(<NKtË´~{#äç‹-pÓKeû¬„tš@ùäæM»¡YA¾.ëD€{ªf©!ºŒÈ)¶tÈlÒëmËÿ -…>
+éG»Ô,çxô¤W/Ã£/`fé³‡‡}³ØEã"o.EU2:ƒas{MÚÜŠš—¨Ÿ›/[èáË]>F_‰&(ž'Ç3*Ã9gK,³s%.Þs9)A'¦™u_£¸ÑS/Fà¸ e˜Å§	º?žÎÝ è.ßÓýÛëJŠa½ò‘ AWIDÒ-»lVzWßJ°?õˆ½Ï1ô²+Öó½A3‘Y“¤¬‡C2«¶psXƒþOÕñ-|Ûï[p`ƒ
+œ^¡)áöudÇöYUD°HªÜÁIJ”'iîGÐoØ¸Â’9 }dd6¶}žyá²ç0Ö¿35jJj;©:¨0}V— x ëÏù#÷Â*äÿLÊÒ‡(;ŠYÑ¼w(cÏuÜ#e—R
+‘^S¥(’UÐUÄô¡Ìu#Ø°¡™}
+·Z›ÈÔnr¿sï~z6:ÉŠ®¾‹Dš¬™o‡A ÷]8É“Ìx²{•HÚ¡9“tÅ£y~´Êä|CFÐÚ§pk!ìâv¬•·» „Œ75Ó…[RòêU}’–6;¤‰ä‘¨”ÌYÓ–ÕŸS^(±ù$V{ï!Or‘RðèÑ’H»® ô }¹bÉD
+ wM¤RÛ­>
+û|^ñ|Ã3;¸Px<Ó1¢HÝ<ÐÌÇÐ 4Å‚¢ôR0Æ—ÃóBÍ–¬F·OOÓ^ûOV^ë8	ü•O'”…á"Üodï0Ö¥Ûwä“žŠQƒâÑ#~…’“õ‡ì×œ2r£ŒLƒ¬K7*yNðIwþžeÓ8—Å""÷ê2K:RÆÔ‚·¸izƒØ£	}3$\ü©ÖÙÛÚ;afÅò¥æ`ÚÂ$3AHa€/–Üôó8"½jãÿ¥`M¾}õÚ”ÒŒ¡xÄ÷ú¯õ´Øœ,ù#¥"À®a`òßÏÝcBzø«ÖPWi
+™Â~øx*1T'qvœHÛó¦:ØÈò›êÒëý…}}¥Ïõ¦þT’#'ü!ÇIˆ †wº×»f\—1U¼Å b !‚š…VˆŸé&¶@tøl…¸ÆX_Ä*xÝ_6‘R]åc6‹UþÙh Ñ:yYªÜ1ÞÐob™%»žÓšÒÅH^É¾oC‚Éñ!û’{÷u³õùo{Ž‹cHRášä?.gr‘xPjÉSe>œ¨U­Ä¥M 9¹ý'Vdî+”
+á®bíc!=áýÂ„Ÿªºk&¸F" ˆÏPÑh‚ŸË÷æ>oÆN9bÏ8› ××«úH›‰ð½Úî$ EªthxRi×¼AÞÈ±7Ì–É|>¢_Í¼®2šÙØºÌ  ³ÓÝöÄ"ñ"hpx†=àj	<È$Ãê±D,e²ñWœ]õ‰èYŸ½G»–/æ¾ÀS:ýû,qùáÂ?²ËlÀ»sØ‚Á¹aÈ1÷*jÙA«#ñã	•í¶¯Ú	(.‡žž$àÜU 'mö6Kæ\Ã·_ð/q®Z_4Ùˆ†
+7¦ÃÐï‹ÅÀ«œòÊAX»ñ"Ååé@Ü!?2üOl›Ç/Ö=¤Úp/­Å>l³¯ÖÚUsoÚ°¹ŠÚÖq§<ABÔ˜$ÉE¼u-54#f“Å{"Î›·¢ˆkÅwª“(ôÖ{õ¨4$BÆ§³Äœ) /B’!¬…ÅZDc Ø±ÌáÖt¤…Bži—ò¢|oÒ}¯ƒËÛ~§ç†g	…u	ZK°[ÔxZ"•åÝá,@Lkœ2¡Ä(Ë“>ß­s°”„‘C™÷¾¢^¿P–"iKè%Õ/Àëì6,”È]˜²„EV9ß*¾û‰•‘‹PQíÒºG8Wgm)[ÿt\Ö(˜*çÜÀ}îºÏÓ/«¾Šò{Œ@+œ”Z!X¯L€"qÜíú¹Ã=Ðž1ùÓ
+÷³Õ[f™8$6ÿ¯q»—»v•üª`./¢rzÇµ/æM6`ðX×¬NZô˜S°â¬ó‹ø÷sÎX¡h~\äPržyDwCúŠAŽ8º êh`°ülÄÜ G¨1Ü²ÃŒ\tä?ùœû4¸ Ózá~*ŽUâÕ	,t
+òJgáœbç¼CY[sG¤Qš@Â€ïù)S·-™Ç-Æ‰?ë»Ñ’5öd<iß]þ´ÙümJh‚åÆLšAÍN°[ÑOŒ¤é×íï¾FØt/)g4ã_Ië‘PfíT€4kúè[U7úkÚb¹†1´Q4ºð,é›7âK)½Š­ëZ¬"ÙÅ“@ß™ð°ëÜX‚ZuvTEmô5øã×/ô‘0$fQ(»×Q§“<säy!Í<;	´ë‡=ŸÈiÙÀUæ	•B]ñE§*=U;"cˆ5å[´-+UÿOzØ§Šú>“uáäxÙ4GÈ]Zq™Åø7‰ÌlÄ¿zßPuÒå×"­‰ì°!­%‹Ó1—³w#Û-R/""v¬¦s8´¨Y×•ÿ¥5ÆâèZÌ¾ŸT5÷€9Ùõ»Ï°­YÔï†È˜ÂÎYl"ýëüíä¶<A¬¿tÆð<Rn[Y([Æ4‡Oá`Á3uñœ¿¨pcxÌ|ëèV1ž€#ðê#Æ2[Ðõ°™¡L€8ð·DRY'n8Ï‘ÿ0ý¾˜tn<K †¯W[²‰íÔÆŸÃ´fTv¥h©qÏâ½ÊÿY®†’ð>“¿¥MþŸß7«¦Ê!K	miU`I’3]ˆIÚ‚ìT9ÃæéÒy‡8ï-€šÇì:Æ}¡uêV_%iJq£¸š›_/ŽÕ;)+Ç‰tùáo®—%G~Á$¯ŒQ|ÎBƒ|ŽÜ\r¯è.M`L"œ¾âÕx¦¥¿›m„Ho»1WV,EÍ®Võg(Õ33¶üzYÐNšOA…ŸÝ‘ÓîD*bI’»…¿à Nb`&UgÏ$À¤Añá•eÈTH÷ôÐ-¹~Žú‹CÙ€¨Û³©2ñ2î£`Ü¸×é‚Ñ:Ø±î>!\3rÍrÃ=Â¬)7K^îªÿêöŒJêî²Õ•iz0‰–«çøêî4W¬­Ë¸ß†X0aÀøuX ‘ç‘ló·?êïîÃ‰r ßi¢2µd´¾ïŽ	 ƒÕ™2zT1DÑ•Ôq(Ù3n1¡ {¸a,Ý,€,J+Âì–C Xl~ŸnJHË]¦¶zoøƒç¾bwO9T¶§óc4¹¯QPé ðpz¨\•0µô¥öJó£Ñè™ž.zLˆO{([ìSßØ@&WíDßqò{üÔB ít5Qƒ-R9ª+µïÛœ›…|Ù¼ðèÚ
+PÌ_I0Ã¾(7ô¾%Q÷ªýhˆ„ÀÊ¶«bfÕªk:¨â†´ /¼ÐChO¿o	¹Ò©}[9ðøDêë]öÓ3ÒêÕ¥I HMâUƒ×#9i>ÙË ìoï0_žM¾J#Ttnd%÷Þ¾j$üRl…™@þÊÝÖˆ5).­úš´Ê=czØc„9ú^r8µBýèR{aS›®
+z£ºcÅ³¡Øõ(ƒvºJV ³ ÕLÿèh…â@x/pü‹sãÍ«TòØõ¿ÓS¹×ØÃKjÉ'ûÔŸ=¾ŽÀgÊÓlåö‚•«£Ñ½»¼Ú¿§ØºF¯<8iž‰…D5ŒÕ§}yL¹Ö‡O¥S,…²/ó±nÍ:Îu8êÒu#ßŒ|Wv·Ž…:³„GPr¾³çûÅdÖ/†º—çí‰2D¸IÞ 7B0kdê*ûñÀ¾
+Õ·ÝzIºÄx‰rØ)ÊÄêþ‰*M\8: µ"ýB5ØxÇN‡
+?\Þ¶ü–j+¶pšÒæ+:Â5ÈŽñVÊ²/ñÄ£þBþOÛ“›”$ÿˆ•\ÕòñjÚRMª¦T2eûîe4Ä}Þ‘áL²cûa..Å@Ø±NUUNOi]UòÇ>jÐ13ôñV:ø"êWCôÜGQÐˆ¹JUÉcbù >½ø—4¡Ëø².Bg ¸‰ó|Ä½@T7µþc\STkH–Iìb+kü*|ý$©î«¤]á`ÿé}‹K¿4ê-Œcâ£{AŒ¹Ÿh]>ÆÃôªkÊq‰mƒ”©˜Œ¯+"bºŸ*ýß«™lCñUaGXh¨;Y4K·í‘ƒêXù‹UÒCaÆø[žov’ÖàN[lûÛcz¥<Ô°H!°ís×ŒéTÀÏv—k(ÒL™®‰7rû­Ûöx^­”ûõ•ÜgxÍùî,«¿©qCèy¡Ø»–‹ŸµIêxêÀÛÛ2ÀcÄç;V\Ù¬Ewu€ÈžãË$• :1Z0·æ–Lž”æßDÞe„ì.\çãewÍüJ”D£ÙìÃýO#•SØH’'ÛŽæÅÇê^qg	‚Ä• ¦¹žõ£ðœúI­qè§h¶\¹ZµXV@Dïq[½ç¢aê™¿VXÊ×«åip–ÐØƒ{ûE)”U ŽHöÞdqSô½Á0¤Lª·P4ÄµÙ[Òþ•¿"µæUUŽt/Ç—¿šm
+ªtÃ
+ð.ZÞïÆíåÑŽ]9=Ì3Ý¤j|íÇ(ùÌk~Gj6sX'­h0.Bê®ö5ã¢J
+·wö¹O-9WÑñ¤c‹ðÂólÔw‹GZ×´<D8‚RŽÖÁÖs^ÍÌLÆ•ÝÛß4%“Kò]Tä^úcñIç÷-Èµ	j¬i•L€O'aVjø·Ð¾’6öw
+o¬šœÚ1q wNÑü¬·” kÓæÌV¬RÐØ“*á¤+(V„ñÝEH<x¤DyówK
+dòà³Fn–=…"Ãœ²Q›¬Ö‘XßËÖþT¬ýp­ßdòÎh®p3^=.™ŽÅ°NãmógžL•¶
+tÌý4ìÚ±`X-›öù>Ì(h• e<
+ÓQ§„ö×õö>u‡Ð[qŽQŒMxÆ©qØz°Ï¶‚:½· [G_Ö…6ûàqã±nJüyôÎ…¼¢è%¶zä¼*`¸q«A}‰ÃV?¢…uË»$ø_á+E½N{÷¹~`MrÓÂ,ƒ˜¸³zö¤5
+ú{òˆ€/AzX•8(Pdð'¬BÖø¾3gÎ3 ²—ì3Äm4†ìJÀ¨”£^o}ž8Êé×ô¹P³~ÉW—Fôáž=Kñ¶¶Mp·n?ä¢ÜÉKÛlgû²`ŽîEEŒoÝêš·ä‹´‹XG,1qXh;”²¶ŽƒôG‹uÔèÚ>=Uú,q''¶ Ùy¨;Å„§
+­)ý¦‰å–Ïýñ„èJÈZâet3y•†š»o+-µ²ÁO²ún½ÐÏ Ââ…w„&ø:êZùªpÑ²|L|¨,6ãRpt9L_ì>!a¤¢Ô.4MeÎò£û¿Pä¾_Þåþ´¹ôƒKßO¤B†Ž°]9ŽRCHAöý§]AÔ[éßÇæ÷´%@’Fú“R>p &$×iÚ)´Kö–yç?¯kÙlx	ó‘QõtšHpÏ?_©ý¿P+±êÎ“r—n¤¡ÍÕ,ÁØyîØ„_£ò{ÐÑæ 7yâq÷ª¢V¨†‡Dv÷M3+çÝ<j^›JIH™»ùžÇ­›¥µÊ„­Æ?5 f‚•ç)¢‚`%ÝxZ÷s’EWlW™ß@¾’˜˜ "ç‚ö‹üfp.«l¹Ï’Vßª<œ®&þ>„TcªÉW~ÑjÒf·o(¦¥®««è-v}¶Œ´HîBcä-ð‘oiÂ;<H”vçÔÔ'fÎ×®cÇéxˆÒÍ¯' +•jÔ»°€í×¢gø@mÇÐ#kNßôZÊ‡yŸ(hëÊjÏ"k¾r‹ØŠïŠ›rbÅ]¸á#Äbi/¾ŒÅ›‘e©ªŠéGR›ûGßl…paÙÊŒ÷êl«6^ë&œÂòLz*k*š½ª¢5'ƒc³K…3*…cÖ›x*ÒÝÜÏ`uâuMôú¼xfcú–éãÄîx!ÄüIq¯8ˆœ\×Ë¬"¡‘Àã“Fï"ürÐë½2£Véåk…¥rüm˜Edþ[Ø˜4ÛCÉ¦Y{¬—LY6 êvwÏnÈ¥Uƒƒ·oIä9ÎÄ!ð«å­žÜüàÿ6
+
+†6Ù{Îéè3ç(hÍ²t´P|ãúQ±­ûén·ã€dÄÂ/þP›]t¼Œ‚@ÉH¥f“,Åë¹SÌkr—©Áµ+àœ‰STÈH…þ!%äQèµÂ
+K4
+Kö¡ÈÐ¥Æ*|÷áy,‹%oýŒŒù™’˜’‹tÑû­À’“ÕT.Ü’	?Æëzk[f)Ã¿ÿ  DÅàª„Tý½€Úµ±Òøjó{¸ŠÇÌÝ+eÆ{þÉ=«ÌÏÄNýŒÊmÎ¾6æ™00Jºn€ÆÂ¿_&R®ïf†’Æ~t¶j&¶ Ž0ÖŠ¢”Ý	RßsD¹ŒqtC›Éc—£ûjY<¼&ªpm{Û0Q½-2•ŽÃpD>º¶¡±ëŸþÿ7­ÞüœÊ^˜:Ä‰Å†++E'W¸gª)p˜€JöX¥¨X®Þ?¹Æ/½ñbó²)EÝÊcª”óù›3º7÷™Å•[oæ!ZyF‘Ý·»¯ÿï]`2’ª­”=´é`™n*z²uÐŽ‡h$¯£ò§ÉHyÈ¢+uV6»—+#é7Dj»L~ñÜqÙ¸—_æ™åéé×¬wþ–mvû…A ÿKÆâ-Sˆ¤»A¥ÑÖRû¾ÁeCZ?ˆj¢5ù €ÆHÕu}3µÔê?}R{p œP»ì/j¤˜Ò~ä.Šï3RHP´ês¢Oå/Š±h"tRVuÔÒ¼¦Y-Ñ¢Æië‹LÔúÄoD‡ÊY5Äû°•uWÒi‡úd9ŠåXfî«íÌ6—Ÿöë„…‰¬°Hîl«ÏµûÞ®+iñlëv^8œ²Ñ[„‹bý>àÅ"ËfLüÍºE ‘G€ñê$‚LÏµq\` ŒÌ»ÜÞ­Œ“j›ÕÅŸðCè•ö¬.˜[ÀØÛ’È#òìM½Rí+nœ˜v~ØëÝ@’€0qòî _ç­óÖfbc«dÉ?LìËŽ3A”½m|!=4šç»Kya*qLÌé
+¹µeI„YÛð¿˜çŒ7³Å¨“¸bYa W`sŸ’ôµÑóŽmG¤ïîˆIR¸¬shªwìÂ+Ö&‘D¯X‘ºRïÙàmÆ¾¡ß$(øE¸eŸt-,Í5¶3J‹ûùb3µÔÕò¤Ç¤Ll¸0ë_è7¢t‹qÑ[Î:‡ +6ô8VÀ5úX_«að6Èáýd¹LJò#]Á^B*ÓÅH¤QÄI&%¤[ª°ñ
+ UŒþðXp¢xtô+ÔÚíû‚,g 5cþYw¦¨·ÝŸ÷}[È‚4ëìBMçµ|ÒðyÍ}ðŠ=$¨yµÛñÀ´¯ÇtXˆå“æØÓO/9BÄˆÙ/—ÊÜÃg~ïÍ¯ÔðÑçÿ­e!÷‡t0ë®¯¸CßvíéñÂÿJ€Ïc5¶°–Z©„F’i”õ*¿£ÆG".òðNPBõˆIë•Â Ÿe»y2~º‡]4,î>ÍLîqîÎë-¬;âíÊt„ñÔÝ)`AïF•‚KÕeJïß3	tÍ~]“#ü9AWƒÅ»(Flè™‹²wWaÎkáEã’}× þ >9iðÔ#
+ÐàSÀVîE¡®ç	ð»DÔ€a_¹œ£óÿ÷eÊ»ŸBR’ñAî·Q·&ý}ä—ÖÒî#ˆ]*HYÊ5»~IícNCØø$çÖ½‘¢‚Y¬,! ùf÷3—äÎ9•óêJQ¯ªâ¿| ‚—ó]Î:ÿicLÊµ¿ÙXô”®´% Ax3[ØqÌÇ˜üH/&cÈÚ;<Žk°ÌRºôÁò-„|ƒeÇ[þÜ%TZmæ'BÿöåY>øàúÀ»¾ûvý,òR
+½ã?@ú´L²gØjåÃœ\ƒ+Öá´Â«MsA¿%‹øxAr•ãú„S+‰órbÓë]uj*òì3Çšï§Õy±vz5ïü(.-ê§¦âôkX«Ò
+²¨Ù&ÚFˆŒÈfŒ˜bˆKƒ ÿÉ@­×UUæC¤DpKöTûu’ïPõVfG‰×v™Bèž®Â×z9ÕW_V­êäµø,½w×†º‰®$¢À9öoAk(zSX<õ¸Ÿ,C+ìcF2>±‹6òÃCƒR‹ÿ&ãvùøTJ—îÀV–Ž6âéÍ±9.!€ÇR¯¼h~Ùë²lÐd6é¹»X% žokI	Ò§¡qônâGˆ‚*ÌÓ>…3zú8H›T¦ JhÆ=BlSË\Mù›¸QtN2ýõ³Àb>ÂžÀ>ÌßÒw.q©‘”/[Æhyf	µ,™-O£ g!Ô:g´²³Sœ:8Ÿ—a_;ƒ#N^/§Õ
+ ¤Ñv7¾áÚ6ß-jpZ–‘õXâê§¦Ö´Ì4€3:‰Fàƒùµ‰½Ø ã@¼~;c}‘h^XRÅ¨ŽOÿ‚Ö¡ôÔf?‰ÞZ¤È8ë^.©É4‹v‘y”ÿ¡·\I60ÑðÏ#FLQ·°àÔÒ2Â¤xŒæU|ßÚú-V2-ô©|hû&j³ñQ¾ÊW øä¼Qß&Û‹aß¿ÍÎ'Ô·ôƒå„¡cª«ž´§ggÅ_±ç(7%Ø¹KÈ{Ù’ºé ~£4ö§êÛ[(Öb©{µ’ieC¬s¢`}YÞ¶X(MË„ØE&/EzrçŠL*¼ç7Æ­Da><X¯»ÂÃ’aÐ\ôÙˆî`
+?Ë}©ÍÒõÎrŒ¯ÎB¸`›Ùgçn4¤DåxÚPQ°Li†½P¬Er°·W@V€™tÁE(-‡š¬O¸²Ôæ?²­<P–Òj¡}$©™³8aØöˆœ«Þ¸ÞL·Š¡=´•ÔFÏó=?êñ¯žPs°D`!É9˜B˜‡6Ézmº|äâïîÁÔ‹|u‚yŸŠ‹îOö/r $•Ã’ Ð(á‚iw9møÉôòÉ-–T®ú4hÆ­ûx	Ñ‘¿º
+Â5¸¸Ü ÿ³·‘ÈRa—tëwŠ¯ÜÝ%æúVk;§¡^,#AH.ž5 dÒFTì$:OŸ©"ÖýÜìì˜y3Aëã†‡ã|+ŠXuêûoP‹-K’ÌûºÍîVé~Þp7¼ÅËòÃ{vC%Lü!^·ü¶{ÜÒqÚ}¥˜Ô…@õdè™_híäªjW•¥t ÿ{¹?¿LøNÐr×6Ej~óÞB~¥>€;R‚ÒâCø$ëÒ,Cv-€ê_ÙŠÖ 3q[.]9ãæ$Ðá¸\RçÞ+(©D]®Ø	ìœó‰éåC¸—ÎöíÙ¡#¦5JX¶¸&7Ièìþ¶±r@± IÑt&@ÔÇ“™x[ ½@‘}¶NËÉS-KïBÖÑÅHÌ¢ÿ¤ã—œ¨¼àVú©rL	|nïª•:³ï$!‹ã÷” ™’²4´#oxÖ‚ÈvžaòGêÇ)ä®ìÚ<i@³æÀ¹×Ñß>ð±ížæK\®/è+š²;ù¨ÚÓ‚áw¦¯Û¥JNkCÐhÉkÒÓEtÿ¡Ç>³H®¾`¬ù*ÛaµÇÔ\Õ‡ò}éYcT´TŽV ø¥•1^¯#Q¢œÙŸtËl„âõÃÁõ	_›Ü>†j[EÂLeÁ$^ð/¿D„ý¨VW[»=í8Çq\ÿ{4L¦Ë8+ëÓâØË(<¬#QY„3cV×i2ËÅKI3?|ðÑ¸~zÝKo±ú \1sRø²cÌŠ	è†¦Âo:'qh%BÜ,·aÛõ{VhÁÀèÇAÒê,/ZŸ–âŠK°³„žý¼×i[KBû&ËÚ£ýNý" zhÌÔ¾Ñhˆ'ŸÏ~»q†¡yøýiM“Å²^{å(\b|:ÊâÊÕX›P•~Ny&0 ç›·8#¼“©xŸpM6UØu	Ð>,S3­’àí,²Ï˜&|·? zT,'_lØXÆc’fiOX¥0Užˆ¤K H‡±_Ö&sbIÀ>oeÉÏ”»ùa#•²ÜûÃFö4gÅÂº&Jwˆ¡r±v•—*f+ðæ*Ì›jæª#R—/”yCCºs;)ò^÷J­òä™£íóìøÎÃ°‹H:Tk ýÂ*Ùx@ÞÉ•Â)J£µg_åÛ‚™Y´ÕóDôùýÔlÒÐé‚•ÐÄÖ×*žëcüi¡øW"ñÈTX½O«8&­*C€n¸Š‹£Ì¹­ç_ëü+%€èY²§š„£ÀÈ·iÒ«¨žNúòt™lY÷I´Æ®«+Þh1ÃO¸Pz;?á9‰çå¥:¨~ñ‘»b# |J`iß.u•Q‹9=ÝFFd wBÜÖ§'
+Ã(<±9°þQþ:¤`šA“ðF`¸ÌOÅ!›%ÈžŒ°ûlzÈX5æN=eÊY#N÷¦ßÂÔs=•»[°Ÿº1JÌ¬RÆ*fùÈÌ˜WRËoÏT¬š*ÂÖ›Ö™Y`Zuoù?t_oËrF†`xâ¦3¤¿À5€“$ÊJ,•ØiGû]¡˜u‹šd­Õùáùê¢v­UV`K¯\î“£(]úrDè…é˜ò„Ûîræ|3áX·Cìiô¡]m®ÙÉÍD‚‡ŒõÌY)ôyöV
+äŽM-üä ½ÍjPlÐåü£Så©6sq¶ÓØæµ6¨…>;BèIšö*ÀpO[µÆ<±BúµŸ¬ íãwtÃ— ñ5ëcÞ¥IšŒ³élKÌ1õG…Ï±S68#0KóòJïeÍ]&‹”ª÷¾V¢­nexT¤ÄêfÝ¾½ì©–8ÈXß‹R•?ÙgB¸éþZß¬µ5Z«usžJýàùf´¾V‘<‘à»æ&YÄ»Ý$l€t|W8‹L?„·mCÎòÜP¾p <w+D
+ß ìX@âþ­¦èvÝ ®»Îž2˜½n!Ø×c"[I&¯ æˆ‡ÇŸ\ú „„²kÑ/ %¦Hÿ¬zSÖ“¿A%zŒ—øv´`Ž]®ÆXŽ/,=xÖ2¯Ï!iö[ÖIòlNI®Ó¶Vû&5,¶:^hÔ•øgÉ_
+Ó¼TK‡†Gf`Ø\áÚP•+{uëŒ> úçQ¸Ö×²‰Êó[G»%Ü¢Â	*‚ÐGÿt’¬·eÑýï©¡dœb
+öj‚ñ°/jË´>¬¤à¸SP±¤Ž3@#P5R?šÂ´¾Ñ™ê atú •)Rr~ ¶Ö¬þ Ö`—ªQÊïmÞƒ&wô5XsMrV
+EþtØ‡Õ¥Yà´–,âÞËdj“…²Ø¨dM=>MÍMn1bhðnÿâ›ŒRWÎ8~n9´ú©=8 Qð¾…W‰‰íc?ìOÆöw{è;ÙUoO`äÓ’{MÎ×xÚ¨@“àð˜ÂDd!L‚|<Ï}õã›žG°™¦,})Õ—åF|l‘;á© èU²#Z™WÉ+Jq×F àv!Í€üåµjÞA,ŒÀc?^H·¶E—¯soÐºûƒ„bÒüÉØ…p",§¼„ùCè§>‡³MY,,HëÛÎ¹“.,³gîoH;›€ÝÂ?óÖUÜÛ”Õæ{»Ê…ƒˆ«+ê”ÕsY§+ 'NèÛ_º*A€¡ß ÝDiü©4q´)/Ö;»ýÝ&d€¥'YOØ9dÆy$Enìló*ù÷c^Zäì–eS´ö±Bž¢7œP†°åCô€–É’AoÁeãßmâÔÜ®®CJßóÿ‡Ì=m(©DÌœ'Ÿ¯'}œÒéEyÂ@Cõ´XhÞš©ëõš"ƒo~}÷¡³àkSÜ±5óúÁi³‹"<T¸1S[‰ï¹íLÿ:|ÜEuüM¿ÒgwËñóaÍ¾J†˜a22ý7uÑZs%&Î¥6yÖ˜üîuŒiBd;¸Ž¾?ý&DªR1ÆD¿P©UŽ£æíò•„E¨™þ}rPµvký,Ÿ=š’ÂAÊ;…ßÄ”’ÊÖüVö!µ@ƒ¶>á lzYÿv('Œ5íêì^½ÙŸhhšDdmP`îäŒÍãwZcBÉÆj’Xk?½Õï»ƒ\_ôòÚ"k—Yc¥0ÒïßÃÉ“o_ÄßÀŸ]â¼¼û1“Dûzêˆ€Èq:%Á&à
+ÄùªV	JæëÍ&…,è;f«ß€ÃÔ13 â¾‘.ÜÚëž½5$|~?ó}(B£ÆÎÄ{=Ù½NŸ,ÜüwàlòöÚmVá¤(òô]Õla\då…„‡UþPÙ
+ÌXúú^õ@07:•’¿-©/K)Q×fp9oCP†·r*}MJRÈ§lLRÏÌùOžÑ6©FQ§Å¹«øFïœd«¨GÖaq¿öØ¨®Ô{ð‡ðó	¯§u1WF<aC÷>à^âkº™,ÌÊ|ã°:(•>æˆµ¨¾—ÓÇ—³ïiäŠPoŠ^äL‚<LÕžã­aÞƒIVêk½GÅ@©2›Lð·)Œ‰|µ‘,+.<WO›¨KÒyX|KƒaMM2L<Õ_‹ÚOQr@ÞLòÖPzÓÜ…³†²ˆ5RÙÓæU"6·ÂzèAµ„"súA›Ì~;ÂB'µXæ#d…ØlÀ˜.¦c–O#®Öl·µT
+Ìï	53*³0ñíP«¤ßÜR—~éÈO°2ÁwL;òÛ>œÔ7müxúÄ'ögž20->ƒ´ä*JÕ^¼	\8W‡/~*ÂAÍ˜I‘SÁN·ÿð.dY`ù× ®ËTnÁ²RÉVÿ´ãý¦6ý
+ áž¥?h€Yb9?ØçžšsBXtdºÍ“,ohb“ž´Ã)r%Óu×ŸÙäìr´½ÚØª¼ùÿ”û¹­pÁ0ÑÊdK	K¶ÓXòwç_m‡0j ƒ“‡AgE?#KZm¬)VByìÝV­ÍÅ“)°TÎï?ÄÚŠ±½¼µ§v&Ð·Mz¡ÛHŽì“dÌCSàßñÀze©t• UÛ™£v¬$>ÏÆiÂ¹ç:Óäà±¦†šû£“÷jÍš»¿õReˆE<œÄ…K1ž½­[â~oóA‚º¸ýÉz-?Q «Šæ«ó$.Î\$wŽg*T`dŽûTM´-ú¸n¨´MUº"ìLÔ»º0d?„v#\ÀÙþ®7Á—Üº.Ë&ˆEtÔõ‘k‡gàé5l¨b‚å1Ô¢·©œv*ÞY‚âÊÉ‚Ù¼.§stíŠeßØ*j‰‡¯©00¾¨á¿¬íÑ#’Âu¹KÁMãÑiÁA\dk*r…*Î…˜É/éÃSTë>Ãû©°ˆô^íáìÉ
+kµ£‘®PÓoK/i'FÊI©@èW}ë—5³k—àÌ±“#A|ùbkM	(a³vÈ}i¯¤˜ìü_A_OmqDEªgÃ#R¼8uYpGPÌ™º•ëX^Ø¶ŸÖ¶Ù®øbØáK±(¬±ïƒÞÞµ]JÖ¥†wò©Vý‰/4úŽ8£ñ&áO|œV´ÚNaˆ¶Ú­¢9SÚŠ›&ó˜S/•JŒèž·´v¾±)ÚSSŸÒNÞI²Ð¥&=Ñ
+àe¹7&Î¶‹Éµ:üü³æ7m°êQ«å`=¾—Úw :(ü¿Ò.sÚ–4)SÏIÚ›†ÿé3°…6®ëy ¯n¯R­ôMþIXðgz1c˜çØœrÒžéÞÏÜ ˜8­ê±tß¾à{éM;>÷8šów	-½ÿ4»8ÕWmÚFFˆYˆŒ”ÅÀûTšâ/†Íß[×ºZ§áNváWƒ¿ôà\¸×<&	¸qž~‹ëw([d¼ì §Y²ÏìŠELÔ
+„ZZñ7b¤Õzã‚tWòG¢âzyw÷ª;:FH(¬uâ¾°Ñ:?ëˆO„ì='&ãÛ4¤iÎcYs6ÂÙýÈWšÊ"6ðyÙxÔÂ€8oÐ
+*PÇ± “¤ý”Õo¨êDwízPÌHJÖ{° †‹#^@“¯5ä!ºôN0—ÔùT’`Úˆ/÷Z¿Ý]¿ÒQ@izØxèû‰¶ñ©äÛùW†_M6|NVÄ¦F^ü”êœ9k;.r¢>¯½vfÞ„•Æô³õíˆ Ô|à¬ì¿¹¯ «n—œ¢$’È/ã\ÒþYþØÎ>´¢Œ.œÚ¾$DæÐèt{$åmÅ^|ôp›ÈðÀÕµçÚ±,Ž®RY<Ž/!¸Cëå¥ä¡qª~*)S‚_¾¸j;IÆ¤ÑÚq;"c´÷ÈÁ;?˜Š#&Âê)ö¿'àé¾m(²µíAsAIk„¦O—D<]?GªEJ%Sâw²·›Ñøw‘aòºäq)dq|áuÇš¨FWš­>çšãsœÈòM¼y$ 81¾z¿åq™õþú–q‹B |¡	J‘ìNËZ¢òL%gªõtx
+‡Æ$ß³1…ŽG‹_Ì Ô#óáŒÖžf_ó´§¡ê%üà>§Û˜Ì˜¡®é€Ì^€ãNé7a|Ósî**m=Ô*n²y$¼8gÅ¬G+â(k­7åãIÐ¿"%ˆ³Ïy?µQÛ¾†ðÕ‡ûš4õ¿vOÜõÀ3=^ªá×Éfb8t\Cåñ	Y9ÇÝQ˜«DÐWç­†š’¦W¤fÊ:[àNr"žæ¢M{Q&Üßê@Ö¦›\²
+³û…*näc]à=e'ôY›ˆŒòÕ<s4‡(k¿Š^ óÇJ¼æ¨1²¤|Vµb¬ôßÓiev©é2àFå§B¡…ÍÔçÅæú—ÈsÁ zíØ’ªeóz/ýM"AlFØÖšæ‹óðÎ´i{ö¼¨gñQgM7÷`]rŒ­AƒpêW ÑÆ½Qé=¸Å:áÅTl™=Ï$Š1ËÈ™Kvª–;¤£dÀ‹õÍåDë<>mÒôxŸô|4]ƒÇ+	 ìrôgIÐ–dO¡”º»Î¢+—‘4ƒe»I¼Ï‹+áOm…–gMÔÇL,¢cÇiÍ`L"Í¬z¼Sõë{$í`Í0d¡¨é ÌØ”æ§9º—Wñ³Å(|?s~WV"=àŸ~9Á2hŸÕþV{+A¶E–”CKÉÖü1É±lH@@Ð©Ÿì»¢5CFä^¬Ð?ú	ˆÔÚdŸ[ä¹m´Ñ5\ü±ïtïq¦di;¤Çs=½§1™ÑI)(¨Ã†4A³{_1Ý»Š^qÄ<.·ëˆ&Ër:«2b©Í2ÔÎ-C°YŠfúÍzb#[°Åò%Õai˜?yÄÝa‰gµ$	3Ž'«|s=n“§ÍJAlAûQdÑ7ÔW^?¦G U¦.ÔgÖ	™f¸ò6ƒ7åúâ…uúaº¨%ŒýâDZÊƒÌÌè×÷#·…Qé>=ý®8ö‚¨?ƒóó
+=‡½wc4›î¼0¥â
+EA|Ì5‰ @–¿m™”e{ÄF#a©üà‡€˜ÿô·DÖìÆÅ
+3Ñqçú-G ™Ÿ7¢×R,PstVTîoÂ0~›_KRØƒç.E&#‡d>Ã>W§q!ºÐÏæ¬´,4K–@'ÉAŒJ€ e¤izvo`Lg²ä¯ž£n|@LÈ»º—m¹GSê-Y'	8óþ£Ð­__×Y–*Y®¼(ožÊ­5:„ó(ôÝµàñØ›Êºˆ^ÌåÅ…Ö?âÄlÇ§öÎŒçÕÓÛ%p&É*‚	‰˜Ýq|Fk8÷¾ª*¬aÔTŸï•T÷ø^ßx(­>°ï'«Z¾jÉUé<ëÕ
+–J‘­0#ø+Ycø–À€5„§É/’"TìÃçb–¸„QÆqª%†¥`²½ÛT’N³˜%8N8Ô—ÕÚä´ÜîŽ[nš‚ªž ƒe¨ÜeÔizò o	¤
+UüøáÊý(ž.ÛöQêb÷8ôG7Þ:ë}ünF®Þ8fÝƒZ™MQïÜ¼âËÒqêïùô××${ÅØ°µÈúë XwÉï!ð7&ßgÜl0BŽ´æföç®â§£ÌÆDnµ³AÑZáµ,¤í¯w*ìI$Ë˜wŽ÷98PÔÚyDPØÿ;£$P“ú:Ô³–%¿óa »¯X!—X‡—l×­¸æ‘Ã YæÄp•¶M{¾¾ÔF¤±·Ì—Ç¥1¼[ÿgìƒ¹Q–j÷f$ëí«ù¹Øs «ìÆŸ!Ì_ˆÛþÌ[éîðÈŽ¬R°#lf)[ÙÕµ?Ó¢:š»­­ltqm
+”zÅ"ïîN2j:ñbyX°Å$løÿçœæ¡7Û­É!ná£üg\Ýß¦1b›wµ//é•´´Ùg°f™o#r˜†9.@ugÔúV¨ŸÓújQÈÃ¬ÆM1%{i³ó÷f	Í×„à×
+_•GaUt¤þœXËJ™
+SF=JÇåÚ@t¨Ò®vfÿšŽ1#ž+I¼üøÙßgœš9|úg«“_ –ßÎz™ûL‘p}Šw€ž¬oÎ†ðwvZÅrK{ŸRoâ±ÉeØÖNªñKôâãˆCi”¡ÆL±Ž:«9ˆÀ7v Bw/^†Œ?OìLqÍ>iS½úŒ95ƒ•GÎoÞˆa<ô‚GŽÛzÛE{òô¾'±åuN7+íÈDøÊ@êY’aš… ‰?9xf\\ïa¹ðHÊÅï.$täßÏ&î/>ïŒÔ…Zðã
+i­ðÝ*(Ô¥‘e
+¦9ŠlÈ™ƒKfé”Š\Œæ"õ´Á«}TY6„0v‡ÍÔ{E¹ÖŠñQÒJ9ŸIÜ˜ÿ/
+ê‹	£áÆjûPH{ª
+X¼z¦ë2íÜ×q*ü\4¿±ÍËeYG“\d2C =ŸJÙêòÖcÕÎOÉÙ}r€mqÓÎcE¯†ìÉyV+:l¾’$,—‘Ô&e²ÎÝcDW©æ‚“Z‡í"‰ WùXx-¬ˆM–ä}f]«–cD%mxÒD‚E2ÐZ3ö6~—H/ÝÇÛicxÕâÎz¯¯€£™•´û„óTÀhBðÃvú	¿Û×ç¬ÀŠþÄØØ-Ï‹7_ÔªS2äx²z$Å
+d±Î¡C…-ëºlÿT0ëð5RSÈ¯ì²qÏ²u}	EºPéëµSLq³|ñi:Õ€×G‡U×ž'¼Œ­¸­plÑî)ÝJÀÙt€¢{Þ°ßMH€;2FÏÖ¨°iébI|o28_²ª‡ê Ñ“F[§Æzäÿ}QwÐTW ªrw>fˆîO+0•<4S¤"Pîòº•Ê*8Ê‰ëkV6Œn‰$ˆ ö{ËQX¤‡Q1S{î¥€4E¥³R¯·ÜŠž”Š[À˜ƒs~>w.¦^5w @*Ë®P}žŠrÌ7ic{ÈmÔè8NÒKXS3ÀísÎÕæ&LÔ–bÆÕ´	ÒŒ91ÛR?—´©IÀfÅëp ÑY‚ˆÕGCŽ½ö.û•ÎŠÂ0­”=6ý¸´ÍpLôÎ¾½’ãx"Ý…• !uÖd)º=ÇúÀRæZÌ.U²¶’ŽºÀ‰ÍÍŸ(dfb•º…ò­F|§]“gµ¶1$¸~pVãô –'-({C–x´
+ò“XM×ÒN p€¾à´¥[5A½L»´ÂŠ%ð8©!óf‹[Ñáð~Q²¡¶ˆæ%5p¥Ÿ;PZg
+WWE]ÜÝŠÖ¶GÍýÂ|R7k<0	mÉç7ÈÊš¢Š@4aÎ?…kËÊ>ý[7m"ØwÿÝpEÛ7cn&Ë_–%Z˜ÖŽjÜJËŸe|E¼¬«2±” ¯„O×HkLšãW«Rîjtºm$‡ª&=@g! ¶I:` ƒéöFp€X H)qFi(ÔR|QoØyëDý*Ìë¥ÅÕj8h’phFbw–‚žˆ áÕ‚|þ‰Þõ`p“ ‘Âã:]Á¼‚GÎ¦nÄ?{ÆiÞîáÀYkÀÖo\åêé…ò¿ë‘ÂÐ‚Õà]M]‡A5Ã÷-Wâó›=$„T.UÀ)¬òAè-…®2‡qóÒÌ\ññN{µ”*EŒŸ­úaßN³Â0‰µKR¿Š®¨õY'$<ccü§e¥I÷„VŠh§'>åXòKZ¬=i9¨.~¯e—˜ž!l`Fu]O$ùnÐØ€y”é‘•hR`FôXYÇž­hÇ¢!{‰(,ºMÐ°¶²>gFèDIÔëP3·ßë[_Ÿ›Ów¯í*[ßeIczLa-½7h)5\QLråyÄU¿©¹ªÐ`ó¹â¹NŽ|P WÃ54†t{ ð¹ú¥»­ûº0¿1<%ÑX¸çÞîÖP0Að|Èå¾e#1ˆìâÀ‹®OM/Ï#\šÂ÷D+G-¨ÿ~YùåîA®vÚîŸ%}<ìºx	<ÞþO§÷>NÀ?Ã¾Uê"œoDiÏ^rn¬ÊcË=}ŽAx…»>ò8ô è&þˆö?*¯æÇ)ôLá€ÿ\½šA‹y.;Ûö(ýø”¯þ€¾|Àƒ(ð˜´–`T‹=¿WìÒšŒ:\j¹`]8íÞ¦Jàý9—FN¿¥!²’j£Ûc}ñ£G¬Ž„)€ÄH
+HÏC†‰î•ñ—,—ÆÛ‰šµ’ôÙ2 ­håz† †ÉS$]öÞy·»5oì7ŒÓ‹{¶y%º—ÜÈÜãÔØ¼i°SàØª*ØK2Ù<û¿ñ¨À6gr8.É""±ÒI	²>&î'¾ ‚ °=îyã³ô¤Ñxcû’ÝáEý¯ïUŸ™Œ/Œà‚fÄ°$V,§–ba6Óz:RWÊœ›¢²@\º]2†®Ù>ð¡s!$e1]OžºŸ}ÈùÝøÎÍ‘jªßNðîÈÃg;ØŸì>dª>gÀÓÑtqGÕSƒ„½ÜñK ?Ùé4b4ìNˆo
+P;	µ¥žÞ?‰®ñÏeÁm’¤67Òjk„e[éQßt¢,‰¬CLrIˆxš’ùûštÖŸ‰>V6dtlÇdWxNó¸§1ÞÝA.è—ã¹Ò¹6øÔaÚgE'ƒNCìŒHKW¼?–¬é‹»nÿû^kjØ€n¯5kj‡Dþ2øŒŽûn«õ¡z/;ÃëÏ²c	ŽxZ“«ÓÎMv5ž$fÇ;ÊfVç£LRÃ‡•þjP$¢Yp®Ç0†uSÒZi5ÍÚî51€Œªù:,YçB=Ôc°V&Ý‹Ýåt£èZ‘ÅƒÑh°‚€É3bºæ0Ê?l’†ìÁ'#çx‚‚E¶w¶n’ ÄsL}E44l¬Ô!¤ò Ô˜½Š©YŽâÄþ¢±RæÒÇýZn9qMý¾ý‹ÝË~;ºû²¯ ®õDâü_ëH>ªq,uz`XÕ„6Uî£ÚìÚÿäô?Þá0í<"ÖYIw£áXëÐÑÈ¥—3àžYqH.c¿“-X;@óÇ)M#ËÑL£q˜Whc¡\)üÐªÍQYy~ÙãÐ¼WçÏ—Óê³2š“÷\›e³;Y‡|@rdL¤Æ¹Žl‰’‹ÉÄ'¬„×ôH©4	Ó¶ ERÁÂÐo¤ÓLØ4ké*íâ"lÀ_‡t¦’¼øW„DôÉtI6)­©HdIýÍ·Á&ÞAã@Fæ8p…Ô‹ð!Ó¯y06…:qa‘ý¿c˜}=×ÐôÉüÂòÏ‹1	:-âÅù¶šf÷§î
+òÔÂ;q£™q©ö‚¶©=Z!“…k†[ÉurWBïLFöUÍItú½?š¥_A­x\\ÁqŠ¬õž4âK£‚<	Žµ”á1ÅÒÚÈk?}w½0fˆÐ «Ûìs™ì¡ÏøÇ§$ô™l«o;ˆéChá¯#ºÐJ§zu–ñp7é³’"U” ëé©q$:²‰t(¾|r¹—Í"b¶?¢t‰Äô 1ƒ˜'€9…w’ŽüJè÷éêþ¡
+JÏ<!4vÂ½dŸnàRN$H}XOO¥Xû¹±e2Û×Üµ"S=5êŒÁÀLA+6†Ÿh<Iùñžñígv‚ØUXk°ÆY›«Þ™Ÿf¬s^«´ª,Á\võk@<«
+*R‹E¬d¤?7„ûØ´T:~¿	]µ= t‰+kæÙGc !áIÕ6Ýëã¯Œs"Ô}Ž^_+P!{³\”Í¬=u¥î¼3²V'@öèeŒþ VAD\ABŸ<e.+r4ØˆPîÛäž2`$flf1‹Fƒü½Myˆ{2V.•Z0Ú°<¢ymÜ|á#Ù7ô·?t©ÇüœE€?¡>3{—GÄìÀl_ôwpI‚˜\š¶¦Ú!.;TR?',Îãìì•ó#E«Å€ÌõžÎîØwì¬±ñ¸˜~zÒzWt—T}wB:Lèmá5å¹uôö÷È€òÞ†"AgØ`v-— -ò~|aëáŠ¥š¬ŽÒMsHø4`0uktmxŠ3õçééëk³Ns,9¬§[5Ýfa}HW`uZšä-§@Ø<ãÚH’Ë¤·=êŒJþÍÐÓžøuØõá ·9á¬Ž±b¨áŸJY|‚fñ°d?~àE¯±Æ<Â*M®F¦6d[;ù„!zíh¸1kYaÆš—®“0 <s½i¨tJ„[S_¢8Å2á­¹}D27y·zU6£ž— sFŽ+®|JüüQ„ñæá#Æ:Ÿ
+›¥ ¥´Êw¦:AEô6ÆüÍÞDªõºŒ–¯+
+kµy@6t\ÿ37˜Ej4âùÎ/VVµW}BÎ•ñƒ„®á¬†³0€*sj)âLK­ÿPv:AÃ4Ëà×"±
+hÊ–(7±Ê€âbm'tW’x¸yo *cß4`ï¨ »â°ùô}þžçC£(ÊíñR ˜oª›5nQ}{ƒOÞö7h]wª“óÌ™ÏjÏ4é3ðrû½¯;¾,T9aÇi„f!9“ÍxjÒq¡©¢…/ º€'¤±ãß^W¦ØòWkY¿ó.Ý‘“ÈªDM8sIŒmžºi¡aìäüOoî„}íÂÑüÑ@i‡cKflñ6ÅÍ\CŒ˜^²å*>ÄÎç‘h†‘™‡¢oãsrÝî¾Ï"ÂšøµH§e3Ý"n8÷Í›Bï«5ãÝ˜|Îr#ù4¨À©ìÓo·¨ÿ™*|È0¢‘H‰¬›¦³gïØ1«Ì=+² wS¥ŸÊM!5»äS£¥‡Ók}ÁáQú?¾eØ6<ƒü8Èö&øÞÞPã'Qù/ã}·¸sù:)É›‰R‹èÐ°¾¯îkæg_…áwçàx´6Ï«çîúÛ‹Ð™¦AB{cºîPýŠmÆšOØ*­+»\iu¤|øo2äPz(&4€"ã©§@Dò¥Ó…m1GDÉ$ôðA«ìòÛ2í±
+K²¹pj˜Å)m^oú' eÇÔbŽÎy“^²WF1°³Ç“ôÇM4{Ô£k•ó",Â¤éþšY£¥K¨‘ó–@ÓYa¶û¡nÒt|<^Ši.#ì]ÚÂ bJäQ?|¢bÑ›9‡µ“Gq;aúBÌ16/Î±"sEs	Ç©“ÅÇã¤×âó813çæÞYúJãž¤ß0é[Êß+‡Àüç¬¾ª0—ØúOM¡rˆ¸‚Ï/ÎíO‚°ÒqìÄ5ùÔC>×VÅBÛjñ²Ðo?lÜfÂaÇ2‚Ó4« ŽG[-Yì¢wA-«­³L¶µL o
+(û/&ÎÄG«žá°w¦§²6 z{% ë®þÏ,®JÂ@Íqðzÿ<Ø"'æ÷oËW=Ì;Ón®¤.þ‚è9ºð¹ÖÙ,ddV'ý‚›\ê¨,‚ð_v>öG `‰g¹Õh½5Ž$‹ÿ^¢Äp=qïZÞÛm!iÛ<k(/”¨&üJEú$7­~©e(ÚØQeFòû¡óóà‚óø\[Ï©¶gŸA‰>ó"µ°,Pags­ô?ƒ…0)#û~Ìï«Ég#¢“-*æ¦•0t“¼VvÛoU‚v¬Çõ5Î,Y-ÐB}F¥z¹¤w¶‹?§?_ñÔ
+¿…Ðõ’fÑmmQðA¶zGÞ*E1º-^¯™–USÉø·ˆ,»7$ß†Ÿú}?sÇ/KnQ¬
+ê-}ˆ¥v»Ò¿ƒ’ð•÷Þ`!° £;¢P+¶ŸäÞL¢T[›>’JíÇL:‡.iâ”ZvgÏ$/B‡
+ù6‹£x}yú²Ïø(Ô£ÈøbªLúwÛ­I´šò‚
+²ÑÉV9l——–
+å{êõ×L?íKœnW¦Ð¯^BaHÅÕUÛ6ˆ×z–ZáüIÀƒ–Ëù1Y—#Ó|ÝïMvÎ›÷åÔ)÷±Pëvz·®é>7Äà+HeV„bQ2[i`æ zÛò"+á›¸M”Ïs“ú0ü,ýªÕ9àí©/{ŽMDPzKÄî«Ô]—ÑHØƒõçØE ˆ”
+£¯7‡›oÙu~aUsh½¿áS™ió­!xÍøÂ1Ð)qD¢æ6Œ§òâ‚ª„’u	5Ø3éq"È€$ƒ—Û¬pýëÉ^2-òw¼]³TI”LKÉašš~¢e Jaš2ó±
+·ÏóÌæìšõóaS)>ËÓ¾„Ÿë °ÜWAêißyÂìM­üq¦@f$#Æ@h´âZ.83ÎXòÂg¥\×°ü7Ü›ï0.¶bûè–û~ùÇeí¤Ù†ÞÃDKRžLvó!åâQìÔá s.we¼Ìæ¿úˆò\Q´òçš‰Z»Õ>ÃOŠøú_êë?"ûd#´ÕÄ:ßÜª¥ÊRhÄWûqwí+ÊÐ@‰,•K‡‹ôg4—”kÂ£í[ÜÂ‘š)ä‘£ÕÝˆy³|zº¡}}é´ÚbŸJÉ¯ÕTBÐË’7UM6![Ä€×–ª¥@#+k®h_þ¸ÚÝWW!Ä×±9Ó"8ÐÙ§"if:Ýlæ+Ë
+ÖŒù¸…'iEtÃ£@v‘Š`æŠÇjLEð•­°dc1þÚ™§í±@Âäï/³%æ_ÔP²_ùÒ­ÛäBÀeNª”	 ¦c\ÝP
+ÄþÕäŽ»•OBíØflZ“	P‡IÃˆór¬þOxY2öW·MŒúTÀJu¬¯¤UAƒŒÛ@YÑW÷Ìï7HO…%7ïkó³ä)\‹_Kö³ 3_mcj'¶nïTñðuò1ÇØ)2`aü®‹HsY2uoVÆ ƒ¡ p^ìd¨û\ü“ÁõŽÛo¦¶ì	¨%¼ ,ÒöEÿ[¢ÂŒÛfghÐÈMÂè1m[Úu©Ì3úÅ)(£’“q^2™žÑH“ŒŸÈCoÞ±ÈØ ¾œŸ» ‡½”‹2ìöE%YF`3}a…,|ò‹c Ä’Û*X‚bcP`#‹ÅÐ½ÝŒ'5…'©!µ´j¾Ì
+ræ[L@“UTûo»HG_ä£g‹„¸r‚#nù$ûëìÃ&èÖktØhªB¦+/M4Ö$
+Â×Ù}F?g.É²Ã„àCœ!T”6‰o_úuQ8Ó'1¯œLíùK”µAÔÁa3ž™o†äI$ˆ]½{„ÆàÜ`B»$‘¬Ä.µiÜ,­Üäà-ë¸(êàó˜O=ó¥ô°Ô8«+mÄƒi®Î¨ÒÛ¹uï’é(
+gBüåñ±¶7Pt‘oGÝ;Ê.?xFFq·a“5ævª¢™#\Áªüäýõj_Ç^Ëˆû–QÒYll×Þ€…õWl@Ã­ïTô;MDd¨aÈ\Õd€[i õà\„&“1ÔËLhû²pÅbš?œÚa…cq6czµ/ÿ¸ÝJ~£ðOÅëË÷¸‰{`ç»TÈWB ðe¸¼Ç9”O£õy<Ù ¶‹¸ƒ›XPO/ß|#>xÒMñ
+èq“žb>#‰0^âo™ÕQ62£ij:½(?1Ò–hP#sIÍú¼mê¢d°.r(v†”ZJWæ\…äÞx,¢œžÌ+4¶°eÒ«¾³6Ý¨xß,ýŸgÒ£ A@¬JíLs'ô¤¤~6"ºc	l2ªÓŸÄ×5.º%ÇÒ!@í@ );ì¨æÕHï„Ù‘Fæ-”¾¡œl™ÒO;çõXµHÙÈO49Ø¼v½§Ò_¹Œƒêµi1pjÙ¨_B÷Ÿ
+_œ©=‰•IŒÒíw=Øçåë»„»EŸ‚±É\ì9¾ü¬OÏj¦Ä¥¹ŠæÙóIŠùÚ…úÔxI‡þ/«™!Mï†Lðy¬Â‘»lú‚1Ál™”ÍBîÝE{¼ñƒJRÌz)0›Úÿ&ã}P`8ë:XŠS˜-´lŽvu9ÿÄòÇòÙ\V]/€À_”4WâèZ—; zAŒ¿ÞÈ¡¾
+Ò‰id¤ï û¨QâFX¥œEóa·¥¼Í«½ì¬…%‰D~FO}21€¸Ã+û#:/]Ø3³”=yý?/_æ¿†ZÔ™‘5xðÐn£\ë¤xG¶C£Ê'[’~&Ïó6T6wŒW‚™Wvh‚P˜zu8‹˜Cr6î/%†ÆÂKW~+´ÒJ——bµ®¬Œp<Y#ø£´´Ys‡ðç¤¡žJÁ2Ï/‰rƒ\5ïN÷x3õT¸"_)HÿQÙS°S£­ÊçˆUx<’]›¡PnTÏ‹È¢ÿûvVA€WYtcŽ—ÏoÐÑÏjýì› 8C@÷,A¾i%òLv ÌU¿0l{\ ÷ÓæI»$ÅLáO•„¸·Ï1:a%„óï†?ÝüëÏ>ë¶ÓDV8%«a¤RQÁ@&{f°«v´üâXøÅ4lï$á½<ÔúêiNZ´+D!—èVÇÄr%¹Rvm¼
+¯¼oo:k`…_x„†¹28Véº™M–®ólFvœÀ^ ;^`«Gä»Éeüë‡ÿ®"[cávd¹ŽîŸXáP$$v¦Pfî}kˆf%	žÛŠ _{E'R¢†ô	íû?ÖõkÔWM"J¡iÍÂ•"V(àÁ`oƒÝàq³’2÷ÑœfF‘#°2òé*V'âä¾p™y{1ö(aÕYŽH¤¡Yxày»» ê]| Û#¨W¥^üÀÀ¼“Ú3|MÂ§­çQ@ÏÐ¾äà~`–Ú¥ú4Gé¨ÊÌÇ©³Ð÷‡¡E!/#Êðjø.ù¢sPÔ‘ðKwSw(’U·C[Ê®”+‚¹k²ë±kÁmbcÂ™E=ËèW÷å;_É»x^'úÔdV2‡ª¤‡´wÎ“ˆ7h÷ÐÅý þy’û”\3*tb‰ù¹“Ø[÷rÓ7ÙË”Ÿ3~ÖƒôŽ×—<‚ôÑØ=±ÚíÄØI?Ö{‡l’!˜YM×Þ«ÿ?½ÖW§áCwÆA÷âäáïc0 ŒV`$Ó¤€¦ŒÿÍJ}Y!Qy²JœÆW5öItfè¯¢`s‚ÉŽÜ4kæ'ÄÇysé|J³»íkñú3fb;¥éèz.BŒ&Š:o–Ê*uRB2
+è(mF<ÝÄÝ…va<Ó”mV ¡wm†—ÍÏb¦³xFÖ;OæIð“÷ìPŠX¸–&,˜R¢HÔæcšM­váZÓIï*«?%QžIXî~c2ü*nüæÕJUíYêþÎ¨íÚ
+1Íg&…>`b£aú‘ãÆ…$2uïÃ°e*{$¬¥™¢}>epVÛŠ2›d' ¿¢çxë™ãÓ°ÎF€ÿE9ø-_NDHëjoÓå9žf¿®OÜAÙ_ˆlŒ>…½(ÛÍß(A†YgñuþŸJåËJ×KÆL›(	©Ú.ßÔsÙYsª&~ç2µP	]$dEÉåƒ©„œ&Ý Õ³Ì™êÃ2­œ?Reš¯ƒ?¤k@±÷n[¾Þœ± ñæ	Rå¬öšƒ°mHí…gÎ°"’é¬Ì—tn×ïš½1:Pì0
+ÇÚ8˜€ ÁfsÅg1-B·á«ùKYÜ>¦'`Ô^9œ¼¬t–	M©yh”¡åø¯çÓSòu°Kÿ¥õzYä¨ªÉ¢)«æÕüUT}ÎÃØ–ìíº( z(¤`øN5¥0çü„Oô’Êö†(ó ·1Ò?¿'*ÓMÊ¸"ƒ•O½B Ÿ«sæf¹bÌò4ÛLÆ`9oh,Í¶S6I‚x- È‹ÒJžl°Jf®#ny"Ö,F˜zÅ¬t„¡Ÿðr‡ŽmÑ¹t´Ô@ÐÁÑøøÆ6÷Ó¿gïÚð¡CbÙ&yü|‰÷ƒL=ÅµûÄF‡©Í=ÍÀ\c Ä›ª†dÞ	Ä‰pùBFæðW‡	sy¦óïaœ¿´+	L˜Û°ãRëöo`~³6ån~‚®Œ[ßf£,îæÙìòe<Ø¹eÃ§=†C>föžuÑãÃ—dUƒüÏ ŸÛK“w#u§£k&‘(ú
+J ï¨hBÛ<W;›"Mü|Hcä$Î'Efš†|}w³Ë^‘âÁê„ó‚`Ç{$ :ªë¾í–öþ7Õœ,É‹J(iã50nLV¿fS$ËE ¶b»+”d\à¿>Æ%ý†0”¬ÊÓ‘7Weª5ÇaHº§Ûo×"Yù¿O«%¶9ƒÌ%$Î
+zôñ<ª<âG/ø¾— ÷šénØ§<a¬ñÎûê³G{î§q¸\ZÅ1dÝ¹ˆÞ¥³,HÆ‰ô·R2£³òüÚ€â§ñeš¸È˜ÿèN
+£$+²êÜ³3œùå‹ã"™s[cg¡Š‘„{G6úâ“htÌs™k¬¸/}@Ê’¬<ËvC=ë%1¢HOns—Ë$NÚÝI<¦‰“’B©+]=ûÙ¹»5Šµ ƒ×P¾*s_uÉ£Vù%í37AéßÈ“Û`‹GÚSJ–ù’Ú¤,5Æh®e³ÞƒGA¾§÷ÄñrŸ^*_'¡ãøÏxpÚqtcÒõ‚_övG˜¥cåq…nxÆ—ß6€P(Ž`ZÂO¯D¸D~Š½†yî¹QÄÖ úÅÉ{ÁÁ»®ÎëàQ#˜gFMÈ˜á0ÒÞWƒ¸}ˆ	KCÇÁ„©°Óˆ®U¼Ÿw×"êÂuµ©8z4 ÛfÀl"F¢šnÕÔYwœöÅòxäcBÐ Î¶m&xÇU·¯'Éï¹W3“lôz£¦œBÞr'›3šSß8ý¡ç=À±Ñê^ív6Úmìr“IÞ6Ùéi3´%i¢°˜.kƒ±ï	¥Ç%Š²}Îl8Š£BM]-M÷6E(ÇdY=^® B˜A[Â?ž²ýÞ­4úlf9o²Xz¨vÁè[¥ÄâÊá½oLˆeª9œÇ‹¶Ø¬k_»U97!p1¼;ºÝô‰ÆÃPÉ -áM-¯ö‰u‚ìz
+ÜE PÑ…žô‡Ä˜ÜaË/Rf&ÁðÙÜ™ãÏC´És=ƒ“Î0Íb¹3k<S,áUÈ5*×S+¤ŒC÷ŒãSF~( B‰ïÎ1öjÑnE2¤z,\4ouÎÓ8J1Åf]|5¤Ä¬ÿtÆQGrâ»¬uÒˆ©úÄÕê-‡a¨Qã*"|Ç‘Ç±ƒË{Û[iÔøÏ^gs¶ž°r;·PÓkV‘)«¤ÅÅøˆ´øÚClˆ¥ ±³ÂvGð…®>Åood5’S.[AÊo§ç?ÃEÎ§¿˜ñM‰Ém¶£Tw˜·ñ¬y…øjT""Ç]6f°É< | ú"Ãæ¶D*ë´Èñ¶8ÎÜMPŽ*2Ï[ððÔxÁòe}ŒvB¼Ü¦:Ú‚!ÀcûÛk-†T~iÌ‹’tÊrùXêáwÃK\õ‡aÑ…å©J-êuß®)Ø$q@ü©ÏŠBA@Þ^ÚbªoK÷®[]ÿ«ÑoX(m×®<˜ë†Ïå:Òõãþ„ò šnrª!ètõž{ê„¢?•$ÞVôxqR˜< _¬Ü¥¨áG ”V!¶9Å9~;P°Lº*	¸ÎDzõ×Æ)”Þ,Ã‰«.ÙšËÃ“¬]UD-¹C'2w~NWõäöUVÈÐ
+—ãã]/Nî5ZÆQçC(oý®Á$É_BR± éYµ‰Õ†·"ûó°ð;þÿ`JULˆáìR˜j¢(eðø±@ùAQñÙ¤…\æáïG#°UšÚÿëêvŸZ‡‘Ð•kñµ~«âlüO¾j²ùÉê!åÛ€”:ìælÛWd³&‡õ( äj.0N-ó³þÅBÝbjçŒ—–kþuoø¬8ûõ¯]ƒñDÙ[ëS«ÌÎgb	oÛˆ9+T¬øñêXÉÔâ !•š t`ë]Û!!<>7ð²{c‘•ùP×ê.åÿ²Yó,å¢*êÍEž³«œpœ~Óî¹UìÜ‰ÁÌ9ºË?¯Z»ÙRÜTK"¦x]ÃÜŸÎ#2ðR¶â,Oƒ¸Ã6÷*BÇ¶ñŸCÚgÉÒ§ç¹®‰ÙTòÐÕ4ô¾Eowâ0è'z‰ec"™†{½"ÐŠFÝ©ã¤ÁFhp²?"¼îÔ«€b”>ü+ËúU$ò©«ŠÂ»
+â›_ÝUgÃŸ®,ÔÊž½ê‘vo%#Q9l\ˆÊØxQ½<<(«Þ-†×b~
+—‹Vf+ÿ¹½ÁuUîubG¡u+}ÁúB=BÞð]uMBå‘Ô5ó¡óäT¹3æžôwg[êeÆZçê…Îþè”v¶ƒúÃïW40ü’ÒP3¹÷E=Q”@‰!¼L ŸI8ž¾Äˆˆißåü[îÐçÈ¶¡Q)%ãqŠÄ“6‰vtu}HSÖu)Zmár™©—–—q¾“Ï–¸¡ ~Âºç—ö…¸º±éaÌÃ-(Æ›†ëë9¸nÐ‹`DêNuhºœKÙ¥­Ø™¹*®Õ“y¦;Õõ£¤`w•!—QâÝIU'ÑÓîÙô”WJT—#SÜÖd[L×&0ù`mp@ºQ¤ëÆ[síšœIÚ†~a’¤…	ÏJÀŒ´˜JÌ‡e,€±µ/å ð?±£ !0!k;`ê´.íŒƒåƒÖ§ä1Àù‹àö‹ÈÅÐ*ôžÉÄ`.’wÂ…d2•Òƒãk~Ï¡ï"ƒÉ:TÒÏ‚"¾Ü×2à‡›a¾áÿÁ^FvP„ê¹®æå–¨ª2@øŽêËÁWéß[ÞïÏ¤ïþåò¿”@·Q•²
+Aíä ×c0˜¨'GrÔ~¹Èê‰¯nATRrý³oŽ˜rÙáé¡¾6dQÉ î8Æìñä¸ÍŒh(oÍðèoËBrÃÍ” Û,cÕfwyÈ†æ¸*ý‹UT¿w×šÓ ç!ÙãV2k[œ›í1µÞ-’U–¶ÌÚ9w±žÐ!
+#Ž3?”–FH;=^¹ßï çËÇöt…	å=„ Œx½¶¯D·æ£n1œtÀ=i,ïŒ¬#5¦&‹Q«-žÌ¦>'ÂÅ ”ºèAÄ
+Ê"ä‰G/á´"`:3#—eÓŽ&$=ë¤xwö¡‰ ð„OÏ‚ZcîPPôÈ?[#iˆ¹Ã_O“ÊÅ‡Â‡5PnQr®?2°¡Ä¹¶mMÈ‘‡n°>Ãî
+ˆ'Ð©˜Ò¹Ð1®_3x¹x•kPa
+S?£kTôùÞ–AúTÚÈÀðÕà-¹Üg„ö²ðÑÄ0ª*ð$*Ù!†	aI¥“@$„â‡^Ž>;ï
+‡¬³ÄP¶HV”¿ä(Þ!AõkÓ¡2Ë18{}~ÿ–|^Ö³Z¸Û  ±œ‚#è”Îko/&ºÊkñÌü}±€{2—Ÿ¨yšzã~
+2´rv‹Qp¼=Ð÷€¶@þœ‰ ¹èã×¸£òÛMŸÐì*µTßbb«Â1N+Ê‰³£ADÚ×(Œs˜x2LqÆUæÅæ¢G]ü2n¢££K•þz¬¬æx†ZÁM3áûÀls@¸}€iýÖqe„¯Î6>3»F›éòˆÈË ±h´É’41Á½>ôø++%gð¤oQæÁ©QwNÇ÷mÝWAáÀZ)ÑiƒÄÒr<ß7àÊÎ’ntt¶•æ4÷³0*wUˆ#^KËQëeŠÑ¦:½±Õs;ží}‹åÐï;ž–’·u¸ûŸ‰Iâ‚ÈEÚ”ÒŸJbè!»=W'š„)^õð#Ì/
+¢ˆþy~¤TÄ.´ËiìCã4|Ãó»†ÉòR«¬À45G©Q©lêókU,¤E‰cÖÔÙÞtÍçõ8#Sž>ùYäûmßíôi_êmqÐî®Û@VjwÖ×g›¢0_—Ð—!¹j5XÜHjP8=íÈê7]æÎ%›ŠñOäÐY~Ûð†L²Lâ…÷íE=DÙƒµ[ûMó¥
+¿²V¼3Ä›½y‹gª#¦üë8™v4Ã¹ÆÛLÂRˆd@A˜ê=ïÕqò¯çgœÃJØœÒ¹÷;¶÷NDQÈ‡<ÚÁÙÛÑ›‚vÑƒäéìßíuQk7#£ãþòÜŠ¿öŠ5’èÙî‹fþá5ÖªãéhtÁŸÀÆö±àÍ5fýÿV _°a|ü!*üå$`Õ^ÝJÝëúÅÛþ/#5rÎo0ñ¾=*ßÜZp/ðt–ELÐ©£]m¬iPHib{ýkSí“®¾ˆÝ¦‚09œ©3Ç*åÉ5­þ÷VÚpcÅþm¬I<n×V·rçé‰CŽu
+2´ItÝy›@ðÝˆø,[–GIÜmeÊOñÛ?î2˜?'tÓ]
+CÄ{R¶}6§BÚ6V®°±A¶¨>3@m}–iéÂ^õ<[Sè®ÌG\Lc¥ü6¨Û/j‚šò°óW…ÀÀÝ?w¬¢¬]"NM!ÙÀþô>H•XAUXø˜(Ù¥9ënq9Q	ä–;œ›vS„äFŠlfFs8ëˆÆðÂ=%®´_P² iPÂÕÀz\g¦S‹LïFÁwÉe Rµ™y´nÒ¶/RÊ‡xÿQ•šöIaÆ¡°y_k’°Kî]‡t“7Fî÷Ã¿ÂÙ Q°Al3Jî"’C¡v>YF—’=æYŸ¾ŸzÓ ¥ú§NsâÕö á ‹"ßòä¶¥ù·ôf©€qL‹I	×‘i¼k5#½Ï¯ò9²ax­ÜìiÀ¦X¥«z¡N}3•¶=’¤\E›ÞQÞ×Kô°Æ‰Æ"9Q w‡øŸ‘0]%8\ÙsD›!¶¦Qa(•ŽÖ¶\»¢/ƒÉ£Ìb¹LŒ’SjÃ,0Z/ÃŠk[Jz'FÊvó%nÐ*¡Bt)ù‹ÈÄ‚\9“ò¹îbDú
+®â·J¾L±vå ò	Kh)ÑG˜Pæ†f}­Lùë¾³w‘2›ÉA1Š·”r„È`Il—Lö}ÅrÈ1ŠwøúÂH²(µ$ÖµZßø:ät‰ä cõå”Q•§z"¤äYËe}ê&ÊÅT”ÅNúHö;gðM‡Œ’¸ôIqšw“íƒ[âBþG)l„‘=èbvê·¢‚}2ð±(Y6ÈèöÁÆ4WÃc¿Ðâ;äúªCY¡Â–oìc%SUQ×·dßtî±Âò©ƒqì„Æ=/"r$ ©«]ñ¬ºDÁ!¾Ô·Ó=A„Ñ´è3=·EO8Ý“6†.›¬Ñé"CdÚ+«Ú§Âo¤&™nå¼ÕÌ—êÑWÜë¯nDD‰îˆ«\0øÒ…LÙ<K†cFlãê0	ÒZ3¯[÷â%w6¿_OQõøbý÷Èúsüg{~Ç¯®õÉÁç¼¿IÏ$|÷²é°Bzq¼½¨•¶§Ð­··\¡À£Þû¶x¢bÊßvï­$¾®$‡†¤B²^ávÓ%CÄè!“³´˜*u«°L™,ç‰ìÚLcúÓ³®2»ÞsWÐækˆ€Úqßsï7- l”ÜƒL‹'žœòX|Œ•Å8Ñ2­[èÕ(Tàñžb³ñ88£"¬®ãbÓÒ°_½ãÃmŽBVQjÔîÅ°…Ê¾ÄxÐæ0o­ç?2-´kãL«AÜûñN– ?“Yù¹ì—×ïP—¹g£Z’öóOþ=ŒÌ3ãšdË²\Š¢ù6k›ËÒ\‘)`ƒþ–ŽOãµ7'+ÒœN¿Ù69"„O–¤TÊƒå¨b"§²0<h$] >JÀ™ðtÊ
+M0~–«'O¥ÅcüÿsÔ~9Q1qí±LÐM'f”ØZœ‰àæ(äÃX[Z†ŽP\0FÅ¥êq`>¯âí¨Õ¶xþ.r¥Ó9¶ÏN‰Gdê«aa•˜ÉUäu´BCè-Y¬ã$V`.ïÉÇð}‰¶¾Oû-Ü¤ˆÝ¹‰:Ó´¡îóg¿7r¶Ú#/  ñôsXC{6fçç”._[´èµKQ<0ØªþYý­O€ÅŒz›9DAÞ~LRGAsÎœ•nSwÍÉ#&âCãhßÀp,]‚&£PËM”$à€2[””×k9ÿ€º_*ù‚VœeäIRõÕÌÂü´÷´Õ˜¦P ·+OÝ B­˜`|BßTÒ14¼Ì`£/¥8r0Û*mÂX²´tÒÑÍ[ÐSÚøüßué' ^M5C ^Ñ˜I>g«ˆ¹A¸b¦(åØÖ 6A@c‰G¬ÃT,O-j‡%¿™Nõß˜mg%*Ä†åÌXæçö6QKï„Ž©V§Yšw·åJõ3;+vì}«ýÁpÊqÞ¶Z5Y|ìºø¨À» Pw9r»PÐr=§¾Ó\+4iì¾—’¬×ùZÝÕRÆÚ¸ò\1Vâ¹íî§ô¨íÈzÝÍ¸fS©Žé
+´ø|iÉVÞÇ¨:_»º»Ë{X æ8ˆÓs¤Tq³RýKÆ“ÊcÄœsúkÛyï€Eéà-¶´øF¦$Pôù/üà–ûsÍvX*pÝ&œÎSèc˜YnÂç‚
+W#ýá2Î¿•Š¶„'­ZHŠLMs£hÿ¦se2|ÓXæv`ŸÝ4ÿ0ž¨òbüú!u^î×/ä]Pq\¶­J}ç9¸c=%%•yƒEþiÎ.úuC*½I4f“ `² QH )ÅIVPiæã|MIx»eßê&GïvðoN¡ÇÌ¹K¸žYN’¦Ü|Òió¸Ï°‰¥AœÞ¬9ÏÙ)`ÿNà¥‚
+¤©kîVÙœõÎÖÓñÆOòßQ«ÏÆ]ô×b8¼óIúN¨eó›V[ ³ÝPÁ*¸/ßAm­ÃŒ“¬n”ÁUû©g¸„±¾h«
+Õ%Èx\dc÷£øüI…Fì­IäxÜes&
+oë?€¿‚è 9L6úZ€?€è¬IÄÊÓx½!žl5{pZTTùÖ|˜3”é~7íñXòn”g…NŒÆyâxò[~TÐã¹@»:WQE¯|«¿í0]V¬˜t²D
+Éo–ß<¿F—¦~ô7šÖŒ»Ðìn uEýŒXì÷MµÅ´Ð†kü;,;3áåžP½¥ý]3}Í.F=ÙˆŸÈuÜ¹0_T³œïkóýeì…;ÎöÇ.åœüìjù°}YjK56)iVÕ¿ ‚a¯µ—Ê·+,…€wÖxz|Þ®ÃŠ&-{•ª#¢Qò_¤"¯ÔæáÏa¦u8ÞÌ¼ÛÍXÙ«X¿*ùâ3ås„j&‘`ÜáÁÖF‡2kNèÎ0­[4ûÂ«—þÞ²~ƒRü6œ=q¯¥ä-Ï›²òÛÈºdÄã|Z"¼Äa’vÙ<jÈæm`„ÁaçHtˆŠà"gžÁ¥ugœC+D–iuôðQŸ˜Ù—WÞÆé [¿[I~ïý'–Lºã*LêÜ8†OÙK¦%šåO²ñÃýCÒ”è°° <IvôÊ¦°²A°ÓA¶úÚZ:w}õ×*gÓ)Œƒ#ÜUäöQó|Wd	gâS˜ÿnÆó2+D½t”zûÓí|Ü#þú,µY\È+y?÷l‚¢T|DUß*› ƒI_›{ç¤9hŸú;c¸D¸b„ÂPÙ.þ ã^gæHÂ»ßÕ,‡øÿŸ*e`Yùà Ì+3¬3í;¡˜&¦
+ÂÚ/Ïæ&«½¢‚?Øl _$Y‡ÇoÎ'Æ8;<˜¸ Ój
+hç*Él
+¶H¨Ï²‚KW†Êâ±Dï	sš„¸`•
+YÙõ{˜MìhªMÎMkÐÜPY´ëMæ£öD‘òs–|4XÎëµÉWUÜvÎ99Ð`êæ–#ÃDèn4´ØÉC"•w‘Û ×Še2Fd¥µMþQöª‘9PÚƒ,
+4.SV4öæ[àR@^U\x4ãÒ¢5†s'Þ4¤#Žäø&ÔEh_Á²Ÿ€a0¥–+ýÄV‹fó¹˜ùÂ‹µõ¾#Tôæ!ø×7@53®ªR’×à#3ÎŽÝ1áßDm¶åGÂÊ¡ð-U'§œ Ý/–
+žÔ‡éhÍ5™Ò:ºÅö…¶#x èÜ‡"c4À¼s&à#©˜÷0ÑŽ³¼U™Â}OVÞ¥ YÍ±²*‘ÑawoØ0Ò¼ÇÉÅžŽ>YÚ¾ðË®x²kç©‘¼_;‚ëq3åªûy´æ<Î‚âƒ—]g/Oa¡vª¥%GÁBét<©ãÇ¹î-gèRÖN¤Þ’k1¾²zpJÀOÛ¥QŒ(˜ÚL*k¥#œzß‹€Å›‘.XÖŒ)¾Œßþ…’ÏÄ–¬QQUõâÝF¾zÂÐ[m§¥C´,‰"Ùa
+™u éœúá‡çD€Ö][èN%Ž§-§X òfCc‡·°~ÚåJÁg£lYÏ¬½Öƒ°]IÇlÁLJ Ÿmi^o4Bm§‚'¹.„°¢óEâ,V^w°2ÐÎÐlÍÅºwõÈÓ¶›Î(dSò”JI A´Ra™!ó5Ó#1ý5>È¶…G¯IV Çö+ö0‹ðÉh"8±¿®’ð¦Çè\åˆßóNÞ«„îQŽ€—\2°¿³jÌºZÁdSÿS&Æ¬´MAl'vÛ/Ä]qª›o³ŒX
+edk7\cÈ	ÿtYëÐècÛÈô}J7™$êT°Mì§æ]ÒqÙ&S¼\ÐÜÞ«®Ls#ÛÒ^Ë`Æx¿¦j§+FÑÐÆòûº=)&Éô¿´°Ðø‡fpTÊÿ"ýpoÈ¾	Ip&6²ö 5CV¢-fÇK²4¦ÅI›'U ©n!Sì*¦õè˜§æC(ƒ‰D[¥¸é‘î3l_˜?@0wÀ	èš½ÓØ!ÙÂž:þÝó3ÝË8ÍxÌ¯èˆ˜÷j'‘“F¾–¯æèºH84D!XÿÏ8”ouT,úï6§?¢p¥.Ü]üêÏÉãþipF¤yl]âfqÐ•ìÿluÑûºŒ\ ]W.ƒ@T]«&ÛPxÄ»’•?¿‚O1ÿH÷&ï„i[R\”E³}¹Ä¯ù‚ÅãuÝÿ¨óOÀªƒ@²žï‰VÖÜ³YÒ]yœgæé¹ý…<Š¹dX@ GÛê:[ù”Ûž	;ß“óÍ,]3ŽíOûU=lf¡çž?=ÃpA·Àª2.çIÄÕÚ¿CÏñ÷±ü¥~9~gÏ©¤0Ê{PaÏCF¥h•Ž›”êˆ¿Ö¹IŒÀ“PàÊþ¤Æåo#€Õ@7ë¯—¢•šmâv§;w˜boUê¼ž=XVÖ¹W©xÉ’úAB{H%LNIŽúÙ †o¹¬hMû`M_ª{º-u$2Ý(E°BùlÚ®zHŸbî‡œ—yÈ0£œ%d;ÓëÛ‰Wûº9¢èCF‰~,ñ#"hëYšÊKÃêÈçÂuñÖ›¿EŠ]š›6m"KFP>¤y¬mñ(e0‰Y9Ä• §Á\°Ýà–ò¦	ƒ\ôùxgÞi,‚¦s3§”!Ê½bî3Ö™õ`‹«‘$Òò`hÐcZu”“!R:#k"ÿccÎ`
+(Èùôs¸_ –@Ì92Jå¼‡>«Û#f&³eé~6zÈ„í[×Œ1ƒ¤2Uo'ÙšnbCÀB®’Y?WÒî<¸˜Ì$ÊQ¿ÊÛ Ý.\â‡â±z¯	ú;Ï«ÚU•®IBŽÁrð€a©yRvÀšõ¿ú¥„Á]¼$C†ëHDÉGQ½Ôœ-ëg¢S:Àm´eÏ
++ §Ñ'gRpž#5QTN¬îóLŒðDîYüß§Å%ß”`8×ƒž¹#ÅØÞšÔˆÊ~NQðIFZ¯f*AAõ
+æêCñÍÊkInMåá£*r(„ËØ—¹ïÊp½hkKµC7+UŠ³sG™‰¬4o"gTÜ{á×Eó ª^ô7¥ë¾$ûîsàÂ„¸µï(ùUggmìiWÖ0Ð%~)$r’·çÄŒ³ï/8ëdäÿÅªÓÈê‚aÓ%"ôàÑ·WÔM“ß-¿ž&jzPÉ¥²iš©†â»­º@JñÛ^÷K<à•èV2^‚"|°8 ß¨j¯ý³Ý"*ùN¾Þ©S9Dî¬ó³äìj¿ +nA`Þxî¡\\¤b=Çÿ Høê–ZŠz7Ÿ!šŠdåÆ_'X.}5+¿Á¯É•„wq¾x[EÏàŸâ“@ñÇFõz®ê«xÓ2+¨wöaÓ½'”‘&iÌ&ˆÇÂƒÀua
+´Î)·U'ö…ÂÆÔuA‚ä#Šœ×•=8…ºÃžmh=XãûÀ&!Ú“ßÌhÏëi¶ððÿøë*:K“Ù¢‘Áo|¿ÙzÍvf(E4ø‡opgaZ‡ëBí·sD'¾¼›jˆÏç9ë•ØÕÎ¶Ç¢½åZüül(kp¥&^àÝxŽÕvº˜3‰_
+è ~@ñ½}Ö5ÎY¬6[¬x~2ž4ºÐX!R7šÇaàµ¦ë,3Á6g²Égëx(!™œˆö#
+Ù­ÌQWÇz!M-]–Ôrú~óW±ô>Á;l0/)(±„ãÔž<Kà†spgŒ”ÐÅk@y2’\iÃHJÜ5Ey:¦ ôLÂ<ú¬|`Ÿ×‹yG¢Wj<ÅäÕ’n6½É­Æîú%‹]…j ={áÇwŸôb€Ík ÓÏQEÝÜ½[1»Å@]LW4¢ìLÞŒÿ’<mPw`¹x5Ã.XºÀ!ý4É–˜‡’0o¶®ØîòÒtÕ®ø½ðhóXwR¤¬½éÐHJÒT½Ö½ž‡Qª	i¹ë À‹
+9ff~Â‰âYÈ`\v/ÁñX¼äêÝÊ±F‘®i€Ãí$Ö2yš`á¼#´ÔPŽàAæÙ}¡A±I¿Âß²aš¢:À”!yl4–&ðÎ×&šnø0®ÓÅ·}zÀE¦’Ç£0èÀTF$B‚|¸óü%•òÈ˜–r@aMÕlHá
+¹‰uiÿ~™ÙlˆÈ—Ï8ŒòÃo @ôþgQoûa,}Os·ÐÃƒn3²pçûK}!mÚjkJi¼Iãy0B"5ëâ"‡D±L¬HÖT;“ÇŸ«,&ÐÌÈœ¶ßá!¶@ô¹E5œù¤ÙŠS ü<µ
+o%Re9Ð‰ü	–Æ;ÛÌÍaÊ|V°]~lˆíÎô’güIu½c«3}´^„kc˜`y’¾W€&+ÝV ˜!ÜI:ªN!a-)·­Œo[éC&Ð{Iµ™»Oâ^1`ZÔÿ{O¿ãVÈ¯üdŒu_¤KËUN>ÞÌ&§ :¥5’cþfv1Çp%dì§’ó´à²œÚh;ti-¤èÒ‘ÍÎ	)lÕH5Zõ•ížBÄœŒC˜“Wò­¬i8!®ŒºôŠ½ÍÔòË™ïn˜ò-¢âè `|…nó­äÖS²pä.#dþN¢Z/3}x4×‰i>“&[A³*.1iX^µNù%^bîdU5µ¹4nÝ fÞF5±vr8kª$ˆÇ’PjF¬¯á#WÛ£K†â"UïhX—‹q+ÃúŒ¥ïÔ¾oIw$šg‘a‚"·yàÕ@?€Ux‹]:Ü ‰x”Ó9Ñ|+bc=&lšdÖ¿˜[-/Q ©Ú7×•¨¾¾†ðn´¶ÿ«UUÕoüOÂ~6¡Ê”/±q(g´9Jõâ@ÂB œ­ßÂÉóåKè<É»Ö˜ L æ/‹æ<ïs¿ðù8éÊœ\åø£ËíÓJ]¬‚Ž1#z¶ÿSz·Ù[W¥hÕ	`+>àU^-àç:a ãAŠƒ|Ñrdæ»½ÂªöSŽ½T0ó_fVäµ°—<éÅÈ4Å8ØŒfTm¬ƒR®€yømÓP[¨©>%×4Z¨d	ˆMxø­âü¿sVTJÉ{H†•¥ž~GõÁÏ5ÎøÃlw¥ÚX={ËU¤x¢!%ëâþn+3A{ÁÇuvÎ5E›‚Vi˜‡®S^Õd³¬¨eœÕ¥åÂëb®Æñ&ïÖq±køÝ…¹¡æ9FöÍá)Ú„QCVÂ‘õwø^­©å_®©MXeÊQÚ7æü!ƒ—<ªãG¦hÑSë@GØRóMY]æaëŒúÞ—¹”hÙ¨rY –™„„èðÿS>¥G)®ðÐ˜f{	HÝ‘(wS–òdîËBPµÊ2w{t¡ü—5rþÆÊLÕ‘NÀ)
+‚µ¾5Æ.ëbÊzû–;ÞjdáífÚ[Ÿç–ö9©1¾ðÌ9¡ãÉu¥a²EßŸN™nk­Õˆ¥°ñS¯¸öU	¡"³qÕD€Ðz+þ#>…U_Ýn´!A'»î"áKÙ¦!ã£
+ã·÷FK»D¨¹YRUŠO+ªÂª‰ê…ad;óÍ­ÿí²ät6üõÝGŽØø"7ñåz‚eµÖ” d2û#yÉL<iÃt	àÞÖK‚…çp×t˜`Í«ºÁœAv¬m
+4~ JÒíÀOÝC	¬,)±¾,>|?ÕÐoµÞ=Ã
+ë“tqI•ð¯5n ÑG÷Ã¢Æéu1ß.¼Ì7r³4#rE³JK‘Ts³˜Š°"¾/“DÇ0õYCÃ`Â;¿AU^[…oC`ji¥¦\€»
+!þ6	)­@¬Ì)ª©`Škhl¦ÈsA®‡¯[}ö3K5BÎ¨GÍŒN˜LÒÉe5²½ú¿·ý°_°Î2€ƒeùÕ}á‹ÌrƒO3µáö÷sòbBàŠZDÚ+hwPòæš÷Šl½¤±hÍ	Rr ÿ˜¿î0‹uØçV™²¯ˆC±"ªß)5§Îkòt,%û žNÑ.tbsØ˜é”6ˆLÛV•æDt]Â$ÝséÄ•öÂ[¼ëB\ZêÓ#Y›k~ç"[ÿÍkô—®DÓ­Y	œ =cÑæ×?œPœáÑ²g—4kêòaÜùUQyåmÛÓç.KXÀ©$™~ûHôÆœÉäê’jºöû·Bð!ò³€‰ýå·i)W	kÉ'0è²Ì@ö%³p°DŒ¡>6ÄŸŽÐÈ®å®šÛ.Öâeläý„o½¨ÈeœyˆáGAü£Õüí_a®6QÊT¨)…~x!b®áOÏWê„ØXeÕÃšFÆ‚YØa_‘Ä³ºucÔËaOðøÑX””ß3ÃJ7xAºÓïÕŠQ°—CA¹ZÚ«YÙÞ·îãÊ0}O¢_Æ±‡(m˜9|O\‚Ró;åòâPÎ!lzÄò!&^î›GÒ‡ÙöNHÊhøiÕSh”QPÓî:!àç¿u6Z†äg¢‘Â‘ž3/JÅ-—w+u'q·<heb«¥¦1;€ÖÁ:x”ñm#ÕØ©^]…'šçÔ´è]Ì«
+§&ÚH'³í‚‘s¨vp6t“OKHÀs›^[’b±.äº|´¨ÄŠ/°r€]øøñaC7p3]šÛÑ¢Çz;{¥vVàÜã£þÎPâ€Écï{ò5Ý¹.…Þx¸9äÍ“ò32ˆÈtöáˆ
+ç³…`ÃÃ ½ˆŽìæŽ‚)\æ(Zú¡þ4IGfB¢Ñl‘xªò’ŠMíG¤[¾Û3Á„.ñ^^ÊÅ(,/ávçïšŸ1¯”ßz9CØX{…Å‚á¦Âò¼ô›°U£ø+¾¹:ã\õ–©Ö&c-¸]Lõ©ËÒÃæQá÷‘^pêiØäav‘>R=z…º=âfs´n†fª5'¨¬=‚ë¤öØÒê©PD}Ìm_Kš6“tP„&!ORÊ%©lÒŒº—ÔúEuGåáL¤?€åÈÚU—Èu˜7uáßÞ«­˜ùMÂÎ­¥êNjVbÔòôp×.ƒ2fq§Åð3²KýÊÅœ?5ûLm¥3¯)$Ù¤P†APpLE¿EÏ¯ºÚ¾¢V>FD–•z3ZÒÁi˜ÆzŽ Û›>.î6aÛâ1H¯>AéæNt*\ï tö«fr‡ŽÁFKm’>5]‘1¸ãË†5T|~Uâ8ºt‹“pt,SÂÛßôt-+Ÿ=è#ØlOÃÃhgÝØÐá«X6ÓôJRøz’{2<ßk¼3Š Ahýƒ{]ÊW¨Öš…Òã“‘ž¿¼"
+Ê®¼….‹»ŒžçªÔøZ>,1)LN~Ü”Êµ‰†•ÏìXÜã‰uÅ?Ê«O0Ã¨¼±ÅÛPr÷wÆ9$Œv6Áƒmy”Ï+_®yà‚ˆŒîØ›/°x±7N_±`8;+ö¬ü…âÌÑ÷ÈÉ8rVI¦|èØCMDëµÖÚfrû×ô_ð¯Ë¿
+vP–\Ù† ´Ñð Ô’žþ¥q}¼Ë‰)Òð$M’H8µÙ˜!þ€(âí¦Í%+’ÀóÔë\˜åÝ\Ÿ[vßå‹Á0ÀGì…Ë< Øe•Ù"°U3M™°*ûó\2fæÅŒñ"¯0k.<SŸü²L?ÐJ€tvW6Å€+‚+«	pùÚçƒhrE˜@Óge¢¦£ÌÞ”n‘éèñÄlG”}%;žjf¨KÝ€T3/M¾Újsf.ˆ dã.rŽ}Í¯w:<Œ	!zU·qþùüÂ&’< 6›šnw´{EÐxû5$Ÿ`®u|í˜’`€.=uÁî¡¤ÿ_Òîúo”O¥ÝÎ†«³Û¤¨ 5~ÇMp0¥žS›ö‚÷\¬·2Ì)¿uÓöÔ«Ûëô2[åè~öCÜ¸ÐÁ$tÙâÖ¿^â4Ä¶¤Ë3
+©$ñ–”Ñˆé¸$¤cˆíâŒÝ*‹Gk,"‹í¥\küD;6I¶8$Ç„ž ¥ã®gÀmŽIÅ€)ª>ˆEÐLPˆšÞš×?õ&Ü_ê%š¦/¶«]«V-ø­^öøAÒ/£¶!„á*]H–Ž$ï¦f}†*_[~ÌA_ˆ˜OSÇìy=â}îÎ¤¸†â×Ãb‹"ÈÈ¶U_P,\Âü	Z¬bXX*ž˜ÃÚLzú¤$Û(T2®\7šÛ[‰ŸÅtq¨ÊA¾Nd	¢/dµ ¹»á
+| =ÍD…¢ãÇ&£WÓY­y’óàðYóÛ´ë~á>úk¦µ«òŽîá:GëÃ×"ZÇ¯¹©ðWÔnLg,åPM0·
+JCD8í1¿sÂÔ¥ü4+LD‚÷ýYCŠÏ»»ŒhãíùLŒ z…—Ý©€ÔØ\,0sÛ Bø¦¦‘ß¢¹@_ ‡ïM×HÔ„îº°iëëNÉ _gÛX.ÂUé¨Á(©îŽƒ¦ý¸ÅI¿u²±@pU1òOÂ±ÿÜî§r<Ú¥¾‰¢W<®~¥‚(Ðû'ð»õ{ï•´ÇVËÿRÑ¼¬]Ä~:qíÇ"*Wï9ÔÍl€[ 66y†JÅV¨•q4™ä§f¥wÈ:ÜÎ¨ü¸Œ”3¯S c¾<}âT]ˆJ›O¾žiqxF,E¢¡ºRöt°óu7Æ—ÿ¢­KzÜŸK}G%‹PÅÀ1!ø_ÀÑÎ’Ø1RU_DÛjUB¹nhBüÂHÛtë!þ…økÑ4'2Š§åŸ:°"°Åï{hFm?ÿñc/x«’D“ÄNõ®x’!ÉÔ&© è\é‹»•zãì¯iG½ÒÏŽÃäç#ÅDÆ+;«ZºPBº7_…AßÎ5èŒ#÷8WÈ)Ö9Ï«òë‚KdðCUß§ÒUžBQ$ò‰%o?5ž“~´ÀNCì"X‰jxÔ MÊGì›¯*pPoS…QE3þ7Êz]¾½7“/œ¡€‰6‹YöZÑž©¬óãƒ-1)ÇÁÐ„Ie‡ƒ.ÖguúBñGJi¡¡WÑ-àÃA¡V;¢‘OBÏ7£ÿ¸NX'`ûµƒ¤Ï›zÈ–&¶àp7R
+,Ãp™Ž½ÁËjŸ_gÑ¥µ=vDcó…Ø¡þ¦­aQ¥jî”ø…£¦Âÿ¸eÅ}øfów²aUÄ
+`ª¿=L&w¯e]›½K¹ýmzò²à1ÃEÅ(ŠÈ¯[	±#±+½Š¶|b”Æ²Ö˜Þ0]¤Î³&:•Š
+MáçL2ª?Š¥pr¤æ–þSðÞt¥ï‘”RYIðmÀéÂ‡uO9J>Úc ÅÉz²Ý™¢VMÝæ}oý¢„ãõÉqÎÃB{PpU$ßV„p½²|…c$0°”]Ä"&óI»Æ~ýY‚£èÏú²kKhÙ>ØÍÂYq¹ñÕÏ2¯ÀJG×ÀÇElÓàóy×Mñˆ¢5žé¢ÁXs+Pv}Ó‹Tû,sƒð¾,$³“_®XYòS¦cÛý¢ZÉ¦xºÜÃúÔK©G,²‚„¿IA=¬½1ØÙÄV1y‘¸;±°ª¹Å4ÞÊÁh¨—=®^ó¥ i?Œ¼¾P}…˜ŒÔ”Ïê¥©áxÊúì'çMùÄ›µp£L2“nè#äÑ}†ÌÆ•}š\]õ<–ÄÝ….Ñm’¸ž	ÿ¢˜}«*”<4Úº\gÁP|ñ  îÍÝáe˜‚í9§z4õãø+å}‡rñµ.`Lƒi Ù53{p4w{X5ÿÆ^E‡cG½ýB„_ê
+ šnÜeç^ÖŽ¹Jà÷Zû Û®,>ýBVÆ+e9ÂÖñéâUƒåýõ×g b´«\dµ¢‘•=@ÎÖHD¢öÕÄqW….TñaˆA£Íoð .X=ç†@zÓà³gŸ£±mßM¤³"Ò¦ì»µd®Íi6š:ßH›—HHd˜0k{èê#	Ú&ƒqŒ´Ù,ŽxÈx0ÏÄýœ‚;]€A7E‹O!E”›±o…SÎ“ËÞ%ˆš0–84qœ=ç]²\‡½Iªj6O,?j5zßÄ«˜$AS7æ#^Ë0­üñõ_’|êbØ$KÓœ²Ô[hl“RT$@“‘uxÃþ"1ûnŽ…á,:Cüs¼=19~p·‡žsŒñž*$yŠ¯“b›øŽšÚ~6ÝJXî€è’û÷eÿ·HÝ‡Ý¶,V¶áHèˆè`íí\`Ú|¸0£’®­™BÒN0()34 y¡±äEÞ¯Ÿª6ºR×Á‰îæ¡þZÏ¼,}{Ö—oìîßxó'$\H"}x¹.‘Ò—>·@X–-Ã›.j- °»Lo#	
+t`Ï¼ÕqFº]2syfÐ X©²ÊÎÏ­,ïèR¹Æ>/`3gS ÙLÄ’–+±nûp}]_-ÔÈÂ­ª	DWaÖMÓ&nX™}÷TånÈÂ ˜.6ß±Åvýs›ãç:>û­¤ã4
+Žÿ†Ì†¥“ ©ŠN…àaÂtETS1Ùÿþ:òóÜ7ªpØ{JãÝ'>j®ÎÙ&¼i³ÕuîÙ­½c¨ÿ‚ÜI³w1–ÅFâ¤Å»^CnŸ­ÀK?äÏµB%â ÕL›×w]Ä/÷:Ì¥ªh„+÷hƒTb/ÙKà£o	ý=s6¦«ßgåPHk°i»ëÿzÈðXR’ ÏÊìš¢§õ,#yøÓó ˆÉïúµž…ÍpÐ[Ö6§öß0ùÐP8yÖ@Å:BÁYviœwû²¢£CîûéÐD¾¿Jïv%ºÎÿ÷ÏYŠRiõù#ƒ¹¶z%YK âá[¹	…òâ.¢‹¡M¡äÁ¶¦¾Œùº”Â[*‡@ ï7}RuÙ¸ž‡‹ ]+c/ž…"0šˆ Vú–tœuž¶û6Ý‰ÚMP4z8Ÿ½ã=ºàæ*Ìê62CŸ±éc BÒ5Ä‚ù.V”;:ô&µ/‡"õþzp{æ;CøG”§¤¨yt|QYÞï(Ã7Šÿ"šr8å´ÁyÒší1Pæ?¨±º¤’V‹yåF-DcÈù‡÷RSÞ–RøöÚe%"ûûÄkÚ _•^ÓÏyÂòa}c38O,|`Dá}58“°o˜£µ³e]«€N}wp¯	›Îì½3S8«q9Ü Ý-çî¿¬ŒÍ>â½ÖõXEùè|þÇYæ'[{,I0ÕèÁïËq°ÿšÅ¼®Åñ)ûs•²×ó®Øám\Ïo7 ”0Æãcª#ôˆ¯’‚£ÚÎ'OÐmÝ‹q•eè÷ê±«%õB™VK}ø‘öNw}jÀü¶ß°¾d’,¼—úLwªg(‚~LX™;2‹½)!E‡·Ò`„òX£_î#4Î·2¬ÜÓ¥ƒN}µ<™i¡$qðÕŒ;ÝyÜMýq]§|‘M–"-ŠÁõÖ”BøÆk(r=(åâûƒÐã—ákfclSÊÕf^ÞnÁwK¡ò<VëwxÌ•¤•(ê‚ÍôñœyòÜÿ}ü¶v^H¾BÕ{Oà^][5A(’abË(bûdFHÓ?|Vrøê‘‡S"Uš¨Þu$Z¹è(·$é‘<ÅeÉ(EZxDKdÊIN¤æ²HF%UwÆCË™]šdà¢Ø†‹ÐpÛJ‰ :Íõ(vë
+hã›/ê9ô‚ˆ [a]gíËx!¢yÀ' H2ÏÁóK¥ÁeÓBAYmõ3 f™9½`3|„n/¼Ôö éœ=ÜËu	‡@ª¨gÐIU=heìÍ•ÖyÕ]â*¹aÙäÝI-=F]#öß•¼MƒŠóBÑÀt|ì%t:BcòdÉ­0±öt€|})¡ôSˆßMÜ,OÚWÖ=RåCÈÐî«Ql‰¢Ï‹+!=s®ªq—±oÊ¦qÀgÛWGú«ƒçÂzu7ÕÁ´aÐgîr¶ÕH<±ð¨Jæ*¤ªÈO¥ýùt:^ËLKL`;t¨jÕ8x—\¹T?µ¢±ï¥1¦ûØÊ924%™ù%iû}ßz Ìê\o»Ñ®]…ã^i‚›ã]ÓRï†" äî0<$‘7°e<m’¼Òå›Æ‰¸
+¹Þ¨g1€"ù/™v¤“àfa5‡·Œ`>TFè8*ø@\/k9ÆŽ$´)Fˆ:›Pè}M×à¥—Z‡¯1î^Ó´PÕëFÐpÖ]i*˜	 ÇEEy¹*` î†.{íqùÚ½Ëvˆ PûÛì=q¹&¯»jdC‡¯M•ö•×žÃitQ(MLÓî:æ‘ŸÝùmÃGÙ¦ùýï'cpŽæ;§í°k«~Z×@ºƒÁ“Þ}UŒ2ÀáÀ…¡tªM¾öû’pÓ8OÎ•’5Š³mOÔiÔÓÕÿÌŒ‘NŸ›g>sûŒÐ7`æÖ«ñZd°2¬åR¶TÊGP¯±Ìþ)~[ÿjG›6¯Ò©¾&‚ðunëá!	ÕÒV£ÊzI€†§Å?ÎXfªÓ'LìŽ‘ÿÌ7{x0ôÅâ°rÆÎ]£)®ÒÔ+GÁ?OoO#~Ð³^#µg8Á›Žˆ¥xÞõæŸÍéaOîîÿ+Åç2:0ihm!Fîµ½ŠšËùövæMûóÔhR„M•‡·a$¶‚ˆý1˜—ÆJèŒ«‘ëUÿ×–%´æ¦8×	;tø©NÙÿ¦óf¹çYâ÷)ZmŸãz,;Á`Ìu¯„Gy&©4¬Ùåj~@ =&;Ø@Üžÿ5pq_á¢× yÕƒ'¤ë;.†oÒÜ×Þ>èbneÐæ‘ÈIžñž{{«¢mÌÖ â1&Â~ðfzpì†dßhQ£³ÚOzi	ŠÜIÆV[scß¬«	Êmå¡kîÒ@‰ˆ1yGðAgr=Ù“ná™RÜòl9VY¬ŒYø¢Õmµw.©ã)8Ê¹:. Ò×éƒ.­_öØya‰Í©;³T‘h«ƒÒîæœzÅ#>?-žºIÍ•¬£°ÞìwÍíïŠŒ_x„Nð\µº÷"£háø±gÊ,é*9¡œQÐ¢hèDø²›–Hu)«šñšˆûWæbàùÜo<ØmêÉ2ê÷7?zèZf/yiú™ÕæÆO2"åŒý â|S¹MéNÖÙ…ÕNOáP7ãnS¸™º¥‘`‚läËëU·ÞL<ÿy“è²Ýïó¡•gíÑd“nÛ†ïji«Å]C4 gSü>€wAŠß !µs6!ÊV€éMÑ›†˜Wnø€§ª©KÏ±ÍI{¼9Ld=7ˆ,ÚÇzºa”uŽP	Ž•ðÜ½¨~ÿÀ¦(É>IS0wsŠòðU„}íãˆ«Ñfà<Ðº.ñ®.¢e$Jå9ÏA@0{GŠeùåç¤L\©HˆøÿdüÕ’8P»êˆ¹ž×º.ˆ	“«J…›Zj
+xdò…GðcKÀÉ¹£„[Séà=!ø­¢]cVá ì3c)<]Þ™Ôµ÷>yB½%ÌÔt*×‡É»°~¤6»­ÌhÒ8Œõ0²+VþÛ"ç’o;Ò­^è ýRïoG”Nh’${
+ªÃ(ˆ]ó7Ì º¤K×ìç4@hþð]¦<3ŽåIN žÕmâ(èE”k–zÛ±b…aè"õX' ýô%;šM;Éméô40¸3Ä {IvpðOœ=!{"<Ÿk¦W%ª\».³"ë_Os©B£³J;g\qå¨•£Cût;ûÙai_)­t§ŠõqÆŽ=gkÖ¶ÀÁòW±åo8§FxÚ(a˜/ô}ŠLã‚P‚¹™¢ØÒŠÔã‡Ä>OÛ…­YLg¼¤˜_ŠDxÍßíî¥ñEhp‘`µ«!L²ç*¼A¨@·*øýkHt+`/G|Òû ªÛéB(¶È„!T|Ð¹è
+°2¢ÝcÛbCµäkœùàsLÌ3@ÊÕ˜ôÓ7ùÐ†M³¬óéE¸	'ªl›•Ù®IúM'·Þ£jL¬š~ø“=Äœjœì!½¸*tèÔvdÜyUå04´ó±´?Ç¬³¤?p¿dk-î•¿ÒÏ&¾G^ÓÆ+ô<ÃÈvüeÿb4ýÛì#¢—™]²Å!p~€!=dã?Íƒ£…D}<R2‡ve’ev\Ô	xDðK'e'vøÝø+õÆ¹ <fÍn’E6‡e´W@®X}k/,Ä¥-ùsîhSïš3„þÉyã¹¹âr4§6LqÉóÛ8Ù¦hýciº ˜kúñ ^^G®³eQî5·S¯/Wì¨êŠ{„AžT]:(nÉ¼ ¤{ÂZƒêµydÎ]hÌÍƒ¯àS½x/†?Ÿòu‘L©¯t=æÖ¯|P­’ßh
+øÍÊE?ëT[ÄªÝÑñ°þúoµn»S§d8Ü~JÏN“ú»ÚB˜×)÷“&â%›ƒ ßpNJZ(’4ÀÐÙmLÄÂNdûSÐ¤&!gÞ4»ú¹d21B¶šË”&æãÔCMÈ¤y<¼inÙ$ÇÊOÖfQU¡•}ØV©[«·†:Zv3¡Ë/™ãÞ‰14m·€Ã
+Yz’%^¢=LN N­¤zâz«|^CÀ”x^¢Íëx`pAÂI°y¾ìÕ3‹¢V~‚Ò2€¼Û+ŠhKX9¼Å¿cö ¢Áþ¬K]’ûÈä&Û§Ÿ:w°s
+U“¼ÕÛ×ÚãR[±­r
+ÿ|Z'± `™Ä9€ßêxëÚbÒî_#pØÜ±™‹up ß¹B±rÊÞÿ»÷<`(a¥T£œõC*ÜÕ¿Í )7¯¡©²4õ­î§|Û[ÔysÄ¸^*3Åo×ºi•¨¥ê¯°t‹9¸þ‰®ÊšÎ“ïªÙ6I7È¢(þNx™r‡_*Sð4å™†[ì6ÎTíI2*Ò¿r¤p¸ÒIIuB"39AÐTWe{Ysx¶ ¨j–§xÛ¢ßK„ríB§îÅ !ÊE*ùÃŒÍñSÈÕ¾+±Õ\§É—ý?ÿlÌt+Mó×X˜Z0[]ž¹£‚'á‰WRè´'ÂïÃ=?”Àµ\•N¥¯iªÔÆÿ|ÉÌKA7”3,ÏÞ;â±wíï"\›O+ÿÇÐ[-òy‰jšÀÑs­@˜Hç¦>í]0ƒ	Úƒ“vÛ®¦Q¶´Ã‚òj%ÞAÕS³;Á’3Ÿ@™Ö!J³Oã¶Øi †1£†ŒhˆxW¼èD”j”Ý;ç5€Àcà½2ëw[Á|‰fXHhÿ˜­ŠQ19fsžK”ª< XÞÐ–(>Ï@w]âžckH:˜Èúy—RVád–h	³®þóW»¸Ç\3k[¾ÍGèïýXYy pP½3EuBí©~­§5¡%åyb 'À]Mbþžlƒµ¸ŽKÿ Å„5A’íÑé’X÷ Ž·ð•‘%0Wë|íéEÝN|AÚt›¦áv’¯[õ@wïÏr['ã[~è÷‚n^-éúøÚµ.þ£µFÕ¢ðŽöâ}æì¥ôiA«Ò'×bÇ¬›Î­±±ÝãoŒõuwÙ(¤œÑ4jîe•Ÿ>ÐéKrï<ïhJ Nsa‘BJ_»ì-$Õ1_¯ý4V
+¶…=9;%ÎÝÇÍ—føÄFÁÒˆ¶ÕEÿÕ·uš€«m¬$B†Tßš8¶˜3kÒˆ%•®%LÎe)4$¨ FC2b3*à$½ûPóœ¶zÍÐÄVG/x¨'@šä©U"à‹	1ïv‚¥á¥¥<nˆIç«ìÝÙ4=êy˜í<FŠ õ¦Îá¿üÍ7¢ ˆâáƒsÈý¸r…bêW±T¤%4£ÌÏ­«m«å“Ò;¶@™“ÅK‚ÓÆŠ~Ê–lì…âÉ6	ìÿ´W#Mý4«¼
+FF¤=5¨Ã[¤G•‰?r‡*h!ã'”°-çæ
+½Pe{žFýK¥/C¯K€ùÍ&Ñ%ab¡È K6¾ÝD˜ØžÍÓ{%Ås­N i,“gƒ–PçÑ®äÀOðõðtÝÉÅ´¡ì3RCGtºRsœ™ÓtÛµ?rpØ¬ëØŠ;’0ô;Ol¼cö›<ãq%"¨òE¥ÅÛ·*ÇÌüJ`L`vÄÏçâäæèJ+óe±ÿB$¯	þ
+L;¿:‹~sOÊ8ds1ï·óˆ°P
+XÎÿ\˜¼!ýbÐ"ä²@g¥0…)vZûà»åZma½6"þu:@¨âùàóœÆÓ
+,,¤hQk"*ÅÔÚú4±Ju³ó²åéÿÚÑ>Î÷-ÍûI9c$Â%]6lË€o|Ü¢{uUñ­¸3)cñ—ôv£ñÇ8É4`³SV¸_ØK 0·i(¬e·ŒŠ98âÀ èõ9¼Äým—¾.œi°ÚQùVÚs5ÀWs€Ò÷=Y9××Ñ^}GŒ•év	¸.³üqÍ¾‡¡ÁAP’€F?(#Ÿ¾ÿûd(D¦êp>õKþÝÂIXn*56±µ«-h§îIÅlé[Á¨~¯ô½'í«ÆB¥’)µ8:;`~õ~3º
+sk8xºyò_=­$}Ì´‘2	ö«>t;ë(JŠ%Ü>H‚ŽíñhAî4¯Åþ?ŸŠaÞ{Ð”_ÏFøLF~N¿W˜`¼­)ã+ƒ `ÕŠåTÁ%;º/›*ô£ˆæ]ˆÛQ¿äåhmû¢JÛ"Ã’/¸eÒÙ{Ðïaµ.ä³I`bÄ5%+’zÂÑ9¬½J£{è˜€\i„«+~p¾¹7ô‡cÃTrSºÁô’äì#jç¦\_øÆGÅó{¶åaÑ¦¡Y¢	³4áP'çš»Jt#\²—£ÃbMU_{«.r:°2ì†»µƒ. Å1¶vüR(X7ßÜ@±þË²=ŒŸ’[L®ƒ…´²ÅÊ§7Â%b‹„».9ñG0›wù©*Vâ0@ê‚W¾©S°ÁèYŠJšjÂ¨,Å™Há Ý¼›!@Ë±4:ÌŽCulJÁ:eàH&LB2a³~®EÔFx¼×P9T$ms‰ðê€Kùn÷K¶‚RÇ|ô—£¡ò€·5±ùÐkþàŒWÇ¨êœJ©7y‡úÈ–A6 \ÉRÚj¥Ý«äÕ±~t-lnt4­þûfÁNóE°Æ¶xpi€à²UŠõ_F—`s¬'§ÒepJÑ$<íDÀžõtSC‰‹¸R]¼ÌoøCD=Ó»'a¼_®eEšºçîjº
+—}øœÌ’29 ß[Ù%òHâPçÿšgOX4]=Àe®´S³€ƒ©üÃ P
+SÇ²üLg{ä”x75Ò7¸	¡RI[ÔÑÝ®Úö)v¾fE8ÜK™ÕüÔ)ìXcmÕû”(—/%žIÊÖZ³ˆºK°_=Éí†C¬‘	HÆ5¤‰Nd6Ët›êLþ
+_‘PØä2;*F&1Q’¾'¥sµ÷÷:—í(å]l´œYùX¨Ïÿþ%Ö$Ì:Jî~Kœ¿Ž{:¦¶zâ¥W—dðÙº¾Z—sÞ	O¯Ð…£–×ßE1ïÎæÜY®>ÊÊwÂP"&ˆ³Ž:DØ¦ÍFÚ‡(oŸ5“™-¸-v…†]»‰ÓÇ·¥^sNLIN:½GˆJŒÈ©YW?ïë
+›JV<Euë|éh¹ê¹]»"nÓ\E÷iÏ‹ð‘~½³HœäóG¥]¶ßP3)¥ÍåÝ—  ¸çYÜ#£ Ðæâ_=ˆÜŠ|“‡sö›^In+-	‰-‡àå/àá§—X‘ñÐ$ê»>}oû‘mŠ‹ïMsMFÓø°fÄmëáH‹pkt'Ù­w[—@i©þ¿×Rpb4Ãxñ%ÄO%3¼‰°~
+¨Îì9ï~ù]º@‰Æ%YtðåäR#êõg¬8î¶
+:Îˆ/îÁ›ó<ŠDs÷¯m©>âGÂÚ÷¬ÜÁ2¤Ó*™þltèRfDQ#”[¯Ö‚öcÂ·‚4ŒBÃ:ƒð¿¿˜d0à`Ñ)Ö$aÀdhWiÂÐê2y‘Æ ?+~ìHõ\KQƒ"…j­ÇÅê Éw²‚låp°ü;™·÷ý¯LÆö)\Žž#õ£ƒppÂ\jx„Gœb¤KVÈL‰Cw+ò$In—´Qpƒ[j¬LVªE‡’«)Ž#½ñÎÓ<• Ì(§ú»á([8#œÙ˜S>Ú¡ÆÑ²Qjy5™Ö¤?á±ú¨ãóv’ÿ§g9óyT<»®TÛr0øíÚPò‡·[Ø2˜[¿:©©ðxjt›…]f“wËÖŒ–Ò¡ú9B{,Ì4»ÂÜ|ú(7‘³©/Ó”Wð&z*k1ßÃûz=þÞþúŽ«'”½[r2¶å«‰óØÏ]”
+Ó^0’Z22‡9[—Ü0zÀ7cfÓ^Ï¥ó4±"^ûöQVÁþ­+tdÿ(·ÚsŸ½‘ÜÒd\ä„©^dÌT 9q¸ã*ó"9öÉ¯~Ï›)"n!¨%ÄÅX¬Îú1›0ðÅêMgÚ÷-P¡«}ü~ÓéÊ?¹X¯í?:¯žPãE§Xw-WäXÒüSBgä˜ AQ$Ð†`AP:f¶*Ä…xÿ¥2Iƒ&»ËpCÖâ![Í¨ÕÉ‡“OØâMyRgvÍÜìZ1µÁÔº'@;®©óï¨!‹SÙŒŽ½½é,(¿Z€N½±KDW†Á TB¦àæa#>òãzÅ¶Œ=íð”ëaÂ7S>2r›ÆššßüÇÎŠyâ	k½£Œg©ñ^Ú÷0oqôØY°_ÑP÷•MQ¾.÷wõ¼í¶ ÈÁs†‘ÊÃ Ôº»ˆÜá[4æ3C8è¶æ/hø¹ä´.<N…JìJjáÖ\èwUÃtMEÈŽ]AÃ%ÈÌ“p‰hrHàÃ>\øO*š3Ô¢¤Q¦/Ê¼ëB˜)W/íç
+ì!±zÍU÷Y†°²èx4/ÔÛ€‘ Ez*Ÿ´°;ÝÝ"áÎÞëè{»"~Yª¼ûD}©ÂPu÷:²V59Q1Ð‰ŸlHtjÈ‹.é’—7¸…Õòñ©¨¼XÕéà8‰¾gú+Uü]Ð÷JiÂÞšáž˜@bÞ=¾5!YQ°#]ÜÛÈ®µF¯*£¹ê(¬îâ¼rÐ÷‡,€çœÃŽ+!UEñÙ/?¸F±b¨bõOÈy¢÷Zž"=Ô¢oÕ#$~ïêoÞÒ	‡-÷¯=?lt“®<Çð<„¦ûþœ˜©#¨üé >ÁŠ°Nk^¿øJæëryÒA0¸U}ömpÊÐCˆá{îÐ‰o]&æ
+Oüä} û¡õ€#CÊ[×mh‘¬ž«ËhYŠ.Œß¢½ëÜ&eFè_ÚMüÍÙÕ±õ³ïäÚóÒŠuí§Sºëò:c`ðÝïQ`ÂšnS´É.®|^ÇZ€ŠÚogz€…´Ð<Ží³¦³mGÏ©êG1ÕàIšØ–óvºïj5e7£1Î§i›kL×Ð¥§¯þg«æ=4(àiõMñ=SîáYG^'@Šhü7=ŠNöÒîÅüõ«j‡zkMÓ ¾*Ò\%õ­Ë_ûÆ‹y/š“oPp(*åŠÂüVM1ÔÂüÞýb}·ëµBî'F—žA½”ÃèRt°§”Ê!Žòš›¦º.¶PŠTÈ@‘½oª¢äG_D‰Ö
+öÖ.E&4 f¨tNxLöQ®{›;ƒ“Æmú!Yøð×/¢ÆXÌ‚8,fphØCi‚†ZÊG¸ßz~¯Ïgz(å-•ý:ˆ9ùPkÐ¿YëiÁ1k?Ú5g»½Oáö±qÇ8åêŽÄó¥QCîBq÷_UtU6#¶.ÃÀ”ÖÎ0ØŸÀÏS`õzƒ!ÈÚ7[±@ëEýƒs­=¿„†3ýt³¯~|pçÔD¼¬RñC‘33õP–;{a“ñ‹³8˜›FgÞ1¹_½Qå{ºZô2šÍ)0±–JM‹c¬¦ýO¼e¯c
+ElJâonÉG,yº·ð¿€)õ¾§ÊÝ<}Ò©K{ˆÐ+çlÄ2ý¦—Uˆ=IòÂ:µÓ„zãÞÞ2¾]uZ¿A#PÇS•s™ø‰Ê5Q£C"uÅ§ðãì.GÑµ~–—x«ÒTŠj¯1Ñ^h¬b/Uõ¼;¤ÔË/ªÿo#É”]„7ÇÈaTlï…ü+y´ÊtIF~Š¦O(ì4Aî$ÀYÞUŸm‹¾±{QI &2¼îí£0`ììE‰¿€´÷‘|d8C!ž³ËåmYÿM&—^t‡`„é;­â‚TaÉÙ•LI¿âêWHPÐ=?ów‘«è†„Äf÷oïÅ0
+6Ôeü+`_"“3nÒà}÷°]Š™¶ÂîÙ:–ÒüY#­ ?¦†£Ô©.‡tEìœ?gû½/lø”Ë À¬ÆD_¸Šá+ùÌ)ˆ6åÓ^?c²ü¡#Ø£'g·fí¶’¨àÉã8@JÊµÞp¡ØÐaÝR»½ÆÏv5”"ÁYª+Eã£Ç]Z—È3Bìª	×œ> ¹áÁC’!ÈòÄ—F-"Ê—Ì4í—/y¤ÚEe‚¡¨®OR–çÞÑëÁâr„T,ÓI¶¡Gí®øUI®Py–ƒˆb[w_?‹H	 ‹Žtàüèg À»ö ¸ÂµMèÚ¢°ªtöÑÜdlBº‡õAýbF£§êÃ6»Z8ÞLå”€¹Aù¤$wõ|] %Ò[VÚ“/À\ZD¾ú=îéÌ½Ýðå¼D­$qg³û´×ÚèÅ¤ô]Fÿ”ÃÀ°¡7DZ˜—ÓÄŸþ&ú@Æ«ÊøÕØØRñíb¶E¨+CZ;‰àœÒ¡$XMWEäÈPžƒ*Éê(OÝ1àB~a?ÚGx¬yˆ"Õ²»¾qÒ×ªµ‡ß˜Áò#FKŒÛÑþ#§»¼ƒn,…ß"‡ÄÝØ{Dµ¥l7¿u±°­ç“¶ˆ7¬ˆâ²Ú·*ÞlòP§yeýlÿ‹ûAó(´iì4ÎI\Î™Ü­˜º"òÞ]ï,?¸IXŸ¼"ã,W$f¦A1½VC6¶ïWõ´6ÌÃ“Šg£“¬Hò!eÑO®îº‡P›ïÎÑÞ@­¥šy»Þ«O+ìø.ãYÔ.M}î«º<O3®c/¢3w·Z‡yv\EÆ
+{ò$ú¯¾ËõP(§ŸrQ©nö%§6Þ$©ÏG3÷tQQ'âe†ÊTAdgø÷xæ‘öýC X‘¥a0,£ôŠ–¶ÅïäÛOK6§Ø*‹laûÏ•TGÅÅ~rï¹R7KÎ(j'+}…×Úûìö—šÏ™Uøò©eIˆÏêœ ´ƒW¬¿àHT&4¢ú*Ïýbê€pÜµû‚@ùïåªv–´xQæã±üÁü¨âÉ²TbnâHùóµJ£èPJ…‰Ÿ¨ëSEM¡Ó(˜_ï¶¿‚Â–œp™‡6Ù&÷Ù¡ÈöJ(8³S³wXùr§À©Aø:5–š{Û£ÔàF÷F%/(+<¿^F:ÁþÝ«ô«•¬‹^ègÎúQE¤“¬†!ÛÞù&Jùz(";
+`dI˜Ë;¼Ÿ¤ËëÆ#€a
+•:#+Ñ~m ê0ì¤0þÂ¹üö·$"ØÀ-ÏyiÈ*À¯h4E]ªïåÒÄ/šu&Êqš!Ê!§a‡µJy‚ÚÌˆ=×À–APÏîþ€Ü
+ˆñl%Ê‹:0sbY€ÈU¿8­éÈ×éŸÑ°€ä‡ Äì³*€£ìþÖ›¡š æe„<¯ßâ©b5xÏA‰€\ýÚÈ–Aö«çÔ™z¬åëdÅA|³áö»9¤¼&ÑÀøè‚Ÿg—ÂŠÄêßS¡Rß7U=ÄY 7{¡Zv`r×+õ—7íf=ŠGÎ÷á£(æLFI²_‘ Ù—Áªdlþž»ÃMïÍGm1PêKkÕÇ>Û’U¡7>`;sTAÚ…ƒÛUÛ;(ü7¦q+‘“š«È‹i'ìÔ†ü˜Úõ|²S—LðXd[(e„h4óø¥Y™ªô…ˆÛ£	H©êî&.•2<l®BëÆ®V'~È	Q_£\µ;£:P­c"Åé¸ÔÝIž3.ôU&÷Î|òI#æ†ÑÝ…	ÚD+ô!Jgy<%³ìh’é…ù2ð²óÁ[†ºdeÀrÍˆ.·–]Ù}ß.µ]‹ÎÄ×Ii—Úé,¿1®^¼“r#åËÆùžâ	Sˆð@nG;I5­ÛCIUª€	«ž+þëÉ5Ž»û\Û%rÖ‡©4ðV’¿"˜*ŒKôã>¼²Ç‹žÞ²Í~©Æ·£ûî“òÛ¿ÿË•TÓ`·NSE/»£ç6<tø÷)iŒì7)p=z=%¤Û!-õº6ß²&p¨µÚ®ŽYA
+2ÍKÁk‚âŒEæïª¦ó_¤=È‹ºÓ™¿3øŽÝody¡è0}û'1rvøÃ.Rîs£³Æ¨ÂëU·*q¦mmgU]zô#b•×øÁ»#ÌàU—e<Â÷ûÉv/˜p‡Ís¢
+¥îÏé=5(ÆTSÂ0§oš µrïNŽªõqTd'#ÎSS~Hˆ[õZÒ°=‰1´7©4¹ó^°ù¯åcÒ•·Ç|ä¸˜Ë/†Ì9šÞ±laâ[)ÚÖÕq…32dGÐ0Yûbz•ê_V|Qàãï—Ô«¬Z6µ¤C»÷¯¦',€MÚ)Dò2PÕv¨ü÷ÆÚ¥3ë¢Åø0¤‘±BwUP:Õ¹õûî÷™”%_-ÜaÁ@~O—b¯»¹ûDŽ‚<=Ìøþï·ðv*JDßsá$hÏ6?ZCÄrÆ®üüþ'³Ž‰OŸÝ>"Qªçó/ý„™„|ú½vêµõ¹‡XÈb¥7‚>EÔEÒÚWcŒ^!Rê-År‡³³0‡Iš–„¤”6<j÷¶*WÝÐ´VpVŒÔFYJ"ï,‡º~¾/³ïaDfT‰S­­¤dƒ×ÅÆ½ó‘›ø"í·žúDfÄV™7Õão–˜|ýw[’]Ã=}ïð±®\lj'Hd‘ÝT68tÇ‚’íÙ,YüåÆ<"‚îú—Ð£¦ eâÅvO h qFqÐZÈMVÒ‹H'j&žvBã¡¸	X1ò[JjºøÜTgíS
+*¼ãÀ!»ˆ‚ÐQµ”@9­
+]|ýU'6NÁbZó	¨´éb‘®OWXj$®;Œ™”áhˆxy„í9=4­åµí¯[ðüâ5
+Q™¤TX´ÀßÙÅZ]Å½7­N ‘ÙÑ;ãóÚ$2î)>.¿z&ilÓ·D‚¾s¼±¦6Ø%[äª¸vo É1\°f=¦óñ)5eÆ\ÙÔeé/'Ú*å1Õº%c«_Æ¨Óei·ÚÜuÿÀúíúâœ>ÿ:u®´û$Æx(Ï ®c¬²S—Y­ÒÚ$åã{+ÉËìb×Ï$–U¸Y’kar—b¢k³åTž.æY€-mÔ…­æ¨*Ýy6î‰ÎSA"yN´º¡…L‡=·KÐ‘yÐÙüôå•Ù"äÑÐ#/D]þÎ“c»}êQ#0•dxþŽ¨ÉbY>£öîgëïõ„2»qœze3kŒ9%1UUñ½ê2YRZÐs¤ºÙ”¸«	¼_£+Î,c#!àdöf…V&«FßÙ‡À{i'¸«„:(ÎÜQxNÂ	µ(qóðdlzìy­?¤§B……V§Ud„šj¢~;lêMŸº£NéãP?¶ë=ðY7ƒësŸ™:Ç¤)ø9Tkûç3NÒDý1x-;'‘‹Ø=Býa²Ô½:¿.0Åm¢N¥¦Sqóƒ¼4oƒ\µzë­âúu€Y—ÙLÎÌÐ2rR	Âjïr§§5¯žŸ×T¥p•`º¦Íl<¾®jKÒ'^GYE±ÄöªàY¹³st±žñ^\®™ ‘-‡º>!ûñNˆ„­]äÍuÎcã’/Í¡ïŸÝå6gÔ~[Ýú‡k5,ÇÔÊ™ÝDo÷‹­NW¹åTy#<Sƒ}>iÌû_B^=þl¥ ¶öÃ‡8_È(›y0ªNœ»oÃ$‚{Ç+±Nã¯f²á4¸ã¨]ûbÛéæMhVxUâ‘utÐzqŸfX‡¾uTxHI(. iö Y—_¦ÿ Ì„ÌÎüuy1Ç¢¯ƒc–¦•ÿ±†%Ie®Ž,sùÜ‚–Ç÷ÅAYÂë7¢uÝ||È:ó&ù€ŠœØ_î^-~ÉjXÂô–vûRs;*VdNH¸Û[ ´~{'<–Ò Ýd’²(¹Æ¨?š	ŽƒIÛëÍd.Xâ#äB”  ©@qÐÜT££Y0™^â?Ht‰Žâ9›w}]/Þ–%MÓ‰„üm·Þ¦
+ö¸ òB6Í-,)ÑhÆhDÁÿÀî´‰c=0Œ	¸óV‘¨s8ZCcÍ¯l=¯/»u¦[
+éÆwTˆÊBšåãç
+ƒE÷{âå—±–ØËJŠX®M#áÝŠ…osN3cOÙ›ç‹N¤ˆ&û‰»èò¯Š±è–£çÉzÁŸ®–A€ÃëËIGî›>`ñ×é²Lú†§Q<“Ìg:¨ZB¯)”ÚÔá,àsqyL
+¼v&ik^Äl†¦Ò½äŸH2*ß¸VÎ;­µë+ã
+;GÉê“«Ë)¾´Ü»…ÐÍThÞ²ÞýÒÉA¯…÷ì582°BH?aÓ@cPøq·f„èÈ·xhý6ÈÒ5¾ i…qímäp±íå˜-$nÚ.Ù2Ê\×9rŒbßÅP¿T†ýK.ƒ ê$#¡¸:O™âÐ¨ßõ×#ºÃg{gýÉFS¢¿®ZdsË{‘YóÔçÄi­ÝoãölKâç ëb‡@†åÉ‰0'ÃN«‹~jÑû»é¿ðe,í2Rµ²¥.’³Íú±ÌÄcÿZ¹`ýì£}çI’­À$£ÓO^ô }¾
+I}wÓÇ;L›ËLuÇÏ61©_ØŽtbðŽÿŒ»¿>Á Jb“IEsê¾ÙžNry*®I çúÀüvà?ÂL…øf+öÒ¯®bŸð[ó]2CÀ, šA\]C	`i{Ð)ÕI‡$'%¸9u¿d/•%FõÓ›C¾ó—/ýLH$‡rr‚€(“Oÿae”u Æ@xïÿB`úÂlt£ÞÖèŽ8™§šÙ]&(Øæ¹Ÿ?
++Õòº³“y—Á‚'^‹Ý–•„<O/xô¦_Bµ:d_“ŸkÐ'Ä+åÅG§âaAðS4NO[[¨uÇ{‡O…"]¾ËïÂ+h[ûÀ’ž0—âjà¦ŸsÏ"ûó`a*èxÇ\G]¬eÿŽ~®Lv%gõ>[é¦˜zîbšéŸ8vN›ÊZ¡x-ÖÏ.U~ì‹¶‡—¸\,^x³|‘~«H«s«¦¨LÙ‚©— <ÙÝfØx–­øƒƒé8£ÉK—²{¯G(¹tñwäÎ’_GÑ×úeìÁ|wW7¢¸Ðj`ÿ
+Öd"f$˜PV[æ-/“Ÿçb+=y¨èãæž‹Û»Z«¼Óêâ„÷ÇPu–’Ü·ò­Ròµ!“ô+WVÖ¤Âb1c£ƒõn¼v©¸¿ùàä‘oÀX6œunû€ïß‰%šÖÎÀ¯u„?Ÿ¢ë~uÁí˜·¾˜¾÷bÖÖ@ëÇØ}æ±7å
+„ ›®>n6>ÏìpÌøY¬ò%´zúægEÞ]ÜXä“êäøgÓ­/èòBFv 4úY»¢Ž@çPK:èfAÌksÎÊðiaµl‚‘·LžgIžÜÒ0 Œ?ƒô®c¢¯
+ÜCUL¦Üì Vr…9ìCÿíA?/buÃ}‚f#ës©‰âCNÿF±K|¨{xÅÁ4í ‰˜3×ÆÅvê«‰¼–%eˆä¸%@YœU<ˆ4áz×.™h!6|Þ‰èÖ~*ÅÀO3íì ~Yâô“¬'/G‡ ÙÖüÈºD•»6F©[I°Ø1.o—¡áb«š$“h‡IÞ-Ñ¥>bJ¡ƒ}U“¸²ß­­÷îÍ+ƒþçJ?>.Œ™1—¦Â$¬Öy]uI%á)á“Ûˆ¡@\/¡÷Y*Ÿ”KÑšÊ×E ‹’G^øQ`7Ž@Â fv·ö.8¬Ýc)ÐiGt«Ýž‹§g©;Ç‡âëA6«!µ³`îãkAá4‰ž<9ÛÌÌuôøKúnõCÛ“H³“7!rì+Ä¶‰ÿÛ~ˆ½m1øý‡ªjudêkô•HŒ3ïx©y ¤±Kœ}ÛüÍ·¸á:vAt‚½ÌÂ‚Ê„[jªäUÖ­"ÅOb\`…	–dÑ´cm¸1/Áã2äŸ)Ó ¶³ø÷©óºèB‘µ¹/Æž+ÒVh—ÇÌµÝâ¯­Îx¹¹á0?¨vŽøhäé°UÖuuH¹Ëâó' 6›ÖÆ×ùž¢2å3¥ß"©7Y4 ñ©f]Ê@õõâB5¼¥yçÓz!É”gB6öÖ1È„ï7ŒŸûN1´)EôŽ4í+pJt%(pIÕÖøãÞÒ„$ª|‘ýiÊÈnŸÑÇ^Ax)Ae³6±Oh×ÏOl3êÞFüËÛ}Ÿú¥‹v:h°¹œ³-O¥ûø›’u’“íHê¾‹„›i˜<ßŸÒßë‡—¤/AÞþKhÎ1¤àeV¢ï?E€M{!‰ØØÞ—Û˜¥ó˜ª=ÿtƒ>ó{ôÞ9»¼¦ {%AÓ§5Ž¾Ýoc}‰’ÕˆR¿vzõ]šþ&J¬I„‚io³ƒõè5ÝZ9J]ÙÛ¸{ê3ZÇíûiÑ¸nrž÷Ê–AMÕ|ØÃxâÛ§c«î§îç]í°÷n™E¼¨wttµ4ôo›ðÇJL´§}„óžÄs°ïUø~÷dkùÞ~2Ë#¡jÊ$bq²ÿtã£¤ñß2íäHñ–1ËŸYãÀI;“‹unýVøð›"q‚6*_ä‚,KÏ^%Äè’M¡*VOKB'G[÷EDƒ}À=LGß'Zù™¼šr2·§WH®µÊ©ú/ÃpËì¶f0Þ™Éô%€äû•ûùjÿsZ©,¦M³ˆ†ZX½ºZDAÃscxº '}ñQœ‚ƒXp˜ ‚ð*’ÏügT.µG ÿºNgÏZ]ÛœY·CÞûª$?‹žìjeua~Û­—.úfNw{Ò€¼­tJƒo–¯‘äQbæl¦[ó.æLŽS]o?²Ô[?ýsùˆm'Rª•=w5h#ÊÒF‚Òyuñ!ÒžFwŒéŸ-Ç~N®‚ÿÝÇùNž‘ÙUÂâR8|@0pòÌìç4 ’„^\²tCÎõÐ²ôHeïæãÇÃÃÑ
+³nBYJ2Ï¾pgj£Â~Hr]Î@F:'œðNâ
+èýQPîW<šUoš,ñ~ ü^*S€x\µå×^²èõ¾¹·G^iûéð¥*4ýd	´Gì˜,ÚäèíÌÆè@¸ÁaiBme2ôãž;
+Û	¾êØös·^\;#ä&cn†úrA…”ZÞ…:æ°[!ò]²÷†èŸ¾‹HË?*$+*ß§O"¢’ãC?B62ÊJï¡êeˆ¹ÌÕ€–ªú„Ã-Ó#:íˆc®e/œ7Y¼x.Â8|[«Š[áªê[ÜÙot ¿œF'«ÈW«<Öao®£Öw®[û†þ.­6JŒ¢)jýA=!ÚÓ>•äy‰åçä%ûr®8ÿæ¡=óÒap9“"s‹Qí¶ðOÂôN!4¾ÞgŸÈÕögMZŠ’¡m›Ð4æ¡„O<ò &_ø„£w “Â
+ì\yP§5¦·¥umžOxpÌBžÆÊÇ@~ÍËÏR¥ƒkdt@	3(ëgåê”à¡‹‡Ó´ô»/1]êÂËŒ¬+	Ú$À…^râTÿªK‘zÞæ„œ©±‰¬.¯Ì˜¤Ôž§AðŸÚ{Ê¡g‰˜Š[	áŽ<Í&–¶W:X;5Í#.ú¥”Ä€¤­×VMâc(~Õ© “5B¨Äâ-Ýtœ=ÇöóKu£*15ÈF€oq‹£H°®‹*VyyÉóz•:6Tƒ=ª“ÎìMñ[%páÓOCZÁï‹³‹Á¦äßþƒpÇeŒµ¢±qå.}}]Fák%(ƒ¸çèeõyó®,Öwë‡\bø}‰Xb?W„ùÐ,6ç²n	ÄÚ¸rRšë*–ä»àòòœE·JqÝPç¸MÍ§‘’yúNÜŒšU%Û:M®óÏ„¬š«þ”øró8óZ¢²4¼ç‘ûúleA¿àâñÈÌ»¢¥õŒÓòphÂW–†Oqï ¥Qº†·Ì2ìœæ&iÈF.ÀùáQ+d)Cóü¾ÉyFh‚€ògÀ7Ê 
+u¯Y€¯Ó3%PØì„S°dª¬/_5¯1E$²©‹¤­ESÞ=†ðžB+ ;SÉ‚'0úË`^Èµp0-ç],ƒPôŸÁŠjóù`•MÞ9KÔ¤¾sÖØ–B6Ä[FH4xyx¨øÖSË(C3+´(U>Ô¡8–òshHwÌ|  û’šRÂ€Œýo¦„UqÔåSƒ¸|Ú°@…žÞ;>¡:a%„
+n‡&žqÿòêú;³\£ó tð "1² Öµ@F‹Çlž–ëè?·ÞŒo2F
+uì3& €2Þ°žÛÒä¯‘ÎœÃg5Wúüú\ƒ3SëÛ«Œxïía<þ¹÷Û¬ÞbZOñ\ù²ŠÇÛ¥CßîC€…Ÿ@¿‰¶¢´Dv¯£Ö‰ºMF[ö‚PJ¼íÀX·|,Ö>¢Tfaj;Ê'ø´{$$òUWç\›QŠUœD{€Rêg|‘[Tè¶bÕ6H½§gáˆ•”–½f+·ïa%àf¢ÂJí3J×[zØ£aùÛL@›0ÆóJÁ/¶ÎÓ‘©†A'g9{•øi¡9ž…½'n®=ŠÆjÿÓR&Ë^˜öf°'Ïhµ`*·ãÿ TûŽ&|Æaƒ7.Ö3X2µWb&#—‡õ½š¹w„OHñ BíòÝ¯žå³o¢Ì^M9áîòJ¶ö…›kåwÐ‡ƒ¦Š+m`Œ]‰¦ÆKf ÆÁf¨o™ŽZÀÀ¹á|6‘‡Üå›ŸÇh¶£ë8œ¶h‡r)_éÙW{g|YäèñDiºÈ@RqŽ@ÝO?hÿ´²6:†ES·š.•Õñð«Ñ¶ÜgnŒs}E¯óù8‰nÏÓlš)d25Lè°=UæÂ1Ë7Ã]q,[1¯ÿ€3µ,'ØâŽ¿àíAöàZÀ-—Œ— ³À¹?RgÂ`Ù~N`u=`m¨NÔ[úJÕ(us(ûsç7a±t·x6•1¼%DÝáð”|7s ’Câök3È³›‰2¿ÖNY”d« ƒVä$·|”ZµKd‹¢bÀ]Ä–fsE6™wésxÓk½%×µµÎ'©b¨Zb´æš29µ‘#L{—™æú•<lIYV¦$FÖç8Ã‘mú¡Â'õéŸ9Ž_Cæ¢0Ã+úzÁÝí½òg¨øP^îÔâmÙ)“©ÐÙC8‡­ ":ßáHÝuEÍTHÀŠÌ<ô&ëX/å[ÿ’:¼ý |Cù0a»ØÁ´Å¦ºú	=½˜Q%.<Ô>RôœD×Íì+ªâÏÒÔC„å3ë‚ö´‚¥üÕÓƒ»ºRO–6@±Óé7‹«>	ý>9¯ÑÅ2UMåûb•Âq"š¬äb’l´Uy®bpj%>ÏáõcF|ìµñ%¬´­°ð{âãí¢*W`ÃöNµý'ªUíŸò"ô+í9£Þ¾ðÐæ‚o~†NÎ³ 2$4I;wÔâ¤P°YW;³ÈÞÂh©Òòäõ¹¼‘ŽzœE¤Ïy¦fÍ›º¬WOÝäÿ"ìèIo
+Ë¯ÀyÆf1ò³Ãð„âCÇpEgY»á“…Ì> Çw$Òëß[Ñ p·§Á—«£uÝÿz#QúB¹%õßÅRðµ –‡BÞâ“ÌJ±µ/àìÝ°üj}«Ï>åH¹‘'˜‰ù>F)ÂLFCëM´uKÊ›ùô¢Köª’GwÁqØ’T™ë1í<Ó•FÐ1t°úœon³">-Ý³YÚl—g²ìÞZ|·¼;éÐ0ö  ¸6Ê&µQª1¿³é–‹%!¹2ævP¥L‰€n	4P%å½æ®íX‹DãÙ
+îz«?TáéÓHoð‹2$ßœí\õkÀ¤°B‘Ä®¸GYôéY¼Oá&åuÿÿ Òý„Áq×Ô>•R
+BðìZ°4|#ìõwpgUÆ—¨hHÈÌoÓÛÑÏ·%)_ÎŸ´æ§«Eþ¿åÈ&¶5xAo²}Û»s ;ëŠ~'aÔJ²0OŠdë>¾€E5Î‘4\¦G8lJðy™^ú\A6‘4>ÊTj™¤ä¡ÈWf°K]ÒZ‡%t¾°Ë?åUÌÏ,óÂ5¬g(iÈè™Â«Žk	Ž\óhËÀb÷vY·K„:¦d|ÑGeã/!ÎNDwU6”^æuÜp™ì³C–9á"[†6£‚3a<õŽ„O©j©8Qä"9½{¾FÉžcsÊ¡ˆƒ\#ª&¬ÈÙZ„kÝT—†é¾—â3S²b¥­±´ê4.“ªÛJ	¦O/Ê3¿ýËŸšGƒó¶{¢=VüGµôºí :Lñ¤’ÎSÛ™¿@%´¡Sr*%3¨Â•é3¨¸»]˜ÿ££6çÁ…Pé(‰k>Ü½V[æD´^FTN˜!‹‰‹Ä1¸'y[1Ÿ‰`sS¦½ßñPVÓ&PJÙ@ïmØ7¿Ìë±¥ÐWÿ›vå¾ïðC·T‰•¾å[Ë|Iæªï4²Nväx#6o2œg”Ü2 Ë¹4*±‰vQ#:p?ùål[;§¸C,°ˆ2r_¬wÐc¤Á£»sË˜Š>¤XÓ$ëŠCŽÃ#Ç/ìHK¿V7%å¡™®×L‘+üÈúøã/ %Ûbñ•igØ¸a–'4>hÃêTØJ©öÀël›äÁ¦8áhÞøQÀ¼î¯L^‡“ÁÛˆùh¨øÑ(ˆ?d¤ï‹‘ôŠ ö³™4Ã kg"íËY•£žiA^zåÄë[]Fø•Ò„µ<Z¤P“Îp‘Œµ:éIdR“}è„²õ,wútÞÆ¿Î?‘êì9ãÄR¨š£8@RÔwŒý•Ù4èÿ#Ò¤ß5xcF=Ó£ÀÏÌæ8=@ûUÎYÍÙÝ#¤fßzÿüMoCÑCñ]í'º‚Ú 6ü69‚³f\BG¤}µJÆiVfZÅp`ŽÔ_ Û!cav…Yu<¼\ã ‹÷oG!ewF[¸Ä,Ç`*z½¡}Ù‰JíwÎïÜ°”™CëÉZj± -õ5U	î¿Öv©êVØz•ÍÏ«8Â¦¬ù@k|ŽÜ+»˜vÒÕVv¯q·’Åb¬¨Õnd Ó³ºÅ-EÈ£!	5[yw¯Œjû©ÞÌ÷Š|n"Ï|=@4NqELpõyÆºHw
+=DÈŒFm³ÀÆ{möÌRvõŒ#cË”W‹”|J_†ã-@0!©sª¾â>™ítXEâ’È’)co®¹#w–dˆ™‰Äå*†ŠüÝ`mŸAÙ)<èÑøÝðß.µ-¿Yßª	.÷fÓßôÕÆPSá¯°sø|¶Å–ÎÉîË˜§’ûBg+]šLEÏå,t:ù:@8CD•DJ~f†2I•€ólxèÌÛ.Ÿ%þãDwrWé¿ˆËØÍIoÊââÄ6t®MVŸ'cÚ-Aø­M«¸¬Á‚rÌ5ÒSOziiYQf]ÑŸþñíò—Œ’õ´a	5™[˜«â1yW>^Å Ê&€ÇX®pa_/x'b!ê"j¹-ŒêidÖaƒ”B_mˆ­@_Ø»œí¦ÅvrÂÈäÞÐÇí Ó®üð!N?ˆú%æñÜP±OìÞymƒW)ò3´m%0Útú¾2Ýè=à,PjÍ˜9½Óú=%[8Ò×ãºn#—Ð í6ïlšw»$º¬j˜}ˆ©éS¿[TõšÚÈƒ¥,¨Ñ?Ðnü×—µ˜=£º|ÑUÅþçgáhNQŒý™±ªÙç¨t%ƒo7N¶ð½ m,X„WÕ}‘ØÖ›Û}”vè(P°"Ê0¬K·-‰SrwÓR‰e±Ä £¸$ìª4§`µ«ç_RÂJ±½ªe¢ìG ZÛ¶šTÉøHEýÞ~ÛþÐ%ÒUuGC/üd÷ŽéšÕ GØË'¼aQ“]ÞwàÇ­uÀÚ(ê²Xð÷CA°yËá9Çð4œLüò»qÓrQöbDÒ}jêG‹Ci–…ôŠE¾o¦ëj¨ºü(½»Î¬G
+ÿkÀã	C/(óGÌÍóžÆ©&ÙXN&À"Ô
+“!/3FKcalûæ,°°Žõ) l ^)ó–x%ŠÌ5-Šnùt3Ú¤b=Ùù½vðáZë
+#;T'ždWóTÇÝŸ	æÑî¹Æ¶ÔŸˆðá¹ÀÚ,U1-kbÄe5…ç S“	½ž{µk
+ž}3 ²ž£ú\ž÷³è(²Ã3ÐèÓè	5ñ½iþàS ð§k÷ÍëÏÃMÐŸüž)¡%,n²ƒÄÃla6XLJ!H·æ„ø(¿¦a4GûÛánÉÀÍ‚n.©êÅïåDäH…˜…Tí/~,êŽÐ³Û[?Ú×òìq•ehGÑ°gzªx—!“LƒJ`@ÿ(jÆÂàf¿í¤7„òÜB\z§ÊNˆÖ„ïR Ó;,Äc¼Z8
+Ð	çËÝQ4¹ÄÞ6!`í°ÒÙ†Ff`=‹‡P…czÆX½Ò“ç®:nf|iÔl /§XD~ã-»øí(ÿÀwCÕõ&.ÿU†c4ÏÓçÙÃŠRLË|ïúúö2tN¥R‚ŽÿZt†%»9?óyEàhâXdÔ {ßymb>	œŒò,}þ‘Òb
+”Zë-ñ¿cÞŒ¤*—NoØ•ÞN˜€s×Vƒc;µgœ¥Ýr+ÎÉO¸yÛU¢×­W--¤¡]‹„ÔÄFp¶#ÇÞÔwGt!w»E¿ Aß*ÔçÉºÆD\Y”b×•Œÿ,Hg“ Ÿ§ë°1½–º€Ä±ýÓ*Q•6£,l¥˜ûâfpþ#’„ÝÛ¬œ8mó’(o(.)iWüäh‹WüMpZ ðV‡§ºiLœØÃ§€£sÉ;ç“(ú¸¯ÛÞ ÿûúkŸ7‡>–V“v$fÌœáÛQ„ŸìGŸ—Ã•fÃÃx«Ï.Ðˆtn÷1bü’Ì([÷®ã3"´;,2òTÔ›ðØ ÈÍtd‘Ä#7‚&Òýà£ª¦íŸÙÃŽ´Ã¨ç±\b²ïD+¦Œ[:¾ðAnãR•zŸÄž2±Å'9Ò.ÂÖÈQšÊ!öc+´î·FàFÇE‚ý²¥‘9Í&s	K¼¤ðÕß_º×Yb|Aîox·Öøà@ÁAŒ\Å ý‹øÁfAo<èÈü
+úÀxøM¡ß…@ðdöDO˜óË/[ö€ê\x~È#ð£‘HÐ¾]· Fr…ÉúG6A€'-,hå°€A4®>lX1Fz†¶˜ÜÙV•ÿ ˆÆ¨†eñÆSõÂ´ö4þ9å…~çlåÛn]>Q$¼1VÃN/žsJ²® ÒK¥vWÃð›³Ñ“·{T^êM4¼èœÏpšŸæna›ŒckýŒ#æe\ORª¦º¢Íj¥9Ê%™ÜžCkYDð½?]¤s—˜¼BÑsÓdÒ#[O•÷dê¯wjTìq€Œa„NdÛ‰&#ó™85Ï#f¬<é¤Éã3ÊþÕû/Ü¯7Zµë» —rHl©ˆcì[XDx__4|½$WÜ0ËUð¤›m.í”Úd2ç·"±Vª8ù-KêÈ¢TÌÕ0½“Â¾½r'’ÖF×°•‘*CoÁ¶h{þàÂ·é(Ïûbï’Ä †Á¾'XOzÎC 3ÊgR|š}a.3WÖ8`¬¼mÅº9ƒu»X–ß­Ô›ö¨wMdú´'(ä(6#óª† RÒ5‚Ì½ñ/þ3¯R¼	?^_ä×™÷¶ðâ¶Y§ƒ#nÅX²á)o´×Á„I`02X¾léòêMÓ/Žöu•K6„.8‡ÇØ¥fÂ}\?Æ´/·ô™Åþyžý8ˆªê¯a³üOüÎ#ôi®bõG¢wRR)ÿ½%NsÑ»þ½¥€è¼Ød]Â ÷ý)™w×–äÉN=15"Ô¥ŒCx«Ó:ÿ¤ðB½îšäÃfqwN%té Štç{@Zðä­.žÙ~'à”RßŽ0Q"ÀÂÑ—$ëwñ£­«ÆL8p]€Ë[)O ßHzƒÐÅ¼/%) ,}È)wízõd3˜/mîèk	G=µ`¥¯'ÿì»¤ hO0D—BëŽŒG\ø9.ÁŒ8ýÓÁbÄÙ þh1:Û6Q>ïùŸîX‡ªSï¡ðóM6Â=>k$¡IÝ> PNÚ…B½P4î­Í£Ký.Zè9ö’Ü§eóÔE!‰üÛè”q
+aÔµæâÐ´ˆ<ý‡•ÉZ±ÔZ
+àçâÕ¤Íù)V/aJ[“ø® ó§C|¢XìOj‹Á¹¦ŸxcÍ3Qù½“}×$€²¹q|êëjÖ_y3ÝD¼Å{hîæ½Žõãu¤Î ¶dû:Žä÷LXiãâðòS<¥ÖL‚^Òóu`“ÑlôÄLE¾:C„G¶KåA‡ ­™•ßŸ·fwQ}ÀËJÁºkº\>¼y\N³ÕØ;›Õ&…Í›Wáûüò}?ŒöþS]åæ ¶Ü-^²'Ý‡uú|VROosÕÿ´8ŠqQ8·r»LôlåÁ†(á«r;µ(Òë¼û¹…oóÝ,z¢œJb(°®ÑKØ˜1z"¦WË¥ª÷^a’MîwhPxî§`±ùšÌÍëôÃ:ˆ¨…IÐßnS@l6ðêö?§Óh@}ÃU~-Ír/ƒÀPðÄ1{ÎÙ„x¨×ô¿tÄ(ÀGª?Ì@¥ïÀ¬sHœaákYìì^_ºsL	ÿ°?uÊ
+neÖ`¯”Ñâ¸Ûe¦V¡@V\ŸnîÄñJš$T
+»ÅYoÈË1¹ËrÙkæZ;%ZáêÇÁÉÌtÅøík:²ë$µ$—Û•ÅNn¶âv‰× yXÑ¸âú‘›Ú,-Æò* "#åU}7£?NAü›É4ÚŸ—ËF[¹X¿`¾Ô‘Q¢NðÃ&ÕµX9s’o£¯XwaÜ°O¯ØFmò@$$Só•@i/	ÂÒ˜äžOHÇhéñ W÷éVdO jÅbÊl~ç©ª±:`Óõû¹ÇÃQ¦$ÐÊÄõ¯·Ôu~ÁlbÞÒÅÿá½·3|Œåé«@uiK†ü<ŒËflpÄ¢™gÐ¿2Qõ4¥ØLÑqXèÎôË.)žÕ—¿®½}ü˜Ø¼Aí)¬ú±Ú1¾ŸoÙ‹2Øü‚ÕA‹Œ&Ñ¸ÀYiÌ—I}VK´žXý{²p7¾™\	ù^¿xïfJ{.1JÊB]dd°b¨%OÒ²nï333ˆ¦”O„ìÄ\žú»ÒïŸ£q—fàn·ëÑç%
+©Šl®èq]§Q01ð—zŸ#´ó?¾.4¸g±¨§GR¾4\ íñ2ë¡Wfïsçãuu+LŽù¢Çýr°ª¡‘²š¦ŸÍHøu«E3àÊ3‹¦¹	Å =PeÛq½h¨ÌÀQf^ñOq±èg†0ÂpWîsjÅÔ'¯tä,Ïï‘!Ü.Lº£”VR}<¹´«¹zASÿŽnÿW£É	äæ+ç×œjâýšV’MÉøÁ­ºK÷é¿OÅÒ7M8nQh!Ûî?m4¶Ú.j`Ðìñèr3@ð½>œø4áÔàÛÌ©’Jþ›MaœZ
+aÂ#O;ûDÈ	lr7éÙ|ú—7Žd†}X^ïýªÜõ‰lÞxXf="n€Ú­so§é¬“n‰°@ô6ÞãøT>sª°P8ø¨!>-î=ñUlícPêúÌªpvÊ¥¤¦bXžQB}º>âú±‚ëÐL”ö>NUãZ"øQ€×f³õÈD®œÛ^i0ŒGé»òì-|‡HijÊÀ»#}©³Æ¸‡æ…Ù÷(bâœh@¢æØ–3q,b—-=ú('ñ >ÝBÆXžýÌK£[ÿå§Q3·×·¬ôŽûÐäÉÔSíÞTÚ”*acLÊú¬áèëu ]8‘ä–ù^x ç‘TÏØþðòÎ)szf8`§Õ]\Ÿ1àÍÆ¶ôåc<µ™ÕÑªÂgg,uÊíJôyÞ6ÕjzAdmáÉZÿÿí³L ê;nŠÿÌüÑÒË_…Ëß‰…0okª¼‡Ê4–õƒA‹=ðV<¾8IæóÿÊæëúø¨Õh84í•úÀ }p i€Q¹Ð¶êõŒLi\›ªHoPÞMÃÂ¤êÂ7È¤ÜÓ]Ét@P4¥áš|çEáÑ§ƒ(u­¦m§Qñò¢	Ð=\Â6‹sEða„%w-¡—¬.pDi‰‘£'qòÃàÙ%VnF’—Ö|ýÛ+eÚv¾vzT`C´‡ä÷Uh6e ï÷Ù#¤Iï-'Ë²øâ«ç¹ÅÏòI·^{ž‹x–òÃ™Z'EËfô¨¥›ª¸iÂÔ©˜sŽ}w¤ØU|áŸáåï˜2}OŽ}s¯ÏÁ$àÄi¡O¤0;?,ÿ{4”5[¯Z«kö¤¡÷aX%ÑÍ\÷ÄiH÷ê&k¾³µÿ­Š-‡êŒy‘xþÈÉ{…×Êx;|ªúšCÃTé„Q7oþÜîlh\as8ž“/¤ÝóÈ$7Ý¼ÌèËU^t`#ÅŽY.`¾õxfüIû)`§þlÕ·f|¡{\óÂ>äÌ™ž{^¨I0”)ØCô§,Òë˜Ûû»Ñûzæ…6Ø¶BîCù[UË”q3<YOÛÓzUòÜ¦§&‰‹LêzÀA"<õæ	ìaÉ‚¹õKÈs·™M²ŒI@ø{&WÕ”¼eYág¯L6ºŸ>šW…2¿ÊfÄî@,‹Õ¹ƒáï]Ð·Õz¾CúÔÇ›y%¢yi—`%Ò>hzÀíSHø«õU².­¾¶•éBÏÁµ>æÇßÔ0Lù±y>p	si¿@Ü´®«T9ésß4ÕRÃÄš™
+þä¶qí+_¾9ì×æžú¯AJÀ'_“Þ›Fkžç{Ü¼äKûeçÁ€\4õj½5T°YŽËjgEàËmäÃ(eiV
+…>ÿb(#a|Ã
+ÿ0(Õ?‘íÁ¨ß”¦r8]R¸Œü^†…Ùl	 CÇü0fë´J!nÆ–ÂZ|×/Ð¥ÕÛ^eÛÊ3øüÏèy†²¾™§™%ýcÿDÿy;(×ü$—¾@{a­žd¹”ÚÞPH½ŒdìÕäÆ\‘ØvÝWËNÑÈú+ u#ŽiJŽŽÓ›_k<QNÎ&Óq±¥ä‰ÃM×ØEÆ½hQÄõ&¦0wL	º©MšXž9¯"ö´Èb|Å£\;9a3 òðC’œéâ×Z®`Í{ý8u; ˜S±$<ol~D<Vvr›AöbøvÝÔQTÎ‹¼š©˜±a
+¬Â?²õÃ·2ŽÛ56.|F‡ÀÊéˆö *Ò»ö»ýHdx­iWQAãÛ /•ëÛÎ&R×•´×¹Õ0¢àµ%§0ë<‡cÝ€ñißŒv8‰¹Â@ô°îB0¹ñK
+|;r³x¹ýZþFz«ZlÇáëæŒÞ›Œþ®«,Â/ þ­Â†˜Jë¹E¹µˆŸ’Dge›½gÝIM	¨ÙÎóÓ¼š6™âó¸_áŸ·báZd%“y ž”Í>h0ÕÃq^³†ïj‰‰Û‚ŒØÔJ	^Ï˜Ix]Šäà"è”Ñ]/WõŒºØ‚‹à¼²‡Ñ
+¸w‰«G‚»ª›€w«x†ï±3Tù""øR„>Ä‡eÿ ûÃé¬ ÇŒ7è$Û\éÄJÏ×§ÒUv¼¹–¤P•3z—•	­E>YòF±7^É7ï0;ôvýdj×ygÞhS3q79wÄî‚úÎë\‰8êŸ2_ÎäUáßÏÿ§1Ä}žâ!lÍB<”Ca&Ù;àl:;Jâˆ‹&^©°k‡Šåˆòõ?º³Tù^}“ß\Â‡ó?š¯úÝ¬\få;&%¸B¿Gé3—aP{ŸK	·©ð˜ÌXÌ·=Z‰ƒ¥ º*ÆÞwádðÑ³îŽr¤Ü`Cþ$ŠpJæÎï7“MìuþÃ”©/>XÎ$%5!‰ê`C?R³½æ˜ÔxïZ¤z_ñJÊ—_$Ð§xZ"-"õº„ŒŒ ize¶þ>î;ŽÙIÝuiñü^ÙÐ£YYÚð0Àø¬—>;Éf+‡:¹ÊøA‡ ŒôÒ/æ}—ŠKÔª`î­bAça‰ë'þRQ©¦ðô†dÀ¸[,Öz)ï“D¬Ou±èúÏ÷U”/eh‡Ø5lÃ+,òÆAÒ¿Þ§Ï<¨+/1ýX“ÃS$[Õef-ßÜM1 g~ð¥‘ ¨‘´IyN0	‡MýÐ«iI+)Å†ãu\(´ øÙ­XÚúÏÛ%kø‰?Ý½@ ”“Þ½þ 8;‡ùt@}a¾ç‹œ„ã1Lxe÷0N.ë5•ºL#ÏB2à#Øa1a‹›Õ^| ›sÓ{/®…lÐWŸð¯TxÊîas™VRd@sÈ£å3#vV{yžYæ‚ËíR»í„¢Æ_£Ãµ§e=‘° pÜ¼%Tk£ýÈTÐßüOý“é¾éÍgç€o
+òP?2RbôãÜ&D|$#Ëghèˆ/u")zLI3hwç/ÞC7zÛÏiÚÕá•<ŒàuU¬¶sÈÝX>vd¬$¡ÓZfx¯x#–ãTú'žH7§õ·>°žW¸,P®çèI.ï¥h†’0°}.D2ÜwzPçtFŸàá.9$ÌøŽŒýêIVT_ô§è‡ä·|ÁeV¥ÈÏªuõpp‹`´Ó³ê}Í˜ß¾àî^Šéá{!Q³Å²Øò*n<šS$Ck™.›R9¾”¥Ø]žÞd¨ŽJ³¿Ì?¾Ô‡–À-®?bœe™ºV|9£ˆ¬–ÐÔ‰eú00ž—A€h¡¶¸4W(ñ‘×å~"z+f£~	:!CÀ{|¶]ÉQ«§±àØé<Y¬N ‚‚{s»æò#Ï†üj‡˜Á*§h·™Ež‚ã¾\oXð”
+/¨¼ò¯7qbX+_òÑv¶nª(©lKø–M¬–<Ô,ïÛ`11€ùu>ÿlÑ@›K,ëÞ"MöÍu6ÓR» ù~+"„úé.•ýÀËÚPö]Nù0+wæ>Å”ÊxUJþzõG×,Ùjfâ3>ÒøÙB³bJ­å#þ¼JAš^þB<±rÙNÞð*¦ 2M¬R]ÈpQž¢([ÀìK¤“ÅB@› 7ÝÝ÷0øíkå÷pŠê¯ÄbØrá*À¹Y×Wš( €Ô>qïïk¼n"ËA»Dæƒ…nŒÈú´‘ðUçb€¦#>L£SV¦þu­*õ:rÝ!0š=ÿ!!ÔSV:'u£qÌŠtÂü]ºVÙOàÏ¹(r*¡8g¸¹ÑÈö“ïÅ±û”‡·—£ßlóÿÙ†­ØðÛz•z}õ~(ÒÆ…©§Á'QO…ÖJ'‹"öuCç„m’Õ1Z’B²y‰<D?)}>Å˜‚¯­º	 ¶@1™Ù"IA†9U¸íÙ»È¦þäþ+_ÊêM‚é+ú/ŒðRØ¾‡ÔÎ˜ôUlàÉ;žÁK}²3ö6q?/ú[’ôêr_A=¦,8ûÏ9{±ðc¨i-r†‰Œ¬dsHd¢95•ØCóÚòá>ÑÞGìdÚ÷=
+AêÁ®WT%K„ªD{Aþ£Þ_Ðý©Õ7ÑÜÍT9{q;W³Kp‰CÀ^`+J#(:(÷^àËT`›Š¼×'ªÞ±× Þœ ×0ê… º0àêI‡æ%·q%iê%*—¼ž×Ê&úðÔ'øÊsW·ç"ˆSN’™¥YËç£Õ‚”¯¹Ã¯|ÏwŠgÈ*–²ýÅå5ÎJÁÄž4Eå|žéÇeþkš4ÐûÜMU"+ý	Å×üP¥†]4ŠPj=¯Dh±ðãyyZígçÞýúþ	õ9d“R¸D8„	Þ„¯Ë™½ëR3Á3…´Fh²œ$à«REp‚ïê1§|Ôï$CAMª(ÏÈÛpm´@éÞM˜’,É{”D´F6ƒü4cì"*q 6Ô•çÓ#‡—t€m&Ó=åü:†ÀÌ½&’·/ËG/Úu…ï²ÜªnKÜ%5ucžÃ’1qñ#?	ŒHNQÜ½@EyõÕ™†Üdp 9ÞZ€¼½…U(-;ñ²t¨¨Ö—M•í‹J[?Ä]Ã§[ž0³ß9MÄÐWGriF[>ÍP¾!Ýˆn^WìéB€Ó"]b 9#Ë´ç\0ÌN%è9úˆTÔDÖ¡@QÄl+géì'øu_Iuî5Zç$¶õ*àÓ4ÕÉOƒ´ã*u%Xrßç Rîq#Oºrruå(’Ý½»—¤ŠˆônÐˆàP‹®uÏš§ô1¢Ñ†ê^gT„Äòò˜ð²)}yGš¹¡ˆT‚{ßä¨ûHE…	U*HíæÙDÅJÆðNUu£hYÁeßñcV"H€™ºç• w_}TOýÍ8~Ê®¬ƒ‡¢0$ƒw	é4
+íƒ(d«˜¦¡Y‰£Ë˜.v÷•¥Ž Á5ƒ3¾Om’C:¨Ã!c:-:Æ±î~ž´ŒwÎÅM_eœU"CšÔÀ—ðÆÕXÖá•ÏÇíªÎün×yýIÎ2CØÇ‹#F""Ï<x6o£5>38ÖþLüh™÷ÈOEÑÞÛÓc%|iûË¸ÐÊw›ë¡Öqé¯­sÉ?Ïì8~ÐãÒÍ‹\}2‡Žñøó¼+}C›ìKLyIOÙB,Î¯gƒ¦Ð¡˜ÉÛÇÉK»ñZ\y<q–°®ü7¹büQÊ	©©[Ñ†â®jB)qÛÓó_ÔhjEir‹¯Ý{ÍºVMK*Û¨-‰"S6¦,¿5 M4vQ.30üoÊ0uŠÿ-+©é=6h“øS*¢˜ŸÛFôˆ½ÙñØÕƒý/¡è•!vÄ÷Äì¿PÃY]f®gðc¯±ÒÀQÂFuŸoÛ€î•È7¤.û/ÎÃ‚ÁÂ\† Í*±a·Â[Œ¸¹™½BŸê•ïöuŽr~œ:Òq
+ã(âÂú©e¦ËŠÏ6à‚®_q
+Be2rIuµ*ËøÐž)Ž$•2iKá•>G‡çê•¢¼\ÚÒ)hI}˜”³q	ºtícízYÁ>ÀN)<‹ÊˆLsÉ@{’ç@2é îï{›Mu?³+BPÊXtã¸ß`þŸªI®~'cã/ébB¥ïæ†+óÇH>Ê[ƒ¦à‡O‚fùT¦Ëôj<ü³ˆH!J e¤0UÜOµšávÄ4ùÿcc†'·ÞÕkAg/Á3V‡•Î€‘º£}.„°—ªÓ³‚YúÃsn›aƒ6ˆ„Å¶¦0ˆë$¾¥ñŒ	 QtÓ»”Õ#´Ð•Oi¸ùD½É_JR¨YôbªápHÓ*À§…îµE1zßi×qø ÂU\í’¿ °¡P¾E°­l°,¼`…¯½gqá¬
+¦E“”ó,¾f,T<pNöç[®xAxÍõÈèb¸þ¡^w»žYŠjìráøµO\}wß2oÚØÓ÷¥ã{Õ Võ."‡å–…[\:r{Go6ftå± ýa(-ûbâÚA»áƒµ`é¢,;©dµ,@/“71ïáÙŠDjib&q¹X…b¡ÚTÂªVäeY&EÏ	¿6‚#.8#[«_ò~SÄ2þ¥AÚÆ¶ª>¿y²ùG†y	¶(±j
++6ó®ÔÍ[C{	Ø,{ë7!ª IPë²‰)é˜ƒ¶/öŽþ°£+é(hBzÀ	Ûº«ƒ«`Ö¡‰é]ÕqdêOôZÞï{z•ù	RµÉ¥H¬‡LÙ¾ž5†ÿý?¨ÛÆµVøÞú¥é³¯r/˜£“ß@–Ã?þfÔ¹1 ÝÓ®2^ ?,J,Î!áæo¼c¾°`GüôD<u M™H£õ+ñ·Ü;éÚõ&¡ïÕ]'=ÿŸÑèÆ”MêøvB¨VŒÙDV$‰S)ùYj¿˜1s2zqb° MÄÓÙ ZÒÙÓÕ£]2ð‹ÿ^ÞÂXsÊð/¥]›¯RÉÈø`5šru”úœ]Â:x-b%Ý«?Å,1¶¿9”¥aú4/òS¯¯_Zßàž:ÑùRIcÍp±¾Oy´ˆu¡@ÂoÑ(¦‡>!µñG‘Br€´7°…‚ÕŽ-`ÈÌ$šz[”ãa»àÎáX»¡Í9Š"Ad|¸ÉÉD›ò§-ÿ4[˜Œ0S6,î”‘Ø °C¬ÜïnÒ8˜£€7p‘N	O6'ìQÊÖx<s2Ñ­ýjp™=ŸÞ”Æ)2/—îuiÅQ„Ù¤É&3¥¨GÕ—òvöí¶,^Ô‹8T »£aU?Ž7i¨ù{å¹?åCuP~¥ôÎÌ¼ášç:Êõd¤'™OþdqÁÐª\’;~” ÔÖíÞX]ÁÄ.?H*@ž<æûÔ¼‡ìéZ]È6ié4»ÃÛ‰î¸gÈÐ¶«N»e%¨p$ã‚ðò 6BÐ²Ýàp‹4ü°†ä€â\’2Ç÷[s_SŸ ¦ÑùÐ„DÆ„§¼~hIKûš"¡Waø%áÿqÔtWñdý]Ã¡åj%³±Ø¹œY¿súœß”|ö|Ýw¦aA Ö"/MŸfÀÒ0(”DŸ–ÊÃY%ßîµvÃ—ïmì·µ}@ˆð‚Ãð ’›¬T{¶ÏùæœH>,´8wÌwh–Õgø\³³ÝOÉl(Ù±'<Ö8þÛ¼VáÖÁ?Ì¼cMsêè>ÔZOï§vŒ¸šFÎ¨©M¶ý]G¨kªˆ–l(RÔìK`ýËC§7„9ü|ýñsáç©º™úlñB¶‚E9FS0ëäC¹ó£úî€yî›÷PZ[mÎyM;ˆÁ4vÑó­Z7À-§ú=JZ–ù
+äú‰d'‹©¦[op»:;Ú‹£°[þ³Ö1±ŠD»|ý*ÿÀžãªà¡2Èæ1Ò²Ëvý{ìWã—Ï¸ƒxÚ”4É Ðû[Œ¹uhhq<ïÛ¨ÈU”¼=Â×%Ü3¯!¤Â0Ç6ê=ÝÊ”þSFŠc' ä¢Ç…€ñˆ§‘Õ‡Êi®ÒÐb\ã*ðDõñïÊâÀž›óTuë½PÐÓd×¾¸Z#À3œ/»®|wÅíOƒî¦Mðâ4Ë~`É¸ràÉ§:ï3Ä³oå¹]„[d7³š(EKOž…nÄG‚¶å!ãöØpø*Kà˜¿ oAL÷Y
+ ÓB«Ùìb²ÚÀ^í·A%.r‡DÐ–°ù Œ¥ù£Ó~ê>çb)¢Eb~±u Ý"wR(ô©¨Œäqš2Z´ÅÈ.fm0çŠ,*X„?¾¢Y
+³}¿o­ÉÜ•¶tùi€Æžùä"Ì(bïÓÙ€†Êúøo;PÈÎý½á™ï®ó^¯Í>nY@¤Hô·\TÐŽáœÝÓÉ²êGÒ”þ÷hÄ–§ó1»8–°gŒˆuÀÄÃÊdÛ&ä,$þgO²ÈjX‰×»ÅQâË•'±A¥¡æÍL§—2Ï¸rÀK_ãµÐŠšŒþ4	¿¤?,Di¤±,²÷•ÊÉÕ°Tãzë¸œSqî	VÕ¥çn$ÃÈ«Ën}ÆÐêm…YÚþ´sºŽì‚rœ
+0þ$I›ªÜ&
+ä‚$lïÅª!{b‹ëUå¼èôöåÛÂ«MÂUÂíØ6@ó®	ØFqþÇvYåÿ´î6Õá¦ëuƒŽR&×r7F©ž_&"É«b×ÂÜôLnpmÃ5ü„½³Ø
+•X¨ŠÈB·¿>ºã¨×ÿ7ðf„Æ¤½³3DB©3”›÷’i(«iÊb ©}ðã ’»or~ÚÞôTYäüq÷ÔC­î´ýÓ»3¯4QT:°$„³ypþð{ÞcÎÆeÂ„&¤ÿ¦ÎŠOm'ÂlúG¼9u/Š±ÜÙ*\³JÁ°	Å[ìd‘ÔV3¸™”FôªÕyÌðyjÑXþŸÿÕ*jŸPM—5Ûýcâèòúµ¿ü´S.«‡+)Ê ]”1Ü0éÌM™…µ;átJÇñv9£Ž%=‰ò.Ý‰èÏŠÙ³ÉmíÑ©…ñtëf_¥‰T¨VÄ‚2ÛR©AU¹Ð…m¬…ØWŽdÂ‚D$¡gš3MX@°@Äq	õxøä"o6»Ìg2ÞnÑÜ%•H]6ˆ<"«õCgbúÃùº#¶Ë9¬0‰0|:‹ú F\>^òÛ|‰Ú=¿a=’¿Û¤uÜÿqöGm¨£K4ÿW±wºsÑ´ñíó­ŒD™eÄàûdãµ?…çX3të}{ Ò‚CÌ4:/’Ž*mb#fIeÜêËö•:³’úf(‡ÁKG6‘$@<äß‚TeræÜË³2ñ¥¼r†¤dL	|®ûãDÀ+!Ü«Ñ^çËDƒ…L„á 4d5rÔÈ2+DÞùÁ4-Î/Š­Û–ñø<Ùˆ?´ÙOâR ÌG¢†gðþðY§näŸFi<û9'§SäíÜ%QOIîpíP+ßÉ"D­:”ƒö–š±C[€0ÀkØ@çî™ØÜecVÝØùfÂ#Rv_í¥HIÂ¶u’çAËK€¯º×¹‰5PóÁ‹'ùbjíW­+±^?$FuüÊX»™Äýœ_\·^f°J·ŸÊz°¯„9Šƒ\æLñ3á¼š´LVžÿtc¤àz\y6 çî&]:@ÛŒÉæÕcûÆšÍ6ôÅeX¾°³<Ê„…‡à“þšÈa1Š!ç—7eÓlSsi˜Ëé4“·$Ü/Ýyé½×Ôçh3Î*h8zn]Þªj³þ…yîM½ÉPEBñ’¦­Æä¼W#oÝÌcšrìæºBrÒ?g)ÜÈŽÆQu¥W÷ÂH×Ã&Où­Ž’âl¥`#®šŽq´ên„gê>bUçõ¾*rÃPâ[_ö'Vù›Ÿ
+ê¢[y‘²‹¨d91#f*úŸÕëñ|O…bsl¼Ô•¡:ä–€Tw7Zþ|ÛšMi±¢°’œè20{snÍ¥ÄÇ“Í›ˆŠ€XsÆ=oÜ=ëêÀÆ
+3ð\Õ$¼£a»a¹Ä+k}z_k3{–=/›‹&,¾èlY®¥>¯Í²?é7˜›sµižSd7ãHòü Hsœ	(Ùö«¼i ùñvù×’Ø8²Æ™`RdééŠ¬Ö˜å¼Ëõâª[0³2_üÖÍÑ?¿tÞY½…¡]É Ò† ]Å ÄÖiÌ©aI{Ûm#X,å]ëa%Öò2&?F8]ipPfÁ±˜l¬öû­ÄÂý½Ç$¤²¢ã«“àNçé¸Jxb°þƒÙÎI­Ø>.%°F0±«ó§$–fEcêJòžÐDÑA2}ÙCŽ‡y¨Úãùx‡‡çàF=FRÌ`[aÀ0Ð¤­Ä¿Ç¹+Ü½F¶õØÂO8¨e¢Otò6òÕÇ[§k™þà'uT‚8`r´í!º0Y˜HÂ™&Ž^¦¿YÞ…é=º+èØ #cí‰šaB8æiðyt«Žk	`ºl-ÅºxáÚ+Ý›Ì?…ñ[u(ð·ö2¾‚e9õjÜNÈ]9´YI =¦Ã
+ÊD­ÕBµvaCWlKªÂÉ‚2'ä'xÜéc©^¶ÑiLF•¨™³Âçùdf“^¬YzÞ«ðÜ?Í£Îv}ë0œxõœ!Ù Æ·s™ä,aŽFf—:p/‡·O­jd>)^Heÿå»n›D˜†NÍ(€þÒAuKìTÇê½&·D¯«rè;¥ç‚k|•uS¯¥€êFÉÔ`¹©0bvG‡\äiÀò–ä‹_È—>ÑfBÕcÒTÒaj‡XÑ±åÇ2§3(dVœÈ ×OÌ©/®4©.òkM†ëBÄ›÷?ïn^ÉÔê±²®$3Âra^=÷B67I;Ë¬T2vß ¥3Ú HM:XAÍR|Ôgepè‘5#Ý:zË&‰ÚlíjS€^Ÿòó’9Ùb‘þ¤º¹\¹#ƒ•:+•\¹™¹Ð†ˆõŸ	fOÅñììNd|âØ}Dê`*þ2u»M<5T™0RüWÎúÓçÕ…uÌ¢Âa´À–m'(0E°"ñ,9hÃ}àù Y¥ H„E›ö„5rSVƒí;mŠú5ÔœRûÜÜ)u]zô…þõµ.)	Ih-…ûYš¾º‰ðkÞÅ5º:º	øðP[-°%8,ÓfFûÖ!u²y)j»ÃÓ½ÖâèKœ™˜­eûVœŽöªúù7+cI$xÇøñsVéíýý…kª$é.#”HiUäŒáF–)M4E?b
+)„òU•x'&L5¦”Ödø~x ôJ„©'æí—oß(Y,$ÂúyÆÛ‘Ív–Èšm5Ù@\/ø‹½e¶¤/Êg¢¡“¥’OÌ;¸ªK!e¼_=¿¯EX.ÂµNq>]C³‰|[“Ìr[˜_¹•‚J}Eô‡.¢Ïì*Q ët@£;Õ(UÔ?¬µ= ¤FÑ[ž`%ÏLé¿ ÌB‡] ö°%jhÿºÜr#¢•ÄŽ%‰«m•ªIÇ³ÚJØN1*ßßOZež5LÿøÉˆ)‡û|êmÑ}¯Q^	È~‚PÙˆTÕ$`“Ê…ÈƒÖõ^ÇõàÇ•ÎI,Ð½J¿.#qIÙÑYÚ¼ã±õã‡Uåø€¼³gqX>Ëã|JªrXë†rÐOµêX^Ž5µŽo°æ=Ì*§‡ý\´ððŒ<à•¢2ó¾EÊ]–õ	Iº/LTTŠÔ Œ¯ûŠnº¤÷ó”¢RÜ¢Wû^âf¨O1¬NË7°Éxüp*¯ü'³h‘‹eäù¦³á”}ìG-ŽÀ5å3Ž&!h¡ K¿êÛŸÀL&/">>âL
+Û¯Ãd (´qî€IT’7ŠÂë°¤.F“§®TýÍ_ë‚ÎMO7%'Ò€ùpheèÓ*Î½ÿÉ1üo5VƒûjÖ±´Yº–ŽÚ8¡( §ºe Dºì*®î|Š…cÅJÇ í²Ý¶%¨¢•Uá¤&ÜIxæ©¨x|¿QJV8Â*ŠÒh¯@ ;3N+­Î±wjÙì·35	°mœ 'nˆ…ŽÜíXžc;óD$åžúT_•C•îÓ €¥ï Á;’ÜðÐ!‚Øˆ
+ÙUs=sAè±õª<èµ+f+[×%5†š’Õ¼’}p|—ÉŠE&$çNÃ3³`{õ}d5Žñ4 cð>(mÞ¡Å8lÛKí¾&í	;Â÷,Â$ÑPÀíä\&ÀÐºòðpªP¨–_Zµö,Ë©Q«u¸$uÇgzÌ†¿ž®ðÒ™ÀÞ’¤a¾‰‡…ª}LÅ˜{9è0*‡½:ƒÛî«ð¨’á=ŸÍÑw„eŠlè¿F>ô\dî~B3åeyàùt§fjÝGµ/D!{=ÿ¡“›Î†ží/:ÁÊ*jbßªGMNŸMµ•âû:¹½Oú”¾ûðB°TÁTMPwH±‘€«‡;k­&ëßo–„äu#þ1à”‡¿uö±ˆæhyPÁJÕ6(GbÚg´Ïð­âþáôQlõbf™›Fö\‚‡Q¹83ã³V¯V5]vW…ºéñÂm]¾ðì·qšŽ¿ÝoC«AÐÊ«3w #Mí<¡•ÏÊuôà$#¡–Ï@á¸éæ>ÊP’ƒÌ1©d›–ÏÞÙƒA¼|?ŒÒ-ÿVþ*å,¼ýh 	eÁ@¢ÙÂŽŽ)m[Ü„„áý€ÊKßˆâHU_ï±+RiN]þ|ŒõõœNH”ˆ5®ººAn¹‘Sýåžh—¦f>„ y–’ÂÐþ—+ßèO!pf)ÉÔ>ûõ¡Œ˜¾A
+Bl
+Ç:ºu	…®(ÿd*B’±<k9k }Ñlzræg„…nnJø0Üüƒ¢]ùXË—þ¿/ïzÇ?‡Jšö¹aíÒ¥2AoÏv”3»’Ú=ÀaÊëÌYëì‘ï” @¯ëßÎÞ»»˜ãºô—]|Žñ¡”´
+_»Qÿ…ÿùA0™\üÂ™üôl©4­&«§ÿùë”SW¡0%OPp;gØN³qkÇ­¤>Èë¢îÝAÒ¹Ë'ó…\Î´¶nW¥Ó½e%¯Ñ^ïk©Ë™|ò.òºÿšw e*úFñäBuÉ±ÛÝš¼ÿ5'·^ŽAùh€Ð	.6s{®‹6ÓèíO(íz„í¨CÞN\þÊ†µðý+Olý–b¦»÷««­ì“S¨Âl¦ÞqÉû/ªëåþp:àÒ<åXg€¢ÜZÂð¿+&·GóT³5êû	Âýl°×©/}W£ØñN›eœ#q„ëVœÏf2hÂÈ "ØïÐzÌà34ê¯€k¡>2ÝSÛ‘f#ÐŸì»áOõC§ª›sÜä	ëŒÎS
+JƒÅnç)§-BBf]†äÂtŠŽ~Ï.kX?Al‘é,Fj Úý.òò:Ï¢·–’º ÂNß@}xÆ,A¤S;ß<FqtÉ{{ŸÏÈ“˜Èüî?Þx»±GÆƒŠãmÊPÞ[~j­n›‘z$Âçž²ë£ÙåçâÄþkÂ/¡¿¼Ú=*:ìÅR"9êN„²B; nx(Øpt’U*ÎÃlêt•oHdíì³‰rïÏ0}ê—4q¥Ï…Ó-,º
+ÎABYAãªç§3¨IÂÒHt„~â7l d†nõ~)Ï]ÈB°øZ=FùvoÕåÈÇÂXªî-™´ó}o+Ó@Y¯g†==»`èT?D6P_ZPFÀXÕ£|bŠÍ¹43ÃŽù¦XµÆ$AÇåöÉ‰’JæÈ“-µë’ŽRWÍj4&­%%«ß	VÿÀÕQyþMBBÈ¤M5¯Þ§Šƒ¨½%a‚È®.
+¹íŠÆÐr(#U»\[V²„.þ¨ú\¦Àÿ˜‚,3¥V²Â¼Ù@ŽÃ?£Pþ‚Û]|tð”®0e²ù;† gë¯ÌŒ+t«¥Ìý^-ŒÊØ¶ˆ¹à'šÄ(h³&÷MfÜdÅÚ»ý©¨lN¼÷IN±Dut*¥unöQUªãFÆ•ŸÎ^ê–Ñuz³Ã’É¶½Kt-u•éÅÀ`/ô,S‹m<µùÒge„Í.…½Ÿu+saSãw¼ºÜå\º^Ê¢°%¹#ª¶EØÉ. ifœ‹ 	.lf¤]²úìúZ™þ—ÀãušrzÞ?³ ‰ IûCéËa€/µcº¥ÝNò³sùKÃ§ŸD ¥/fIÕ'Ä ¸â`…Ã6ÆÑ•L³ú}z*ñZ@ÄÄ_.Ýxù«”xòŠ6?3T†þûèÇ½d×· ;h±âŽVì€wBÇ‰÷Å¤® ·ÎþaMw÷Nf\ð«úí'6c~½³R»k!äh’i¯	N/ÄÁšOÚÕÿK„1¦VJßŠû¥W5žùÔ}77˜óïê{ýôH®a¶¦Ë¦fêÐÒûÛoK û¨N†Sáý÷ ¨žanõ,Ž}ñtOF„íÑîà‹Ùõ¶EóÎuxÈiWÛÒìá`©x./õ‰89dgè¶i$cõýÊÁ6—\äÙnaÍn .é*ssZãIÃÇžm£½c¹üâò&ÿÉº¦Â«0ufëa£ee'IÆxa½
+‰·H—GÊÏk
+ÊÅ]Å»ÏýK9T0=ñ{U ’SÒ~]AZï†á8¤¯[âüy2<3·}Pd¿¿ žþAºp)ÆùáçgöJ!œ‹K:6›½…Þ]äœ)xûì8Ç¹eÅV¸ôVUùkûßUž:SrÐo,–ášE£Äçq¸‚óÌ°X‹b•]ˆß	g;+™bŠJh¢CR*´}1ÂÇµBÉj'*ÿä¨ˆÈrŸGÙ`¢Ød\ôß•qrgrðü5k6Î8vÎE^t \³áÄbÄ©ëJ²&:‚<‘+ÆÂ¢Vqbb‘¡5¿*vRÁ&£t‹“”ðC¥8XUQAÑóïB!³ÛðCÜT<(òóƒXQùnuS£~ö›¡ÓÞPQ€ukîaÄóQio T4?¤DÜXaÿIâm)¢neê’Nòš	Llöv™?Ö’Æóv:î±~WdRênŸŸÝ×ëÜnÀßýÀž ·üŸáQübƒ×g|-§j‘s6î\?7“ÙêÂ¾jŒáƒ#ˆÇdLôëX´øïD$0Œ¿ÀÈ1ì†ƒªxçÖóƒæ´òVŽÚ{bÛ_’UÊTùUoû| ñ<f8)´‰)En©s%¢ŸdfA‹æ·+.Ñ‡
+¾‡ž\W!Uœ”ðð¯2#8&¥¯a2ê2íÖsêa¡¦6r1Ð¶Ô°’”
+µ›2N¬^.|öë@QÞGžˆë¨M(rW—£neR·M‡©wlTúÉbeýœ»‹_Õët[¹óŠî¨‰™Ynyh¢ûYT1=''“¯;…ž‚ÚB:^LwTsÜÝ\ž ÕÒ¡žÚ€tÈ°(ÀË…QÈ×ÏÜö8#’€—bÁJá2›P£!9Ý_˜ÂCýþß3að~šA8™ ¹m¯·óý·aâçŸá|	í,´~ù%‡‚¹Ã"¾j¸¸¿Ð‰ß#Ži"]¥~©YàÄõ©@€•þä;ôø{^¿”mýèêaü#ÅZ-µ'Ï#M5ìå“ßìù+rpÂ‰˜Ìí{\7m1/
+4”x‡¨¦¤ÙúÅa/khöÉ¡ÔÓßºD8K7Hñ òëæã“e=¯-ÕÎÃ¤ÆPGÉ¦\šÚ˜Ý~,ðáèY°¹C}8Ïóý"SŠVþö¶,c¼Þi¼,A2·Õzm,Æ~j˜¨®/ÄÑ«ºJHÈ|ëæËáŒ»On'öÊXª¨1‚îvëbr°¨¥Z}ŸóðŸûÈeQExç¥œdÞÀÐ¢ÞÉÖÛ·¸K#ô¸ã»"0sÜZ‰†MCe'üEQŸƒÇe¥<AÂÀ°á]
+¤@T<2\’Èx”Kã`úÑc@€NâZâPMñ*+;\cñrÅ7išS–Eø#!çi¯‹">ŠÌ”´F¬ö¹|ˆ8ùMXnTÖu@Á¹·±÷Ÿà\MÔÏ–¿V¯Fj¶sÊ+OÑ|DóÇCu:E+–>	%P7³ÛÅÞŒH´,>^	"pŽˆc|2_ÿƒ&ñmŒM‡‰¸Â{)tkehÿ¨º²_¼ÜÈa€í!¹¾w;¶£ôFr@@eEßî¢Ñæ‘¨×¶€à•áùÖ6q†Òè@hË”Èø#MŽ¥ SI¨oÛ8ÎÛß€¶2¼»•Ary$&¶àþâyí˜OãW§3®beö\ðÆ9s•á
+Æ+™“íÛ!J§Ý6º
+ïðí^oŒoÿ³ä49ÓtA03¡,ônÐS¿xý&ã)UE^-Œ».”‘äýM¹ñÙ£‚&z"¯î¢­¨©¼½©$ÝÝJ…¤±+“:ó×Á•’ü&U
+øhÅÐ®õ»Û•£d d’ðïÙé7‹ðk˜NUˆÔÚ¸ÍSí}UPø^+Bž¹ †¸î!å§çäm»d°zìŠ{!æ‚É{Bç˜	cµžÍ|Ê )ïåö ‘±%kfVµ6ØæäîôGB_kÖûˆš<Ÿ8¾c<~F·L™DY5h
++v¶$Ò™—zÄÈ›€>ðá`Ê¹d’ù)Š Ž‚*Vk”X‘ÎŸ¥C½ï`H°ü¡´Ù©€,à$qÇv%ð{É½AZ¿êqxÍ´I‡õÜ:„ìPðSØíÔ~sùjÅö|H˜×à%9àöËÏ< *¯%“‚¼
+«m®Ó¤eg´ôË²
+»56[7Oehq2?pwÆ†HXí8×Ì´á ºIOs
+äàø~qòñ¢— Š-‘‘œŒjmË<‰¹`‹sõ×W$w‰lK/ë¸Ý7‚Ñ‰x¸Ê–Í–¹Ö’ÑK¨ÏçØD¸XÅ$m©•
+ššç¹k÷¸Ž»ƒs”#FŠv3óùö}"wFø«ÛªÅšhLz_`y¸I®ÖóÒ¤õD¤6üpO‹œ99ý!7ß#Ú«¢r'{áµÎ@FEa²UQC°´$+@U8l¸¤Q”ŸJrþY³÷wÖéfZÂ¼bG½?(ï» é´ƒ i fÔßü[x¤zŠJÃ…Ã'3tä^þÐçÔ¶š’ð2¥åõ‚7’™Ú—h•«2	5”åÝUì£ÿ{ ÅêBÐNÀ‰ƒÐJ®¡W,—²ÆŠþ”Þý?ŸF&{Ë{xÕR;lO%±X É\(ø°‹µVá¼”P—L‚VÆHXê½0Ïñ¯ í¢â¸¤ã…Ÿé6l™7'žs1·Ù·½ËÁ½À[áe–eaÔrš= êâ®eÿæÂEŸÜÂ	ØFFØ @—¢!û/©TlÕÒå2¤År+D)@4@Ë­/CÉ!Ó
+K‹`òiö7Ý[Š)NO*«|L4…9P9ÙÐ5÷Ýú/&#®U› ;‡ÛZ)	{O€Ã'èfÒ"ð’7vür`Ã (A‹Bð“Ô¢Ìa?Ä¶ôæ‘'<%ý4šýDÎÈ~7OK^|0’òQ—DBUmÖ¡“Â#(óŒ¼XÙX?¦àz„·½d	!N!V9ðèåÅ"2Xwò€@µ’mwE¶.)á‡~SÍèÖ½ÕlQ°åžÒþ^>o™ÿÝ¢m´B<zLŽLõIb/	4£cÌSêÓ¦7ã¡•CêÔò¯ÆÓ. Ñá·ýâZé¿„
+fè†ÿhËjšØ±Ûmÿ?GŠ"ˆYAnæöA^sW¨…ë²n„ìtasõv²öÿKN^uiI„÷ÜaÌJ&Ü¤3*CCanDž¯££ªœTV^½R£Zë4ôB$pÊóo,c8êËR—ÈPC¢˜–©’gåû˜½ó ì†‚žô£0Ñ4=;@./ïØ2ü;ò¬ËF›Ö(ÙÁ¾ËÈÉ>°áA.Ûì®…á
+ÈDû9Ó+éª,TŸ‰+±Ç_æSJ¦øâdk÷©ž¤È(#!›ŽÙ	xK†ð³à!´ûÅyÚa€7‰@‹>§é`ažmÄƒÔ»gÿ;2-µñîµTŽ;×	L•“nÉèe0³š=mHv(}¨S~œåÌ¸õjU´™#SáÇ/ª^[ ëÆÑÎ*¦^[ücÙÂ¶…IôËpÛæ·ONn®Ìuü<å
+Dÿ|à2¿K±$!P¶zzÍ8š	¶*µaXü~ýóÞ
+ûCÊ­2»ÌÙ½B/ýôtÙÿbfÌÑ˜˜<$ÞK–[g`‡Í3¨€	¿¼@ßÞ–4†hVp>H%AiH.ç‹tþé®ìYe^rÝ3¶)þÉ’
+£ÜQ˜,„ˆjÔµŽ÷m
+±¯~´ô¡Ãè"¶Þ•oýÿ¡5Iø·Ä\a6ÔƒÁp:é\öÓlq¼‘eõÒ³%g>[be%PRS™:$×ÄÏ-+¿½4Ä¡¬Éåm¼„©Òj|úø\…¹Ayƒ³ºEµÓÍ|¿Ñ‹µƒúEÇ=gõ¡r»Så‘d‡hqÐ}Ø‹‘î„«£?qG4prŒš‹ì?GÃ)¢:xLüùŽOM_îœÀ§§B‡ß×	”÷Å^1úS¿¢ŽÙVçYDîà†ŽuC©ßüÐ8ßvâ
+L®`†p¤Y¾JG ÷>S[tmQ”G…7\Ï2=\ìN~Kwé‚ošfüFŽ—¥º³E›NpÎI©ÒºNÊíãö0cîØÝÏ+G='¹±¯t¯a†©Ëà¸W8ž¼eç}vÊ¤þ=03ï¸Üêó_´é3ãé•aõnÑNhuú)Õ÷¢	‡k1B¾æm°Ð¥ä"T‡]` !(dkýÔl)†A;ˆa×y3ã_ítˆª8êp+±W7æ
+emÌÎŽ´ î  „ŸM4{š /Çú® ÞlŒåÅt˜Ç <“A»ˆ¥¡6­ƒ‹Æ›X¶BJ›.iè—|ÓÔªÏz×¶àŠô‘ƒÒer«wçiºüÜF3ÇwÂ»Ø™IQ8_e•¬pºmSvÈAÿ ­ˆ}aê8RtÏ©ƒ-æñƒ±O·Þ—¯Ô©äÉ¿í×U`üÊµU®Ã+ºý|¤S#,ÄX:ÌÏ•X[T{C:û 
+lÒÃ|ßA%ÿx™™A¾5°–cþÔÃ*b*N¹wk!ðô<h–0·#X³9:ìÃÊÖ^Ñ€· ÀòÄw},bI¢Z–õÑgáž—j~çªªsS»P÷§€ä“•6t‡ÇÊÑts)ÆíØÔä)kIsÑÍ¬xºM_xÔC0—ÆèÂó³”úÍœË¶àòF{q•Å ÍF<]»hšg~tW±†“¡žGmÃú8?ƒ0xôJU QÿÄ5È×€ZIlÀÏ(C”p]^Œ^ãWä°É¾ý2Âlgµè|#Ò³áU {Á^¼X©‰üSÑ§¥I•Á4åùj$‹o¹Ú´,Å¼Mâö¦¸Öþ‚å<4ÔÒ˜gþjJ)T§Ín.†è¯÷¯6þp÷JNß+¾)ØÿÉA¼Ã½m
+xhÜhÑàïÕ‘à8-à'yÄÏFVó»‹°òŸG?‘6€3ð•Ã¦IW>¿`ïB°Ì)¢¿õ\Œ¿°¶O@±ÓÆ¬¡MYô¯>§”f®_0½=·©m8O¥·F`Ï&@¤×4nõpM2Ÿu™#Åw¼ÖEáƒ|âsØÉyjö^iÊå—â$åÀÆprì§ëéÓbiÒ¹E&™G¥¶?ÜsY2„.œàÅš©å;ÃªüY%ªš}`9èÓõôØh¶ãžÁ#ôÛù£ƒÓhƒx©_„ÓÖh)=+¢³IÃ
+ëÀÈ¯eŸ?‚šhÊÞo?bný˜ªB€#ÇsÄÙ°¦HúBZcEX2˜	÷-;«—á§dç÷dÀ¼m¢ûpßƒcËIZ=ÓªlI¢S¹ŒW3™4­M7?@ßIO§`Ðñl…~ ìNr`UÈà#­FB¨Îx ÊÇb+ô@²èZáÁxˆØ	Á¸Ý=©ÊÓN¯Œ³t™D	8×˜eQŒc^Å}bbtÅMÐgAI%±ö.¸ëIºP~o€Ž/˜Í5‹L€ì-Ö¦ÿ_`Ù¼B<ý!´(;Ëã„¾ö5°Ú¸…uÝÅlŸêA×þçe$H+´¨uätvØ©Å)VTÜ¡7˜öû{>-…Ò×è“5EÖ
+¡ŽG¿n;°öã‰îdªOì9´ ¿ÖDHCh¼VÌ9J«â_)ÛõÒÏJÎáÀï¶J‘pÞ7¨¢yØÂ5ïùã´}~®CÇë¯F­æHÏÈ7µèªÐr”øÆ5ï0xýèj1ÊétGÖD)JRH'¾Æ¡ÝüÞx¡¼îÁÂU‰%ŒR'l9\	*IåkÏÄæº<»ž«¼èû^€þ‚»5˜Ò2Ú¢‰’•þe’V‰EÅÑ<d'ñÖXƒö ·ØEE  oÖ¬ÊðÜ”fhS´=N™ã²%rYÈ„€Ü×Àk¸Ý¼-ÐY¾20(7öþñ1À°``Ð¥$”ªÿò“ˆL”fáPæß€:®„s8¦ªÜGêØgÎ ÁŒ‰Ç>þa1”úUœ}u7²äpé¨Ì¸ÿBâå ±7ÿÏÊa§‰“H0A2ãá$R‡çG½Tµä²YÌóÑvQèŸƒrlpAÛ<ïÀ9¯¤xËcAw"ý‘KDs¿ÂàgvÈ<÷Kêe!ÈRr/¹h²Þ Õ2ó–øÏÐû ¶‰T$-jõÏN™SL(‡	KIÓå‚7 ­`}'´!¤—™2aºcÃOß‰÷ÔìâW±çRòç<fJUºsi˜û¸f.½ssfÜG#iéeÀFcË‡ânÓæA‡î,aÉt–§J¬É‡8‹Ä¢–EW•ÏïbÑJíìµ×ÊŠÕäöñäpfT§Oo†A•zpy[uJÍîó’?ÀÉhíŸJ@ñ.`$c{Ú|™LøLQD¯@¶æ`§§}¢°ìŽê%½´B¾•v4&µtax7!5æDÜq{ÍN°ARòð%N¢HÃ ÍBö\R1Hœ(MœÚ7°õ3.WQZwÀ"<îtÒ”¿C¶b<_OöÅ…ß¶Æó"÷¤.=JJ·ÖÒ¼µaý?ÍÃU¬üVü´D—ð	šþ*3‡1Y…D)rEV'à{«ä»)ÈBO®‘Ìf!ø©Ã?\R©Û»	7ûWé( ‰eÃë@l`Ÿ¬°ÁßÒ|7Â~vFMŽÐ}Š¯ÄÂp‰	“‘ß0ÒTð}¼mD—`æZäºÑúÕtg×S¾³¤r!žÎ=$rì¡#®¤¸‡}ºbã€lWqm³´}<¿,’lb·Ão¥òfSó >1Šu‹}¯ÞL&áìH¡K°«&d¨ÉñgÙbŽ›/*i*kúX³OR+µo#r}’zzâ´×npC&
+èßçé@™ÇåP¿wMü§—CÒß†k3cZÝí›ºŸ­`‘“ò%E#ô·½­ÁÓ~Q qÜ¯ÀeÙäzÙ,/}+´¸~ãâ8YãÀÎM÷Sž°úÓ‰Ö¬™!þ™D´Í©_kÿH½XL6—ÝsëƒQ	¡é™ÚceÐ²‚ZˆnAfŸ„V¹êÊ¦ÒFg?TŸ£o#:N•3;sc^×BóvÊNKa	ÇF79:O‘Ê¬i]¤ýK+_Ût]—’Ì“p68f$UÙäÐË¢Õ$B×þ¦Ò¨úIrjf„¢³HS;+ô:ù8³å$ñ Ô±€©Ý*ê<%­{ÎÿõQ¥0KÝœâÂršO9La³_€™ÅÆ“!â¼ð×æ 8Ün´ÄßC?ÂäžÈy-mêüOgÔ …ðé¿à®ÆvŠÇ«AAÕüž&HN+Û¤¢J‡A"zu¬ ¢í6§…¯Õ/¶' =q àfÙmPðRÿ'¿¡âí»¥»ÞÅMI;LæãKä\ÜfQA¥L7$˜¦Âö×‚ô–)_$½ÁÅÏI™ut¾3Õû2)`¾„]òéT˜"Û¯(ëÏç~L¹’4oï³ê„®ªåÍÝ!
+þKÿ‡(I*&®—Ü[Ö5!ë8"Ju^òZØG<¿G»—×q”ya„Oˆê†¨»`êBœ—áÆ·Ú‘ß?)ËáW…X?zO8D«©\bþ//J‘!XS }ó—ôwwÍ¥;¿äíw¦úÊXá|j3?¥íeqKâ«ã	,!uW®fòiÁbú~¡»Ô´Óó%ŸøJ÷áÊÕ>­Ï¥gÉ¢R´ŠþpEåô·æh˜@ÁÕ\±•m‰kÄ¹K]¶¼ÓùkR@Š| ØÈÉÞc@7_TŸ_H€|ÁÄy˜:¶¤ëñ2’¥èh‚‚¯úüGW>Aû´µ˜ît*DU¨ü"î²2î–˜FnOæC«:»¥N¢ì¿ijð2jWP1‰'n¿û¦@5PNA® |]ÍJ®Œ®UØýöŽ¶hÖn%ù\6Jðø“jQ…c‚Y?‹ïÛ!=woI­yŠ·7á¥Ë²Ã÷xz4{?]ñ&Æ^T+ý3ÿ“Mš4/N$ëàá°’ÜÔ6:ÿ­^Ú¿Íz™#*ŒãX\;AÕ$º0Xp~mÇ¿.|±YlrýŒ˜WßÞ¦ã…-ìbó´Î¡3€GH~ãsª¡–uP“þmÌ¶É'ät®ûÅºx€ÆiÖ¶L¢`–¤Ê•WZ2û&Wâ'”Ü¥ÿ7NÓW@ÔðÂÅq!Y9>cvò¿º£á<Dû0¸>—ä˜fªÉëí)4(b.–¢rc\ú°¤qÚ™µ¶ ~š¹sÕ€¤.‘_(ªŽ\Ï¥%®$Å`o1 T›RTFÐ²+Å#µæîf±F,=[Â;!æËœõu5=µiRú¼¯"ÍUÈsÉ±ýÅ¦Çóý‘]¨³ztÌÈY^î‰ß(]óêaãkèf4µKq#g éˆ	ðv›ÓvPœŽPÛAj#Ù3¨Ð‘I£…	
+–o ¿ÿz!ä4‡òqh¥l%€ãÞ%.MÝ(ÿÈC8˜É·)»ê®VZ.FÒ8ª ÕPÝ%³~Qñ9ÓÊ)Â«êÂAîö¦ÃA(\$@+Î¶¿´Þ?¬¢1=ØúýLÒãÉë³ K²,vf^]4¤€à\'ŠùÏ®qÅ•2×Ç×ðIí´9<ú”š™I…§<	¹¬5$@‘$óOJÐ`po¼
+ò‚“Dúˆúß=YÍg'GU™CÊâíü1î“º0¶Âo8ñ²
+þyè½À!?¤E[ôðV= ‘þ3G ï•oîþ®5·,­ì¢¢þÿQŸ Ï²¡âÆºz¦Ñ4ˆ®|S­YMX94!°{¥µS®¸¢Ð„Ô£­ÒL*'ƒ ¼ÒQ"‡¨t: ¹`nY›^ÉJ!?™ÀÔaç¥÷ý;Uû5(û–HG#xB]”ÌÄU¦ð±“UeCoÍóo„z5ªÅ&B€Ú¼#éGE¯Ð:è°&ýà:7¤¦«ÿ‚è•ãB/×bÂÑeGýÜ…Ž64¿qò5ìjKÔøßÑ‹# Q‹¿øÈ§Ö2œHr.`qìjW·“!õpqM"†Ë÷F›Ð‚÷ç›Ù#ÈÖó×4¸H*spîB®‹¼!9ä2;ˆ›[¥üUBƒ„WÝZ4ÿ•à%tEb3Úû×œûçºpVzÂç ySÙ;¨º‰ì¥…ßâI›Æ³Qé¿ó#>‡úŽ÷1Û×K×ŸÁŠèÃ4“Ü¤ç¾|Z[È¥gþN×_m2°3@×)9¨ˆó÷ï—”2T?žšÓ-O†Û U‹C¢Í«¯H„ª¹?{Ý¨P`.wÛÓ*Â În„=re—y;"±™•îÇ(âbÉ[-ÛVkáSB\(ªPš4cfûï|À}£4õÏ®º4ëìÊþ£Ú0ÆèžFee¨‰fÊ;¾£Ìœ«Õ©ðŠÐ¸¹lÀÇ9¼ùRe"ØJÕ§~³ªœ ’Z@xa¨±‰æÍå˜Z:…Ñ¹p¯_–ÐoñåEánFE÷ÒSñmlÍcR)¾ß|[×âX#^ë^*§&%?‹0»Ø
+™cRi$cOë¿'„QßôÍÆu;Vü<QYhÇÿlLò¼.9uQ81	0xJÝ jo“&Ždy'iÌ–ñ+#ŽúFHK_NíèŠ™é™}m?Ô³­ m•^OLPºF·ýi¡{mí
+~¯_(ÒÍ…Ö’‘ÃçzÊ£mâúÏ¤ãDMXÁÇ[ GYac˜¼”€TB•¸š6ÙjXòP6|wÍ,U [	8k:j·®éc½—šKUˆ¢TÅ¥ÀŒ&Í½¤að«}Ê²Æ )¤Qýõ#>×a5	þPÎeJƒÜ÷>¾¡Eh‘ï7=F$›´¾y÷>ÆôAÞ„Ô¼áøm#½+
+	ÄÌ‹ü~å“HX;ä×P`¯¾ôäº“~oœ†×ÒgFéò=¡ÁÈÎC¶~­©NÜÞÅ›?_	¹Ô™Ì!ƒÿ¸3ïÙÆú­T},ˆN±Wºà=§c>séópíU’ ¢	ÒÁúZ;Æëˆ‹ Z_~	éÌ›/à÷UôÝw1ñøœµêí¨€œ³|ì°´ßÂqã—£ª{ü³©|&»ÃÃîÊ¼‰@èÙŽf+,º^tG³EÿØ4JXä¦IÅ$L\ž¸]ªó?|E…Þž·v„ž\Ÿÿµ˜cÉLþªçL”´±œæG”êˆáù_Ðx¿#´Wc¢¼ˆ‚3 AKL3ßäÕ	¨Ã)†ƒ´—•@X¢?Íð“ïf‰ßž”CP…’„Ñ8(§e¯ßoƒø)avmS0ùz`{¯ç5*S¥­ï‘d¥=ÒYBÂØCÓä3njË7¢v•g>:‰¥sø‘ú{”%Hªò"½ë¸ôNéïˆöEqF¡Èn¶ÒÌNÅ)¸[¢­2Õ «ó<"$hn0öŒÌêF²'=BŒjnCÆ¾ófÅíòú¸^FÓÒ?H‹Hà.lZiÇ}ƒ’ùÃ<mä›÷záp×ÄBJ˜2Â¢4}™]##ºW;:´ðªtò`â‚`ò3Hl|GäðL!¸ŸZÀ·"Ðÿoc…‡’aùUC +†¦]	Pø€Pê!W»›Ï¿¨ ¶Ö›OËm¿¤’à@Òˆ-dÖÌe¯°¥ô¾bh^É¶ŽÏsm¸Ä+¹C}Å¨œƒRvéà#GöEYÊÍ½JC&8`êÄjZüGÆ”ûÅI4ðrdåñ‘Q³ñ›ýLÚøMšo½ÝÜQåÀÈùí
+÷r(ÒŠþ\wÀ°ÁS&w{X|×»|Õ?--”ÊXÞÞo`&˜f0½§
+Æ‡þ ‡8'ÝAuÈMþ¦~ÊPAû;
+@da¹ ;t¾±¶ÞÈê\ˆ.$mœ9QG[òÌðÔ¦ÒžáÕ¬Bð wžÙ<¨þG}F)Rr%¾ö"Ñþ^Á\3R	ã+®QmI¦•‚Þëšm8½1¢°9—ÃŒ}gšHÔúæ»
+ÚÛ­*ty&ºì qýxZn.-D8Ÿ–OÚ3“ƒñŸ?W'eY…¯Xb9FÞãØå¾	ÚÍ&À“Ë1Â¿Ç\våÊÀ¼Z¼Ã¸1«ÐãyQ®ž”ƒŒo‹ùõ7ˆœyÔ$0J7X%+¯ÿ2Qä·K.F>Q„Ê@îktî³¡ÿãzuÇPž®œ*‹«qnðQ8›_$ãéPe˜„ÃAˆˆeSˆ‚)¥!j¼ÂpâdAçÂíÕÓc¬º}×Š«\à0wš.ó×ÑïOÂ,[Ár‰aÖ•z‰dÆÈ\ Èó<üèYwìF	"aù»oáº9ÅÃ³ÿ™w}‡ yÞVðGVxJm9RÕ¦Aí§Gî6BýÈ61Êø‰Ï~”(E0ÁcI %ÈÆA:Kô„³Tã†Pll‹³§'Ý ·".Ì}+N–t ]³P
+.n{¾¼úoPŸiŸÀ•ÄœTÊjgK‚oÍ®®ïŽ½“šaÌ[†8üìšfÐ£7Þ!Qåšî> S™´¾;‹¾ÅetqUúóª7îï?%.Á…ðõ$¶æYLÿ®ªs7B‘§âûÄÁÚmîüUmrÍwþ7hMT`aLŠšyc
+IË‡¶•ûÿM‰Ïé±éÝ­Ú5¶Cã©N®Ù6‡õÎ€v=Uï‚Fuk7ì¦F¤:dW®ï}ßV r/Ê]®»^s -RnÞì0ŽØ-ýn°^gÄ4 ½¶ÔÍþ´ä{¯$Ç¯h³ó¯§xìÖñ"Rå¼(TRë&sÏˆ­ã·ºø<€†Çp!<wŽHp¿vf½ÍHï‡»Ì‚”¿AIF'Ÿá*'_fu×£þßÞ6%×´fÛ±ˆh Žxìôj6VŠ|ó‚ƒ©ùp6Õ?Š&qÆW lMIåq¬Õb.àºemRrJ×#vzâxm'jiÒ{ÙZõÌT7SÚ0s}™xþ;ÄÛ¼ÜMX'Eº {}[L¼¾=L‘j_Åa?ØÈ)ZËúx~ÌÑ”¸ÄŒ÷Ä“cýò›^ClŽÀ!Ði¹úU—V"ßYh>ô<œaëƒ÷.+J\_… þmìÅÃóô@ÇQúVbd:¼#ªñ»'	·j6éX˜áÁÉ›™ì6Õ’ä[<í; Bm¼à™Ê™½žŸ¶v‘V"øÈûï3Y}u£¶‘Õò›W{Ùíˆ
+æô‘çúg§WÐÕ¶3ö4›äÿlé‘„uÚè?–ó¥=ÒÐûgj“Õ sâUl¨xž§sBb{Ücà‡¼jâ(xJEp^³UôÝ‚†Ýþt\z»w·µgsyl{ðuqDVòƒŠïfî¨bj•ÛÐ-ÛÅâÛR”QØå®£h`éÞ‘]ŠøMÊO±˜ÐNTP&Ãì°¦ho½ÝvÙ<b8„7¥-;<ÒÉ%™/·ÀcpóLEqäùûD˜[J‡mšÉ5óÃ›beûÇÐ%K	øŠPâ	`dOø
+ËWOaÄ%hH #í“C:c,;IsÃÜÂÁˆúœZ•æß‰ÃoÍewóÄI´Ã^¥ÿãL @2ädM£z¥ÎÐlæQ“Gä‡²ó|ŒýHÙí¯k'é“l÷V˜Ó“ÄYˆøÕp*ã²8<Q`T#?Ìº­ðàLbÓq ƒÕWžÓª£w»ïÖJ«ñmÌá\IÆ¡´4áëJkÆ›ä6Yê¶z¬ñëúS&fš¯àD+ô"%l?/ÐWÕ>æ)2õàg!mÞ+1_¯Ä@¥fîÚºš|F.óo£‡’ÀèÝÿŒM¥xb´ø€éð”9â¢æÄ õ
+ñëdå–I®š~ ¬½!Uì+AG:ÁÐåAW†OEç\LCde? ÷$!û,£ÜÚêbÁÎá;=ÝŠIkû$ÂAéÚÆ+Ù
+aý ”Ù'Í„PJIº¶ÆUï|Å{¾×gn7C!GÇ—Ûá	¼KÂºNl÷TùËÆTé;=ÚEmºXXºÉäoYæœöR™’}¿¯Ùÿ¯Êâ|A<cÛ§YfÛ”µ^¶*rlåûÌÂá\B]NÖVÌîš ƒ+²
+›•Ôw`±êlróÆ-¬)EEä·¶“³NY³5üþ3©JhÊÓÇ xMÉâãÂ™ÞÏûÉ7úü¨Zû]ü(%QØqŸŸ› xÍñvØ²OTmé7ûcsðÝý¡X1„Â ù#|¢7ºÂJ;÷¢Ã
+Hó	’ÙÂH¨¶¾<2h/s³“&]±…‹Ýœ7¼dí­"ÃgŠÈ1úµÎ/3O×#ð†]çÍzž>]·çY£DfÑÊê‘Î®ˆPêQ÷Ìû©äÔ íEv„;y ‡¯WÚŽ17 ôê6£›¿¼Öggk¨)¶kû².¬óY6œ˜G8)Ó<;Ã1©aú,PŽ]~+¨+–F˜¸.ßA-ÐãÊåCÔë»@.GLyøuáy.9¯…}—¨»,VØ¨uxà5ÉZôNœ{H{*Tö|:ùétÿÆª{€ó™»¥EÞÈ,ÏB¶«Ïl[#¥V»Å?CkÄU˜]çÛ¡ÿiŠw  †&ájyyL`çØ!“‘ihñ6[!	…0ÕÄ=—ð¡Æ-äÑÍ‚+C	’´™ÔŸ&7â8‰¥2ÆÊªFh£ ôÎÓ"8XôSœ71¡€÷_-0zá†áž»9†‘ÑŠ¯ù üðÒçùi[„™&§p¢_O^–éWÎÑJ7CÚŸÁŠ2“!×BeËLm‚ÛñV÷^i#vó=Ì`¶ùKHÈÆHÈßH¹ØwfDA"æRòd½knMTÅ™¾dß»ÅºCË­ä¹h­( ~°¬²4Hî™`•Žãî•›=S¬*øKÄ HòdWôSk„<0å7UˆÒ!;¼¸‡Ø…bQÂy	ÁjÚk¾5ÓHJåz4MKÉØy 9«›•F~ŽÖ£8f¿X´ x_¼XŽs›F¦O›ˆýH“­>â3»¡ËìaÙiµÆ˜”DAãª­·|*(on*†Í &síªUÝFO‡äA$ØÛ¸ò)ÒN#Ïþ~q›>D$X&©xÏÝÕð×&º‡;'“®*ODœs&¼@]¶…L’-ñ3—´ëÑÁ –@!¼l%Àpå­á ãØÛ¢û+0°Oã'·ÞV‘,cØí®¬HóÌfÓ"V=\«GLJ†o!{Ÿ¯tâÿ×‰”Qˆgâ]ƒy¬ú„žÒÈXffÛ¹=Dg¡aŸ‚îª+ñ©ïïµsZ	ãbù¨ØzqÍ±Xÿ}–!	 ;Ð+CþÀ`Ø­æÂ^šL×ü*Ð¸IDò˜!°ÑE²vÖŸ3P=÷lFëÒð?ò„“+á·Kzßdâ÷V¾¬‡òi¥Þp>,]/k…Í¤ÁK’ì )}ÈG ¦@Y==@ón ³íWŒÎH¡“´.$yÇÂ‰{¡Ûí[õ‚2;4©ŒCÞúÈDM7Ÿ9¨©‡ÄYÜl79nÍ^:)@N‘&çˆ;¼óõÂÂNø“h+‚Wû»Ë¹‘8ª1KÂääÆX‡œmÞc…³O­Š`*54»nÒæÓ
+ÆŒÈZ.qã¦v*ÛWGØÈ“ZåACXp/I†øâÓ|,RÈXXÛzÈÌF†mÍok
+ÈhqÃÇÊa‡Ófe.4ôò’$;F(Ó¥‹5:´«I»ãÓÖ.ïvÝ/œ8/îâÇ\è0ÆÇ	Z‡åþ¡…à+‚ÖÁèªpx+ÎÀü»ï'¿q¨“á@§bÙùún$Œ.c¾VÇÍÌ»bÞÔp!XEõÕBŒ¸CB	Ïm]á¡µšÄÅŠU¦ÊMáÝ’é;P¤ãÝèMR¡A§ÞÂô*§Òm¸òLgTìóöë¶æjG×ÎÖf5åñÎ¤1Qc‹¥s2†oMÂäD
+çŽ×1©DÁ|*ëÁþm@²jèêg#ù‡ÌÌüÚ'º‡b(ÿGî^DHPÏ~Ûu?jÒŸˆXÀaŠ”e÷{¦ÑòN3äÂ/™ÕûW†-{ 2CxyØCÅÍŽ²ø#ÈhŽ*2H DJ†ÀËÎf“šUK¾F²)¯9°*"³ÐF—1 EÝk>M¡OÉ\š¿2, O=ñÅ:¬eÙ	¿¾‡š¶ú¢@Ö»V˜OPÐ»ìIã•h.±[ZÔ,"6¹I¡'’©í8cg.¡YyÊ‰´˜ªþuVuJ3';ÅêÓ·¿g.Ÿ$–ä™aëx®tË™}¾bÜ o'wÑb]Š	É %)
+£C³Õ½¡êÉM à Rô–?˜XkUH¿eÀc9ùûxaùð^Bg'ˆ&Ã$õ2T‰"ïzM•JÀÿÁ›jøÜ,'ÃôÍ\ÔyvËž8É’Ts´©¯Ê‹ jŒy«Â×Áù'õþH?’–ªaà×®µ*6ã‡‹Tˆ^÷Î	?¤¤¿çØðvn„vžO(ËLã%H¿Á2¸ä½›¬öxµªÐ©¥«Á/Õ¤7Iªn¶Sø=ñCÕxúÒ÷ôß¾`†Ê`âV³Ód–ûÂºolÞLW»>ÇÐîc2” ã¼«OÌÖ½n'âoºY	·Å©~J¼&Ý58h
+`^k”­†ð!Ìðˆe2i:öO“oý/Opó};«Œ\î&Xìî&Ã+^cÑŸXs¯m¯xfk±3‚+¸/ÕŠi‡É6é3îs¡gK£Ô2ÉY>&ƒ­…I¨¤1«·Å ê}Ú3ò¢íÕ¸•Tx’ŽÍ„{’HË¹"3­÷ËÑ{UòŒ2˜7«ñLN	h,±Bg©dð˜2ójEùnØù$Ó‹pþ{¼{ÜbÂÂá¡Š¿0‘¶áŸÊæ¡ZS‘FðN#	¯écrþ_­ì©dpH`k	ßÿ·?—ûx©u=pïÔ2wºó[dEÉg-ü¸°›—É¢ÇŸeÃyìûî”¢Ø\’MÑ…ÒÝ(Ø™‡^‡Ü=“àÔC'·ÓéÒ%ŠàV?~Î8®°íu7z9Êõ3›Ú¹9‘-òšBÜcÿÁ­›Z›[Éûpþ~ÀJKÎ–ë¸îUUD T[ž1Y¤ir<n—–• \.ôt¢qúÚòcOµW@xè·yY¤öqAòÀâˆ3YÁÏö£‰9ôl¡d¾DŸÈß·S:¹z·vÁ—(†ÈI5éÅ„yqo£³Ô÷JÃ¶Êø}Š0€,ägÁÆÞ²ýüJ ˜áB ÈÒ¡LÆ¿3âøÁ
+Lˆ8éæ>ŸòÝ8ÿb	ÐF<Y{±£k>nî¡¯v51ük,aÂ2û8‡õe?ž.Ñíùy\$`³Õ\ otÿ± ÖÆ Ð{
+³À†¬`Î]‡÷¹ØÎ	¸~/T=’ÃÌ¥È±èsù2RBžù 
+ÌÙ¨ìSÝÒ ‰€#Ó{–ÞU )ê¨ôÈ‹îhsNöeP¾¦ÿª^z§ZZ*¿ÔÄpöBU›k\>i§äê!fí@/)ë@£{¹¼šå´
+U$½‘Ë ´æ:”Óhæ†Bï¹$bõ d¿ƒ²öõp¡¾CSPš©û	õ{¡öƒ+{l(º}æFô¤¶<Ûá»á‚9¨°ñQ-'*ë®ñ}UÏ¦9·¨æõ‰¡Ç×¨
+Òw¸Œ¹_­&	.L,IŒ[7#õ«[ –ÑóNÌÓ©=GÐ¬íºžüØ¸ ö~Ä> »‰·jóLþþ¡T% þ‘UÉÅ3@^Cq;/²},–õÛásxÇ6Î³/k&¡û\	¼-I?y‰:Nš)\@M»UC¬t€_äçÎ0–ÿ¦oò£“{H.)^m—Ùâó‡RkfáÆ{oBðW.[š
+V£i§kO?)®¾;¶¾C·H¡äØAˆPÚpÍÕ…¦@îþJ9‚â&§HP 1NámÂ¢z<kWcÚ6j¤	ëãXU­¼gþ£ØÁîÁ‰û¨-U„;sºDÃSéN9ú1Ìwà_…Ð¥‹õ)•+'dIÆoÊg§`o	-‚—“ÁãcÔð:ØW%a³s9¾xÍFÀÃ/‚YðµåÑ°ÌkdTÁÈC.ñk,oIok†©‡Üa~2ä¼é¢É¶Š4yùÔÇfù	©,»ƒÅÝ–Š"8%®ª¹©œYþŒG¡nÆruŸgs¨*L=>0X*ú¯	Úê¿“x>Ç.µ-agxrX¢‰]x²Jëþº&Èþ¤Øg¸<îò–ÍšH(íÑ´þä{ÆÌI]Ë9­ ¹Ê±cÑ#; o“¥À£˜D’dŽ&¡æ»‚‰q$3OœœT+ÓYd)²ŠŽk4’éúF½öÿ°Ôù'šê¤L¿’ßx›Å¤ÐO·Dúñ±ñ!‘óX•éc-$*/žÌrÛ»‚%áà‡" û•/²ÁRì›`<ÖöÙD Ä3,ÙÅ·Ž±ïùúé
+êÜÜñš6B3æ‚pjµÖÅãP¹]<AZ#ÆëÚà°ÚƒåFpAZ(£>Óó¢z—Ù­~v©K÷‘ZëéBCÿI&Òh8òRõ‡Íß<»ô–Óq!5¶‹ò®OËn/œ\uYZ³ãˆ‡RçJ)5¥æ§M.Š¡qìå¯Èì*æ:~† aÑëÇ®W&Ÿm¨×Ï›:MKgjmMo%fb$2KóIž 1˜…ž±‰µÈ4xmÏSÿ€I%ißIs[PTáÛl‰r—È×öø?€ª#?h3ß,ïûµ×"Ê¸H“œ	´<óšæ$~lÆ£ÇFoÛ9!À=Ë¬2UivéEŸi¼çëwgŠxC2ïƒ z…ø^}­‚ÏµÜðVµ\Ñ™Yv„Á˜Ê}¦EŽŠ—Óå—w=:‚ Jçl,÷b|hj$"ÖDþ¦‡#E\šÕ^\hj©t0G•öp×±NO~öE‡8gO+%CR³:ä	åæÊÁ›§U`òR@ŠVÙ³…\ZZ€Ä<ýåF0²¢_CJ5…cëï|mm“Å¶N+[Æ„^ì6c{Ñ"”>>žH0nVt¿%3	!• ëÅ}7+S¦\ù± |G®yÕë¡›û‚Hí‘‡¬ôPræ¿å¦Ð¨/û	¥å«Ø¸ÀZ.&âVç¨"—”>ž^«Äç‹Þª+R.s
+Î#9Žñ2ØM/÷¼vÓe>g&xXñ YuRtu€ìe»‚•é»tLh’…cšCÜ!§£GAfXjó bCœo¤;ª¤«‹8''U›áþT¯ÊŸ$ëØM)[^„åpñûE­;Ù¿æÁ¼÷ô!ÂU Væ2ÇÁÃ4L¶	Œµ= Š©™üH@â™ªT‘Ö´l"ø¾d+ÎOq5]JjÉ&ÇÞlX÷V¨Á¿ª/@+gq7®¡ üdÍ8!÷ü]#S&ù{vO„á{IÄo 6“7ý½ûpÓÃÓÝíy;ã·28^æçY3‘!¶$có_óÏ¶(ÊíM–aºC®­€]úÙkynP#ÉšÃÕAÇ4Ámº)ÓL–	D?Â÷]T|£¹YÙ@0§1ãµNvêùì«ŠcN¯ì›DÕFXÓáV¼®~î"EW¡øžðëlÞEíÐ°°0ø£ÓMàÎJ( åOÕdž}áI0ÛaPHžÃ1¶Þ#‹¿ì|‰|ð=Ó@œ¦ø q××,L7Ç¥Š„.üë”ã%ú ¢= D§˜Ö¼Õß¥Ä@%uãî†:/Ayv	0 §=Çm¿î$[ûÝšk”.œ’ìÕ¶Ø²¢HêâØr3ÑÐ~Þ(M¤\¡p–{apüû£-)èÝ³nŠ”¢k½Þ>ÕŽíy^Þb‘ßß6qÞÔ˜ÉmÇ`¤|¯wFÓÐM?ª=-¬¤ ?ÝèØzòÕf¯ÊüISDøÕþÈv3zÒÃ°f5n7µpÎBàØê—`ëÒBÐn­ë–’…ï3(/Èó{ôG6O¢õÅVƒPQùéeOðš•çð¿ÐÈ&Äb~Ó$zrLÙxé½®r¸ó©˜²’!ŠÚ¨‘í¡ù¦Ê²YÈE—LžÅâÙ}êªJF,OÉÂÍ§Ò}»70p™â«2?Þà·àcŸ_Ð¬fDŸ¿ÐfÖù20ý‚Nr„,°ÜWàtÞOÊ_ŒÂ½s¸È³¤­€Ž|(WiWh{*Ÿñ“ßWªZ.ûr T ºn}«†Ûf0óÃ3:€Êkë@¼å«Á¶·KTæqÉnšL?ð«åÌéìJ\¼Ä
+ù@PhÚ\ý`¯N
+ÎµÝ0
+Ídjr¬™?q¿è ƒ uw×
+Q|9Pý%ØÙ‘ø§+ü:ý×ò¦Ö”QS|µk­.Ëgr_žS±%ŒA3g·Ù;ÞÁøðÎ‰dÝ\Ma€|yqpÁ_÷9Wsë±"uf¾z4¯uÆÊ…¬VŽèÈlÞöÜŽTÆ§õÊ±Y<Ÿsó^×L¿ŒtÍ“"7›Ú¿å×µ;dË¡ÊëC$m)"Ç¥3hmŠ'è‡PxMõÉý–¨AöÕ–›lõ¼Á5 €+¥¿é«×FY8Ú–ÿ1°ÿ[ø%•˜Ëd½ƒYÞÊ_:BÊ;óµ>d-Ÿ¡Õž2%‡]dM¢qàÎ>}ÚY'¬qtèíMcPÑRhËh²Ñï r6³ºY_ÀVm.oÐ;ú’™v»ëÖvÁŽüÒ‹ôV| ?›€«@"Þƒ>ŠfþHÍG³Ø°6ÂÉšà?7enôæ ©<Ž²ÿ1Î@`Þg%\žuçêŸ±ú+›‹þd[$d5DKÇÕ¥Õp­Iì_-QfÖz”,öÄ¢§ùØ÷‚1ã÷ïõí.lE@Ë 8{&á£‹¿LÓ¤æRµ¤rÃÁ¥ôF†Ñà"k|–(¦Ž4Vòl™ˆdmõÙZéÊ 9¼X]*ÆÀ]óyâ-Ï³ƒ P=[†§÷Üœìº±·~>ÀaN©Ù½¥ÅæYoáœâê£H%ÛŸ•ÈH“
+ÁþÚF#™–'Í)[šg@> ‹ßw’œMûûd›W-3¥8¼¿|½x‘zð?’ÉÞMó|d‹têû}nHº[0ã¥Ô™ ¥AÌ¹5d Þ‘º×#L·Ã;.–™cï\R_Qû£¾± Uaê3|¦hº;€nÒMÝú‰QF¤„“I
+z]#Ùp]tüáÕGšÐl±qpKõgœ‹ŸÄN  F6.IMG gzip by FbinstTool íØ±k\ðww’ÒžWj­AÞ› TS!	õQƒ¹JÒžƒ°F¤p¹d1O wˆþ4÷$X‡R·tq‡
+AÕÚ0¶6`Ý
+*BßàÑ–\¡gêáâÐA‡Ïgüßïwþ¥‡?;rlìùgŸ²™Lý5È7vÙà_žú`d_éXXy9|ó`o4xü`o†}Wo|ÓxoñæJ.^n}Ì*uÇÝÉ•Ï6gª]§Ó+ç»æz*ý;zê¯·f:æ¯e?*gçWÓißÕzT8×¬ìÍE]ÅòÓ¹¨³x#™Ý3±µÊÛ+aÐÜHÆó¹Õ£Í;™¨µ§´=ù]lnÕz=S{bâ«ü¥óñÏ'k½¥ÚÎÓkaÿýêFúËÒýx9N_ž¨=z´V\î¼¸#X/¤.ý§K­8ým}ïú“=É‰ý£2ÛýAuóz¹ûR~.i­E—âµèîøã›¥Û¥­ï;ÎÆ?ÞÊAøØ×?T’è^¥=·’üT¹r«Ž·oÃÃõhwïÍßsQ«XÞN‡G_ë›Êò=§rqßæùßþÞ¹cuùŽÔ¯QÅeõËj?úúfÝkí™oþü¾yn¦û´öI»ß~úúèIŠ©½ÁdÉS½Ïãg¾Ü±ÝêÆ=³À™\—¸—>^/'Éûcõõ'ËýÏÎã¹_UýkîË!¦<r—:õ¥øålr8€àò?{†Q Ð( hŒ‚Q0 @îÿ––­ØÇÉÐ FŒr“öÛ¥·ËËžÍèö©¼)wýøµ®,¶íßÜåÏô6ç*UŠ¨‰|‘äg±àÙî)§ÆÃª*Wç‹|ÏlœË¶ûŒ;ÚÝrê.­ó^ñ { „ÿiUàxdgªÆw TÂ?—tN»üg® Õ\šBƒ_ùáKÅàÊ{Ýà:·–[»~Xsœ38èÉ¶†É¶øWU¥:‘{‘œKTÄèŒvEŽ‚¥À±/û“È¨šÍË¿¼Áu‡ÊÉ0ó(ìJCŸy…,+“Ä)wø£—> ö 	ÿK¨@>¶¸¦ŠU8æëAJ«a;×¾À vîéÛ€|8Â N‹Í ®AÒ€òH„þ:æpÇy@á I1¹™¡£>o«W!À¢+8ÃzŸFLÜl¿¡¦Ñ÷fU©7›Fê5PªÃ@üMÖqh™%ûª|¬X9‡²ƒ™‡ 4 •â"y.GŠ+“}®hÃ’ ÍPSÙå;Ò8vVä9çËð9$ìB«@*ù¢¤	1\Ü²íbcã„V? ËØôðÍë00´A&ÛêIrc]øÔâÜÏ¨]öEi…’Ì"j>€øâ^°È¯ÆvøU]×½ØÉþ˜ ëþÍêøË™0ÂáÏ„ˆì¶¢oWÑØ0¤=o¦G] ÷ÜK'ì(Ë¼2Ã©W{¬»ªŽÒˆF¯}ÞÝtvPLZ¦`ÒøhÄ[eTúŠßè6þô¨ ¨ïŒ¤¿Üîf,ß(‚ö´TKÝêh¤YhqÉM  TKæŽÑãV~ö6:–ó96±þÔ«!Ö_$mñ“0¥kéŒÀ öINÙóGX‚‚©Ãï¦Ü RiYe›ûfÑ>‡þ‡{ŸÑäåó´õ4‰‹Ø0’	 L`?rû*âÿ§„†w²×}ªî³Iñô‘·Q:^ñÀ„ëÍiò²Vgj`\‚³@œ„ƒ×Ñ$î<¨äx< Ûôêg`ˆRÀ¼A³A¥tŽcVêÞ73ÕF¢«}¹‘>}+1ö˜#y'N¿¯Ð¹:‡æY$t”óÃÝÞXm×T.+Uâ$©±ïÆÃÇdŽ sÖ4B#pHn²º„¯ùÚÚçLÄÅT¿b+‚††ÃÃÑwnbÞ@è9Žå4*Œ©,YõuÈ#ÒÅm-˜{Œ{©/¶ÖÔgñ¶W$5lN±‚°¿ÍX£Ø#²ÇíÉ0ô™þ»ì ê¬¥Q\á#æöÌÛ'G_‹Lâ(6ðfsBùÙº“‹ìãÑ™ú$¤SÍjÜ0î±,ì;Kµ$l×+o›´lP(,”æ–{ºai³¢Zk±ìÆ7‡^ú-ôJÏ}…žû …>E/=¤#KVþ 9Dy<£ù¾ÏßØÿýúøãðûßŸŸ¾ì}øó­úýùâ¢b_=xÁ>ä•†¦S˜-•–¶ßË¸Öð:O(P ¯
+Y¾çš@m~–™Íë÷|Â5ç².û½@åÊE°õr{bäŽÞðBœòB›ØÌª„¬0£„%Pel­Å6­§”ŽRÇ_Âx¬Þ%{Ša!7šg’½Å·Ž^MD‘¨5ZY‚‹nSÒïÉleî³¥¤óQJCË8rž^“9õè›ãÕ©ŒÖÏ)®àãÁ1#±Z‚¬•mÕT†CðRæ&_ª“„´éÛô0Üƒ^ÞÛƒ’sá¼ÓŽ¦Ó˜©dÍkFB@FiWïÎ¢	¡‹	{fFB…1%#nï<~rDSº³ \‡óƒ$Ò‚¯¼X”µÑîbÐrbáY×ì»ü ²€ìzój„¾|_O—_Aˆ>-y	BêèlÓ¸!ágìwwÍ²Õ;$§aÚUlŸóv®¹)Ãlçš5ßý,³îÒøáÿ§µ
+Zœ¢ð_*[w3©­K!HÅíEñ°çBi›Ä»MJ’º=H7Ùƒ.
+Åƒ–õàaAð7è_Püž3IfRbEØÂ0Cæ½yß›÷}ozt|Üo°)˜Jìlâ¤X»žèmoöû%Ù(±|•ùr±	åÖ(œyXÇÝ"âîŽå§Ñ‹ õ|ÙÆ%c¸ÛvÈ‘‹8‰²d1I÷<.9ÒS}LWm|Å‹ ¬Ýn<™ÚâÐåÐ»ªrºÑ³Ó1™±{‡eìeÝl²‚þ«›„SI;e$Ü]
+Ý&á¬ÝŠóºjÄ£?9†ËxÆ²<MN«wAv˜P%Œ·¹ý`pbÅw!9¯ëë•´|Mc‚‰“€W-Dä÷×÷Û²'4Æ8SŽ‰Ê!8•Ž›a•ÏZ3.Å$+"?z:xöd<|lÈâû¯º*ÎÓ(ðl%aôÅÔØï°ÑÊq0\©‡£æŽZK=‡¾±XØHnrx„y0èvÍ¯ˆƒ9¤¨8Ÿ, fÌM”¬úN­ýÅÐ ˆ„ã,0/¾-úÁtù\pÆ‘4/ÙKJÇµÓ$¸Õ.5	eÑ“L˜è[FK¸øL‹Â/Nâ¨%@‡I© Ÿ,ÏòŒy¬P!ˆî[US°í¹p¥£xä›õgeä`/çS´/iyjJ¯<ò)»þAbµÅCAYÙm›<¾^ln®ßÝ||ÿúúç›O—›ËWŸ¿½½º¸Ú|ùð£¦ÕEÅyØ"ðm^àåwÉª„Î›ù¨éjQKu8ƒÇŒ(Õ9¥ö°’hñT•G‘§ÞÛ+ÕvOUÑííÕ(]„ê©Ç¤ñ²ÊS·¯ÌæÍÿœ âþfÏê}¢
+‚8Êã%¯‘¯Û·Ç™<8‘äBBa#åy¹@¸ wß†haüˆb©•ÑPCH,P
+Š!
+µ	¡1ÆVgÞ›ýz¬ÇYj¼ê±;³óÛ™ÙßÎ,ó³Èüñìd)œõ|se«Œ8·€´KNØ$u†Æ­P¨–êåÒÒî³¥rÏ–±wUEÈtm&ë1-}Ë0wto;PöwAbvAð¹˜“bc~AD\…ÇIZK–4 î½ê‚º1'emSõLw¤™ÆÕ2iÉøKp~>G'¾€I‰¹GßCãiXÝã†8/é”SÐk”° ¢$L.–‹Q0¸	EL»hÍR]Å0bëÂ<’G8[ªšq¨û‘È˜˜
+CNP:B•×Ž]Íy.­o¢€ì\½½°XY y‘SApòèMóÎÝÓå—ÍÏôÄk>¿¼µq²úâôéÛ“{OšŽdÎ–WA…œ¡L\nô R©ÄŒ•Qq®Tžr<Ê!p‹ê§ª‚N÷®Z^*k–2¤C[ç}?†…3~y!¹œã–õëFW¢”d(&za´K‹CVÏU*UÊÈs“6b·ô‚‰›Ë<óÒ¿o& ­í~râÉ:êÛ´šO&¤ÝÄbvŽ¡À$kpP/´,	Îa0V´ÐMØÚ»˜¥ XÝÔôZú F°°´'uø’º­uà\‘|ÏU¦/ÔM #»KËhù‡¿¸&‰…x±:^›¼M´-³õjóUPK¼`ùÁRË`ëÏ¸ŽzŽÁ‚¹5"Ø )f"K ë™¶p<Ì²”/(uÇdŠwÆC8opx0=Ucã·HZñ [Îk¥wÀüázcåèëöÏ|cëpG6‹0qW—ce5\W1!\,Òö	§²ï`4	Y‹•§ÊxïIèjQû;”âäœù5¢K“AËƒµŸQ‹—ë»Ö§‚-D¹k÷ÕÇãÑ\ì/-´JG$O5ö÷÷Ž+óaQ	§ê ¨¼Ÿù­âÓí‡;Š6ZÊö0Œ+³yŸTµp#›f£¯ üu\ØV´Ùp¦t³æpÙê>
+‚ƒOÝ[ßÝí/5y !eÚÃÄ¬˜Ì³D=¦º’u!Ü¾«Ò¶Âl ìÁ7?À
+Òmx¹†P]äAãˆÚ1©”•¹~–ßý¶÷3UvÞo467¯á›¬¬}>Xÿpt¸ùCOFC2Yefd™—¢H-FDÓJÁoÿÀëìrR’UlL™Ò‘
+‡Ñ)}ÑñwýDù@[RõÃ€ˆsÇÿß?üû%ºuCiÐÄ¤¼íh­#ÜtÄÔB¸åˆ©ø†#Ý2 ±Nþ~ä¬ÆóY)Ì^ˆÚnõ8øÑ!.4]„µÚÁLbÖ&ƒBÂ6õ^@ln:¡8ïÃ”æ9[ŠXé6gËVš‹À†`ñÛY¬5Åþ,j·Ñ‡g&Ñä·‡êÅ‘¢ ÷¸-öx‡-Áöæ5Ç3`DsÃvx&}wYðÀð°¬`~poÃDóŒ™µ$]¾oÞy—,Wf³êÊpGA›mŒ–XKô|Œs »ðX’mîúH¸<îD3,kÈ…ç­Y@«-–å4L„ç=h‘›kN(#‘FŸ£;ƒØŒ›Ý…œlÌêVÿdÇòŸ0¿ú'd2êf6G‰ë?^0]rïxFº¥Lâ©yýká-!ûk'\¬ž«%ìT)DÚËÇ3
+ “pŸZ ¸µÀ»‚lOÆÜ²L6nð´`.ñþ3Ææ ›3`ÄÆdsSRñÍ„g¦¦<pƒ¤Ô$Î8!Óß¦ø¸{ß 8”<R|K Öè–æb®i±‹G€œ2 œ{ß!@0%°“Ü¶rUg¤lo á¢”í4\˜²½†é| ±Nü‡ÓEr ¦©)zhÈ7wÔ8–Û©yJz¿óÓûeÑ%Óòsé6zG*ÝæÏ&¾ËlwÑS&v*ørFã¬4YöòXÔ3BóO$<ñ²†Ù'OY–¬^sì%ÄXŒšÉ¹‡ÉMÎ‚§ÝÙŠ—cÑZØŽ®ü!²Ê!<æ£{yÆ+“P
+¶§4Ö	ËÝÓØ÷éÝäACž5=ÒÙùŸ.j–Þík·×³ÙòîˆNbKàkÆÍ@]ÝÏKÏ”ºMIŠÞ}‚íB ÂÉˆ^ÁœÒ)°d¤ ¡r©ûia‹f°Z°*EÓ akŠ¦AÃ)š•Æ^f!-]½|Ø6FZÑ_01e¶J©€›Ù"™¤1È™š¥‰ÁÎü±dRkžEqK›^™Nðé/H'ørréÚ«×4rO§ð€ë”õäÌÙAAäÏÇ‰¸ÚÔ¶x‘Û`)y-R¢«½ZSovã42L4,YäŸÑÆ#@J ÎBøÛ+¡¯Ý‡‹Bô^¼¤¨öZ´D6Ý-à¾.¡Ûh¿…ÝðBKôfê–`G×S‰²£¨þ$“mê;@ø;ZX¦;‚M’o
+k°3Ï¾/Á¸Æ¡âï#û²3tŸ¾—%>p7b…|ÇŸ­[ <‚Šödá1–§³K?³î~fÀ	„7óoïõæ¦×í4µ	Ø{'z]öÿze~,#Žðz·M÷ªŒO24ä¤oƒ§ùsÅÌg©ý©„à­FHB‘þg™D‘öŸ™,¹\’nÄ‹M’læ€}bÀµéV§äNiMÇp7onNÏ[Ý”ž·r§æ­´àsbÇ¸ÌÓWLg¢+kSËV•ß¶­€ã·²ï<xZhÌÍDƒrÿFáUY<ýÄK­m0DÂ`÷o±ï.M‡í|ž+Òç¹ÜºNÀ–W¯ngaÞ´ý5hÈªt +S˜ÆûXœYëÓ™µ.YßKgV¹É¬05,KGw!L]ý6ñŸJ¦v¾›A{îO1ž9Æ§Â3”{¨áÅê@½1àx»ÆÍzgÑQ}ÍŒ½”µQŸ
+¨OÐ·'ýOamÍSúvYÖ_“÷„_—w7Eþâ”¤pJ¯Û°’ä•
+x0©—ç¦þö<Jm”
+Jû©ª~×ª­¼—ÁyG:CoOgè¦t†Þf†€¤ ž°ìv†mx3÷&2sJÿHùè¥.Â0 ÍæŸÀËx%"vVÊóõ^9(÷Ònz cœø	žS\xe‚ö‡Ðt=ž‰éßÎHöÂ.“÷ó"Øœ±ó (Ñu@äƒ³õ÷ìt…/Á<<ézð«Ú\Ì#”ø¤E8q†¬è»ìT¥Ša¹ø&F,¾ÎÖ%2Ååé¢(MÅüôvY	[ÄÖ­ó,w¶~*1´Slikm‚ŽS¡Ñb*<:n4ÆººågëcæŒ‘0/	óÂ‘0§›0™Âàò–9m$¸F‚›:\~:8sZ¯·Ùœ´!XC)G%çñóCY¤ÅlQJày6_ê>-ä³Ü”¹;Œë}aX•”„tÀB'óø.t˜óER¬ØˆÏhél=†;­ [6±ÝÜgnA‚çÈKÒîÎçùåœx3~fyMŒb°Ø€â·ìfKÁÃt†»YnË¹ÝäÔã¶<€Ó²•0³‘ÞÃ™­-´D2ìâS³·öjÇ¬Ól“ïh§ëívŒ¿a2ŸRö0Þ®†èÈ,.ù'óx;]ì$è^Xœ¾ª¤ðú~ Ïbv‡žNW )ÓSài÷Oä|Lš×t8”Ø\6ÈÎë´…º€¾4¢òIì8>Nb0­Y £Kø	^$û?øö`°½ÏJñŠN(Šó¨ºèhÍÅk“¨F§×ˆ‚$(L…Eá"Q˜!
+©û‚ÁQ÷ƒéû‚ÁÔ}Aöa–’€ÁXQ¸@¦±Ðs$t{¡å'‹%ÙUw¯%Ý}×qãóÿ]ì,ê˜—Ä²‘•ü9±*»–:.Oå¶‹K‚rj³—mÐ–&Tx«Pü¬ëEÐ6ì
+’X^LÛžéê+&¾ßáÜÐ†ÉÐoˆÆ6‹õMÝJ¦o¥Ó·Òƒ)[i¹0sC¥|*!'¸Ï”ènl7×B˜¥ãVe‘Üch„¯ðC¯Á€šÇŒ¹#³/Òc^ÚõRÄˆÉŸcºÚÇã/ô7Y-Á˜¸¡ìú¯Ìf…­Â}”ŒÈ.®eàÚÆOv95¼ËÜ£R>3Z":9èx³]¢	V[žxÇ€†‚Â6õdsÓIÜ¯DóÂ¥,Ñ"B·¥#’ì?ÿ3}AÒë+\hØü–ˆ9ñ¬ÝÆoùyjSXö_Ä'ˆß"7£·,ÏÓÿ5ë“£ù?¡ðŒ¡Í£“{é(7[|ÜV†7‘CqëùÊÂ®†©–z/u:ZÔ©f9ëÎp6Þ‹}Eœì8ÄŽ<œ(êe€.V]Îû~F}\Ø}¯-U^e`"Ä‰|Úó”cÊ;´å?Ã|3Qà9ÿ+ìí(Ü¾—¸M_„œ‰ÇkiýUOÊùZøæl`~þËóŽ>œ5æ‰ßæâ@§¬t-QÏ-ˆ\ùöÙfºß8\ž­,Vãõ×¥d²;w(+ qâ ‰ó!yt4n	ùŠãM<ðÝAltKª¿q„Ð,©škª&Øw¶Ùœ¸žè+òÏ¬RYLR¦ÛXArÊ,æqô&Wó
+’o[(cPDË{D&×„9õ7€ÊÓ]‚ª;hk)R]Z“@÷)º¼eáGC®Qg.S`RŒ©ÉÚ²·›wõ>|=ä“3Æt‰ë>7nx‹»Z¦)¸ð?,´¬u_Æ²ºŸzøyL;šžBÛío[h›(tRaÅöòñF^Q;¬ðË$ÓÇxíBV³\=¹ˆµ˜·Ofˆ†|Þps¸¼6Õ,òX‹	a²ÑÀzE~Ïƒ$xy>’ 8Å$A5ß’ 6Õ’Æ¼g2Æ<_E¾Ô3¾ ò¥~ÏŽ°ËðßÌƒ l#65¯6àSãVµnˆ[np¾Çì?ÛG»±¦×G-ýÄ©(ŒQD]›z2ˆÑŽ›šR#áQ#áôdx¬D/î™¿mq	ÓC3^HK‹½+h¶ûÅ@órNþöQú™åÞÔ?ÂÏOƒý{Ã±zâ× ó3ø¢é}1ÜîŸ0;ù=Ï²TÖ>t"™LƒþÇwÏÄ"Tó“Ëüº%²ëCsño=HfäÂãuûK·cv5žg6çê®èƒ¢#;Kå7úñ‚±3¿‚€¯]x*ÈCÞÃÿ.ì•.%„ÉÚ‹h“2HÂ´îMa-’ß®©2~-Y¨FêžŽž”‰t(É‹`öq¾å3¸7$ù¯
+¸ãìf—)´YoYfü” §K€‹ÃF±ùçéf&æ]8…Ã6­fÈ[ÿõ.ZbÊÝij ð?"³oƒæPž…8
+•Ì@Óu¡ñgÊ”ËÐÁ?„¹´·¢´‘Åü÷!¸´ˆXNvîÃ{}ê>þ‹Ô©Ÿ~Âà¸¥“‡ý,¸˜„;ì,¾CLŒÜŒ“x’å›8µÁÝÙ0#ã7ÅoÜ‹×öð^ÒÝKªM=RGL·²à ?OÖÕZ‘^$ûÿ£y_ÈÛÞ}×lsÃc.¿È.Ð›•œk[Âfïyäè&Ó'ÝÃBïn|'åºêîå«qUÙð&® bøÊ“`¯9ðy%S–!‹,sÂ¢Ç+3ðue™¹,Cô­§Û#Ùa‘¶;['Ñv#dÝ-Ô…ƒüRDb!ÌæF:Ž)Ùð8nÃúü4H¿³Ðö>ª;d†C‘{úy#Df70òjõªªvÊ…‰1. pñtKsñ7´0€öBmWÏZhb¡ …6ÁÚZh|¡ Å~a¥´ŒÊ£oOÄ¨É¬ÆÞ§ÇÂð^7@XpÊnê3‰Ò#¤!']G
+”,V‡üf€,â±[b¨.0c¨]Ájâ}÷mj,v+I ëbæC,hH‘Úø7Le)97™4×Ääæ¦˜äœFMäj÷½c$<|·Êþ:ÉéÇ¶ÐØý”É$x)›:8PãsÁ›´ø*¼µâvµ©‡ÛÜ¡Ñ=ê²?›VÝ€?R•îMU‹_pæIËš½¡K1ÎÛ¾ÍSë3
+oç‚†ÐÉÞ™½Ù‡Û xégDè¶#Â{h¡U,®ßoc61
+©½oñëwÙ¸¶«?AôÞ÷,]—Q×8ËqÐM¯h±õ‹^~)ä"âÉFÔøä(÷œÆtÊ¹f52é½TÏëàž×Ùúœl¸ìþ`¡ñg2;^UéñóDú-Bú$¬ÈL°-Oò=c®Ô ´°ËÙr‘<Ê¢ãl'Ÿu#ÄgZÝ²ÃúpV±õ÷fHžË×3v‰×},Þ­ê5.ñƒZ°œ4	8tO@\º_2O¡2O2=	Œ^W°°ïP…tuÅ{˜ýî¡{|lO3lnh†Sw3Ã)[™a‹õdùPÀÿm®4ž?Œ\àŽ¿–ºÀíŽ?Ø#Ûã7gÛàw˜Oµ¹ŸhnzŠ…[èÄþã)Ïñ”qdO{=äNÕ¿8žò³Ý¬"ËáióIútV£·Ð1z;ƒuÒ8@o¡ôŽ¢Ý½_üú“Ì}áÛ¿¡¯jøqbÞåm¡ˆuåxŸ ÐÔè¬¡m±´~9gÿlüñœýœiùbÕÅrç.¶¤º$ÿÚ€{Oë  ûýšÍ® •N¾¯÷vFÆéêa~y?Rì•)ÅÙ²²cÃÁÅêáÆ(oz†5éô5e‡(=€ÖâB:w7¹šáOÖ›‰¸ýü<ÔÁO·ú²¼»)$Î=_¶a…Ÿ{¾œÑÜôr†6î!ºÒÆ$¡ˆ@œ¯PˆÍîn]=eXûÝ!v–Jx4BÖï‰§ÅÝ†'Žô³~´g‰ûd6N+#¯öÉt “ý2;r‡á˜LÊ˜HÓùë~Ìx€8&R2*[H°CH0ƒK0/$2Lr:Qu@SüY*[L8ÕìeàÀ:NöÏ´Pš­†¡@<¥î |<ûñ"ø!ÌV#³Õ¸…Å0ÀæÏLvÒøÉœÍÚ¿8„6u«¯FEže*P"ýöàØ·°ùuŽ`@vKÍøYA¹[’©`…ŒnÔ‹D2ã”Ô¸Ï,Z} EL7Þ49“«â¿`«~4@o‹´ÛAü(±l/Ç—h(fÑ*lÓ/k³ÅÎ#YÝR’
+ãD!³[:³÷RÕ®«{aŠKñ·hð¶âOé:ÐO³@ˆ?¸÷ lÖ¯[Ê¥‚£[ZF…l:†BŽ(°ã" zîç4×Û/\TÎ¡ös¤£¨ý<l€áeô¥(–Ów¢È_X€ŸY*k}ïôÎT}Z8/¼ÂŽ Šž-b
+riˆbBD§…ˆö"êQH6>1°¢#œv˜ãËÄ&àÉ¢1Çs‚F'-èÑ“æ³zD8«GôGèöOŽàŽó,8¸ˆ¦Ó‹o™Î3»’óÝÌTæ;…ù[˜«	üNf¾ñT!Ù„öL":úøÐ¡hÁrTM,3¨X"÷qé!Ëu¶²µáýJ°ZÞ¢»ª&œÕTÔà±²â,(ZF]UsÔ¥T
+VÜ-±Â1¯¹¢0OJ„uÎ-¥ÝR.-eÂ¦WtKEéñ`½Öˆo´~ë/‚DÛÅ¬/5g]˜:ë¢”Y_–2ëóÍYO±ÎZŠ.¢Ù&Eq+Eð2ó´Ì¿ÑÒr ¶gµ:ö›\ø“)Âîž8”jwè3A©gaF;˜e6´êþ:)-¨ÑÐˆO[Æ²PÔL®8¾[h‰óyTs@óÁ®ãÕGÙ¾9ˆß2é+#+sm)ÌÍÌå¿QÙ1AÂ/k¿"á%/›á€Â&…M
+šúôk°Þž‹L@™í\9Ù+$zegGòò¿¥"aßwÐ½fdÐb5R÷"ÆDx­ÓÙRz:™$%pÐO\Ò×ÆéÇk×Ýè™Î†pMÂ»d8îÂ#{µ£å-?÷—Ò»ÑT—¼ù:áÍ×	oîÞ|9öùO
+3›Å2ÿu`æ2ÿu`ûÞ ±Nüá
+	Lâ{£Fƒ©{?4ÕØ³´1ÉŒ`væGfñc³ø‰(öÑbLnÍx)É:;C§/^¤¯ží§î{‰®l=¤ûy-ôcÁ¸€½v ·àUµ®N¹³Î¿yAEm½Òà­«¯ªÝ–#Í“æy$iõòJEUÝ¢³ê7aØ>«dAÅœY%¥ì¡(ø\d<IY2«þšé»+$eÖüÒzèàWfÕçHõU÷x—Âøµ^o…RS[çUê·{¶x)³ªýÊwW¯ô×Õy·ùOƒ§ªÚ³¹Ú«TÔU5¤õÊAræ_‰ÏËK©LO¥Þ¿yŽoÇvï¢lD%­÷nñÕÖÕ+Û½uÊ–j½Ï[*r¬í0ŒÚÖúk6Cµ¶R©¬ózE÷zz·¡Öç©Nm"l>OO©'`Ô8iS|ÔÛBõ\þÂ˜Ò\`j­´²vû¥²ªgU¯,]zñ§äòE%%‹JæKË·×)¥¥JiÉüù(¾þ!ÖÊÚ‘BRJæ^QY¼²¶f;€«P|U5(qÁ2¶ænÄ§Ö_«ºó2eõõ7¨9Ù+ë¼Ÿ—¨¡äƒGÙâ­óyª¶QûçdWU²Ñ—)Uõ0;ï–ªÊ*oEñ^u æÕÖ(5^ìÅSQQç­¯WJ~tuéÂ’¹[pâçÕn"Tó•ø§tP!8Â_øjÍZ©1ÔC¹±ºb­§Æ«¬õ6âßœìuÞmðwÞšZ`ºGY£€O«ªêH:;ŒÁ ÂÊÆòå®t7TÕƒžUW’zÅ³­_Ó€*¨ÃÄ}[½FÓ‡™€¼ÕD×ÎU×¯SWn¸qÝ-HDÍø•B³Xj¤lö*Þší¾EÙ mh\&e›·Ñ¤Â*ËzàâòEîµ×o˜ƒÌß¤¬ZwýM†4qFÔ³¡¶Ú¼ªeóá}¬)«kë¶xé5ð£v‹Ç‡JåßVåS
+AíAë‹˜TñVPÍ;|ÞœœlÉÌ¸jhfœ[^íõÔ{•†ªzèÛèÝ<þhŸ²ÕçÛ¾hÞ¼-[A\ÕÕs·y}ór$Ò	f(mÙZS[!!$‰©ªÄ¸"!·%š±„K¨dðà±ÈöPÏ¿}ÙìâEK–^³lã¦» :‘Ê$ErIã¯VGü/7§4/ºQY»|Ê9{y)üMkÃ?¸Eþòÿ®]ç^±`Õë¿Òà¯øO)œ_¤,W¶zê*/rH©Ý²Å_žëtum£Rím ¦VTÕß­\?ïF¥Ú³Üß¹ã(, X§þõõà!PU*=äx¾ñy\^¤l z·oÝQ_µÅðª[<Û¶Õ‚bÕÖÝýµQ.(RVÖú«+YYN 9D~çëÏ€ã¸bTÛ=¾­ß¥ðJÎ+„ŠÎPaöˆŽºj[ƒ§ºêkË§ð*ù–-àY*¼ÛÀí+~/:éíuµ[«6ƒ‰W(|]¾Ïô›•~ð±çŒãêsÅñÕç¡.d¼B)Ï3	­Ý|”¾†–Œª¼ ½±Ý!ÌÈè¾†Ù ŽùGuíÛX,óMÍ£”áàËÈVO=¨13>,4_¶3ô:b@gT\¼Òxùåp,àB¿’Â"Å³¹¶Îgj˜gÛ0ž:°Xï¸ßüró(œŸbèy Vó@8‹ð™ÚúLV6Vù¶‚G®ð‚K : ­ª=›¬
+çs;¯…îl–ÕyïbªHjë*ª¶Ý‰GVK’Þ~=,<÷fá¶LÆõ.åGì¶¤ç±ÙommÃ³gÛnvˆì[ô‰oC‰ñ«¶—9o˜ž’]}ýþÆ»ž¾¾²žåÖòËƒ,í/U·úqŸI  %%‹a 4
+ ìÁ     ÿk#¨ªªªªªªªªªªªªªª°    @þ¯ ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª*ìÁ     ÿk#¨ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª
+{p      äÿÚªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªÂ     ù¿6‚ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª°    @þ¯ ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª*ìÁ     ÿk#¨ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª
+{p      äÿÚªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªÂ     ù¿6‚ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª°    @þ¯ ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª*ìÁ     ÿk#¨ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª
+{p      äÿÚªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªÂ     ù¿6‚ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª°    @þ¯ ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª*ìÁ     ÿk#¨ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª
+{p      äÿÚªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªÂ     ù¿6‚ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª°    @þ¯ ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª*ìÁ     ÿk#¨ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª
+{p      äÿÚªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªÂ     ù¿6‚ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª°    @þ¯ ªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª*íÁ!   € ÿ¯a                   àÃ»Û¾ € 

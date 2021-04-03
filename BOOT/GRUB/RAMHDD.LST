@@ -1,0 +1,51 @@
+﻿timeout 15
+default 0
+gfxmenu /BOOT/GRUB/MESSAGE
+graphicsmode -1 600:800
+font /BOOT/GRUB/MENU.HEX
+
+title  [1] 运行 MemTest 5.0 内存检测工具
+map --mem /BOOT/IMGS/MEMTEST.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title  [2] 运行 MemTest 4.2 内存检测工具
+kernel /BOOT/IMGS/MT42.BIN
+
+title  [3] 运行 MHDD 4.6 硬盘检测
+terminal console
+pause --wait=2  Loading DOS tool ...
+map --mem /BOOT/IMGS/MHDD46.LZMA (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title  [4] 运行 MHDD 2.9 硬盘检测
+terminal console
+pause --wait=2  Loading DOS tool ...
+map --mem /BOOT/IMGS/DOS.IMG (fd0)
+map --hook
+dd if=(fd0)/config.sys of=(fd0)/config.sys bs=1 skip=65 count=1 seek=185
+write --offset=1010 (fd0)/autoexec.bat call mhdd.bat c
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title  [5] 运行 WinDiag 内存检测
+map --mem /BOOT/IMGS/WINDIAG.LZMA (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title  [6] 运行 HddReg 2014 硬盘再生器
+terminal console
+pause --wait=2  Loading DOS tool ...
+map --mem /BOOT/IMGS/DOS.IMG (fd0)
+map --hook
+dd if=(fd0)/config.sys of=(fd0)/config.sys bs=1 skip=65 count=1 seek=185
+write --offset=1010 (fd0)/autoexec.bat call hddreg.bat
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title  [7] 返回上级菜单
+configfile /BOOT/GRUB/TOOL.LST

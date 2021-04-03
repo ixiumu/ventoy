@@ -1,0 +1,91 @@
+﻿timeout 15
+default 0
+gfxmenu /BOOT/GRUB/MESSAGE
+graphicsmode -1 600:800
+font /BOOT/GRUB/MENU.HEX
+
+title [1] 使用 KonBoot 2.1 绕过密码 (模式一)
+terminal console
+pause --wait=2 Loaded into memory, no arguments. 
+map --mem /BOOT/IMGS/KON.IMG (fd0)
+if "%@root%"=="(ud)" && calc *0x82A0=*0x82b9&0xff
+if "%@root:~1,1%"=="h" && map (hd0) (hd1) && map (hd1) (hd0)
+map --rehook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [2] 使用 KonBoot 2.1 绕过密码 (模式二)
+terminal console
+pause --wait=2  Loaded with MemDisk, the preferred way.
+kernel /BOOT/GRUB/MEMDISK
+initrd /BOOT/IMGS/KON.IMG
+rootnoverify (fd0)
+
+title [3] 使用 KonBoot 2.1 绕过密码 (模式三)
+terminal console
+pause --wait=2 Loaded into memory, int15nolow=1
+map --mem /BOOT/IMGS/KON.IMG (fd0)
+map --int15nolow=1
+map --rehook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [4] 使用 KonBoot 2.4 绕过密码 (模式一)
+terminal console
+pause --wait=2 Loaded into memory, no arguments.  
+map --mem /BOOT/IMGS/KONNEW.IMG (fd0)
+if "%@root%"=="(ud)" && calc *0x82A0=*0x82b9&0xff
+if "%@root:~1,1%"=="h" && map (hd0) (hd1) && map (hd1) (hd0)
+map --rehook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [5] 使用 KonBoot 2.4 绕过密码 (模式二)
+terminal console
+pause --wait=2  Loaded with MemDisk, the preferred way.
+kernel /BOOT/GRUB/MEMDISK
+initrd /BOOT/IMGS/KONNEW.IMG
+rootnoverify (fd0)
+
+title [6] 使用 KonBoot 2.5 绕过密码
+terminal console
+pause --wait=2 Loaded into memory, no arguments.  
+map --mem /BOOT/IMGS/KONBOOT.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+map (hd1) (hd0)
+map --hook
+rootnoverify (fd0)
+
+title [7] 清除 Windows 用户密码 (中文)
+terminal console
+echo $[0x0C]  Loading DOS tool ...
+map --mem /BOOT/IMGS/DOS.IMG (fd0)
+map --rehook
+dd if=(fd0)/config.sys of=(fd0)/config.sys bs=1 skip=65 count=1 seek=185
+write --offset=1010 (fd0)/autoexec.bat call pwd.bat c
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [8] 清除 Windows 用户密码 (英文)
+terminal console
+echo $[0x0C] Loading DOS tool ...
+map --mem /BOOT/IMGS/DOS.IMG (fd0)
+map --rehook
+dd if=(fd0)/config.sys of=(fd0)/config.sys bs=1 skip=65 count=1 seek=185
+write --offset=1010 (fd0)/autoexec.bat call pwd.bat e
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [9] 处理 CMOS 密码
+terminal console
+echo $[0x0C]  Loading DOS tool ...
+map --mem /BOOT/IMGS/DOS.IMG (fd0)
+map --rehook
+dd if=(fd0)/config.sys of=(fd0)/config.sys bs=1 skip=65 count=1 seek=185
+write --offset=1010 (fd0)/autoexec.bat call cmos.bat
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [10] 返回上级菜单
+configfile /BOOT/GRUB/TOOL.LST

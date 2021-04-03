@@ -1,0 +1,25 @@
+﻿timeout 15
+default 0
+gfxmenu /BOOT/GRUB/MESSAGE
+graphicsmode -1 600:800
+font /BOOT/GRUB/MENU.HEX
+
+title [1] Ghost 11.5.1
+terminal console
+pause --wait=2  Loading DOS tool ...
+map --mem /BOOT/IMGS/GHOST.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [2] Ghost 11.5.1 (极限压缩)
+terminal console
+pause --wait=2  Loading DOS tool ...
+map --mem /BOOT/IMGS/GHOST.IMG (fd0)
+map --hook
+write --offset=112 (fd0)/Ghost.bat Ghost.exe -fro -crcignore -z9
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [3] 返回主菜单
+configfile /BOOT/GRUB/MENU.LST

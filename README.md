@@ -2,15 +2,19 @@
 
 The [Ventoy Poly Dark](https://github.com/jfcherng/Ventoy-theme-poly-dark) Ventoy theme modified.
 
-# EFI Install
+## EFI Install
 
-ventoy_wimboot.img & ventoy_vhdboot.img -> (VTOYEFI)\ventoy
+ventoy_wimboot.img & ventoy_vhdboot.img -> (VTOYEFI)\ventoy\
 
-themes\ ->  (VTOYEFI)\grub\themes\ventoy
+themes\ ->  (VTOYEFI)\grub\themes\
 
-ventoy.json -> (VTOYEFI)\ventoy
+ventoy.json -> (VTOYEFI)\ventoy\ventoy.json
 
-## (VTOYEFI)\grub\grub.cfg
+grub.cfg -> (VTOYEFI)\grub\expand.cfg
+
+BOOT\GRUB\GRUB -> (VTOYEFI)\tool\grub4dos
+
+### (VTOYEFI)\grub\grub.cfg
 
 ```
 +
@@ -35,4 +39,29 @@ for vtTFile in ventoy.json ventoy_grub.cfg; do
         read vtInputKey
     fi
 done
+
++
+function ventoy_ext_menu {
+    if [ -e $vtoy_iso_part/grub.cfg ]; then
+        set ventoy_new_context=1
+        configfile $vtoy_iso_part/grub.cfg
+        unset ventoy_new_context
+    elif [ -e $vtoy_efi_part/grub/expand.cfg ]; then
+        set ventoy_new_context=1
+        configfile $vtoy_efi_part/grub/expand.cfg
+        unset ventoy_new_context
+    elif [ -e $vt_plugin_path/ventoy/ventoy_grub.cfg ]; then
+        set ventoy_new_context=1
+        configfile $vt_plugin_path/ventoy/ventoy_grub.cfg
+        unset ventoy_new_context
+    else
+       echo "expand.cfg or grub.cfg NOT exist."
+       echo -e "\npress ENTER to exit ..."
+       read vtInputKey
+    fi
+}
 ```
+
+## Hide EFI partition
+
+Use bootice to set partition hiding [EF] -> [16]

@@ -1,0 +1,27 @@
+﻿timeout 15
+default 5
+gfxmenu /BOOT/GRUB/MESSAGE
+graphicsmode -1 600:800
+font /BOOT/GRUB/MENU.HEX
+
+title [1] 运行 手动 U盘加速
+command /BOOT/GRUB/USB_ACC.0PE
+configfile /BOOT/GRUB/MENU.LST || find --set-root /BOOT/GRUB/MENU.LST && configfile /BOOT/GRUB/MENU.LST
+
+title [2] 运行 智能 U盘加速
+command /BOOT/GRUB/USB_ACC.0PE mode:auto --time-out-enable:0 --time-out-disable:0 --version:plpbt.bin(5.0.10)
+configfile /BOOT/GRUB/MENU.LST || find --set-root /BOOT/GRUB/MENU.LST && configfile /BOOT/GRUB/MENU.LST
+
+title [3] 运行 自定义映像
+graphicsmode -1 640
+font /BOOT/GRUB/MENU.HEX
+/BOOT/GRUB/RUN --automenu-all /ISO/
+
+title [4] 运行 硬盘/内存 检测工具
+configfile /BOOT/GRUB/RAMHDD.LST
+
+title [5] 运行 Windows 密码破解工具
+configfile /BOOT/GRUB/PWD.LST
+
+title [6] 返回主菜单
+configfile /BOOT/GRUB/MENU.LST

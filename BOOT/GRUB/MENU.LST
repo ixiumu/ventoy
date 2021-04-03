@@ -1,0 +1,38 @@
+﻿timeout 30
+default 0
+gfxmenu /BOOT/GRUB/MESSAGE
+graphicsmode -1 600:800
+font /BOOT/GRUB/MENU.HEX
+
+title [1] 启动 硬盘上的操作系统
+find --set-root --ignore-floppies --ignore-cd /ntldr || find --set-root --ignore-floppies --ignore-cd /bootmgr
+map () (hd0)
+map (hd0) ()
+map --rehook
+find --set-root --ignore-floppies --ignore-cd /ntldr || find --set-root --ignore-floppies --ignore-cd /bootmgr
+chainloader /ntldr || chainloader /bootmgr
+
+title [2] 运行 DiskGenius 硬盘分区工具
+terminal console
+pause --wait=2  Loading DiskGenius tool ...
+map --mem /BOOT/IMGS/DG.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [3] 运行 Ghost 备份恢复工具
+configfile /BOOT/GRUB/GHOST.LST
+
+title [4] 运行 MaxDos 工具箱
+terminal console
+pause --wait=2  Loading DOS tool ...
+map --mem /BOOT/IMGS/DOS.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title [5] 运行 其他工具
+configfile /BOOT/GRUB/TOOL.LST
+
+title [6] 关闭 计算机
+halt
