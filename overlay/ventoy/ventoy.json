@@ -5,12 +5,12 @@
         { "VTOY_DEFAULT_SEARCH_ROOT": "/ISO" }
     ],
     "theme": {
-        "file": "/ventoy/themes/poly-dark/theme.txt",
+        "file": "/grub/themes/poly-dark/theme.txt",
         "ventoy_left": "99%",
         "ventoy_top": "99%",
         "ventoy_color": "#000000",
         "fonts": [
-            "/ventoy/themes/poly-dark/unifont-regular-16.pf2"
+            "/grub/themes/poly-dark/terminus-16.pf2"
         ]
     },
     "menu_class": [
